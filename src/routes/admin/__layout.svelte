@@ -1,11 +1,11 @@
 <script context="module">
-  export let ssr = false;
+  export const ssr = false;
 </script>
 
 <script>
   import { onMount } from "svelte";
   import netlifyIdentity from "netlify-identity-widget";
-  import Sidebar from "$lib/components/admin/Sidebar.svelte";
+  import Sidebar from "$lib/components/admin/Sidebar/index.svelte";
   import Navbar from "$lib/components/admin/Navbar.svelte";
   // import SummaryCard from "$lib/components/SummaryCard.svelte";
   import { user, redirectURL } from "./store.js";

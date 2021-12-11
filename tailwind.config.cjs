@@ -1,5 +1,15 @@
 const colors = require("tailwindcss/colors");
 
+const newColors = {
+  ...colors,
+  primary: "#22577A",
+  "primary-soft": "#2D719F",
+  accent: "#80ED99",
+  "admin-danger": "#FC484D",
+  "admin-danger-dark": "#FC0A11",
+  "admin-danger-light": "#FFC6D6",
+};
+
 module.exports = {
   mode: "jit",
   purge: ["./src/**/*.svelte"],
@@ -12,26 +22,17 @@ module.exports = {
       xl: "1440px",
     },
     colors: {
-      ...colors,
-      primary: "#22577A",
-      "primary-soft": "#2D719F",
-      accent: "#80ED99",
+      ...newColors,
     },
     backgroundColor: {
-      ...colors,
-      primary: "#22577A",
-      "primary-soft": "#2D719F",
-      accent: "#80ED99",
+      ...newColors,
       "admin-grey": "rgb(239, 240, 244)",
     },
     textColor: {
-      ...colors,
-      primary: "#F9DEC9",
-      secondary: "#F9DEC9",
-      accent: "#80ED99",
+      ...newColors,
       "primary-on-accent": "#19323C",
       "background-primary": "#22577A",
-      "admin-link": "#479CFB",
+      "admin-primary": "#19323C",
     },
     fontFamily: {
       mono: ["VT323", "monospace"],
