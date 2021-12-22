@@ -1,14 +1,7 @@
-import AWS from "aws-sdk";
 import { HandlerEvent } from "@netlify/functions";
 import { jsonResponse } from "../shared/utils";
+import { getS3Client } from "../shared/s3-client";
 
-AWS.config.update({
-  accessKeyId: process.env.VITE_AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.VITE_AWS_SECRET_ACCESS_KEY,
-  region: process.env.VITE_AWS_REGION,
-});
-
-const s3 = new AWS.S3();
 const URL_EXPIRATION_SECONDS = 300;
 
 const handler = async function (event: HandlerEvent) {
@@ -31,6 +24,7 @@ const handler = async function (event: HandlerEvent) {
     ACL: "public-read",
   };
 
+  const s3 = getS3Client();
   const uploadURL = await s3.getSignedUrlPromise("putObject", s3Params);
 
   return jsonResponse({

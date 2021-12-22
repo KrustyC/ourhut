@@ -1,58 +1,47 @@
-import { Handler, HandlerEvent } from "@netlify/functions";
+import { S3 } from "aws-sdk";
+import { Handler } from "@netlify/functions";
 import { jsonResponse } from "../shared/utils";
-import { parseMultipartForm } from "../shared/parse-multipart-form";
-// const ALLOWED_METHODS = ["GET", "POST"];
-const ALLOWED_METHODS = ["POST"];
+import { getS3Client } from "../shared/s3-client";
 
-// async function get(client: MongoClient) {
-//   try {
-//     const projects = await client
-//       .db(process.env.VITE_MONGO_DB_NAME)
-//       .collection("projects")
-//       .find()
-//       .toArray();
+const ALLOWED_METHODS = ["GET"];
 
-//     return jsonResponse({
-//       status: 200,
-//       body: { projects },
-//     });
-//   } catch (error) {
-//     return jsonResponse({
-//       status: 500,
-//       body: {
-//         message: "Error fetching projects, please try again later on.",
-//       },
-//     });
-//   }
-// }
+async function getAllS3Files(params): Promise<S3.ListObjectsV2Output> {
+  return new Promise((resolve, reject) => {
+    const s3 = getS3Client();
 
-async function post(client: any, event: HandlerEvent) {
+    s3.listObjectsV2(params, function (err, data) {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve(data as S3.ListObjectsV2Output);
+    });
+  });
+}
+
+async function get() {
   try {
-    const fields = parseMultipartForm(event);
+    const params = {
+      Bucket: process.env.VITE_S3_IMAGES_BUCKET,
+    };
 
-    console.log(fields);
+    const listObjects = await getAllS3Files(params);
 
-    // await client
-    //   .db(process.env.VITE_MONGO_DB_NAME)
-    //   .collection("projects")
-    //   .insertOne(projectDocument);
+    const imagesUrls = listObjects.Contents.map((file) => {
+      return `https://${process.env.VITE_S3_IMAGES_BUCKET}.s3.amazonaws.com/${file.Key}`;
+    });
 
     return jsonResponse({
       status: 200,
-      body: {
-        images: [
-          "https://pbs.twimg.com/profile_images/1342768807891378178/8le-DzgC_400x400.jpg",
-          "https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg",
-          "https://media.istockphoto.com/photos/random-multicolored-spheres-computer-generated-abstract-form-of-large-picture-id1295274245?b=1&k=20&m=1295274245&s=170667a&w=0&h=4t-XT7aI_o42rGO207GPGAt9fayT6D-2kw9INeMYOgo=",
-          "https://upload.wikimedia.org/wikipedia/commons/e/ec/RandomBitmap.png",
-        ],
-      },
+      body: { images: imagesUrls },
     });
   } catch (error) {
+    console.log(error);
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error creating your project, please try again later on.",
+        message: "Error fetching imagsd, please try again later on.",
       },
     });
   }
@@ -66,26 +55,8 @@ const handler: Handler = async (event, context) => {
     });
   }
 
-  let s3Client;
-
-  try {
-    // client = await connect();
-    s3Client = {}; //
-  } catch (error) {
-    return jsonResponse({
-      status: 500,
-      body: {
-        message: "Error connecting to S3, please try again later on.",
-      },
-    });
-  }
-
-  //   if (event.httpMethod === "GET") {
-  //     return get(s3Client);
-  //   }
-
-  if (event.httpMethod === "POST") {
-    return post(s3Client, event);
+  if (event.httpMethod === "GET") {
+    return get();
   }
 };
 
