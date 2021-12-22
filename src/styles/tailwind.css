@@ -28,18 +28,22 @@
   }
 
   .btn-admin {
-    @apply h-12 w-24 px-5 py-2 text-sm shadow-sm font-medium tracking-wider rounded-full hover:shadow-lg disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:text-gray-800 disabled:border-gray-200 disabled:shadow-none;
+    @apply h-12 w-auto px-5 py-2 text-sm shadow-sm font-medium tracking-wider rounded-full hover:shadow-lg disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:text-gray-800 disabled:border-gray-200 disabled:shadow-none;
   }
 
-  .btn-primary {
-    @apply bg-admin-danger border text-white hover:bg-admin-danger-dark;
+  .btn-admin.btn-sm {
+    @apply h-8 text-xs;
   }
 
-  .btn-base {
-    @apply bg-white text-gray-600 hover:bg-gray-100;
+  .btn-admin.btn-primary {
+    @apply bg-admin-primary border text-white hover:bg-admin-primary-dark;
   }
 
-  .btn-danger {
+  .btn-admin.btn-dark {
+    @apply bg-black text-white;
+  }
+
+  .btn-admin.btn-danger {
     @apply bg-admin-danger border text-white hover:bg-admin-danger-dark disabled:bg-admin-danger-light disabled:hover:bg-admin-danger-light disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none;
   }
 }

@@ -4,7 +4,7 @@
 >
   <div class="absolute bg-black opacity-80 inset-0 z-0" />
   <div
-    class="w-full  max-w-lg p-3 relative mx-auto my-auto rounded-xl shadow-lg  bg-white "
+    class="w-full max-w-xl p-3 relative mx-auto my-auto rounded-xl shadow-lg  bg-white "
   >
     <slot />
   </div>

@@ -7,7 +7,7 @@
   import netlifyIdentity from "netlify-identity-widget";
   import Sidebar from "$lib/components/admin/Sidebar/index.svelte";
   import Navbar from "$lib/components/admin/Navbar.svelte";
-  // import SummaryCard from "$lib/components/SummaryCard.svelte";
+
   import { user, redirectURL } from "./store.js";
 
   $: isLoggedIn = !!$user;
@@ -42,7 +42,7 @@
     <div>
       <Navbar />
 
-      <div class="flex overflow-hidden bg-white pt-16">
+      <div class="flex overflow-hidden bg-white pt-12">
         <Sidebar />
         <div
           class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
@@ -50,7 +50,7 @@
         />
         <div
           id="main-content"
-          class="h-full w-full bg-admin-grey relative overflow-y-auto lg:ml-64"
+          class="h-full w-full bg-admin-grey relative overflow-y-auto lg:ml-64 pt-2"
         >
           <main>
             <slot />
@@ -67,8 +67,9 @@
       <button
         class="px-4 py-3 rounded-md mt-8 font-bold bg-gray-800 text-white"
         on:click={() => onLoginOrSignup("login")}
-        >Log In with Netlify Identity</button
       >
+        Log In with Netlify Identity
+      </button>
       <p class="mt-4">This is a private area. Please log in to view.</p>
     </div>
   {/if}

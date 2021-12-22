@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
   import BinIcon from "$lib/components/icons/Bin.svelte";
   import PieChartIcon from "$lib/components/icons/PieChart.svelte";
   import DeleteImageModal from "./DeleteImageModal.svelte";
   import ViewImageModal from "./ViewImageModal.svelte";
+  import UploadImageButton from "./UploadImageButton/index.svelte";
 
   let selectedImageIndex = undefined;
   let imageToDeleteIndex = undefined;
@@ -36,8 +37,11 @@
     "https://miro.medium.com/max/1200/1*1BUIofZgqVuR6nj8LbrRtQ.jpeg",
   ];
 
+  function onConfirmImageUpload(newImage: string) {
+    images = [...images, newImage];
+  }
+
   function onSelectImage(index) {
-    console.log("SLECTED IMAGE", index);
     selectedImageIndex = index;
   }
 
@@ -67,16 +71,21 @@
 <div class="p-4">
   <div class="flex justify-between items-center">
     <h2 class="text-gray-600 font-bold">Images</h2>
-    <button class="bg-black hover:bg-blue-800 text-white font-bold p-2 rounded "
-      >Upload Images</button
-    >
+    <UploadImageButton onConfirm={onConfirmImageUpload} />
   </div>
-  <p class="text-gray-600">In this section you can manage your Images.</p>
+  <p class="text-gray-600">
+    In this section you can manage your Images. Click on any image to view it in
+    its full size.
+  </p>
 
   <div class="grid grid-cols-6 gap-4 mt-4">
     {#each images as image, index}
       <div class="relative">
-        <img class="w-full cursor-pointer" src={image} on:click={() => onSelectImage(index)} />
+        <img
+          class="w-full cursor-pointer"
+          src={image}
+          on:click={() => onSelectImage(index)}
+        />
         <button
           class="absolute top-2 right-2 h-6"
           on:click={() => onWantToDeleteImage(index)}
