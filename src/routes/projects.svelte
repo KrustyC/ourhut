@@ -2,7 +2,7 @@
   import { variables } from "$lib/variables";
 
   export async function load({ fetch }) {
-    const url = `${variables.basePath}/.netlify/functions/projects`;
+    const url = `${variables.basePath}/.netlify/functions/admin-projects`;
 
     const res = await fetch(url);
     const { projects } = await res.json();

@@ -40,7 +40,7 @@
   });
 
   async function onSubmit(event) {
-    const url = `${variables.basePath}/.netlify/functions/projects`;
+    const url = `${variables.basePath}/.netlify/functions/admin-projects`;
 
     const res = await fetch(url, {
       method: "POST",

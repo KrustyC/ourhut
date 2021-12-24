@@ -15,7 +15,7 @@
   let images = [];
 
   onMount(async () => {
-    const res = await fetch(`${variables.basePath}/.netlify/functions/images`);
+    const res = await fetch(`${variables.basePath}/.netlify/functions/admin-images`);
     const json = await res.json();
 
     images = json.images;

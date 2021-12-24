@@ -5,7 +5,7 @@
   let projects = [];
   let pending = true;
 
-  const url = `${variables.basePath}/.netlify/functions/projects`;
+  const url = `${variables.basePath}/.netlify/functions/admin-projects`;
   onMount(async () => {
     const res = await fetch(url);
     const json = await res.json();

@@ -19,7 +19,7 @@ async function getAsByteArray(file) {
 }
 
 export async function uploadFileToS3(file: File) {
-  const url = `${variables.basePath}/.netlify/functions/signed-s3-url?name=${file.name}&type=${file.type}`;
+  const url = `${variables.basePath}/.netlify/functions/admin-signed-s3-url?name=${file.name}&type=${file.type}`;
   const result = await fetch(url, {
     method: "GET",
   });
