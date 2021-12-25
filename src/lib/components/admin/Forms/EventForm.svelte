@@ -3,6 +3,7 @@
   import Editor from "$lib/components/admin/FormComponents/TextEditor/Editor.svelte";
   import DatePicker from "$lib/components/admin/FormComponents/DatePicker.svelte";
   import TimePicker from "$lib/components/admin/FormComponents/TimePicker.svelte";
+  import LocationInput from "$lib/components/admin/FormComponents/LocationInput.svelte";
 
   export let event = null;
   export let onSaveDraft = () => {};
@@ -76,17 +77,12 @@
   </div>
 
   <div class="mb-8">
-    <!-- <label
-              class="uppercase block text-gray-700 text-sm font-bold mb-2"
-              
-            >
-              Location
-            </label> -->
-    <TextInput
+    <LocationInput />
+    <!-- <TextInput
       label="Location"
       name="Location"
       placeholder="Insert a full address (ex. 4, Wilberforce Mews, SW4 6BL, London)"
-    />
+    /> -->
   </div>
 
   <div class="flex">

@@ -5,6 +5,8 @@
   export let width: string = "w-full";
 
   export let value = "";
+
+  export let onBlur = (e: any) => {};
 </script>
 
 <div class="flex flex-col">
@@ -17,6 +19,7 @@
   <input
     id={name}
     bind:value
+    on:blur={onBlur}
     {name}
     type="text"
     {placeholder}

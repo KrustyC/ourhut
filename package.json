@@ -50,9 +50,11 @@
     "cookie": "^0.4.1",
     "date-fns": "^2.27.0",
     "dayjs": "^1.10.7",
+    "leaflet": "^1.7.1",
     "mongodb": "^4.2.0",
     "netlify-identity-widget": "^1.9.2",
     "prosemirror-svelte": "^0.2.4",
+    "svelte-leafletjs": "^0.8.0",
     "yup": "^0.32.11"
   }
 }
