@@ -1,13 +1,29 @@
 <script lang="ts">
   import TextInput from "$lib/components/admin/FormComponents/TextInput.svelte";
+  import ImageSelector from "$lib/components/admin/FormComponents/ImageSelector/ImageSelector.svelte";
   import Editor from "$lib/components/admin/FormComponents/TextEditor/Editor.svelte";
   import DatePicker from "$lib/components/admin/FormComponents/DatePicker.svelte";
   import TimePicker from "$lib/components/admin/FormComponents/TimePicker.svelte";
   import LocationInput from "$lib/components/admin/FormComponents/LocationInput.svelte";
+  import { eventSchema } from "./validators";
 
   export let event = null;
   export let onSaveDraft = () => {};
   export let onPublish = () => {};
+
+  let actionsDisabled = true;
+  let validation = true;
+
+  event.subscribe((data) => {
+    actionsDisabled = !eventSchema.isValidSync(data);
+    
+    try {
+      validation = eventSchema.validateSync(data);
+    } catch (err) {
+      console.log(err);
+    }
+    console.log(validation);
+  });
 </script>
 
 <div class="flex flex-col">
@@ -25,6 +41,13 @@
       Description
     </span>
     <Editor bind:content={$event.description} />
+  </div>
+
+  <div class="mb-8">
+    <span class="uppercase block text-gray-700 text-sm font-bold mb-2">
+      Image
+    </span>
+    <ImageSelector bind:image={$event.image} />
   </div>
 
   <div class="flex mb-8">
@@ -70,6 +93,7 @@
     <input
       id="price"
       name="price"
+      bind:value={$event.price}
       type="text"
       placeholder="20"
       class="w-16 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -77,16 +101,15 @@
   </div>
 
   <div class="mb-8">
-    <LocationInput />
-    <!-- <TextInput
-      label="Location"
-      name="Location"
-      placeholder="Insert a full address (ex. 4, Wilberforce Mews, SW4 6BL, London)"
-    /> -->
+    <LocationInput bind:location={$event.location} />
   </div>
 
-  <div class="flex">
-    <button class="btn-admin btn-primary mr-4">Publish Event</button>
-    <button class="btn-admin btn-outlined-primary">Create Draft</button>
+  <div class="flex border-t-2 border-slate-300 pt-4">
+    <button class="btn-admin btn-primary mr-4" disabled={actionsDisabled}>
+      Publish Event
+    </button>
+    <button class="btn-admin btn-outlined-primary" disabled={actionsDisabled}>
+      Create Draft
+    </button>
   </div>
 </div>

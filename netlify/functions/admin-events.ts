@@ -11,7 +11,14 @@ let eventSchema = yup.object().shape({
   status: yup.string().required(),
   image: yup.string(),
   location: yup.object().shape({
-    address: yup.string().required(),
+    address: yup
+      .object()
+      .shape({
+        address: yup.string().required(),
+        postcode: yup.string().required(),
+        city: yup.string().required(),
+      })
+      .required(),
     coordinates: yup
       .object()
       .shape({
@@ -24,8 +31,20 @@ let eventSchema = yup.object().shape({
     .object()
     .shape({
       day: yup.string().required(),
-      startTime: yup.string(),
-      endTime: yup.string(),
+      startTime: yup
+        .object()
+        .shape({
+          lat: yup.string().required(),
+          lng: yup.string().required(),
+        })
+        .required(),
+      endTime: yup
+        .object()
+        .shape({
+          lat: yup.string().required(),
+          lng: yup.string().required(),
+        })
+        .required(),
     })
     .required(),
 });

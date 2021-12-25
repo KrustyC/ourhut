@@ -97,4 +97,9 @@
   :global(.leaflet-control-container) {
     position: static;
   }
+
+  :global(.leaflet-container) {
+    z-index: 0;
+  }
+
 </style>

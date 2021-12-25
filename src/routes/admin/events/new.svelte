@@ -1,7 +1,7 @@
 <script lang="ts">
   import { writable } from "svelte/store";
   import Panel from "$lib/components/admin/Panel.svelte";
-  import EventForm from "$lib/components/admin/Forms/EventForm.svelte";
+  import EventForm from "$lib/components/admin/Forms/EventForm/EventForm.svelte";
 
   let eventData = null;
 
@@ -22,7 +22,11 @@
       },
     },
     location: {
-      address: "",
+      address: {
+        addressLine: undefined,
+        postcode: undefined,
+        city: undefined,
+      },
       coordinates: {
         lat: null,
         lng: null,
@@ -41,8 +45,6 @@
   function onPublish() {
     console.log("onPublish");
   }
-
-  $: console.log(eventData);
 </script>
 
 <div class="p-4">
@@ -51,7 +53,7 @@
   </div>
 
   <div class="flex justify-between w-100 mt-4">
-    <Panel class="mr-4 w-8/12">
+    <Panel class="mr-4 lg:w-full xl:w-8/12 ">
       <EventForm {event} {onPublish} {onSaveDraft} />
     </Panel>
   </div>

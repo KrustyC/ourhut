@@ -37,10 +37,15 @@
   });
 </script>
 
-<!-- <Menu {editor} /> -->
-
 <div
-  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+  class="h-80 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
 >
-  <div bind:this={element} />
+  <div bind:this={element} class="h-full" />
 </div>
+
+<style>
+  :global(.ProseMirror) {
+    height: 100%;
+    outline: none !important;
+  }
+</style>
