@@ -28,7 +28,7 @@
 </script>
 
 {#if eventToDelete}
-  <Modal>
+  <Modal width="w-5/12">
     <div>
       <div class="text-left px-2">
         <h2 class="text-4xl text-admin-primary font-bold py-4 ">
