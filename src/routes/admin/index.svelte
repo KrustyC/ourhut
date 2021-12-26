@@ -1,5 +1,5 @@
 <script>
-  export const ssr = false;
+  export let ssr = false;
 
   import SummaryCard from "$lib/components/admin/SummaryCard.svelte";
   import { user } from "./store.js";

@@ -6,6 +6,7 @@
   import Button from "$lib/components/shared/Button.svelte";
   import ProjectForm from "$lib/components/admin/ProjectForm.svelte";
 
+  export let srr = false;
   const BREADCRUMBS = [
     {
       label: "Admin",

@@ -8,6 +8,7 @@
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import { updateEvent } from "$lib/components/admin/Forms/EventForm/helpers";
 
+  export let srr = false;
   let eventData = null;
   let loading = false; // track the initial load
   let pending = false; // track the event update

@@ -1,5 +1,5 @@
 <script context="module">
-  export const ssr = false;
+  export let ssr = false;
 </script>
 
 <script>

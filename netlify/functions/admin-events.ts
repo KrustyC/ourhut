@@ -42,7 +42,7 @@ export const eventSchema = yup.object().shape({
     .required(),
 });
 
-const ALLOWED_METHODS = ["GET", "POST", "PUT"];
+const ALLOWED_METHODS = ["GET", "POST", "PUT", "DELETE"];
 
 async function get(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
@@ -201,6 +201,42 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
   }
 }
 
+async function deleteEvent(client: MongoClient, handlerEvent: HandlerEvent) {
+  try {
+    // Find the query params slug
+    const { slug } = handlerEvent.queryStringParameters;
+    if (!slug) {
+      return jsonResponse({
+        status: 400,
+        body: {
+          message: {
+            name: "It is required to pass a slug in the form of a query parameter `slug`",
+          },
+        },
+      });
+    }
+
+    await client
+      .db(process.env.VITE_MONGO_DB_NAME)
+      .collection("events")
+      .deleteMany({
+        slug,
+      });
+
+    return jsonResponse({
+      status: 200,
+      body: { message: "Event successfully deleted" },
+    });
+  } catch (error) {
+    return jsonResponse({
+      status: 500,
+      body: {
+        message: "Error deleting your event, please try again later on.",
+      },
+    });
+  }
+}
+
 const handler: Handler = async (event, context) => {
   if (!ALLOWED_METHODS.includes(event.httpMethod)) {
     return jsonResponse({
@@ -232,6 +268,10 @@ const handler: Handler = async (event, context) => {
 
   if (event.httpMethod === "PUT") {
     return put(client, event);
+  }
+
+  if (event.httpMethod === "DELETE") {
+    return deleteEvent(client, event);
   }
 };
 

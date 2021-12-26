@@ -4,6 +4,7 @@
   import EventForm from "$lib/components/admin/Forms/EventForm/EventForm.svelte";
   import { createEvent } from "$lib/components/admin/Forms/EventForm/helpers";
 
+  export let srr = false;
   let eventData = null;
   let pending = false;
   let error = false;

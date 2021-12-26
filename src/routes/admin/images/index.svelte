@@ -4,10 +4,11 @@
   import BinIcon from "$lib/components/icons/Bin.svelte";
   import PieChartIcon from "$lib/components/icons/PieChart.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
-  import DeleteImageModal from "./DeleteImageModal.svelte";
-  import ViewImageModal from "./ViewImageModal.svelte";
-  import UploadImageButton from "./UploadImageButton/index.svelte";
+  import DeleteImageModal from "$lib/components/admin/images/DeleteImageModal.svelte";
+  import ViewImageModal from "$lib/components/admin/images/ViewImageModal.svelte";
+  import UploadImageButton from "$lib/components/admin/images/UploadImageButton/index.svelte";
 
+  export let srr = false;
   let selectedImageIndex = undefined;
   let imageToDeleteIndex = undefined;
   let loading = true;
@@ -15,7 +16,9 @@
   let images = [];
 
   onMount(async () => {
-    const res = await fetch(`${variables.basePath}/.netlify/functions/admin-images`);
+    const res = await fetch(
+      `${variables.basePath}/.netlify/functions/admin-images`
+    );
     const json = await res.json();
 
     images = json.images;

@@ -1,6 +1,7 @@
 <script>
   import L from "leaflet";
   import Map from "$lib/components/shared/Map/Map.svelte";
+  import { getAddressText } from "$lib/utils/address";
   import TextInput from "./TextInput.svelte";
 
   export let location = {
@@ -51,7 +52,7 @@
   }
 
   $: buttonDisabled = !addressLine || !postcode || !city;
-  $: selectedAddressText = `${location.address.addressLine}, ${location.address.postcode}, ${location.address.city}`;
+  $: selectedAddressText = getAddressText(location);
 </script>
 
 <div class="flex">
