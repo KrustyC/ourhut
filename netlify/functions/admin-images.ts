@@ -37,7 +37,6 @@ async function get() {
       body: { images: imagesUrls },
     });
   } catch (error) {
-    console.log(error);
     return jsonResponse({
       status: 500,
       body: {

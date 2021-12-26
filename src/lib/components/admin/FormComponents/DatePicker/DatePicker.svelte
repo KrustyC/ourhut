@@ -1,15 +1,15 @@
 <script>
   import DatePicker from "@beyonk/svelte-datepicker/src/components/DatePicker.svelte";
   import { format } from "date-fns";
+  import { parseDate } from "./helpers";
 
   export let selectedDate = undefined;
-  let selected = selectedDate;
+  let selected = parseDate(selectedDate);
 
   function onDateSelected(e) {
-    selected = selected = e.detail;
+    selected = e.detail;
+    selectedDate = format(e.detail.date, "dd/MM/yyy");
   }
-
-  $: selectedDate = selected ? format(selected.date, "dd/MM/yyy") : undefined;
 </script>
 
 <div>

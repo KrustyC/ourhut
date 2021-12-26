@@ -1,7 +1,7 @@
 <script>
-  import TextInput from "./TextInput.svelte";
-  import Map from "$lib/components/shared/Map/Map.svelte";
   import L from "leaflet";
+  import Map from "$lib/components/shared/Map/Map.svelte";
+  import TextInput from "./TextInput.svelte";
 
   export let location = {
     address: {
@@ -15,13 +15,13 @@
     },
   };
 
-  let addressLine;
-  let postcode;
-  let city;
+  let addressLine = location.address.addressLine;
+  let postcode = location.address.postcode;
+  let city = location.address.city;
 
   let map;
-  let coordinates;
-  let markerLocations = [];
+  let coordinates = location.coordinates;
+  let markerLocations = coordinates.lat && coordinates.lng ? [coordinates] : [];
 
   const initialView = [51.509865, -0.118092];
 
@@ -51,11 +51,18 @@
   }
 
   $: buttonDisabled = !addressLine || !postcode || !city;
-  $: console.log(buttonDisabled);
+  $: selectedAddressText = `${location.address.addressLine}, ${location.address.postcode}, ${location.address.city}`;
 </script>
 
 <div class="flex">
   <div class="w-1/2 flex flex-col mr-4">
+    <div class="flex flex-col mb-4">
+      <span class="uppercase block text-gray-700 text-sm font-bold mb-0">
+        Location
+      </span>
+      <span class="italic">{selectedAddressText}</span>
+    </div>
+
     <div class="flex flex-col">
       <TextInput
         bind:value={addressLine}

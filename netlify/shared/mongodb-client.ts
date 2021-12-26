@@ -7,7 +7,6 @@ export async function connect() {
   const client = new MongoClient(uri);
 
   if (cachedDb) {
-    console.log("=> using cached database instance");
     return cachedDb;
   }
 

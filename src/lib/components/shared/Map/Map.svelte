@@ -86,7 +86,7 @@
 <div style="height:{height};width:{width}" use:createLeaflet>
   {#if map}
     <slot {map}>
-      {#each markerLocations as latLng}
+      {#each markerLocations as latLng (latLng.lat + latLng.lng)}
         <Marker {latLng} width={50} height={50} />
       {/each}
     </slot>
@@ -101,5 +101,4 @@
   :global(.leaflet-container) {
     z-index: 0;
   }
-
 </style>

@@ -1,28 +1,29 @@
 <script lang="ts">
   import TextInput from "$lib/components/admin/FormComponents/TextInput.svelte";
+  import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import ImageSelector from "$lib/components/admin/FormComponents/ImageSelector/ImageSelector.svelte";
   import Editor from "$lib/components/admin/FormComponents/TextEditor/Editor.svelte";
-  import DatePicker from "$lib/components/admin/FormComponents/DatePicker.svelte";
+  import DatePicker from "$lib/components/admin/FormComponents/DatePicker/DatePicker.svelte";
   import TimePicker from "$lib/components/admin/FormComponents/TimePicker.svelte";
   import LocationInput from "$lib/components/admin/FormComponents/LocationInput.svelte";
   import { eventSchema } from "./validators";
+  import { saveEvent } from "./helpers";
 
   export let event = null;
-  export let onSaveDraft = () => {};
-  export let onPublish = () => {};
+  export let pending = false;
+  export let onSaveEvent = (status: "publish" | "draft"): void => {};
 
   let actionsDisabled = true;
   let validation = true;
 
   event.subscribe((data) => {
     actionsDisabled = !eventSchema.isValidSync(data);
-    
+
     try {
       validation = eventSchema.validateSync(data);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
-    console.log(validation);
   });
 </script>
 
@@ -105,11 +106,27 @@
   </div>
 
   <div class="flex border-t-2 border-slate-300 pt-4">
-    <button class="btn-admin btn-primary mr-4" disabled={actionsDisabled}>
-      Publish Event
+    <button
+      class="btn-admin btn-primary mr-4"
+      disabled={actionsDisabled | pending}
+      on:click={() => onSaveEvent("publish")}
+    >
+      {#if pending}
+        <LoadingSpinner />
+      {:else}
+        Publish Event
+      {/if}
     </button>
-    <button class="btn-admin btn-outlined-primary" disabled={actionsDisabled}>
-      Create Draft
+    <button
+      class="btn-admin btn-outlined-primary"
+      disabled={actionsDisabled | pending}
+      on:click={() => onSaveEvent("draft")}
+    >
+      {#if pending}
+        <LoadingSpinner />
+      {:else}
+        Save Draft
+      {/if}
     </button>
   </div>
 </div>

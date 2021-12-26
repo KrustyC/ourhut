@@ -2,8 +2,11 @@
   import { writable } from "svelte/store";
   import Panel from "$lib/components/admin/Panel.svelte";
   import EventForm from "$lib/components/admin/Forms/EventForm/EventForm.svelte";
+  import { createEvent } from "$lib/components/admin/Forms/EventForm/helpers";
 
   let eventData = null;
+  let pending = false;
+  let error = false;
 
   export let event = writable({
     title: "",
@@ -38,12 +41,16 @@
     eventData = data;
   });
 
-  function onSaveDraft() {
-    console.log("onSaveDraft");
-  }
+  async function onSaveEvent(status: "publish" | "draft") {
+    pending = true;
+    try {
+      await createEvent(eventData, "draft");
+    } catch (err) {
+      error = true;
+    }
 
-  function onPublish() {
-    console.log("onPublish");
+    pending = false;
+    event = null;
   }
 </script>
 
@@ -53,8 +60,8 @@
   </div>
 
   <div class="flex justify-between w-100 mt-4">
-    <Panel class="mr-4 lg:w-full xl:w-8/12 ">
-      <EventForm {event} {onPublish} {onSaveDraft} />
+    <Panel class="mr-4 sm:w-full xl:w-8/12 ">
+      <EventForm {pending} {event} {onSaveEvent} />
     </Panel>
   </div>
 </div>

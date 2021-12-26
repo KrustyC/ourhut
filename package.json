@@ -55,6 +55,7 @@
     "netlify-identity-widget": "^1.9.2",
     "node-sass": "^7.0.0",
     "prosemirror-svelte": "^0.2.4",
+    "slugify": "^1.6.4",
     "svelte-leafletjs": "^0.8.0",
     "yup": "^0.32.11"
   }

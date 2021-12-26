@@ -32,13 +32,10 @@ export async function uploadFileToS3(file: File) {
     type: file.type,
   });
 
-  const res = await fetch(uploadURL, {
+  await fetch(uploadURL, {
     method: "PUT",
     body: blobData,
   });
-
-  // @TODO Check status and in case return an error
-  console.log("result", res);
 
   return `${variables.s3BucketUrl}/${file.name}`;
 }
