@@ -4,6 +4,7 @@
   import EventCard from "$lib/components/admin/events/EventCard.svelte";
   import DeleteEventModal from "$lib/components/admin/events/DeleteEventModal.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
+  import { notifications, NotificationType } from "$lib/stores/notifications";
 
   export let srr = false;
   let loading = false;
@@ -21,7 +22,11 @@
   });
 
   function onWantToRemoveEvent(index: number) {
-    eventToRemoveIndex = index;
+    notifications.success(
+      { title: "Event Deleted", text: "The event has been successfully delte" },
+      3000
+    );
+    // eventToRemoveIndex = index;
   }
 
   function onRemoveConfirmed() {

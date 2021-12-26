@@ -7,6 +7,7 @@
   import netlifyIdentity from "netlify-identity-widget";
   import Sidebar from "$lib/components/admin/Sidebar/index.svelte";
   import Navbar from "$lib/components/admin/Navbar.svelte";
+  import Toast from "$lib/components/shared/Toast/Toast.svelte";
 
   import { user, redirectURL } from "./store.js";
 
@@ -73,4 +74,6 @@
       <p class="mt-4">This is a private area. Please log in to view.</p>
     </div>
   {/if}
+
+  <Toast />
 </div>
