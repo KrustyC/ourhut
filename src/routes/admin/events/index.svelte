@@ -22,14 +22,14 @@
   });
 
   function onWantToRemoveEvent(index: number) {
+    eventToRemoveIndex = index;
+  }
+
+  function onRemoveConfirmed() {
     notifications.success(
       { title: "Event Deleted", text: "The event has been successfully delte" },
       3000
     );
-    // eventToRemoveIndex = index;
-  }
-
-  function onRemoveConfirmed() {
     events = [
       ...events.slice(0, eventToRemoveIndex),
       ...events.slice(eventToRemoveIndex + 1),

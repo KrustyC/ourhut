@@ -3,8 +3,11 @@
   import Panel from "$lib/components/admin/Panel.svelte";
   import EventForm from "$lib/components/admin/Forms/EventForm/EventForm.svelte";
   import { createEvent } from "$lib/components/admin/Forms/EventForm/helpers";
+  import { goto } from "$app/navigation";
+  import { notifications, NotificationType } from "$lib/stores/notifications";
 
   export let srr = false;
+
   let eventData = null;
   let pending = false;
   let error = false;
@@ -42,16 +45,36 @@
     eventData = data;
   });
 
-  async function onSaveEvent(status: "publish" | "draft") {
+  async function onCreateEvent(status: "publish" | "draft") {
     pending = true;
     try {
-      await createEvent(eventData, "draft");
-    } catch (err) {
-      error = true;
-    }
+      await createEvent(eventData, status);
 
-    pending = false;
-    event = null;
+      notifications.success(
+        {
+          title: "Event Succesfully Created",
+          text: `Your event has been sucessfully created ${
+            status === "publish" ? "and published" : "as draft"
+          }.`,
+        },
+        3000
+      );
+
+      pending = false;
+      setTimeout(() => {
+        goto("/admin/events");
+      }, 1000);
+    } catch (err) {
+      console.log(err);
+      pending = false;
+      notifications.error(
+        {
+          title: "An error occurred",
+          text: "Your event could not be updated, please try again later or contact the web admin.",
+        },
+        5000
+      );
+    }
   }
 </script>
 
@@ -62,7 +85,7 @@
 
   <div class="flex justify-between w-100 mt-4">
     <Panel class="mr-4 sm:w-full xl:w-8/12 ">
-      <EventForm {pending} {event} {onSaveEvent} />
+      <EventForm {pending} {event} onSaveEvent={onCreateEvent} />
     </Panel>
   </div>
 </div>

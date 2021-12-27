@@ -7,6 +7,10 @@
   export let event = {};
   export let onWantToRemoveEvent = () => {};
 
+  $: bgColor = event.isPublished ? "bg-green-500" : "bg-yellow-300";
+  $: fontColor = event.isPublished ? "text-white" : "text-black";
+  $: copy = event.isPublished ? "published" : "draft";
+
   function formatDate(day: string): string {
     return format(parse(day, "dd/MM/yyyy", new Date()), "dd MMM yyyy");
   }
@@ -44,20 +48,30 @@
       </span>
     </div>
 
-    <div class="flex items-end justify-end mt-2 w-100">
-      <a
-        href={`/admin/events/${event.slug}`}
-        class="btn-admin btn-primary btn-sm text-base uppercase mr-3"
-      >
-        Edit
-      </a>
+    <div class="flex items-end justify-between mt-2 w-100">
+      <div>
+        <span
+          class={`${bgColor} ${fontColor} inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none rounded-full uppercase`}
+        >
+          {copy}
+        </span>
+      </div>
 
-      <button
-        class="btn-admin btn-danger btn-sm text-base uppercase"
-        on:click={onWantToRemoveEvent}
-      >
-        Remove
-      </button>
+      <div>
+        <a
+          href={`/admin/events/${event.slug}`}
+          class="btn-admin btn-primary btn-sm text-base uppercase mr-3"
+        >
+          Edit
+        </a>
+
+        <button
+          class="btn-admin btn-danger btn-sm text-base uppercase"
+          on:click={onWantToRemoveEvent}
+        >
+          Remove
+        </button>
+      </div>
     </div>
   </div>
 </div>
