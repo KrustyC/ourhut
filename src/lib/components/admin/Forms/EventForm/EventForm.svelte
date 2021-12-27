@@ -107,18 +107,7 @@
 
   <div class="flex border-t-2 border-slate-300 pt-4">
     <button
-      class="btn-admin btn-primary mr-4"
-      disabled={actionsDisabled | pending}
-      on:click={() => onSaveEvent("publish")}
-    >
-      {#if pending}
-        <LoadingSpinner />
-      {:else}
-        Publish Event
-      {/if}
-    </button>
-    <button
-      class="btn-admin btn-outlined-primary"
+      class="btn-admin btn-primary  mr-4"
       disabled={actionsDisabled | pending}
       on:click={() => onSaveEvent("draft")}
     >
@@ -126,6 +115,18 @@
         <LoadingSpinner />
       {:else}
         Save Draft
+      {/if}
+    </button>
+
+    <button
+      class="btn-admin btn-outlined-primary"
+      disabled={actionsDisabled | pending}
+      on:click={() => onSaveEvent("publish")}
+    >
+      {#if pending}
+        <LoadingSpinner />
+      {:else}
+        Publish Event
       {/if}
     </button>
   </div>

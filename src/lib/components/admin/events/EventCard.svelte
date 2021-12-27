@@ -26,7 +26,7 @@
       <div class="marker-wrapper">
         <Calendar height="h-4" width="w-4" />
       </div>
-      <span class="ml-2 text-sm text-gray-600">
+      <span class="ml-1 text-sm text-gray-600">
         {formatDate(event.date.day)} /
         {#if event.date.startTime}
           <b>from</b>
@@ -43,7 +43,7 @@
       <div class="marker-wrapper">
         <MarkerIcon height="h-4" width="w-4" />
       </div>
-      <span class="ml-2 text-sm text-gray-600">
+      <span class="ml-1 text-sm text-gray-600">
         {getAddressText(event.location)}
       </span>
     </div>
