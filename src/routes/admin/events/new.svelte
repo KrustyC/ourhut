@@ -6,7 +6,7 @@
   import { goto } from "$app/navigation";
   import { notifications, NotificationType } from "$lib/stores/notifications";
 
-  export let srr = false;
+  export let ssr = false;
 
   let eventData = null;
   let pending = false;

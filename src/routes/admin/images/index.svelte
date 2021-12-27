@@ -8,7 +8,7 @@
   import ViewImageModal from "$lib/components/admin/images/ViewImageModal.svelte";
   import UploadImageButton from "$lib/components/admin/images/UploadImageButton/index.svelte";
 
-  export let srr = false;
+  export let ssr = false;
   let selectedImageIndex = undefined;
   let imageToDeleteIndex = undefined;
   let loading = true;

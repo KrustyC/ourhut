@@ -1,5 +1,5 @@
 <script>
-  export let srr = false;
+  export let ssr = false;
 </script>
 
 <div class="p-4">

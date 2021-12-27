@@ -60,7 +60,7 @@
       <div>
         <a
           href={`/admin/events/${event.slug}`}
-          class="btn-admin btn-primary btn-sm text-base uppercase mr-3"
+          class="btn-admin btn-primary btn-sm text-base uppercase mr-2"
         >
           Edit
         </a>

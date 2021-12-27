@@ -1,14 +1,26 @@
 <script>
-  export let ssr = false;
-
+  import { onMount } from "svelte";
+  import { variables } from "$lib/variables";
   import SummaryCard from "$lib/components/admin/SummaryCard.svelte";
+  import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import { user } from "./store.js";
 
+  export let ssr = false;
+
   let stats = {
-    news: 34,
-    projects: 13,
-    events: 29,
+    news: 0,
+    projects: 0,
+    events: 0,
   };
+
+  onMount(async () => {
+    const res = await fetch(
+      `${variables.basePath}/.netlify/functions/admin-stats`
+    );
+    const { news, events, projects } = await res.json();
+
+    stats = { news, events, projects };
+  });
 
   $: username = $user !== null ? $user.username : null;
 </script>

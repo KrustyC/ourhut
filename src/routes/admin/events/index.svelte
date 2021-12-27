@@ -6,7 +6,7 @@
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import { notifications, NotificationType } from "$lib/stores/notifications";
 
-  export let srr = false;
+  export let ssr = false;
   let loading = false;
   let events = [];
   let eventToRemoveIndex = -1;
