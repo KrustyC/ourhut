@@ -64,6 +64,7 @@
     <h2 class="text-gray-600 font-bold">Images</h2>
     <UploadImageButton onConfirm={onConfirmImageUpload} />
   </div>
+
   <p class="text-gray-600">
     In this section you can manage your Images. Click on any image to view it in
     its full size.

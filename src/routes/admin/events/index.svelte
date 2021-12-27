@@ -46,7 +46,7 @@
 
     <a
       href="/admin/events/new"
-      class="btn-admin btn-dark btn-sm text-base uppercase mr-3"
+      class="btn-admin btn-primary btn-sm text-base"
     >
       Add New Event
     </a>

@@ -26,8 +26,8 @@
 </script>
 
 <div>
-  <button class="btn-admin btn-primary" on:click={onWantToUpload}>
-    Upload Images
+  <button class="btn-admin btn-primary btn-sm" on:click={onWantToUpload}>
+    Upload Image
   </button>
   <input
     style="display:none"
