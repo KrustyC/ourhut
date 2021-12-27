@@ -1,3 +1,7 @@
+<script lang="ts">
+  export let onLogout = () => {};
+</script>
+
 <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
   <div class="px-3 py-3 lg:px-5 lg:pl-3">
     <div class="flex items-center justify-between">
@@ -14,7 +18,9 @@
         </div>
       </div>
 
-      <button class="btn-admin btn-dark btn-sm"> Logout </button>
+      <button class="btn-admin btn-dark btn-sm" on:click={onLogout}>
+        Logout
+      </button>
     </div>
   </div>
 </nav>

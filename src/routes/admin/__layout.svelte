@@ -4,6 +4,7 @@
 
 <script>
   import { session } from "$app/stores";
+  import { goto } from "$app/navigation";
   import { onMount } from "svelte";
   import netlifyIdentity from "netlify-identity-widget";
   import Sidebar from "$lib/components/admin/Sidebar/index.svelte";
@@ -15,32 +16,33 @@
 
   onMount(() => {
     netlifyIdentity.init();
-  });
 
-  function onLogin(action) {
-    netlifyIdentity.open(action);
-    netlifyIdentity.on(action, (u) => {
+    netlifyIdentity.on("login", (u) => {
       user.login(u);
       netlifyIdentity.close();
-      if ($redirectURL !== "") {
-        navigate($redirectURL);
-        redirectURL.clearRedirectURL();
-      }
+      console.log($redirectURL);
+      // if ($redirectURL !== "") {
+      //   navigate($redirectURL);
+      //   redirectURL.clearRedirectURL();
+      // }
     });
+  });
+
+  function onLogin() {
+    netlifyIdentity.open("login");
   }
 
   function onLogout() {
-    // navigate("/");
-    // netlifyIdentity.open("logout");
     user.logout();
     netlifyIdentity.logout();
+    goto("/");
   }
 </script>
 
 <div class="h-screen bg-admin-grey">
   {#if isLoggedIn}
     <div>
-      <Navbar />
+      <Navbar {onLogout} />
 
       <div class="flex overflow-hidden bg-white pt-12">
         <Sidebar />
@@ -66,7 +68,7 @@
 
       <button
         class="px-4 py-3 rounded-md mt-8 font-bold bg-gray-800 text-white"
-        on:click={() => onLogin("login")}
+        on:click={onLogin}
       >
         Log In with Netlify Identity
       </button>
