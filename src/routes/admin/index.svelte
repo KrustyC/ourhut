@@ -1,11 +1,11 @@
 <script>
   import { onMount } from "svelte";
-  import { variables } from "$lib/variables";
+  import { fetchJson } from "$lib/utils/fetch-json";
+  import { user } from "$lib/stores/user";
   import SummaryCard from "$lib/components/admin/SummaryCard.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
-  import { user } from "./store.js";
 
-  export let ssr = false;
+  export const ssr = false;
 
   let stats = {
     news: 0,
@@ -13,16 +13,16 @@
     events: 0,
   };
 
+  $: username = $user !== null ? $user.username : null;
+  $: token = $user !== null ? $user.access_token : null;
+
   onMount(async () => {
-    const res = await fetch(
-      `${variables.basePath}/.netlify/functions/admin-stats`
-    );
-    const { news, events, projects } = await res.json();
+    const { news, events, projects } = await fetchJson("/admin-stats", {
+      token,
+    });
 
     stats = { news, events, projects };
   });
-
-  $: username = $user !== null ? $user.username : null;
 </script>
 
 <div class="p-4">

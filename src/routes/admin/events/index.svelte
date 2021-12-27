@@ -1,23 +1,22 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { variables } from "$lib/variables";
+  import { fetchJson } from "$lib/utils/fetch-json";
+  import { user } from "$lib/stores/user";
   import EventCard from "$lib/components/admin/events/EventCard.svelte";
   import DeleteEventModal from "$lib/components/admin/events/DeleteEventModal.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
-  import { notifications, NotificationType } from "$lib/stores/notifications";
 
-  export let ssr = false;
+  export const ssr = false;
   let loading = false;
   let events = [];
   let eventToRemoveIndex = -1;
 
-  onMount(async () => {
-    const res = await fetch(
-      `${variables.basePath}/.netlify/functions/admin-events`
-    );
-    const json = await res.json();
+  $: token = $user !== null ? $user.access_token : null;
 
-    events = json.events;
+  onMount(async () => {
+    const res = await fetchJson("/admin-events", { token });
+
+    events = res.events;
     loading = false;
   });
 
@@ -26,10 +25,6 @@
   }
 
   function onRemoveConfirmed() {
-    notifications.success(
-      { title: "Event Deleted", text: "The event has been successfully delte" },
-      3000
-    );
     events = [
       ...events.slice(0, eventToRemoveIndex),
       ...events.slice(eventToRemoveIndex + 1),

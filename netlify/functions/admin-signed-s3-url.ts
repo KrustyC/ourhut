@@ -1,11 +1,19 @@
-import { HandlerEvent } from "@netlify/functions";
+import { Handler } from "@netlify/functions";
 import { jsonResponse } from "../shared/utils";
 import { getS3Client } from "../shared/s3-client";
 
 const URL_EXPIRATION_SECONDS = 300;
 
-const handler = async function (event: HandlerEvent) {
-  // @TODO This needs to work under authenticated user
+const handler: Handler = async function (event, context) {
+  const { user } = context.clientContext;
+
+  if (!user) {
+    return jsonResponse({
+      status: 403,
+      body: { message: "Only authorized users can perform this request" },
+    });
+  }
+
   if (event.httpMethod !== "GET") {
     return jsonResponse({
       status: 405,

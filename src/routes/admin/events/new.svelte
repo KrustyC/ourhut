@@ -1,12 +1,13 @@
 <script lang="ts">
   import { writable } from "svelte/store";
+  import { goto } from "$app/navigation";
+  import { user } from "$lib/stores/user";
+  import { notifications } from "$lib/stores/notifications";
   import Panel from "$lib/components/admin/Panel.svelte";
   import EventForm from "$lib/components/admin/Forms/EventForm/EventForm.svelte";
   import { createEvent } from "$lib/components/admin/Forms/EventForm/helpers";
-  import { goto } from "$app/navigation";
-  import { notifications, NotificationType } from "$lib/stores/notifications";
 
-  export let ssr = false;
+  export const ssr = false;
 
   let eventData = null;
   let pending = false;
@@ -45,10 +46,12 @@
     eventData = data;
   });
 
+  $: token = $user !== null ? $user.access_token : null;
+
   async function onCreateEvent(status: "publish" | "draft") {
     pending = true;
     try {
-      await createEvent(eventData, status);
+      await createEvent({ eventData, status, token });
 
       notifications.success(
         {
@@ -65,9 +68,8 @@
         goto("/admin/events");
       }, 1000);
     } catch (err) {
-      console.log(err);
       pending = false;
-      notifications.error(
+      notifications.danger(
         {
           title: "An error occurred",
           text: "Your event could not be updated, please try again later or contact the web admin.",

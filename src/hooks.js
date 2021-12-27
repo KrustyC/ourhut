@@ -5,14 +5,13 @@ export async function handle({ request, resolve }) {
 
   // code here happends before the endpoint or page is called
   request.locals.user = cookies.user;
-  console.log({ user: request.locals.user });
 
   const response = await resolve(request);
 
   // code here happens after the endpoint or page is called
-  response.headers["set-cookie"] = `user=${
-    request.locals.user || ""
-  }; Path=/; HttpOnly`;
+  // response.headers["set-cookie"] = `user=${
+  //   request.locals.user || ""
+  // }; Path=/; HttpOnly`;
 
   return response;
 }

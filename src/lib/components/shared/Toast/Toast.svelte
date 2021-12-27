@@ -47,7 +47,6 @@
           {notification.message.title}
         </p>
         <div class="flex items-center">
-          <p class="text-white opacity-90 text-xs">11 mins ago</p>
           <button
             type="button"
             class="btn-close btn-close-white box-content w-4 h-4 ml-2 text-white border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-white hover:opacity-75 hover:no-underline"

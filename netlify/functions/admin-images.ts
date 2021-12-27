@@ -47,6 +47,15 @@ async function get() {
 }
 
 const handler: Handler = async (event, context) => {
+  const { user } = context.clientContext;
+
+  if (!user) {
+    return jsonResponse({
+      status: 403,
+      body: { message: "Only authorized users can perform this request" },
+    });
+  }
+
   if (!ALLOWED_METHODS.includes(event.httpMethod)) {
     return jsonResponse({
       status: 405,

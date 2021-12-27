@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { variables } from "$lib/variables";
+  import { fetchJson } from "$lib/utils/fetch-json";
+  import { user } from "$lib/stores/user";
   import Modal from "$lib/components/admin/Modal.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
 
@@ -9,13 +10,12 @@
   export let onCloseModal = () => {};
   export let onSelectImage = (image: string) => {};
 
-  onMount(async () => {
-    const res = await fetch(
-      `${variables.basePath}/.netlify/functions/admin-images`
-    );
-    const json = await res.json();
+  $: token = $user !== null ? $user.access_token : null;
 
-    images = json.images;
+  onMount(async () => {
+    const res = await fetchJson("/admin-images", { token });
+
+    images = res.images;
     loading = false;
   });
 

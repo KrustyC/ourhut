@@ -69,7 +69,6 @@
   }
 
   $: if (map && markerLocations.length > 0) {
-    console.log(markerLocations);
     map.panTo(new L.LatLng(markerLocations[0].lat, markerLocations[0].lng));
   }
 </script>

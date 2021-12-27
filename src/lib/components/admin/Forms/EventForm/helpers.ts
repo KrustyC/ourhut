@@ -1,41 +1,45 @@
-import { variables } from "$lib/variables";
+import { fetchJson } from "$lib/utils/fetch-json";
 
-export async function createEvent(event, status: "draft" | "published") {
-  const url = `${variables.basePath}/.netlify/functions/admin-events`;
+type CreateEventOptions = {
+  eventData: any;
+  status: "draft" | "published";
+  token?: string;
+};
 
-  const res = await fetch(url, {
+export async function createEvent({
+  eventData,
+  status,
+  token,
+}: CreateEventOptions) {
+  return fetchJson(`/admin-events`, {
     method: "POST",
-    body: JSON.stringify({
-      event,
+    body: {
+      event: eventData,
       status,
-    }),
+    },
+    token,
   });
-
-  const json = await res.json();
-
-  // setTimeout(() => {
-  //   success = false;
-  // }, 4000);
 }
 
-export async function updateEvent(
-  slug: string,
-  event,
-  status: "draft" | "published"
-) {
-  const url = `${variables.basePath}/.netlify/functions/admin-events?slug=${slug}`;
+type UpdateEventOptions = {
+  slug: string;
+  eventData: any;
+  status: "draft" | "published";
+  token?: string;
+};
 
-  const res = await fetch(url, {
+export async function updateEvent({
+  slug,
+  eventData,
+  status,
+  token,
+}: UpdateEventOptions) {
+  return fetchJson(`/admin-events?slug=${slug}`, {
     method: "PUT",
-    body: JSON.stringify({
-      event,
+    body: {
+      event: eventData,
       status,
-    }),
+    },
+    token,
   });
-
-  const json = await res.json();
-
-  // setTimeout(() => {
-  //   success = false;
-  // }, 4000);
 }

@@ -1,5 +1,7 @@
 <script>
-  import { variables } from "$lib/variables";
+  import { notifications } from "$lib/stores/notifications";
+  import { fetchJson } from "$lib/utils/fetch-json";
+  import { user } from "$lib/stores/user";
   import Modal from "$lib/components/admin/Modal.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
 
@@ -10,17 +12,35 @@
 
   let deleting = false;
 
-  async function onDeleteImage() {
+  $: token = $user !== null ? $user.access_token : null;
+
+  async function onDeleteEvent() {
     deleting = true;
 
-    const url = `${variables.basePath}/.netlify/functions/admin-events?slug=${eventToDelete.slug}`;
-    const res = await fetch(url, { method: "DELETE" });
+    try {
+      const res = await fetchJson(`/admin-events?slug=${eventToDelete.slug}`, {
+        method: "DELETE",
+        token,
+      });
 
-    if (res.status === 200) {
       onSuccess();
-    } else {
+
+      notifications.success(
+        {
+          title: "Event Deleted",
+          text: "Your event has been sucessfully deleted!",
+        },
+        3000
+      );
+    } catch (err) {
       onCancel();
-      console.log("ERRROR"); // Implement error toasts
+      notifications.danger(
+        {
+          title: "An error occurred",
+          text: "Your event could not be deleted, please try again later or contact the web admin.",
+        },
+        5000
+      );
     }
 
     deleting = false;
@@ -50,7 +70,7 @@
         <button
           disabled={deleting}
           class="btn-admin btn-danger"
-          on:click={onDeleteImage}
+          on:click={onDeleteEvent}
         >
           {#if deleting}
             <LoadingSpinner color="bg-admin-danger-dark" />

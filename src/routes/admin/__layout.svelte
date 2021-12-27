@@ -1,15 +1,15 @@
 <script context="module">
-  export let ssr = false;
+  export const ssr = false;
 </script>
 
 <script>
+  import { session } from "$app/stores";
   import { onMount } from "svelte";
   import netlifyIdentity from "netlify-identity-widget";
   import Sidebar from "$lib/components/admin/Sidebar/index.svelte";
   import Navbar from "$lib/components/admin/Navbar.svelte";
   import Toast from "$lib/components/shared/Toast/Toast.svelte";
-
-  import { user, redirectURL } from "./store.js";
+  import { user, redirectURL } from "$lib/stores/user";
 
   $: isLoggedIn = !!$user;
 
@@ -17,10 +17,9 @@
     netlifyIdentity.init();
   });
 
-  function onLoginOrSignup(action) {
+  function onLogin(action) {
     netlifyIdentity.open(action);
     netlifyIdentity.on(action, (u) => {
-      console.log("user logged in", u);
       user.login(u);
       netlifyIdentity.close();
       if ($redirectURL !== "") {
@@ -67,7 +66,7 @@
 
       <button
         class="px-4 py-3 rounded-md mt-8 font-bold bg-gray-800 text-white"
-        on:click={() => onLoginOrSignup("login")}
+        on:click={() => onLogin("login")}
       >
         Log In with Netlify Identity
       </button>

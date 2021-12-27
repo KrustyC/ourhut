@@ -1,16 +1,19 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
+  import { fetchJson } from "$lib/utils/fetch-json";
+  import { user } from "$lib/stores/user";
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
-  import { notifications, NotificationType } from "$lib/stores/notifications";
+  import { notifications } from "$lib/stores/notifications";
   import { variables } from "$lib/variables";
   import Panel from "$lib/components/admin/Panel.svelte";
   import EventForm from "$lib/components/admin/Forms/EventForm/EventForm.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import { updateEvent } from "$lib/components/admin/Forms/EventForm/helpers";
 
-  export let ssr = false;
+  export const ssr = false;
+
   let eventData = null;
   let loading = false; // track the initial load
   let pending = false; // track the event update
@@ -19,13 +22,12 @@
 
   let event = writable();
 
-  onMount(async () => {
-    const res = await fetch(
-      `${variables.basePath}/.netlify/functions/admin-events?slug=${slug}`
-    );
-    const json = await res.json();
+  $: token = $user !== null ? $user.access_token : null;
 
-    event.set(json.event);
+  onMount(async () => {
+    const res = await fetchJson(`/admin-events?slug=${slug}`, { token });
+
+    event.set(res.event);
     loading = false;
   });
 
@@ -36,7 +38,7 @@
   async function onSaveEvent(status: "publish" | "draft") {
     pending = true;
     try {
-      await updateEvent(slug, eventData, status);
+      await updateEvent({ slug, eventData, status, token });
       notifications.success(
         {
           title: "Event Updated",
@@ -50,7 +52,7 @@
       }, 1000);
     } catch (err) {
       error = true;
-      notifications.error(
+      notifications.danger(
         {
           title: "An error occurred",
           text: "Your event could not be updated, please try again later or contact the web admin.",

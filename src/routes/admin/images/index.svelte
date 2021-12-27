@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { variables } from "$lib/variables";
+  import { fetchJson } from "$lib/utils/fetch-json";
+  import { user } from "$lib/stores/user";
   import BinIcon from "$lib/components/icons/Bin.svelte";
   import PieChartIcon from "$lib/components/icons/PieChart.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
@@ -8,20 +9,19 @@
   import ViewImageModal from "$lib/components/admin/images/ViewImageModal.svelte";
   import UploadImageButton from "$lib/components/admin/images/UploadImageButton/index.svelte";
 
-  export let ssr = false;
+  export const ssr = false;
   let selectedImageIndex = undefined;
   let imageToDeleteIndex = undefined;
   let loading = true;
 
   let images = [];
 
-  onMount(async () => {
-    const res = await fetch(
-      `${variables.basePath}/.netlify/functions/admin-images`
-    );
-    const json = await res.json();
+  $: token = $user !== null ? $user.access_token : null;
 
-    images = json.images;
+  onMount(async () => {
+    const res = await fetchJson("/admin-images", { token });
+
+    images = res.images;
     loading = false;
   });
 
@@ -66,7 +66,7 @@
     its full size.
   </p>
 
-  <div class="grid grid-cols-6 gap-4 mt-4">
+  <div class="grid grid-cols-4 gap-4 mt-4">
     {#if loading}
       <LoadingSpinner />
     {/if}
