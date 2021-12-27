@@ -1,11 +1,13 @@
+<script context="module">
+  export const ssr = false;
+</script>
+
 <script>
   import { onMount } from "svelte";
   import { fetchJson } from "$lib/utils/fetch-json";
   import { user } from "$lib/stores/user";
   import SummaryCard from "$lib/components/admin/SummaryCard.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
-
-  export const ssr = false;
 
   let stats = {
     news: 0,

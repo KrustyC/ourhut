@@ -1,3 +1,7 @@
+<script context="module">
+  export const ssr = false;
+</script>
+
 <script lang="ts">
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
@@ -11,8 +15,6 @@
   import EventForm from "$lib/components/admin/Forms/EventForm/EventForm.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import { updateEvent } from "$lib/components/admin/Forms/EventForm/helpers";
-
-  export const ssr = false;
 
   let eventData = null;
   let loading = false; // track the initial load

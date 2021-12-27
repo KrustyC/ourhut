@@ -1,6 +1,11 @@
+import { browser } from '$app/env';
 import { writable } from "svelte/store";
 
 function createUser() {
+  if (!browser) {
+    return;
+  }
+
   const localUser = JSON.parse(localStorage.getItem("gotrue.user"));
 
   let u = null;

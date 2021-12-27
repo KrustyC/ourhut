@@ -1,3 +1,7 @@
+<script context="module">
+  export const ssr = false;
+</script>
+
 <script lang="ts">
   import { writable } from "svelte/store";
   import { goto } from "$app/navigation";
@@ -6,8 +10,6 @@
   import Panel from "$lib/components/admin/Panel.svelte";
   import EventForm from "$lib/components/admin/Forms/EventForm/EventForm.svelte";
   import { createEvent } from "$lib/components/admin/Forms/EventForm/helpers";
-
-  export const ssr = false;
 
   let eventData = null;
   let pending = false;

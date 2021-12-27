@@ -1,3 +1,7 @@
+<script context="module">
+  export const ssr = false;
+</script>
+
 <script lang="ts">
   import { onMount } from "svelte";
   import { fetchJson } from "$lib/utils/fetch-json";
@@ -9,7 +13,6 @@
   import ViewImageModal from "$lib/components/admin/images/ViewImageModal.svelte";
   import UploadImageButton from "$lib/components/admin/images/UploadImageButton/index.svelte";
 
-  export const ssr = false;
   let selectedImageIndex = undefined;
   let imageToDeleteIndex = undefined;
   let loading = true;

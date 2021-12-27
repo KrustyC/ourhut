@@ -1,3 +1,7 @@
+<script context="module">
+  export const ssr = false;
+</script>
+
 <script lang="ts">
   import { onMount } from "svelte";
   import { fetchJson } from "$lib/utils/fetch-json";
@@ -6,7 +10,6 @@
   import DeleteEventModal from "$lib/components/admin/events/DeleteEventModal.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
 
-  export const ssr = false;
   let loading = false;
   let events = [];
   let eventToRemoveIndex = -1;
