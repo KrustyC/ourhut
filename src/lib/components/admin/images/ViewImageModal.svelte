@@ -11,12 +11,14 @@
 
 {#if image}
   <Modal>
-    <img class="w-full" src={image} />
+    <div class="w-full flex justify-center">
+      <img class="max-w-md" src={image} />
+    </div>
 
     <div class="flex justify-end mt-4">
       <button class="btn-admin" on:click={onClose}> Close </button>
 
-      <button class="btn-admin btn-danger w-48" on:click={onWantToDeleteImage}>
+      <button class="btn-admin btn-danger ml-4" on:click={onWantToDeleteImage}>
         Delete Image
       </button>
     </div>

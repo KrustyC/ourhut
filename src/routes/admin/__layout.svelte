@@ -20,11 +20,6 @@
     netlifyIdentity.on("login", (u) => {
       user.login(u);
       netlifyIdentity.close();
-      console.log($redirectURL);
-      // if ($redirectURL !== "") {
-      //   navigate($redirectURL);
-      //   redirectURL.clearRedirectURL();
-      // }
     });
   });
 

@@ -1,29 +1,18 @@
-import { S3 } from "aws-sdk";
-import { Handler } from "@netlify/functions";
+import { Handler, HandlerEvent } from "@netlify/functions";
 import { jsonResponse } from "../shared/utils";
-import { getS3Client } from "../shared/s3-client";
+import {
+  FOLDERS,
+  getAllS3Files,
+  deleteObjectFromS3,
+} from "../shared/s3-client";
 
-const ALLOWED_METHODS = ["GET"];
-
-async function getAllS3Files(params): Promise<S3.ListObjectsV2Output> {
-  return new Promise((resolve, reject) => {
-    const s3 = getS3Client();
-
-    s3.listObjectsV2(params, function (err, data) {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(data as S3.ListObjectsV2Output);
-    });
-  });
-}
+const ALLOWED_METHODS = ["GET", "DELETE"];
 
 async function get() {
   try {
     const params = {
       Bucket: process.env.VITE_S3_IMAGES_BUCKET,
+      Prefix: FOLDERS.IMAGES,
     };
 
     const listObjects = await getAllS3Files(params);
@@ -35,6 +24,31 @@ async function get() {
     return jsonResponse({
       status: 200,
       body: { images: imagesUrls },
+    });
+  } catch (error) {
+    return jsonResponse({
+      status: 500,
+      body: {
+        message: "Error fetching imagsd, please try again later on.",
+      },
+    });
+  }
+}
+
+async function deleteImage(event: HandlerEvent) {
+  try {
+    const { name } = event.queryStringParameters;
+
+    const params = {
+      Bucket: process.env.VITE_S3_IMAGES_BUCKET,
+      Key: `${FOLDERS.IMAGES}/${name}`,
+    };
+
+    await deleteObjectFromS3(params);
+
+    return jsonResponse({
+      status: 200,
+      body: { message: "Image successfully deleted!" },
     });
   } catch (error) {
     return jsonResponse({
@@ -65,6 +79,10 @@ const handler: Handler = async (event, context) => {
 
   if (event.httpMethod === "GET") {
     return get();
+  }
+
+  if (event.httpMethod === "DELETE") {
+    return deleteImage(event);
   }
 };
 

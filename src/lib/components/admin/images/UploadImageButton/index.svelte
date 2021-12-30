@@ -1,23 +1,29 @@
 <script lang="ts">
   import { variables } from "$lib/variables";
+  import { user } from "$lib/stores/user";
   import { uploadFileToS3 } from "$lib/utils/upload-file";
   import Modal from "$lib/components/admin/Modal.svelte";
   import ImagesUploadPreviewModal from "./ImagesUploadPreviewModal.svelte";
 
-  let files, fileinput;
   export let onConfirm = (newImage: string) => {};
+
+  let files, fileinput;
+  let pending = false;
+  $: token = $user !== null ? $user.access_token : null;
 
   function onWantToUpload() {
     fileinput.click();
   }
 
   async function onUploadToS3() {
+    pending = true;
     const file = files[0];
-    const newImage = await uploadFileToS3(files[0]);
+    const newImage = await uploadFileToS3(files[0], token);
 
     onConfirm(newImage);
 
     files = undefined;
+    pending = false;
   }
 
   function onCancel() {
@@ -38,6 +44,11 @@
   />
 
   {#if files}
-    <ImagesUploadPreviewModal {files} onConfirm={onUploadToS3} {onCancel} />
+    <ImagesUploadPreviewModal
+      {files}
+      {pending}
+      onConfirm={onUploadToS3}
+      {onCancel}
+    />
   {/if}
 </div>

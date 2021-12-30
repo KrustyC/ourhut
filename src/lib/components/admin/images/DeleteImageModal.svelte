@@ -1,5 +1,9 @@
 <script>
+  import { notifications } from "$lib/stores/notifications";
+  import { user } from "$lib/stores/user";
+  import { fetchJson } from "$lib/utils/fetch-json";
   import Modal from "$lib/components/admin/Modal.svelte";
+  import { getImageName } from "$lib/utils/images";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
 
   export let imageToDelete = undefined;
@@ -9,17 +13,37 @@
 
   let deleting = false;
 
-  function onDeleteImage() {
+  $: token = $user !== null ? $user.access_token : null;
+
+  async function onDeleteImage() {
     deleting = true;
-    setTimeout(() => {
+    const fileName = getImageName(imageToDelete);
+
+    try {
+      await fetchJson(`/admin-images?name=${fileName}`, {
+        method: "DELETE",
+        token,
+      });
+
       onSuccess();
-      deleting = false;
-    }, 1500);
-    // fetch(`/api/images/${imageToDelete}`, {
-    //   method: "DELETE",
-    // }).then(() => {
-    //   onSuccess();
-    // });
+
+      notifications.success(
+        {
+          title: "Image Succesfully Deleted",
+          text: `The image "${fileName}" has been sucessfully deleted!`,
+        },
+        3000
+      );
+    } catch (err) {
+      notifications.danger(
+        {
+          title: "An error occurred",
+          text: "The image could not be deleted, please try again later or contact the web admin.",
+        },
+        5000
+      );
+    }
+    deleting = false;
   }
 </script>
 
@@ -34,8 +58,9 @@
           Do you really want to delete this image? <br />This process cannot be
           undone
         </p>
-        <div class="mt-4">
-          <img class="w-full" src={imageToDelete} />
+
+        <div class="mt-4 w-full flex justify-center">
+          <img class="max-w-md" src={imageToDelete} />
         </div>
       </div>
 
@@ -58,4 +83,3 @@
     </div>
   </Modal>
 {/if}
-

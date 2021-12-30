@@ -1,6 +1,6 @@
 import { Handler } from "@netlify/functions";
 import { jsonResponse } from "../shared/utils";
-import { getS3Client } from "../shared/s3-client";
+import { getS3Client, FOLDERS } from "../shared/s3-client";
 
 const URL_EXPIRATION_SECONDS = 300;
 
@@ -26,7 +26,7 @@ const handler: Handler = async function (event, context) {
   // Get signed URL from S3
   const s3Params = {
     Bucket: process.env.VITE_S3_IMAGES_BUCKET,
-    Key,
+    Key: `${FOLDERS.IMAGES}/${Key}`,
     Expires: URL_EXPIRATION_SECONDS,
     ContentType,
     ACL: "public-read",

@@ -3,6 +3,7 @@
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
 
   export let files = undefined;
+  export let pending = false;
 
   export let onConfirm = () => {};
   export let onCancel = () => {};
@@ -19,7 +20,7 @@
           Please check the file name correspond to the image you want to upload.
         </p>
         <div class="mt-4">
-          <table class="table-auto divide-y divide-gray-200">
+          <table class="table-auto divide-y divide-gray-200 w-full">
             <thead class="bg-gray-50">
               <tr>
                 <th
@@ -60,9 +61,19 @@
           </table>
         </div>
         <div class="mt-8 flex justify-end">
-          <button class="btn-admin" on:click={onCancel}>Cancel</button>
-          <button class="btn-admin btn-primary" on:click={onConfirm}>
-            Upload
+          <button class="btn-admin" disabled={pending} on:click={onCancel}
+            >Cancel</button
+          >
+          <button
+            class="btn-admin btn-primary"
+            disabled={pending}
+            on:click={onConfirm}
+          >
+            {#if pending}
+              <LoadingSpinner />
+            {:else}
+              Upload
+            {/if}
           </button>
         </div>
       </div>

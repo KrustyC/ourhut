@@ -5,8 +5,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { fetchJson } from "$lib/utils/fetch-json";
+  import { getImageName } from "$lib/utils/images";
   import { user } from "$lib/stores/user";
-  import BinIcon from "$lib/components/icons/Bin.svelte";
   import PieChartIcon from "$lib/components/icons/PieChart.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import DeleteImageModal from "$lib/components/admin/images/DeleteImageModal.svelte";
@@ -76,20 +76,16 @@
     {/if}
 
     {#each images as image, index}
-      <div class="relative">
-        <img
-          class="w-full cursor-pointer"
-          src={image}
-          on:click={() => onSelectImage(index)}
-        />
-        <button
-          class="absolute top-2 right-2 h-6"
-          on:click={() => onWantToDeleteImage(index)}
+      <div class="img-card" on:click={() => onSelectImage(index)}>
+        <div class="img-container">
+          <img src={image} />
+        </div>
+
+        <div
+          class="img-name flex w-full h-auto bg-white flex justify-center items-center"
         >
-          <BinIcon
-            class="fill-current text-admin-danger hover:text-admin-danger-dark top-2 right-2 h-6 cursor-pointer"
-          />
-        </button>
+          {getImageName(image)}
+        </div>
       </div>
     {/each}
   </div>
@@ -110,3 +106,52 @@
     />
   {/if}
 </div>
+
+<style>
+  .img-card {
+    dispaly: flex;
+    flex-direction: column;
+    border: 2px solid rgb(223, 223, 227);
+    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 230px;
+  }
+
+  .img-container {
+    height: 160px;
+    background-color: rgb(242, 242, 242);
+    background-size: 16px 16px;
+    background-position: 0px 0px, 8px 8px;
+    background-image: linear-gradient(
+        45deg,
+        rgb(230, 230, 230) 25%,
+        transparent 25%,
+        transparent 75%,
+        rgb(230, 230, 230) 75%,
+        rgb(230, 230, 230)
+      ),
+      linear-gradient(
+        45deg,
+        rgb(230, 230, 230) 25%,
+        transparent 25%,
+        transparent 75%,
+        rgb(230, 230, 230) 75%,
+        rgb(230, 230, 230)
+      );
+
+    border-bottom: 2px solid rgb(223, 223, 227);
+  }
+
+  .img-container > img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+  }
+
+  .img-name {
+    height: 66px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+</style>

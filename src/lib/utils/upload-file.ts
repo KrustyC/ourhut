@@ -1,4 +1,5 @@
 import { variables } from "../variables";
+import { fetchJson } from "./fetch-json";
 
 async function readFile(file: File): Promise<ArrayBuffer> {
   return new Promise((resolve, reject) => {
@@ -18,13 +19,11 @@ async function getAsByteArray(file) {
   return new Uint8Array(await readFile(file));
 }
 
-export async function uploadFileToS3(file: File) {
-  const url = `${variables.basePath}/.netlify/functions/admin-signed-s3-url?name=${file.name}&type=${file.type}`;
-  const result = await fetch(url, {
-    method: "GET",
-  });
-
-  const { uploadURL } = await result.json();
+export async function uploadFileToS3(file: File, token: string) {
+  const { uploadURL } = await fetchJson(
+    `/admin-signed-s3-url?name=${file.name}&type=${file.type}`,
+    { method: "GET", token }
+  );
 
   const byteFile = await getAsByteArray(file);
 
@@ -37,5 +36,5 @@ export async function uploadFileToS3(file: File) {
     body: blobData,
   });
 
-  return `${variables.s3BucketUrl}/${file.name}`;
+  return `${variables.s3BucketUrl}/images/${file.name}`;
 }
