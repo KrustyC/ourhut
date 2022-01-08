@@ -580,14 +580,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .left-0 {
   left: 0px;
 }
-.top-2 {
-  top: 0.5rem;
+.bottom-2 {
+  bottom: 0.5rem;
 }
 .right-2 {
   right: 0.5rem;
-}
-.bottom-2 {
-  bottom: 0.5rem;
 }
 .z-10 {
   z-index: 10;
@@ -676,6 +673,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mt-2 {
   margin-top: 0.5rem;
 }
+.ml-4 {
+  margin-left: 1rem;
+}
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -685,8 +685,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mr-8 {
   margin-right: 2rem;
 }
-.ml-4 {
-  margin-left: 1rem;
+.mr-6 {
+  margin-right: 1.5rem;
+}
+.ml-6 {
+  margin-left: 1.5rem;
+}
+.ml-8 {
+  margin-left: 2rem;
 }
 .box-content {
   box-sizing: content-box;
@@ -730,6 +736,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-2 {
   height: 0.5rem;
 }
+.h-auto {
+  height: auto;
+}
 .h-4 {
   height: 1rem;
 }
@@ -742,8 +751,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-8 {
   height: 2rem;
 }
-.h-auto {
-  height: auto;
+.h-40 {
+  height: 10rem;
+}
+.h-60 {
+  height: 15rem;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -790,9 +802,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-4 {
   width: 1rem;
 }
-.w-48 {
-  width: 12rem;
-}
 .w-96 {
   width: 24rem;
 }
@@ -810,14 +819,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .max-w-screen-lg {
   max-width: 976px;
 }
-.max-w-full {
-  max-width: 100%;
-}
-.max-w-lg {
-  max-width: 32rem;
-}
 .max-w-md {
   max-width: 28rem;
+}
+.max-w-full {
+  max-width: 100%;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1320,10 +1326,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
-.text-admin-danger {
-  --tw-text-opacity: 1;
-  color: rgb(252 72 77 / var(--tw-text-opacity));
-}
 .text-admin-primary {
   --tw-text-opacity: 1;
   color: rgb(25 50 60 / var(--tw-text-opacity));
@@ -1399,11 +1401,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-primary:hover {
   --tw-text-opacity: 1;
   color: rgb(34 87 122 / var(--tw-text-opacity));
-}
-
-.hover\:text-admin-danger-dark:hover {
-  --tw-text-opacity: 1;
-  color: rgb(252 10 17 / var(--tw-text-opacity));
 }
 
 .hover\:text-white:hover {

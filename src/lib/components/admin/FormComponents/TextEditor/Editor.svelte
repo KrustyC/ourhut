@@ -39,7 +39,7 @@
 </script>
 
 <div
-  class="h-80 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+  class="h-60 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
 >
   <div class="bubble-menu" {bubbleMenu}>
     {#if editor}

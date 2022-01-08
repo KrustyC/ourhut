@@ -21,8 +21,8 @@
     bind:value
     on:blur={onBlur}
     {name}
+    type="url"
     {placeholder}
-    type="text"
     class={`${width} shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
   />
 </div>

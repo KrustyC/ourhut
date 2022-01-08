@@ -10,25 +10,8 @@ export const dayValidator = yup.string().required(); // use Regex
 export const eventSchema = yup.object().shape({
   title: yup.string().required(),
   description: yup.object().required(),
-  price: yup.number().moreThan(-1),
   image: yup.string(),
-  location: yup.object().shape({
-    address: yup
-      .object()
-      .shape({
-        addressLine: yup.string().required(),
-        postcode: yup.string().required(),
-        city: yup.string().required(),
-      })
-      .required(),
-    coordinates: yup
-      .object()
-      .shape({
-        lat: yup.number().required(),
-        lng: yup.number().required(),
-      })
-      .required(),
-  }),
+  eventbriteLink: yup.string().url(),
   date: yup
     .object()
     .shape({
