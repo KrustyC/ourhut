@@ -34,8 +34,6 @@
       products = fetchResult.products;
     }
   }
-
-  $: console.log(productToRemoveIndex);
 </script>
 
 <AdminIndexLayout

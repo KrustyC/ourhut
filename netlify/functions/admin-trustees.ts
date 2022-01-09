@@ -92,7 +92,6 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
       body: { message: "Trustee successfully added", id: result.insertedId },
     });
   } catch (error) {
-    console.log("errrror", error);
     return jsonResponse({
       status: 500,
       body: {

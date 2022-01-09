@@ -14,7 +14,6 @@
   let schoolToRemoveIndex = -1;
 
   function onWantToRemoveSchool(index: number) {
-    console.log("DIO CANE");
     schoolToRemoveIndex = index;
   }
 

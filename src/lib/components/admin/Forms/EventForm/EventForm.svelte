@@ -17,12 +17,10 @@
   let error = undefined;
 
   event.subscribe((data) => {
-    console.log(data);
     try {
       eventSchema.validateSync(data);
       error = undefined;
     } catch (err) {
-      console.log("ERROR", err);
       error = err.message;
     }
   });

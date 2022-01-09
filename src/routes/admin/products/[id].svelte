@@ -65,8 +65,6 @@
     pending = false;
     product = null;
   }
-
-  $: console.log(productData);
 </script>
 
 <div class="p-4">
