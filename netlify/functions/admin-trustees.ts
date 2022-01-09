@@ -1,73 +1,58 @@
 import { Handler, HandlerEvent } from "@netlify/functions";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import slugify from "slugify";
 import * as yup from "yup";
 import { connect } from "../shared/mongodb-client";
 import { jsonResponse } from "../shared/utils";
 
-const timeValidator = yup.object().shape({
-  time: yup.string().required(), // Use regex
-  period: yup.string().required(), // Use enum
-});
-
-export const eventSchema = yup.object().shape({
-  title: yup.string().required(),
+export const trusteeSchema = yup.object().shape({
+  name: yup.string().required(),
   description: yup.object().required(),
-  image: yup.string(),
-  eventbriteLink: yup.string().url(),
-  date: yup
-    .object()
-    .shape({
-      day: yup.string().required(), // use Regex,
-      startTime: timeValidator,
-      endTime: timeValidator,
-    })
-    .required(),
 });
 
+const TRUSTEES_TABLE = "trustees";
 const ALLOWED_METHODS = ["GET", "POST", "PUT", "DELETE"];
-const EVENTS_TABLE = "events";
 
 async function get(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    const { slug } = handlerEvent.queryStringParameters;
+    const { id } = handlerEvent.queryStringParameters;
 
-    if (slug) {
-      const event = await client
+    if (id) {
+      const trustee = await client
         .db(process.env.VITE_MONGO_DB_NAME)
-        .collection(EVENTS_TABLE)
-        .findOne({ slug }, { projection: { _id: 0 } });
+        .collection(TRUSTEES_TABLE)
+        .findOne({ _id: new ObjectId(id) });
 
-      if (!event) {
+      if (!trustee) {
         return jsonResponse({
           status: 404,
           body: {
-            message: `Event with slug "${slug}" could not be found`,
+            message: `Trustee with id "${id}" could not be found`,
           },
         });
       }
 
       return jsonResponse({
         status: 200,
-        body: { event },
+        body: { trustee },
       });
     }
 
-    const events = await client
+    const trustees = await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(EVENTS_TABLE)
+      .collection(TRUSTEES_TABLE)
       .find()
       .toArray();
 
     return jsonResponse({
       status: 200,
-      body: { events },
+      body: { trustees },
     });
   } catch (error) {
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error fetching events, please try again later on.",
+        message: "Error fetching trustees, please try again later on.",
       },
     });
   }
@@ -75,13 +60,14 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 
 async function post(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    const { event, status } = JSON.parse(handlerEvent.body);
+    const { trustee } = JSON.parse(handlerEvent.body);
 
-    let eventDocument;
+    let trusteeDocument;
 
     try {
-      eventDocument = await eventSchema.validate(event);
+      trusteeDocument = await trusteeSchema.validate(trustee);
     } catch (error) {
+      console.log(error);
       return jsonResponse({
         status: 400,
         body: {
@@ -93,31 +79,26 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    const slug = slugify(event.title, {
-      lower: true,
-      strict: true,
-    });
-
-    await client
+    const result = await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(EVENTS_TABLE)
+      .collection(TRUSTEES_TABLE)
       .insertOne({
-        ...eventDocument,
-        slug,
-        isPublished: status === "publish",
+        ...trusteeDocument,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
 
     return jsonResponse({
       status: 200,
-      body: { message: "Event successfully inserted" },
+      body: { message: "Trustee successfully added", id: result.insertedId },
     });
   } catch (error) {
+    console.log("errrror", error);
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error creating your event, please try again later on.",
+        message:
+          "Error adding your trustee to the database, please try again later on.",
       },
     });
   }
@@ -125,24 +106,24 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
 
 async function put(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    // Find the query params slug
-    const { slug } = handlerEvent.queryStringParameters;
-    if (!slug) {
+    // Find the query params id
+    const { id } = handlerEvent.queryStringParameters;
+    if (!id) {
       return jsonResponse({
         status: 400,
         body: {
           message: {
-            name: "It is required to pass a slug in the form of a query parameter `slug`",
+            name: "It is required to pass a id in the form of a query parameter `id`",
           },
         },
       });
     }
 
-    const { event, status } = JSON.parse(handlerEvent.body);
-    let eventDocument;
+    const { trustee } = JSON.parse(handlerEvent.body);
+    let trusteeDocument;
 
     try {
-      eventDocument = await eventSchema.validate(event);
+      trusteeDocument = await trusteeSchema.validate(trustee);
     } catch (error) {
       return jsonResponse({
         status: 400,
@@ -155,17 +136,16 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    await client
+    const res = await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(EVENTS_TABLE)
+      .collection(TRUSTEES_TABLE)
       .findOneAndUpdate(
         {
-          slug,
+          _id: new ObjectId(id),
         },
         {
           $set: {
-            ...eventDocument,
-            isPublished: status === "publish",
+            ...trusteeDocument,
             updatedAt: new Date(),
           },
         }
@@ -179,7 +159,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error updating your event, please try again later on.",
+        message: "Error updating your trustee, please try again later on.",
       },
     });
   }
@@ -188,13 +168,13 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
 async function deleteEvent(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
     // Find the query params slug
-    const { slug } = handlerEvent.queryStringParameters;
-    if (!slug) {
+    const { id } = handlerEvent.queryStringParameters;
+    if (!id) {
       return jsonResponse({
         status: 400,
         body: {
           message: {
-            name: "It is required to pass a slug in the form of a query parameter `slug`",
+            name: "It is required to pass a id in the form of a query parameter `id`",
           },
         },
       });
@@ -202,20 +182,20 @@ async function deleteEvent(client: MongoClient, handlerEvent: HandlerEvent) {
 
     await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(EVENTS_TABLE)
+      .collection(TRUSTEES_TABLE)
       .deleteMany({
-        slug,
+        _id: new ObjectId(id),
       });
 
     return jsonResponse({
       status: 200,
-      body: { message: "Event successfully deleted" },
+      body: { message: "Trustee successfully deleted" },
     });
   } catch (error) {
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error deleting your event, please try again later on.",
+        message: "Error deleting the trustee, please try again later on.",
       },
     });
   }
