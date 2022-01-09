@@ -1,6 +1,7 @@
 <script lang="ts">
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import ImageSelector from "$lib/components/admin/FormComponents/ImageSelector/ImageSelector.svelte";
+  import AlertErrorBox from "$lib/components/admin/shared/AlertErrorBox.svelte";
   import Editor from "$lib/components/admin/FormComponents/TextEditor/Editor.svelte";
   import TextInput from "$lib/components/admin/FormComponents/TextInput.svelte";
   import UrlInput from "$lib/components/admin/FormComponents/UrlInput.svelte";
@@ -13,18 +14,20 @@
   export let pending = false;
   export let onSaveEvent = (status: "publish" | "draft"): void => {};
 
-  let actionsDisabled = true;
-  let validation = true;
+  let error = undefined;
 
   event.subscribe((data) => {
-    actionsDisabled = !eventSchema.isValidSync(data);
-
+    console.log(data);
     try {
-      validation = eventSchema.validateSync(data);
+      eventSchema.validateSync(data);
+      error = undefined;
     } catch (err) {
-      // console.log(err);
+      console.log("ERROR", err);
+      error = err.message;
     }
   });
+
+  $: actionsDisabled = error !== undefined;
 </script>
 
 <div class="flex flex-col">
@@ -96,9 +99,9 @@
     <Editor bind:content={$event.description} />
   </div>
 
-  <div class="flex border-t-2 border-slate-300 pt-4">
+  <div class="flex items-center border-t-2 border-slate-300 pt-4 h-24">
     <button
-      class="btn-admin btn-primary  mr-4"
+      class="btn-admin btn-primary mr-4"
       disabled={actionsDisabled | pending}
       on:click={() => onSaveEvent("draft")}
     >
@@ -110,7 +113,7 @@
     </button>
 
     <button
-      class="btn-admin btn-outlined-primary"
+      class="btn-admin btn-outlined-primary mr-4"
       disabled={actionsDisabled | pending}
       on:click={() => onSaveEvent("publish")}
     >
@@ -120,5 +123,9 @@
         Publish Event
       {/if}
     </button>
+
+    {#if error !== undefined}
+      <AlertErrorBox {error} />
+    {/if}
   </div>
 </div>

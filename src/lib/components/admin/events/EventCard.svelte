@@ -1,8 +1,7 @@
 <script lang="ts">
   import { parse, format } from "date-fns";
-  import MarkerIcon from "$lib/components/icons/MarkerIcon.svelte";
+  import LinkIcon from "$lib/components/icons/LinkIcon.svelte";
   import Calendar from "$lib/components/icons/Calendar.svelte";
-  import { getAddressText } from "$lib/utils/address";
 
   export let event = {};
   export let onWantToRemoveEvent = () => {};
@@ -22,8 +21,8 @@
       {event.title}
     </span>
 
-    <div class="flex items-end mt-3 mb-2">
-      <div class="marker-wrapper">
+    <div class="flex items-end mt-3 mb-1">
+      <div class="icon-wrapper">
         <Calendar height="h-4" width="w-4" />
       </div>
       <span class="ml-1 text-sm text-gray-600">
@@ -40,11 +39,13 @@
     </div>
 
     <div class="flex items-end mb-2">
-      <div class="marker-wrapper">
-        <MarkerIcon height="h-4" width="w-4" />
+      <div class="icon-wrapper">
+        <LinkIcon height="h-4" width="w-4" />
       </div>
       <span class="ml-1 text-sm text-gray-600">
-        {getAddressText(event.location)}
+        <a class="text-admin-link" href={event.eventbriteLink} target="_blank">
+          View on EvenBrite
+        </a>
       </span>
     </div>
 
@@ -77,7 +78,7 @@
 </div>
 
 <style>
-  .marker-wrapper {
+  .icon-wrapper {
     margin-bottom: 3px;
   }
 </style>

@@ -11,24 +11,20 @@
 
   export let product = null;
   export let pending = false;
-  let error = undefined;
   export let onSaveProduct = (): void => {};
 
-  let actionsDisabled = true;
-  let validation = true;
+  let error = undefined;
 
   product.subscribe((data) => {
-    if (productSchema.isValidSync(data)) {
-      actionsDisabled = false;
-      error = undefined;
-    }
-
     try {
       validation = productSchema.validateSync(data);
+      error = undefined;
     } catch (err) {
       error = err.message;
     }
   });
+
+  $: actionsDisabled = error !== undefined;
 </script>
 
 <div class="flex flex-col">
@@ -80,7 +76,7 @@
 
   <div class="flex items-center border-t-2 border-slate-300 pt-4 h-24">
     <button
-      class="btn-admin btn-primary  mr-4"
+      class="btn-admin btn-primary mr-4"
       disabled={actionsDisabled | pending}
       on:click={onSaveProduct}
     >

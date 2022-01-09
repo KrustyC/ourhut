@@ -4,7 +4,7 @@
 
 <script lang="ts">
   import EventCard from "$lib/components/admin/events/EventCard.svelte";
-  import DeleteEventModal from "$lib/components/admin/events/DeleteEventModal.svelte";
+  import DeleteItemModal from "$lib/components/admin/shared/DeleteItemModal.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import AdminIndexLayout from "$lib/components/admin/AdminIndexLayout.svelte";
 
@@ -63,8 +63,11 @@
   </div>
 
   {#if eventToRemoveIndex > -1}
-    <DeleteEventModal
-      eventToDelete={events[eventToRemoveIndex]}
+    <DeleteItemModal
+      itemGenericName="event"
+      itemToDelete={events[eventToRemoveIndex]}
+      questionItem={events[eventToRemoveIndex].title}
+      deletePath={`/admin-events?slug=${events[eventToRemoveIndex].slug}`}
       onSuccess={onRemoveConfirmed}
       onCancel={onRemoveCancelled}
     />

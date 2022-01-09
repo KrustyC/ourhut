@@ -67,7 +67,7 @@
       >
         Log In with Netlify Identity
       </button>
-      <p class="mt-4">This is a private area. Please log in to view.</p>
+      <p class="mt-4">This is a private area. please log in to view.</p>
     </div>
   {/if}
 

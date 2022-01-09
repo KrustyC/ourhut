@@ -2,6 +2,7 @@
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import Editor from "$lib/components/admin/FormComponents/TextEditor/Editor.svelte";
   import TextInput from "$lib/components/admin/FormComponents/TextInput.svelte";
+  import AlertErrorBox from "$lib/components/admin/shared/AlertErrorBox.svelte";
   import { trusteeSchema } from "./validators";
   import { saveEvent } from "./helpers";
 
@@ -9,18 +10,18 @@
   export let pending = false;
   export let onSaveTrustee = (): void => {};
 
-  let actionsDisabled = true;
-  let validation = true;
+  let error = undefined;
 
   trustee.subscribe((data) => {
-    actionsDisabled = !trusteeSchema.isValidSync(data);
-
     try {
-      validation = trusteeSchema.validateSync(data);
+      trusteeSchema.validateSync(data);
+      error = undefined;
     } catch (err) {
-      // console.log(err);
+      error = err.message;
     }
   });
+
+  $: actionsDisabled = error !== undefined;
 </script>
 
 <div class="flex flex-col">
@@ -40,9 +41,9 @@
     <Editor bind:content={$trustee.description} />
   </div>
 
-  <div class="flex border-t-2 border-slate-300 pt-4">
+  <div class="flex items-center border-t-2 border-slate-300 pt-4 h-24">
     <button
-      class="btn-admin btn-primary  mr-4"
+      class="btn-admin btn-primary mr-4"
       disabled={actionsDisabled | pending}
       on:click={onSaveTrustee}
     >
@@ -52,5 +53,9 @@
         Save Trustee
       {/if}
     </button>
+
+    {#if error !== undefined}
+      <AlertErrorBox {error} />
+    {/if}
   </div>
 </div>

@@ -96,9 +96,9 @@
 
     <div class="flex flex-col items-start mt-auto mt-4">
       <p class="text-xs mb-4">
-        <b class="uppercase">Please note:</b> the location coordinates are based
+        <b class="uppercase">please note:</b> the location coordinates are based
         purely on the postcode, and may not be spot on with the exact location.
-        Please make sure the address line is correct so that users can find the
+        please make sure the address line is correct so that users can find the
         actual place more easily.
         <br />
         <br />

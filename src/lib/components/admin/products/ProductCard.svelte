@@ -21,12 +21,12 @@
         </div>
         <span class="ml-1 text-sm text-gray-600">
           <a class="text-admin-link" href={product.etsyLink} target="_blank">
-            Etsy Link
+            View on Etsy
           </a>
         </span>
       </div>
 
-      <div class="flex items-end mt-1">
+      <div class="flex items-end">
         <div class="icon-wrapper">
           <PriceIcon height="h-4" width="w-4" />
         </div>
