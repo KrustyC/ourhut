@@ -44,7 +44,7 @@
       </div>
       <span class="ml-1 text-sm text-gray-600">
         <a class="text-admin-link" href={event.eventbriteLink} target="_blank">
-          View on EvenBrite
+          View on EventBrite
         </a>
       </span>
     </div>
