@@ -12,7 +12,6 @@ export const productSchema = yup.object().shape({
   image: yup.string().required("Please enter an image for the product"),
   price: yup
     .number()
-    .integer("Please enter a valid phone number without decimal values")
     .positive("Please enter a valid price")
     .required("Please enter a price"),
   etsyLink: yup.string().url().required("Please enter a valid Etsy link"),

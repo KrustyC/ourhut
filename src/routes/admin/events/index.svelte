@@ -3,25 +3,15 @@
 </script>
 
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { fetchJson } from "$lib/utils/fetch-json";
-  import { user } from "$lib/stores/user";
   import EventCard from "$lib/components/admin/events/EventCard.svelte";
   import DeleteEventModal from "$lib/components/admin/events/DeleteEventModal.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
+  import AdminIndexLayout from "$lib/components/admin/AdminIndexLayout.svelte";
 
   let loading = false;
   let events = [];
+  let fetchResult = undefined;
   let eventToRemoveIndex = -1;
-
-  $: token = $user !== null ? $user.access_token : null;
-
-  onMount(async () => {
-    const res = await fetchJson("/admin-events", { token });
-
-    events = res.events;
-    loading = false;
-  });
 
   function onWantToRemoveEvent(index: number) {
     eventToRemoveIndex = index;
@@ -38,28 +28,31 @@
   function onRemoveCancelled() {
     eventToRemoveIndex = -1;
   }
+
+  $: {
+    if (fetchResult !== undefined) {
+      events = fetchResult.events;
+    }
+  }
 </script>
 
-<div class="p-4">
-  <div class="flex justify-between items-center">
-    <h2 class="text-gray-600 font-bold">Events</h2>
-
-    <a
-      href="/admin/events/new"
-      class="btn-admin btn-primary btn-sm text-base"
-    >
-      Add New Event
-    </a>
-  </div>
-  <p class="text-gray-600">In this section you can manage your Events.</p>
-  <div>
+<AdminIndexLayout
+  title="Events"
+  subtitle="Here you can manage your events."
+  itemName="Event"
+  fetchUrlPath={"/admin-events"}
+  createItemPath={"/admin/events/new"}
+  bind:fetchResult
+  bind:loading
+>
+  <div class="flex flex-wrap">
     {#if loading}
       <LoadingSpinner />
     {:else}
       <div
-        class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
+        class="mt-4 w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4"
       >
-        {#each events as event, index (event.slug)}
+        {#each events as event, index (event._id)}
           <EventCard
             {event}
             onWantToRemoveEvent={() => onWantToRemoveEvent(index)}
@@ -68,12 +61,12 @@
       </div>
     {/if}
   </div>
-</div>
 
-{#if eventToRemoveIndex > -1}
-  <DeleteEventModal
-    eventToDelete={events[eventToRemoveIndex]}
-    onSuccess={onRemoveConfirmed}
-    onCancel={onRemoveCancelled}
-  />
-{/if}
+  {#if eventToRemoveIndex > -1}
+    <DeleteEventModal
+      eventToDelete={events[eventToRemoveIndex]}
+      onSuccess={onRemoveConfirmed}
+      onCancel={onRemoveCancelled}
+    />
+  {/if}
+</AdminIndexLayout>

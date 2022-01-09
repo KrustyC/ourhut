@@ -3,25 +3,15 @@
 </script>
 
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { fetchJson } from "$lib/utils/fetch-json";
-  import { user } from "$lib/stores/user";
   import TrusteeCard from "$lib/components/admin/trustees/TrusteeCard.svelte";
   import DeleteTrusteeModal from "$lib/components/admin/trustees/DeleteTrusteeModal.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
+  import AdminIndexLayout from "$lib/components/admin/AdminIndexLayout.svelte";
 
   let loading = false;
+  let fetchResult = undefined;
   let trustees = [];
   let trusteeToRemoveIndex = -1;
-
-  $: token = $user !== null ? $user.access_token : null;
-
-  onMount(async () => {
-    const res = await fetchJson("/admin-trustees", { token });
-
-    trustees = res.trustees;
-    loading = false;
-  });
 
   function onWantToRemoveTrustee(index: number) {
     trusteeToRemoveIndex = index;
@@ -38,21 +28,24 @@
   function onRemoveCancelled() {
     trusteeToRemoveIndex = -1;
   }
+
+  $: {
+    if (fetchResult !== undefined) {
+      trustees = fetchResult.trustees;
+    }
+  }
 </script>
 
-<div class="p-4">
-  <div class="flex justify-between items-center">
-    <h2 class="text-gray-600 font-bold">Trustees</h2>
-
-    <a
-      href="/admin/trustees/new"
-      class="btn-admin btn-primary btn-sm text-base"
-    >
-      Add New Trustee
-    </a>
-  </div>
-  <p class="text-gray-600">In this section you can manage your Trustees.</p>
-  <div>
+<AdminIndexLayout
+  title="Trustees"
+  subtitle="In this section you can manage your Trustees."
+  itemName="Trustee"
+  fetchUrlPath={"/admin-trustees"}
+  createItemPath={"/admin/trustees/new"}
+  bind:fetchResult
+  bind:loading
+>
+  <div class="flex flex-wrap">
     {#if loading}
       <LoadingSpinner />
     {:else}
@@ -68,12 +61,12 @@
       </div>
     {/if}
   </div>
-</div>
 
-{#if trusteeToRemoveIndex > -1}
-  <DeleteTrusteeModal
-    trusteeToDelete={trustees[trusteeToRemoveIndex]}
-    onSuccess={onRemoveConfirmed}
-    onCancel={onRemoveCancelled}
-  />
-{/if}
+  {#if trusteeToRemoveIndex > -1}
+    <DeleteTrusteeModal
+      trusteeToDelete={trustees[trusteeToRemoveIndex]}
+      onSuccess={onRemoveConfirmed}
+      onCancel={onRemoveCancelled}
+    />
+  {/if}
+</AdminIndexLayout>

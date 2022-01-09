@@ -52,7 +52,7 @@
           </li>
 
           <li>
-            <SidebarLink href="/admin/shop/" label="Shop">
+            <SidebarLink href="/admin/products/" label="Shop">
               <CartIcon />
             </SidebarLink>
           </li>

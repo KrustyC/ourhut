@@ -32,7 +32,7 @@
       </h2>
       <p class="text-left text-sm text-gray-500">
         Select an image from your gallery. If you can't find the image you are
-        looking for, <a href="/admin/images" target="_blank">click here</a> to open
+        looking for, <a class="text-admin-link" href="/admin/images" target="_blank">click here</a> to open
         the images loading page (in a new tab). Once you have added your image, please
         close and re-open this modal.
       </p>
