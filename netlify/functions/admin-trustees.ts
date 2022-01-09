@@ -136,7 +136,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    const res = await client
+    await client
       .db(process.env.VITE_MONGO_DB_NAME)
       .collection(TRUSTEES_TABLE)
       .findOneAndUpdate(
@@ -145,7 +145,8 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
         },
         {
           $set: {
-            ...trusteeDocument,
+            name: trusteeDocument.name,
+            description: trusteeDocument.description,
             updatedAt: new Date(),
           },
         }

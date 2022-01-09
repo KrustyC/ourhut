@@ -685,12 +685,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mr-8 {
   margin-right: 2rem;
 }
-.mr-6 {
-  margin-right: 1.5rem;
-}
-.ml-6 {
-  margin-left: 1.5rem;
-}
 .ml-8 {
   margin-left: 2rem;
 }
@@ -745,17 +739,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-96 {
   height: 24rem;
 }
-.h-80 {
-  height: 20rem;
+.h-60 {
+  height: 15rem;
 }
 .h-8 {
   height: 2rem;
-}
-.h-40 {
-  height: 10rem;
-}
-.h-60 {
-  height: 15rem;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -807,9 +795,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-8 {
   width: 2rem;
-}
-.w-16 {
-  width: 4rem;
 }
 .min-w-max {
   min-width: -webkit-max-content;
@@ -1092,10 +1077,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
-.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
 .bg-admin-danger-dark {
   --tw-bg-opacity: 1;
   background-color: rgb(252 10 17 / var(--tw-bg-opacity));
@@ -1119,6 +1100,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-blue-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 .bg-gray-50 {
   --tw-bg-opacity: 1;
@@ -1458,6 +1443,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 976px) {
@@ -1496,6 +1485,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .xl\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .xl\:p-8 {

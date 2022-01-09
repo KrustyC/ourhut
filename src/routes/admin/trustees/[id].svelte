@@ -11,75 +11,75 @@
   import { writable } from "svelte/store";
   import { notifications } from "$lib/stores/notifications";
   import Panel from "$lib/components/admin/Panel.svelte";
-  import EventForm from "$lib/components/admin/Forms/EventForm/EventForm.svelte";
+  import TrusteeForm from "$lib/components/admin/Forms/TrusteeForm/TrusteeForm.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
-  import { updateEvent } from "$lib/components/admin/Forms/EventForm/helpers";
+  import { updateTrustee } from "$lib/components/admin/Forms/TrusteeForm/helpers";
 
-  let eventData = null;
+  let trusteeData = null;
   let loading = false; // track the initial load
-  let pending = false; // track the event update
-  const slug = $page.params.slug;
+  let pending = false; // track the trustee update
+  const id = $page.params.id;
   let error = false;
 
-  let event = writable();
+  let trustee = writable();
 
   $: token = $user !== null ? $user.access_token : null;
 
   onMount(async () => {
-    const res = await fetchJson(`/admin-events?slug=${slug}`, { token });
+    const res = await fetchJson(`/admin-trustees?id=${id}`, { token });
 
-    event.set(res.event);
+    trustee.set(res.trustee);
     loading = false;
   });
 
-  event.subscribe((data) => {
-    eventData = data;
+  trustee.subscribe((data) => {
+    trusteeData = data;
   });
 
-  async function onSaveEvent(status: "publish" | "draft") {
+  async function onSaveTrustee() {
     pending = true;
     try {
-      await updateEvent({ slug, eventData, status, token });
+      await updateTrustee({ id, trusteeData, status, token });
       notifications.success(
         {
-          title: "Event Updated",
-          text: "Your event has been sucessfully updated!",
+          title: "Trustee Updated",
+          text: "Your trustee has been sucessfully updated!",
         },
         3000
       );
 
       setTimeout(() => {
-        goto("/admin/events");
-      }, 1000);
+        goto("/admin/trustees");
+      }, 500);
     } catch (err) {
       error = true;
       notifications.danger(
         {
           title: "An error occurred",
-          text: "Your event could not be updated, please try again later or contact the web admin.",
+          text: "Your trustee could not be updated, please try again later or contact the web admin.",
         },
         5000
       );
     }
 
     pending = false;
-    event = null;
+    trustee = null;
   }
 </script>
 
 <div class="p-4">
   <div class="flex flex-col sm:w-full xl:w-8/12">
     <div class="flex justify-between items-center w-100">
-      <h2 class="text-gray-600 font-bold">Update Event</h2>
-      <a href="/admin/events" class="text-black">Go Back</a>
+      <h2 class="text-gray-600 font-bold">Update Trustee</h2>
+      <a href="/admin/trustees" class="text-black">Go Back</a>
     </div>
 
     <div class="mt-4 w-100">
       {#if loading}
         <LoadingSpinner />
-      {:else if eventData}
+      {:else if trusteeData}
         <Panel class="w-100">
-          <EventForm {pending} {event} {onSaveEvent} />
+          <TrusteeForm {pending} {trustee} {onSaveTrustee} />
         </Panel>
       {/if}
     </div>
