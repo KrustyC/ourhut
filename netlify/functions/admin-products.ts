@@ -4,54 +4,63 @@ import * as yup from "yup";
 import { connect } from "../shared/mongodb-client";
 import { jsonResponse } from "../shared/utils";
 
-export const trusteeSchema = yup.object().shape({
-  name: yup.string().required(),
-  description: yup.object().required(),
+export const productSchema = yup.object().shape({
+  name: yup.string().required("Please enter a name for the product"),
+  description: yup
+    .object()
+    .required("Please enter a description for the product"),
+  image: yup.string().required("Please enter an image for the product"),
+  price: yup
+    .number()
+    .integer("Please enter a valid phone number without decimal values")
+    .positive("Please enter a valid price")
+    .required("Please enter a price"),
+  etsyLink: yup.string().url().required("Please enter a valid Etsy link"),
 });
 
-const TRUSTEES_COLLECTION = "trustees";
 const ALLOWED_METHODS = ["GET", "POST", "PUT", "DELETE"];
+const PRODUCTS_COLLECTION = "products";
 
 async function get(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
     const { id } = handlerEvent.queryStringParameters;
 
     if (id) {
-      const trustee = await client
+      const product = await client
         .db(process.env.VITE_MONGO_DB_NAME)
-        .collection(TRUSTEES_COLLECTION)
+        .collection(PRODUCTS_COLLECTION)
         .findOne({ _id: new ObjectId(id) });
 
-      if (!trustee) {
+      if (!product) {
         return jsonResponse({
           status: 404,
           body: {
-            message: `Trustee with id "${id}" could not be found`,
+            message: `Product with id "${id}" could not be found`,
           },
         });
       }
 
       return jsonResponse({
         status: 200,
-        body: { trustee },
+        body: { product },
       });
     }
 
-    const trustees = await client
+    const products = await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(TRUSTEES_COLLECTION)
+      .collection(PRODUCTS_COLLECTION)
       .find()
       .toArray();
 
     return jsonResponse({
       status: 200,
-      body: { trustees },
+      body: { products },
     });
   } catch (error) {
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error fetching trustees, please try again later on.",
+        message: "Error fetching products, please try again later on.",
       },
     });
   }
@@ -59,12 +68,12 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 
 async function post(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    const { trustee } = JSON.parse(handlerEvent.body);
+    const { product } = JSON.parse(handlerEvent.body);
 
-    let trusteeDocument;
+    let productDocument;
 
     try {
-      trusteeDocument = await trusteeSchema.validate(trustee);
+      productDocument = await productSchema.validate(product);
     } catch (error) {
       console.log(error);
       return jsonResponse({
@@ -80,24 +89,23 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
 
     const result = await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(TRUSTEES_COLLECTION)
+      .collection(PRODUCTS_COLLECTION)
       .insertOne({
-        ...trusteeDocument,
+        ...productDocument,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
 
     return jsonResponse({
       status: 200,
-      body: { message: "Trustee successfully added", id: result.insertedId },
+      body: { message: "Product successfully added", id: result.insertedId },
     });
   } catch (error) {
-    console.log("errrror", error);
     return jsonResponse({
       status: 500,
       body: {
         message:
-          "Error adding your trustee to the database, please try again later on.",
+          "Error adding your product to the database, please try again later on.",
       },
     });
   }
@@ -118,11 +126,11 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    const { trustee } = JSON.parse(handlerEvent.body);
-    let trusteeDocument;
+    const { product } = JSON.parse(handlerEvent.body);
+    let productDocument;
 
     try {
-      trusteeDocument = await trusteeSchema.validate(trustee);
+      productDocument = await productSchema.validate(product);
     } catch (error) {
       return jsonResponse({
         status: 400,
@@ -137,15 +145,18 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
 
     await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(TRUSTEES_COLLECTION)
+      .collection(PRODUCTS_COLLECTION)
       .findOneAndUpdate(
         {
           _id: new ObjectId(id),
         },
         {
           $set: {
-            name: trusteeDocument.name,
-            description: trusteeDocument.description,
+            name: productDocument.name,
+            description: productDocument.description,
+            image: productDocument.image,
+            price: productDocument.price,
+            etsyLink: productDocument.etsyLink,
             updatedAt: new Date(),
           },
         }
@@ -153,19 +164,19 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
 
     return jsonResponse({
       status: 200,
-      body: { message: "Trustee successfully updated" },
+      body: { message: "Product successfully updated" },
     });
   } catch (error) {
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error updating your trustee, please try again later on.",
+        message: "Error updating your product, please try again later on.",
       },
     });
   }
 }
 
-async function deleteTrustee(client: MongoClient, handlerEvent: HandlerEvent) {
+async function deleteProduct(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
     // Find the query params slug
     const { id } = handlerEvent.queryStringParameters;
@@ -182,20 +193,20 @@ async function deleteTrustee(client: MongoClient, handlerEvent: HandlerEvent) {
 
     await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(TRUSTEES_COLLECTION)
+      .collection(PRODUCTS_COLLECTION)
       .deleteMany({
         _id: new ObjectId(id),
       });
 
     return jsonResponse({
       status: 200,
-      body: { message: "Trustee successfully deleted" },
+      body: { message: "Product successfully deleted" },
     });
   } catch (error) {
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error deleting the trustee, please try again later on.",
+        message: "Error deleting the product, please try again later on.",
       },
     });
   }
@@ -244,7 +255,7 @@ const handler: Handler = async (event, context) => {
   }
 
   if (event.httpMethod === "DELETE") {
-    return deleteTrustee(client, event);
+    return deleteProduct(client, event);
   }
 };
 

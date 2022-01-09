@@ -26,7 +26,7 @@ export const eventSchema = yup.object().shape({
 });
 
 const ALLOWED_METHODS = ["GET", "POST", "PUT", "DELETE"];
-const EVENTS_TABLE = "events";
+const EVENTS_COLLECTION = "events";
 
 async function get(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
@@ -35,7 +35,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
     if (slug) {
       const event = await client
         .db(process.env.VITE_MONGO_DB_NAME)
-        .collection(EVENTS_TABLE)
+        .collection(EVENTS_COLLECTION)
         .findOne({ slug }, { projection: { _id: 0 } });
 
       if (!event) {
@@ -55,7 +55,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 
     const events = await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(EVENTS_TABLE)
+      .collection(EVENTS_COLLECTION)
       .find()
       .toArray();
 
@@ -100,7 +100,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
 
     await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(EVENTS_TABLE)
+      .collection(EVENTS_COLLECTION)
       .insertOne({
         ...eventDocument,
         slug,
@@ -157,7 +157,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
 
     await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(EVENTS_TABLE)
+      .collection(EVENTS_COLLECTION)
       .findOneAndUpdate(
         {
           slug,
@@ -202,7 +202,7 @@ async function deleteEvent(client: MongoClient, handlerEvent: HandlerEvent) {
 
     await client
       .db(process.env.VITE_MONGO_DB_NAME)
-      .collection(EVENTS_TABLE)
+      .collection(EVENTS_COLLECTION)
       .deleteMany({
         slug,
       });
