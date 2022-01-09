@@ -5,7 +5,7 @@
 <script lang="ts">
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import AdminIndexLayout from "$lib/components/admin/AdminIndexLayout.svelte";
-  import ProductCard from "$lib/components/admin/products/ProductCard.svelte";
+  import ProductCard from "$lib/components/admin/Cards/ProductCard.svelte";
   import DeleteItemModal from "$lib/components/admin/shared/DeleteItemModal.svelte";
 
   let loading = false;

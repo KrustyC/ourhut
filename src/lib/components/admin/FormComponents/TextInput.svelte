@@ -9,7 +9,7 @@
   export let onBlur = (e: any) => {};
 </script>
 
-<div class="flex flex-col">
+<div class={`flex flex-col ${width}`}>
   <label
     class="uppercase block text-gray-700 text-sm font-bold mb-2"
     for={name}

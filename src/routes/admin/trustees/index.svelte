@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-  import TrusteeCard from "$lib/components/admin/trustees/TrusteeCard.svelte";
+  import TrusteeCard from "$lib/components/admin/Cards/TrusteeCard.svelte";
   import DeleteItemModal from "$lib/components/admin/shared/DeleteItemModal.svelte";
   import LoadingSpinner from "$lib/components/shared/LoadingSpinner.svelte";
   import AdminIndexLayout from "$lib/components/admin/AdminIndexLayout.svelte";
