@@ -17,7 +17,7 @@
           Confirm Your Choices
         </h2>
         <p class="text-sm text-gray-500">
-          please check the file name correspond to the image you want to upload.
+         Please check the file name correspond to the image you want to upload.
         </p>
         <div class="mt-8">
           <table class="table-auto divide-y divide-gray-200 w-full">

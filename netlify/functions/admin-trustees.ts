@@ -1,8 +1,9 @@
 import { Handler, HandlerEvent } from "@netlify/functions";
 import { MongoClient, ObjectId } from "mongodb";
 import * as yup from "yup";
-import { connect } from "../shared/mongodb-client";
+import { adminHandler } from "../shared/admin-handler";
 import { jsonResponse } from "../shared/utils";
+import { HTTP_METHODS } from "../shared/variables";
 
 export const trusteeSchema = yup.object().shape({
   name: yup.string().required(),
@@ -10,7 +11,6 @@ export const trusteeSchema = yup.object().shape({
 });
 
 const TRUSTEES_COLLECTION = "trustees";
-const ALLOWED_METHODS = ["GET", "POST", "PUT", "DELETE"];
 
 async function get(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
@@ -201,50 +201,19 @@ async function deleteTrustee(client: MongoClient, handlerEvent: HandlerEvent) {
 }
 
 const handler: Handler = async (event, context) => {
-  const { user } = context.clientContext;
+  const handlers = [
+    { method: HTTP_METHODS.GET, handler: get },
+    { method: HTTP_METHODS.POST, handler: post },
+    { method: HTTP_METHODS.PUT, handler: put },
+    { method: HTTP_METHODS.DELETE, handler: deleteTrustee },
+  ];
 
-  if (!user) {
-    return jsonResponse({
-      status: 403,
-      body: { message: "Only authorized users can perform this request" },
-    });
-  }
-
-  if (!ALLOWED_METHODS.includes(event.httpMethod)) {
-    return jsonResponse({
-      status: 405,
-      body: { message: "Method not allowed" },
-    });
-  }
-
-  let client;
-
-  try {
-    client = await connect();
-  } catch (error) {
-    return jsonResponse({
-      status: 500,
-      body: {
-        message: "Error connecting to the database, please try again later on.",
-      },
-    });
-  }
-
-  if (event.httpMethod === "GET") {
-    return get(client, event);
-  }
-
-  if (event.httpMethod === "POST") {
-    return post(client, event);
-  }
-
-  if (event.httpMethod === "PUT") {
-    return put(client, event);
-  }
-
-  if (event.httpMethod === "DELETE") {
-    return deleteTrustee(client, event);
-  }
+  return adminHandler({
+    event,
+    context,
+    handlers,
+    onlyAuthorizedUsers: true,
+  });
 };
 
 export { handler };

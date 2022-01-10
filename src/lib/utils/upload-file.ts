@@ -19,9 +19,19 @@ async function getAsByteArray(file) {
   return new Uint8Array(await readFile(file));
 }
 
-export async function uploadFileToS3(file: File, token: string) {
+interface UploadFileToS3Options {
+  file: File;
+  token: string;
+  folder: "images" | "files" | "partners_logos";
+}
+
+export async function uploadFileToS3({
+  file,
+  token,
+  folder = "images",
+}: UploadFileToS3Options) {
   const { uploadURL } = await fetchJson(
-    `/admin-signed-s3-url?name=${file.name}&type=${file.type}`,
+    `/admin-signed-s3-url?name=${file.name}&type=${file.type}&folder=${folder}`,
     { method: "GET", token }
   );
 

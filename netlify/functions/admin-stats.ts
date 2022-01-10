@@ -1,11 +1,10 @@
 import { Handler, HandlerEvent } from "@netlify/functions";
 import { MongoClient } from "mongodb";
-import { connect } from "../shared/mongodb-client";
+import { adminHandler } from "../shared/admin-handler";
 import { jsonResponse } from "../shared/utils";
+import { HTTP_METHODS } from "../shared/variables";
 
-const ALLOWED_METHODS = ["GET"];
-
-async function get(client: MongoClient, handlerEvent: HandlerEvent) {
+async function get(client: MongoClient, _handlerEvent: HandlerEvent) {
   try {
     const db = await client.db(process.env.VITE_MONGO_DB_NAME);
     const promises = [db.collection("events").countDocuments()];
@@ -27,38 +26,14 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 }
 
 const handler: Handler = async (event, context) => {
-  const { user } = context.clientContext;
+  const handlers = [{ method: HTTP_METHODS.GET, handler: get }];
 
-  if (!user) {
-    return jsonResponse({
-      status: 403,
-      body: { message: "Only authorized users can perform this request" },
-    });
-  }
-
-  if (!ALLOWED_METHODS.includes(event.httpMethod)) {
-    return jsonResponse({
-      status: 405,
-      body: { message: "Method not allowed" },
-    });
-  }
-
-  let client;
-
-  try {
-    client = await connect();
-  } catch (error) {
-    return jsonResponse({
-      status: 500,
-      body: {
-        message: "Error connecting to the database, please try again later on.",
-      },
-    });
-  }
-
-  if (event.httpMethod === "GET") {
-    return get(client, event);
-  }
+  return adminHandler({
+    event,
+    context,
+    handlers,
+    onlyAuthorizedUsers: true,
+  });
 };
 
 export { handler };

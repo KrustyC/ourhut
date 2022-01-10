@@ -1,4 +1,4 @@
-const s3Bucket = import.meta.env.VITE_S3_IMAGES_BUCKET;
+const s3Bucket = import.meta.env.VITE_S3_OUR_HUT_BUCKET;
 
 export const variables = {
   basePath: import.meta.env.VITE_URL,

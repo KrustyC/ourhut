@@ -8,7 +8,7 @@
   export let itemToDelete = undefined;
   export let itemGenericName = undefined;
   export let deletePath = undefined;
-  export let questionItem = '';
+  export let questionItem = "";
 
   export let onCancel = () => {};
   export let onSuccess = () => {};

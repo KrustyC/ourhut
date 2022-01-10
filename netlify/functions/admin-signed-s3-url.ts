@@ -21,12 +21,12 @@ const handler: Handler = async function (event, context) {
     });
   }
 
-  const { name: Key, type: ContentType } = event.queryStringParameters;
+  const { name: Key, type: ContentType, folder } = event.queryStringParameters;
 
   // Get signed URL from S3
   const s3Params = {
-    Bucket: process.env.VITE_S3_IMAGES_BUCKET,
-    Key: `${FOLDERS.IMAGES}/${Key}`,
+    Bucket: process.env.VITE_S3_OUR_HUT_BUCKET,
+    Key: `${folder}/${Key}`,
     Expires: URL_EXPIRATION_SECONDS,
     ContentType,
     ACL: "public-read",

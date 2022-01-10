@@ -44,4 +44,5 @@ export async function deleteObjectFromS3(params) {
 export enum FOLDERS {
   IMAGES = "images",
   FILES = "files",
+  PARTNERS_LOGOS = "partner",
 }

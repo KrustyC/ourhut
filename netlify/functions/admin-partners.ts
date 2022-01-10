@@ -12,24 +12,24 @@ async function get() {
   try {
     const params = {
       Bucket: process.env.VITE_S3_OUR_HUT_BUCKET,
-      Prefix: FOLDERS.IMAGES,
+      Prefix: FOLDERS.PARTNERS_LOGOS,
     };
 
     const listObjects = await getAllS3Files(params);
 
-    const imagesUrls = listObjects.Contents.map((file) => {
+    const partnerLogosUrls = listObjects.Contents.map((file) => {
       return `https://${process.env.VITE_S3_OUR_HUT_BUCKET}.s3.amazonaws.com/${file.Key}`;
     });
 
     return jsonResponse({
       status: 200,
-      body: { images: imagesUrls },
+      body: { partnerLogos: partnerLogosUrls },
     });
   } catch (error) {
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error fetching imagsd, please try again later on.",
+        message: "Error fetching partners, please try again later on.",
       },
     });
   }
@@ -41,20 +41,20 @@ async function deleteImage(event: HandlerEvent) {
 
     const params = {
       Bucket: process.env.VITE_S3_OUR_HUT_BUCKET,
-      Key: `${FOLDERS.IMAGES}/${name}`,
+      Key: `${FOLDERS.PARTNERS_LOGOS}/${name}`,
     };
 
     await deleteObjectFromS3(params);
 
     return jsonResponse({
       status: 200,
-      body: { message: "Image successfully deleted!" },
+      body: { message: "Partner Logo successfully deleted!" },
     });
   } catch (error) {
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error fetching imagsd, please try again later on.",
+        message: "Error fetching partner logos, please try again later on.",
       },
     });
   }

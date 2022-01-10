@@ -5,6 +5,8 @@
   import Modal from "$lib/components/admin/Modal.svelte";
   import ImagesUploadPreviewModal from "./ImagesUploadPreviewModal.svelte";
 
+  export let actionCopy = "Upload Image";
+  export let folder: "images" | "partners" = "images";
   export let onConfirm = (newImage: string) => {};
 
   let files, fileinput;
@@ -18,7 +20,7 @@
   async function onUploadToS3() {
     pending = true;
     const file = files[0];
-    const newImage = await uploadFileToS3(files[0], token);
+    const newImage = await uploadFileToS3({ file: files[0], folder, token });
 
     onConfirm(newImage);
 
@@ -33,7 +35,7 @@
 
 <div>
   <button class="btn-admin btn-primary btn-sm" on:click={onWantToUpload}>
-    Upload Image
+    {actionCopy}
   </button>
   <input
     style="display:none"
