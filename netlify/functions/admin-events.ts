@@ -30,11 +30,11 @@ const EVENTS_COLLECTION = "events";
 
 async function get(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    const { slug } = handlerEvent.queryStringParameters;
+    const { slug } = handlerEvent.queryStringParameters as { slug?: string };
 
     if (slug) {
       const event = await client
-        .db(process.env.VITE_MONGO_DB_NAME)
+        .db(process.env.MONGO_DB_NAME)
         .collection(EVENTS_COLLECTION)
         .findOne({ slug }, { projection: { _id: 0 } });
 
@@ -54,7 +54,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     const events = await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(EVENTS_COLLECTION)
       .find()
       .toArray();
@@ -75,7 +75,9 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 
 async function post(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    const { event, status } = JSON.parse(handlerEvent.body);
+    const { event = null, status = "draft" } = handlerEvent.body
+      ? JSON.parse(handlerEvent.body)
+      : {};
 
     let eventDocument;
 
@@ -87,7 +89,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
         body: {
           message: {
             name: "Validation Error",
-            error: error.message,
+            error: (error as Error).message,
           },
         },
       });
@@ -99,7 +101,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
     });
 
     await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(EVENTS_COLLECTION)
       .insertOne({
         ...eventDocument,
@@ -126,7 +128,8 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
 async function put(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
     // Find the query params slug
-    const { slug } = handlerEvent.queryStringParameters;
+    const { slug } = handlerEvent.queryStringParameters as { slug?: string };
+
     if (!slug) {
       return jsonResponse({
         status: 400,
@@ -138,7 +141,9 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    const { event, status } = JSON.parse(handlerEvent.body);
+    const { event = null, status = "draft" } = handlerEvent.body
+      ? JSON.parse(handlerEvent.body)
+      : {};
     let eventDocument;
 
     try {
@@ -149,14 +154,14 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
         body: {
           message: {
             name: "Validation Error",
-            error: error.message,
+            error: (error as Error).message,
           },
         },
       });
     }
 
     await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(EVENTS_COLLECTION)
       .findOneAndUpdate(
         {
@@ -188,7 +193,8 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
 async function deleteEvent(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
     // Find the query params slug
-    const { slug } = handlerEvent.queryStringParameters;
+    const { slug } = handlerEvent.queryStringParameters as { slug?: string };
+
     if (!slug) {
       return jsonResponse({
         status: 400,
@@ -201,7 +207,7 @@ async function deleteEvent(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(EVENTS_COLLECTION)
       .deleteMany({
         slug,

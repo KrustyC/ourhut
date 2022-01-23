@@ -30,7 +30,7 @@ export async function adminHandler({
   onlyAuthorizedUsers,
 }: Config): Promise<HandlerResponse> {
   if (onlyAuthorizedUsers) {
-    const { user } = context.clientContext;
+    const { user } = context.clientContext as { user?: any };
 
     if (!user) {
       return jsonResponse({
@@ -56,6 +56,15 @@ export async function adminHandler({
   try {
     client = await connect();
   } catch (error) {
+    return jsonResponse({
+      status: 500,
+      body: {
+        message: "Error connecting to the database, please try again later on.",
+      },
+    });
+  }
+
+  if (!client) {
     return jsonResponse({
       status: 500,
       body: {

@@ -33,7 +33,7 @@ const ALLOWED_METHODS = ["GET", "POST"];
 async function get(client: MongoClient) {
   try {
     const projects = await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection("projects")
       .find()
       .toArray();
@@ -52,9 +52,11 @@ async function get(client: MongoClient) {
   }
 }
 
-async function post(client: MongoClient, event: HandlerEvent) {
+async function post(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    const { project } = JSON.parse(event.body);
+    const { project = null } = handlerEvent.body
+      ? JSON.parse(handlerEvent.body)
+      : {};
 
     let projectDocument;
 
@@ -66,14 +68,14 @@ async function post(client: MongoClient, event: HandlerEvent) {
         body: {
           message: {
             name: "Validation Error",
-            error: error.message,
+            error: (error as Error).message,
           },
         },
       });
     }
 
     await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection("projects")
       .insertOne(projectDocument);
 

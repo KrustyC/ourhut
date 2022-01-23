@@ -14,11 +14,11 @@ const TRUSTEES_COLLECTION = "trustees";
 
 async function get(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    const { id } = handlerEvent.queryStringParameters;
+    const { id } = handlerEvent.queryStringParameters as { id?: string };
 
     if (id) {
       const trustee = await client
-        .db(process.env.VITE_MONGO_DB_NAME)
+        .db(process.env.MONGO_DB_NAME)
         .collection(TRUSTEES_COLLECTION)
         .findOne({ _id: new ObjectId(id) });
 
@@ -38,7 +38,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     const trustees = await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(TRUSTEES_COLLECTION)
       .find()
       .toArray();
@@ -59,7 +59,9 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 
 async function post(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    const { trustee } = JSON.parse(handlerEvent.body);
+    const { trustee = null } = handlerEvent.body
+      ? JSON.parse(handlerEvent.body)
+      : {};
 
     let trusteeDocument;
 
@@ -72,14 +74,14 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
         body: {
           message: {
             name: "Validation Error",
-            error: error.message,
+            error: (error as Error).message,
           },
         },
       });
     }
 
     const result = await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(TRUSTEES_COLLECTION)
       .insertOne({
         ...trusteeDocument,
@@ -104,8 +106,8 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
 
 async function put(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    // Find the query params id
-    const { id } = handlerEvent.queryStringParameters;
+    const { id } = handlerEvent.queryStringParameters as { id?: string };
+
     if (!id) {
       return jsonResponse({
         status: 400,
@@ -117,7 +119,9 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    const { trustee } = JSON.parse(handlerEvent.body);
+    const { trustee = null } = handlerEvent.body
+      ? JSON.parse(handlerEvent.body)
+      : {};
     let trusteeDocument;
 
     try {
@@ -128,14 +132,14 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
         body: {
           message: {
             name: "Validation Error",
-            error: error.message,
+            error: (error as Error).message,
           },
         },
       });
     }
 
     await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(TRUSTEES_COLLECTION)
       .findOneAndUpdate(
         {
@@ -166,8 +170,8 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
 
 async function deleteTrustee(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    // Find the query params slug
-    const { id } = handlerEvent.queryStringParameters;
+    const { id } = handlerEvent.queryStringParameters as { id?: string };
+
     if (!id) {
       return jsonResponse({
         status: 400,
@@ -180,7 +184,7 @@ async function deleteTrustee(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(TRUSTEES_COLLECTION)
       .deleteMany({
         _id: new ObjectId(id),

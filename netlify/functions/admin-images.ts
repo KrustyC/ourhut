@@ -1,4 +1,5 @@
 import { Handler, HandlerEvent } from "@netlify/functions";
+import { NetlifyUser } from "../../types/auth";
 import { jsonResponse } from "../shared/utils";
 import {
   FOLDERS,
@@ -6,20 +7,19 @@ import {
   deleteObjectFromS3,
 } from "../shared/s3-client";
 
-const ALLOWED_METHODS = ["GET", "DELETE"];
-
 async function get() {
   try {
     const params = {
-      Bucket: process.env.VITE_S3_OUR_HUT_BUCKET,
+      Bucket: process.env.S3_OUR_HUT_BUCKET,
       Prefix: FOLDERS.IMAGES,
     };
 
     const listObjects = await getAllS3Files(params);
 
-    const imagesUrls = listObjects.Contents.map((file) => {
-      return `https://${process.env.VITE_S3_OUR_HUT_BUCKET}.s3.amazonaws.com/${file.Key}`;
-    });
+    const imagesUrls =
+      listObjects?.Contents?.map((file) => {
+        return `https://${process.env.S3_OUR_HUT_BUCKET}.s3.amazonaws.com/${file.Key}`;
+      }) || [];
 
     return jsonResponse({
       status: 200,
@@ -29,18 +29,17 @@ async function get() {
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error fetching imagsd, please try again later on.",
+        message: "Error fetching images, please try again later on.",
       },
     });
   }
 }
 
-async function deleteImage(event: HandlerEvent) {
+async function deleteImage(handlerEvent: HandlerEvent) {
   try {
-    const { name } = event.queryStringParameters;
-
+    const { name } = handlerEvent.queryStringParameters as { name?: string };
     const params = {
-      Bucket: process.env.VITE_S3_OUR_HUT_BUCKET,
+      Bucket: process.env.S3_OUR_HUT_BUCKET,
       Key: `${FOLDERS.IMAGES}/${name}`,
     };
 
@@ -54,26 +53,19 @@ async function deleteImage(event: HandlerEvent) {
     return jsonResponse({
       status: 500,
       body: {
-        message: "Error fetching imagsd, please try again later on.",
+        message: "Error fetching images, please try again later on.",
       },
     });
   }
 }
 
 const handler: Handler = async (event, context) => {
-  const { user } = context.clientContext;
+  const { user } = context.clientContext as { user?: NetlifyUser };
 
   if (!user) {
     return jsonResponse({
       status: 403,
       body: { message: "Only authorized users can perform this request" },
-    });
-  }
-
-  if (!ALLOWED_METHODS.includes(event.httpMethod)) {
-    return jsonResponse({
-      status: 405,
-      body: { message: "Method not allowed" },
     });
   }
 
@@ -84,6 +76,11 @@ const handler: Handler = async (event, context) => {
   if (event.httpMethod === "DELETE") {
     return deleteImage(event);
   }
+
+  return jsonResponse({
+    status: 405,
+    body: { message: "Method not allowed" },
+  });
 };
 
 export { handler };

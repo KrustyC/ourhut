@@ -22,11 +22,11 @@ const PRODUCTS_COLLECTION = "products";
 
 async function get(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    const { id } = handlerEvent.queryStringParameters;
+    const { id } = handlerEvent.queryStringParameters as { id?: string };
 
     if (id) {
       const product = await client
-        .db(process.env.VITE_MONGO_DB_NAME)
+        .db(process.env.MONGO_DB_NAME)
         .collection(PRODUCTS_COLLECTION)
         .findOne({ _id: new ObjectId(id) });
 
@@ -46,7 +46,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     const products = await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(PRODUCTS_COLLECTION)
       .find()
       .toArray();
@@ -67,7 +67,9 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 
 async function post(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    const { product } = JSON.parse(handlerEvent.body);
+    const { product = null } = handlerEvent.body
+      ? JSON.parse(handlerEvent.body)
+      : {};
 
     let productDocument;
 
@@ -80,14 +82,14 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
         body: {
           message: {
             name: "Validation Error",
-            error: error.message,
+            error: (error as Error).message,
           },
         },
       });
     }
 
     const result = await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(PRODUCTS_COLLECTION)
       .insertOne({
         ...productDocument,
@@ -112,8 +114,8 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
 
 async function put(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    // Find the query params id
-    const { id } = handlerEvent.queryStringParameters;
+    const { id } = handlerEvent.queryStringParameters as { id?: string };
+
     if (!id) {
       return jsonResponse({
         status: 400,
@@ -125,7 +127,10 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    const { product } = JSON.parse(handlerEvent.body);
+    const { product = null } = handlerEvent.body
+      ? JSON.parse(handlerEvent.body)
+      : {};
+
     let productDocument;
 
     try {
@@ -136,14 +141,14 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
         body: {
           message: {
             name: "Validation Error",
-            error: error.message,
+            error: (error as Error).message,
           },
         },
       });
     }
 
     await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(PRODUCTS_COLLECTION)
       .findOneAndUpdate(
         {
@@ -178,7 +183,8 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
 async function deleteProduct(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
     // Find the query params slug
-    const { id } = handlerEvent.queryStringParameters;
+    const { id } = handlerEvent.queryStringParameters as { id?: string };
+
     if (!id) {
       return jsonResponse({
         status: 400,
@@ -191,7 +197,7 @@ async function deleteProduct(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     await client
-      .db(process.env.VITE_MONGO_DB_NAME)
+      .db(process.env.MONGO_DB_NAME)
       .collection(PRODUCTS_COLLECTION)
       .deleteMany({
         _id: new ObjectId(id),

@@ -1,9 +1,14 @@
 import { MongoClient } from "mongodb";
 
-let cachedDb = null;
+let cachedDb: MongoClient | undefined = undefined;
 
 export async function connect() {
-  const uri = process.env.VITE_MONGO_URI;
+  const uri = process.env.MONGO_URI;
+
+  if (!uri) {
+    throw new Error("Missing MONGO_URI environment variable");
+  }
+
   const client = new MongoClient(uri);
 
   if (cachedDb) {
@@ -16,6 +21,6 @@ export async function connect() {
       return cachedDb;
     });
   } catch (err) {
-    return null;
+    return undefined;
   }
 }
