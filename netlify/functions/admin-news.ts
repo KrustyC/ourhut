@@ -61,6 +61,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
       },
     });
   } catch (error) {
+    console.error(error);
     return jsonResponse({
       status: 500,
       body: {
