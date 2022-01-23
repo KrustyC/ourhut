@@ -6,11 +6,21 @@ export type Options<Body> = {
   body?: Body;
 };
 
+type Headers = {
+  [key: string]: string;
+};
+
+type FetchOptions = {
+  method: REST_METHOD;
+  headers: Headers;
+  body?: string;
+};
+
 export async function fetchJson<Body>(
   url: string,
   { method = REST_METHOD.GET, token, body }: Options<Body>
 ) {
-  const headers = {
+  const headers: Headers = {
     "Content-Type": "application/json",
   };
 
@@ -18,7 +28,7 @@ export async function fetchJson<Body>(
     headers["Authorization"] = `Bearer ${token}`;
   }
 
-  const options = {
+  const options: FetchOptions = {
     method,
     headers,
   };

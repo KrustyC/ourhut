@@ -10,7 +10,7 @@ import {
 async function get() {
   try {
     const params = {
-      Bucket: process.env.S3_OUR_HUT_BUCKET,
+      Bucket: process.env.S3_OUR_HUT_BUCKET as string,
       Prefix: FOLDERS.PARTNERS_LOGOS,
     };
 
@@ -40,7 +40,7 @@ async function deleteImage(handlerEvent: HandlerEvent) {
     const { name } = handlerEvent.queryStringParameters as { name?: string };
 
     const params = {
-      Bucket: process.env.S3_OUR_HUT_BUCKET,
+      Bucket: process.env.S3_OUR_HUT_BUCKET as string,
       Key: `${FOLDERS.PARTNERS_LOGOS}/${name}`,
     };
 

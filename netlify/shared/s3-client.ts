@@ -11,7 +11,9 @@ export function getS3Client() {
   return s3Client;
 }
 
-export async function getAllS3Files(params): Promise<S3.ListObjectsV2Output> {
+export async function getAllS3Files(
+  params: S3.ListObjectsV2Request
+): Promise<S3.ListObjectsV2Output> {
   return new Promise((resolve, reject) => {
     const s3 = getS3Client();
 
@@ -26,7 +28,7 @@ export async function getAllS3Files(params): Promise<S3.ListObjectsV2Output> {
   });
 }
 
-export async function deleteObjectFromS3(params) {
+export async function deleteObjectFromS3(params: S3.DeleteObjectRequest) {
   return new Promise((resolve, reject) => {
     const s3 = getS3Client();
 
