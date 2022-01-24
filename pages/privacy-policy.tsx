@@ -3,7 +3,7 @@ import Head from "next/head";
 
 const images = [];
 
-const Home: NextPage = () => {
+const PrivacyPolicyPage: NextPage = () => {
   return (
     <div>
       <Head>
@@ -12,9 +12,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>Our Hut</main>
+      <main>Privacy Policy</main>
     </div>
   );
 };
 
-export default Home;
+export default PrivacyPolicyPage;

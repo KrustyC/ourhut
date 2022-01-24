@@ -24,7 +24,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     });
 
     netlifyIdentity.on("login", (user) => {
-      if (router.pathname === "/") {
+      if (router.asPath.includes("/#access_token")) {
         router.push("/admin");
       }
       setUser(user);
