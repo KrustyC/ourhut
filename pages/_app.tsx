@@ -17,7 +17,10 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const [user, setUser] = useState<NetlifyUser | null>(null);
 
   useEffect(() => {
-    netlifyIdentity.on("init", (user) => setUser(user));
+    netlifyIdentity.on("init", (user) => {
+      console.log("INITTT");
+      setUser(user);
+    });
 
     // on logout
     netlifyIdentity.on("logout", () => {
