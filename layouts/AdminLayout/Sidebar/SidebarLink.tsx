@@ -1,3 +1,5 @@
+import NextLink from "next/link";
+
 interface SidebarLinkProps {
   label: string;
   href: string;
@@ -12,15 +14,16 @@ export const SidebarLink: React.FC<SidebarLinkProps> = ({
   const isActive = "/admin" === href;
 
   return (
-    <a
-      href={href}
-      className={`text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group ${
-        isActive ? "bg-gray-100" : ""
-      }`}
-    >
-      {icon}
+    <NextLink href={href}>
+      <a
+        className={`text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group ${
+          isActive ? "bg-gray-100" : ""
+        }`}
+      >
+        {icon}
 
-      <span className="ml-3">{label}</span>
-    </a>
+        <span className="ml-3">{label}</span>
+      </a>
+    </NextLink>
   );
 };

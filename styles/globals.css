@@ -16,6 +16,10 @@
     @apply text-gray-700;
   }
 
+  * {
+    @apply font-montserrat;
+  }
+
   h1 {
     @apply text-6xl;
   }
@@ -63,4 +67,57 @@
 .ProseMirror {
   height: 100% !important;
   outline: none !important;
+}
+
+#burger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+#burger-menu > focus {
+  outline: none;
+}
+
+#burger-menu > div {
+  width: 2rem;
+  height: 0.25rem;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+  @apply bg-primary;
+}
+
+#burger-menu > div:first-child {
+  transform: rotate(0);
+}
+
+#burger-menu > div:first-child.open {
+  transform: rotate(45deg);
+}
+
+#burger-menu > div:nth-child(2) {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+#burger-menu > div:nth-child(2).open {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+#burger-menu > div:nth-child(3) {
+  transform: rotate(0);
+}
+
+#burger-menu > div:nth-child(3).open {
+  transform: rotate(-45deg);
 }

@@ -2,8 +2,7 @@ const colors = require("tailwindcss/colors");
 
 const newColors = {
   ...colors,
-  primary: "#22577A",
-  "primary-soft": "#2D719F",
+  primary: "#F47E21",
   accent: "#80ED99",
   link: "#80ED99",
   "admin-link": "#0FC670",
@@ -41,7 +40,7 @@ module.exports = {
       "admin-primary": "#19323C",
     },
     fontFamily: {
-      mono: ["VT323", "monospace"],
+      montserrat: ['"Montserrat"', "sans-serif"],
     },
     extend: {
       spacing: {
