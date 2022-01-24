@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { IndexLayout } from "@/layouts/AdminIndexLayout";
 import { DeleteItemModal } from "@/components/admin/DeleteItemModal";
-// import { AdminLayout } from "@/layouts/AdminLayout";
+import { AdminLayout } from "@/layouts/AdminLayout";
 import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
 import { EventCard } from "@/components/admin/Cards/EventCard";
 import { Event } from "@/types/global";
@@ -63,32 +63,27 @@ const AdminEvents: NextPageWithLayout = () => {
   );
 };
 
-// (AdminEvents as any).Layout = function Layout(page: ReactElement) {
-//   return (
-//     <AdminLayout>
-//       <IndexLayout
-//         title="Events"
-//         subtitle="Here you can manage your events."
-//         itemName="Event"
-//         createItemPath="/admin/events/new"
-//       >
-//         {page}
-//       </IndexLayout>
-//     </AdminLayout>
-//   );
-// };
-
 const AdminEventsLayout: React.FC = ({ children }) => (
-  <IndexLayout
-    title="Events"
-    subtitle="Here you can manage your events."
-    itemName="Event"
-    createItemPath="/admin/events/new"
-  >
-    {children}
-  </IndexLayout>
+  <AdminLayout>
+    <IndexLayout
+      title="Events"
+      subtitle="Here you can manage your events."
+      itemName="Event"
+      createItemPath="/admin/events/new"
+    >
+      {children}
+    </IndexLayout>
+  </AdminLayout>
 );
 
 AdminEvents.Layout = AdminEventsLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminEvents;

@@ -1,5 +1,4 @@
-import type { NextPage } from "next";
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { AdminLayout } from "layouts/AdminLayout";
 import { DeleteItemModal } from "@/components/admin/DeleteItemModal";
@@ -8,8 +7,9 @@ import { IndexLayout } from "@/layouts/AdminIndexLayout";
 import { TrusteeCard } from "@/components/admin/Cards/TrusteeCard";
 import { Trustee } from "@/types/global";
 import { useAdminIndexList } from "@/hooks/useAdminIndexList";
+import { NextPageWithLayout } from "@/types/app";
 
-const AdminTrustees: NextPage = () => {
+const AdminTrustees: NextPageWithLayout = () => {
   const {
     items: trustees,
     loading,
@@ -61,19 +61,27 @@ const AdminTrustees: NextPage = () => {
   );
 };
 
-(AdminTrustees as any).Layout = function Layout(page: ReactElement) {
-  return (
-    <AdminLayout>
-      <IndexLayout
-        title="Trustees"
-        subtitle="Here you can manage your trustees."
-        itemName="Trustee"
-        createItemPath="/admin/trustees/new"
-      >
-        {page}
-      </IndexLayout>
-    </AdminLayout>
-  );
-};
+const AdminTrusteesLayout: React.FC = ({ children }) => (
+  <AdminLayout>
+    <IndexLayout
+      title="Trustees"
+      subtitle="Here you can manage your trustees."
+      itemName="Trustee"
+      createItemPath="/admin/trustees/new"
+    >
+      {children}
+    </IndexLayout>
+  </AdminLayout>
+);
+
+AdminTrustees.Layout = AdminTrusteesLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminTrustees;

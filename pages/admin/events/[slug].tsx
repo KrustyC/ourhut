@@ -1,5 +1,5 @@
-import type { NextPage } from "next";
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
+import { GetStaticPaths } from "next";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthContext";
@@ -10,6 +10,7 @@ import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
 import { useNetlifyPutFunction } from "@/hooks/useNetlifyPutFunction";
 import { Panel } from "@/components/admin/Panel";
 import { Event } from "@/types/global";
+import { NextPageWithLayout } from "@/types/app";
 
 interface EditProps {
   slug: string;
@@ -82,7 +83,7 @@ const Edit: React.FC<EditProps> = ({ slug }) => {
   );
 };
 
-const AdminEventsEdit: NextPage = () => {
+const AdminEventsEdit: NextPageWithLayout = () => {
   const router = useRouter();
 
   const { slug } = router.query as { slug?: string };
@@ -94,8 +95,21 @@ const AdminEventsEdit: NextPage = () => {
   return <Edit slug={slug} />;
 };
 
-(AdminEventsEdit as any).Layout = function Layout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
+AdminEventsEdit.Layout = AdminLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
+
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+  return {
+    paths: [], //indicates that no page needs be created at build time
+    fallback: "blocking", //indicates the type of fallback
+  };
 };
 
 export default AdminEventsEdit;

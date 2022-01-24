@@ -1,5 +1,4 @@
-import type { NextPage } from "next";
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { AdminLayout } from "@/layouts/AdminLayout";
 import { useAdminIndexFiles } from "@/hooks/useAdminIndexFiles";
@@ -8,8 +7,9 @@ import { ImageCard } from "@/components/admin/Cards/ImageCard";
 import { ViewImageModal } from "@/components/admin/Modals/ViewImageModal";
 import { DeleteImageModal } from "@/components/admin/Modals/DeleteImageModal";
 import { UploadImageButton } from "@/components/admin/UploadImageButton";
+import { NextPageWithLayout } from "@/types/app";
 
-const AdminImages: NextPage = () => {
+const AdminImages: NextPageWithLayout = () => {
   const {
     files: images,
     loading,
@@ -84,8 +84,14 @@ const AdminImages: NextPage = () => {
   );
 };
 
-(AdminImages as any).Layout = function Layout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
-};
+AdminImages.Layout = AdminLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminImages;

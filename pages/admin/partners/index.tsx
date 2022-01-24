@@ -8,8 +8,9 @@ import { ImageCard } from "@/components/admin/Cards/ImageCard";
 import { ViewImageModal } from "@/components/admin/Modals/ViewImageModal";
 import { DeleteImageModal } from "@/components/admin/Modals/DeleteImageModal";
 import { UploadImageButton } from "@/components/admin/UploadImageButton";
+import { NextPageWithLayout } from "@/types/app";
 
-const AdminPartners: NextPage = () => {
+const AdminPartners: NextPageWithLayout = () => {
   const {
     files: partners,
     loading,
@@ -84,8 +85,14 @@ const AdminPartners: NextPage = () => {
   );
 };
 
-(AdminPartners as any).Layout = function Layout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
-};
+AdminPartners.Layout = AdminLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminPartners;

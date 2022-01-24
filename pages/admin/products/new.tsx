@@ -1,5 +1,3 @@
-import type { NextPage } from "next";
-import type { ReactElement } from "react";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "@/contexts/AuthContext";
@@ -9,8 +7,9 @@ import { Panel } from "@/components/admin/Panel";
 import { useNetlifyPostFunction } from "@/hooks/useNetlifyPostFunction";
 import { Product } from "@/types/global";
 import { useRouter } from "next/router";
+import { NextPageWithLayout } from "@/types/app";
 
-const AdminProductsCreate: NextPage = () => {
+const AdminProductsCreate: NextPageWithLayout = () => {
   const { user } = useAuth();
   const router = useRouter();
 
@@ -52,10 +51,14 @@ const AdminProductsCreate: NextPage = () => {
   );
 };
 
-(AdminProductsCreate as any).Layout = function Layout(
-  page: ReactElement
-) {
-  return <AdminLayout>{page}</AdminLayout>;
-};
+AdminProductsCreate.Layout = AdminLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminProductsCreate;

@@ -1,5 +1,4 @@
-import type { NextPage } from "next";
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { AdminLayout } from "layouts/AdminLayout";
 import { DeleteItemModal } from "@/components/admin/DeleteItemModal";
@@ -8,8 +7,9 @@ import { IndexLayout } from "@/layouts/AdminIndexLayout";
 import { ProductCard } from "@/components/admin/Cards/ProductCard";
 import { Product } from "@/types/global";
 import { useAdminIndexList } from "@/hooks/useAdminIndexList";
+import { NextPageWithLayout } from "@/types/app";
 
-const AdminProducts: NextPage = () => {
+const AdminProducts: NextPageWithLayout = () => {
   const {
     items: products,
     loading,
@@ -61,19 +61,27 @@ const AdminProducts: NextPage = () => {
   );
 };
 
-(AdminProducts as any).Layout = function Layout(page: ReactElement) {
-  return (
-    <AdminLayout>
-      <IndexLayout
-        title="Products"
-        subtitle="Here you can manage your products."
-        itemName="Product"
-        createItemPath="/admin/products/new"
-      >
-        {page}
-      </IndexLayout>
-    </AdminLayout>
-  );
-};
+const AdminProductsLayout: React.FC = ({ children }) => (
+  <AdminLayout>
+    <IndexLayout
+      title="Products"
+      subtitle="Here you can manage your products."
+      itemName="Product"
+      createItemPath="/admin/products/new"
+    >
+      {children}
+    </IndexLayout>
+  </AdminLayout>
+);
+
+AdminProducts.Layout = AdminProductsLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminProducts;

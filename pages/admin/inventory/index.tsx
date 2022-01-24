@@ -1,8 +1,7 @@
-import type { NextPage } from "next";
-import { ReactElement } from "react";
 import { AdminLayout } from "layouts/AdminLayout";
+import { NextPageWithLayout } from "@/types/app";
 
-const AdminInventory: NextPage = () => {
+const AdminInventory: NextPageWithLayout = () => {
   return (
     <div className="p-4">
       <h2 className="text-gray-600 font-bold">Resources</h2>
@@ -13,8 +12,14 @@ const AdminInventory: NextPage = () => {
   );
 };
 
-(AdminInventory as any).Layout = function Layout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
-};
+AdminInventory.Layout = AdminLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminInventory;

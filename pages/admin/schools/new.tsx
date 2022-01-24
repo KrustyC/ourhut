@@ -1,5 +1,4 @@
-import type { NextPage } from "next";
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "@/contexts/AuthContext";
 import { AdminLayout } from "layouts/AdminLayout";
@@ -8,8 +7,9 @@ import { Panel } from "@/components/admin/Panel";
 import { useNetlifyPostFunction } from "@/hooks/useNetlifyPostFunction";
 import { School } from "@/types/global";
 import { useRouter } from "next/router";
+import { NextPageWithLayout } from "@/types/app";
 
-const AdminSchoolsCreate: NextPage = () => {
+const AdminSchoolsCreate: NextPageWithLayout = () => {
   const { user } = useAuth();
   const router = useRouter();
 
@@ -51,8 +51,14 @@ const AdminSchoolsCreate: NextPage = () => {
   );
 };
 
-(AdminSchoolsCreate as any).Layout = function Layout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
-};
+AdminSchoolsCreate.Layout = AdminLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminSchoolsCreate;

@@ -1,5 +1,4 @@
-import type { NextPage } from "next";
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
 import { AdminLayout } from "@/layouts/AdminLayout";
 import { IndexLayout } from "@/layouts/AdminIndexLayout";
 import { DeleteItemModal } from "@/components/admin/DeleteItemModal";
@@ -8,8 +7,9 @@ import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
 import { useAdminIndexList } from "@/hooks/useAdminIndexList";
 import { toast } from "react-toastify";
 import { News } from "@/types/global";
+import { NextPageWithLayout } from "@/types/app";
 
-const AdminNews: NextPage = () => {
+const AdminNews: NextPageWithLayout = () => {
   const {
     items: news,
     loading,
@@ -61,19 +61,27 @@ const AdminNews: NextPage = () => {
   );
 };
 
-(AdminNews as any).Layout = function Layout(page: ReactElement) {
-  return (
-    <AdminLayout>
-      <IndexLayout
-        title="News"
-        subtitle="Here you can manage your news."
-        itemName="News"
-        createItemPath="/admin/news/new"
-      >
-        {page}
-      </IndexLayout>
-    </AdminLayout>
-  );
-};
+const AdminNewsLayout: React.FC = ({ children }) => (
+  <AdminLayout>
+    <IndexLayout
+      title="News"
+      subtitle="Here you can manage your news."
+      itemName="News"
+      createItemPath="/admin/news/new"
+    >
+      {children}
+    </IndexLayout>
+  </AdminLayout>
+);
+
+AdminNews.Layout = AdminNewsLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminNews;

@@ -1,5 +1,5 @@
-import type { NextPage } from "next";
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
+import { GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useAuth } from "@/contexts/AuthContext";
@@ -10,6 +10,7 @@ import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
 import { useNetlifyPutFunction } from "@/hooks/useNetlifyPutFunction";
 import { Panel } from "@/components/admin/Panel";
 import { School } from "@/types/global";
+import { NextPageWithLayout } from "@/types/app";
 
 interface EditProps {
   id: string;
@@ -77,7 +78,7 @@ const Edit: React.FC<EditProps> = ({ id }) => {
   );
 };
 
-const AdminSchoolsEdit: NextPage = () => {
+const AdminSchoolsEdit: NextPageWithLayout = () => {
   const router = useRouter();
 
   const { id } = router.query as { id?: string };
@@ -89,8 +90,21 @@ const AdminSchoolsEdit: NextPage = () => {
   return <Edit id={id} />;
 };
 
-(AdminSchoolsEdit as any).Layout = function Layout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
+AdminSchoolsEdit.Layout = AdminLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
+
+export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
+  return {
+    paths: [], //indicates that no page needs be created at build time
+    fallback: "blocking", //indicates the type of fallback
+  };
 };
 
 export default AdminSchoolsEdit;
