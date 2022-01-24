@@ -52,7 +52,7 @@ const AdminTrusteesCreate: NextPage = () => {
   );
 };
 
-(AdminTrusteesCreate as any).getLayout = function getLayout(
+(AdminTrusteesCreate as any).Layout = function Layout(
   page: ReactElement
 ) {
   return <AdminLayout>{page}</AdminLayout>;

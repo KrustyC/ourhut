@@ -54,7 +54,7 @@ const AdminEventsCreate: NextPage = () => {
   );
 };
 
-(AdminEventsCreate as any).getLayout = function getLayout(page: ReactElement) {
+(AdminEventsCreate as any).Layout = function Layout(page: ReactElement) {
   return <AdminLayout>{page}</AdminLayout>;
 };
 

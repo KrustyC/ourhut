@@ -52,7 +52,7 @@ const AdminProductsCreate: NextPage = () => {
   );
 };
 
-(AdminProductsCreate as any).getLayout = function getLayout(
+(AdminProductsCreate as any).Layout = function Layout(
   page: ReactElement
 ) {
   return <AdminLayout>{page}</AdminLayout>;

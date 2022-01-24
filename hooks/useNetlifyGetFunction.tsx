@@ -30,7 +30,7 @@ export function useNetlifyGetFunction<T>({
       try {
         const url = `${process.env.baseUrl}/.netlify/functions${fetchUrlPath}`;
         const options = {
-          token: user?.token.access_token,
+          token: user?.token?.access_token,
         };
 
         const response = await fetchJson(url, options);

@@ -44,7 +44,7 @@ export const UploadImageButton: React.FC<UploadImageButtonProps> = ({
       const newImage = await uploadFileToS3({
         file,
         folder,
-        token: user?.token.access_token || "",
+        token: user?.token?.access_token || "",
       });
 
       onConfirm(newImage);

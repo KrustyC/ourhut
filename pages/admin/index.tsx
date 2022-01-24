@@ -5,6 +5,7 @@ import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
 import { AdminLayout } from "layouts/AdminLayout";
 import { SummaryCard } from "@/components/admin/Cards/SummaryCard";
 import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
+import { NextPageWithLayout } from "@/types/app";
 
 type Stats = {
   news: number;
@@ -12,7 +13,7 @@ type Stats = {
   projects: number;
 };
 
-const AdminDashboard: NextPage = () => {
+const AdminDashboard: NextPageWithLayout = () => {
   const { user } = useAuth();
 
   const { data, loading, error } = useNetlifyGetFunction<Stats>({
@@ -66,8 +67,14 @@ const AdminDashboard: NextPage = () => {
   );
 };
 
-(AdminDashboard as any).getLayout = function getLayout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
-};
+AdminDashboard.Layout = AdminLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminDashboard;

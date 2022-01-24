@@ -84,7 +84,7 @@ const AdminPartners: NextPage = () => {
   );
 };
 
-(AdminPartners as any).getLayout = function getLayout(page: ReactElement) {
+(AdminPartners as any).Layout = function Layout(page: ReactElement) {
   return <AdminLayout>{page}</AdminLayout>;
 };
 

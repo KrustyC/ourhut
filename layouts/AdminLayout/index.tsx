@@ -1,36 +1,28 @@
-import { useAuth, AuthContextProvider } from "@/contexts/AuthContext";
-import { AuthenticatedView } from "./AuthenticatedView";
-import { UnauthenticatedView } from "./UnauthenticatedView";
+import { useAuth } from "@/contexts/AuthContext";
+import { NavBar } from "./Navbar";
+import { Sidebar } from "./Sidebar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AdminView: React.FC = ({ children }) => {
-  const { user, login, logout } = useAuth();
-
-  const isLoggedIn = user !== null;
-
-  const onLogin = () => {
-    login();
-  };
-
-  const onLogout = () => {
-    logout();
-  };
+export const AdminLayout: React.FC = ({ children }) => {
+  const { logout } = useAuth();
 
   return (
-    <div className="h-screen bg-admin-grey">
-      {isLoggedIn ? (
-        <AuthenticatedView onLogout={onLogout}>{children}</AuthenticatedView>
-      ) : (
-        <UnauthenticatedView onLogin={onLogin} />
-      )}
+    <div>
+      <NavBar onLogout={logout} />
+
+      <div className="flex overflow-hidden bg-white pt-12">
+        <Sidebar />
+
+        <div
+          id="main-content"
+          className="h-screen w-full bg-admin-grey relative overflow-y-auto lg:ml-64 p-4"
+        >
+          {children}
+        </div>
+      </div>
+
       <ToastContainer />
     </div>
   );
 };
-
-export const AdminLayout: React.FC = (props) => (
-  <AuthContextProvider>
-    <AdminView {...props} />
-  </AuthContextProvider>
-);

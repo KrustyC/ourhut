@@ -94,7 +94,7 @@ const AdminEventsEdit: NextPage = () => {
   return <Edit slug={slug} />;
 };
 
-(AdminEventsEdit as any).getLayout = function getLayout(page: ReactElement) {
+(AdminEventsEdit as any).Layout = function Layout(page: ReactElement) {
   return <AdminLayout>{page}</AdminLayout>;
 };
 

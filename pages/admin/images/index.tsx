@@ -84,7 +84,7 @@ const AdminImages: NextPage = () => {
   );
 };
 
-(AdminImages as any).getLayout = function getLayout(page: ReactElement) {
+(AdminImages as any).Layout = function Layout(page: ReactElement) {
   return <AdminLayout>{page}</AdminLayout>;
 };
 

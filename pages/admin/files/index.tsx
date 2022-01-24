@@ -1,8 +1,7 @@
-import type { NextPage } from "next";
-import { ReactElement } from "react";
 import { AdminLayout } from "layouts/AdminLayout";
+import { NextPageWithLayout } from "@/types/app";
 
-const AdminFiles: NextPage = () => {
+const AdminFiles: NextPageWithLayout = () => {
   return (
     <div className="p-4">
       <h2 className="text-gray-600 font-bold">Files</h2>
@@ -11,8 +10,14 @@ const AdminFiles: NextPage = () => {
   );
 };
 
-(AdminFiles as any).getLayout = function getLayout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
-};
+AdminFiles.Layout = AdminLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 
 export default AdminFiles;

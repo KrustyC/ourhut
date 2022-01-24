@@ -61,7 +61,7 @@ const AdminProducts: NextPage = () => {
   );
 };
 
-(AdminProducts as any).getLayout = function getLayout(page: ReactElement) {
+(AdminProducts as any).Layout = function Layout(page: ReactElement) {
   return (
     <AdminLayout>
       <IndexLayout

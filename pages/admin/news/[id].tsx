@@ -89,7 +89,7 @@ const AdminNewsEdit: NextPage = () => {
   return <Edit id={id} />;
 };
 
-(AdminNewsEdit as any).getLayout = function getLayout(page: ReactElement) {
+(AdminNewsEdit as any).Layout = function Layout(page: ReactElement) {
   return <AdminLayout>{page}</AdminLayout>;
 };
 

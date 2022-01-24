@@ -13,7 +13,7 @@ const AdminInventory: NextPage = () => {
   );
 };
 
-(AdminInventory as any).getLayout = function getLayout(page: ReactElement) {
+(AdminInventory as any).Layout = function Layout(page: ReactElement) {
   return <AdminLayout>{page}</AdminLayout>;
 };
 

@@ -52,7 +52,7 @@ const AdminNewsCreate: NextPage = () => {
   );
 };
 
-(AdminNewsCreate as any).getLayout = function getLayout(page: ReactElement) {
+(AdminNewsCreate as any).Layout = function Layout(page: ReactElement) {
   return <AdminLayout>{page}</AdminLayout>;
 };
 

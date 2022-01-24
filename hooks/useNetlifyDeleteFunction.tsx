@@ -27,7 +27,7 @@ export function useNetlifyDeleteFunction<T>({
       const url = `${process.env.baseUrl}/.netlify/functions${path}`;
       const options = {
         method: REST_METHOD.DELETE,
-        token: user?.token.access_token,
+        token: user?.token?.access_token,
       };
 
       const response = await fetchJson(url, options);

@@ -27,7 +27,7 @@ export function useNetlifyPostFunction<T>({
       const url = `${process.env.baseUrl}/.netlify/functions${path}`;
       const options = {
         method: REST_METHOD.POST,
-        token: user?.token.access_token,
+        token: user?.token?.access_token,
         body,
       };
 

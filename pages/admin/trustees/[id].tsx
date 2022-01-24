@@ -89,7 +89,7 @@ const AdminTrusteesEdit: NextPage = () => {
   return <Edit id={id} />;
 };
 
-(AdminTrusteesEdit as any).getLayout = function getLayout(page: ReactElement) {
+(AdminTrusteesEdit as any).Layout = function Layout(page: ReactElement) {
   return <AdminLayout>{page}</AdminLayout>;
 };
 

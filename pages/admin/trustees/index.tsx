@@ -61,7 +61,7 @@ const AdminTrustees: NextPage = () => {
   );
 };
 
-(AdminTrustees as any).getLayout = function getLayout(page: ReactElement) {
+(AdminTrustees as any).Layout = function Layout(page: ReactElement) {
   return (
     <AdminLayout>
       <IndexLayout

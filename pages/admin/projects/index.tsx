@@ -12,7 +12,7 @@ const AdminProjects: NextPage = () => {
   );
 };
 
-(AdminProjects as any).getLayout = function getLayout(page: ReactElement) {
+(AdminProjects as any).Layout = function Layout(page: ReactElement) {
   return (
     <AdminLayout>
       <IndexLayout

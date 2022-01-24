@@ -51,7 +51,7 @@ const AdminSchoolsCreate: NextPage = () => {
   );
 };
 
-(AdminSchoolsCreate as any).getLayout = function getLayout(page: ReactElement) {
+(AdminSchoolsCreate as any).Layout = function Layout(page: ReactElement) {
   return <AdminLayout>{page}</AdminLayout>;
 };
 

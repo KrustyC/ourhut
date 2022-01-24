@@ -92,7 +92,7 @@ const AdminProductsEdit: NextPage = () => {
   return <Edit id={id} />;
 };
 
-(AdminProductsEdit as any).getLayout = function getLayout(page: ReactElement) {
+(AdminProductsEdit as any).Layout = function Layout(page: ReactElement) {
   return <AdminLayout>{page}</AdminLayout>;
 };
 

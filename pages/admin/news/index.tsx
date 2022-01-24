@@ -61,7 +61,7 @@ const AdminNews: NextPage = () => {
   );
 };
 
-(AdminNews as any).getLayout = function getLayout(page: ReactElement) {
+(AdminNews as any).Layout = function Layout(page: ReactElement) {
   return (
     <AdminLayout>
       <IndexLayout

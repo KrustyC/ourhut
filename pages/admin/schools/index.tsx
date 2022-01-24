@@ -61,7 +61,7 @@ const AdminSchools: NextPage = () => {
   );
 };
 
-(AdminSchools as any).getLayout = function getLayout(page: ReactElement) {
+(AdminSchools as any).Layout = function Layout(page: ReactElement) {
   return (
     <AdminLayout>
       <IndexLayout
