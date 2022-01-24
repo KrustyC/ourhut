@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import type { NextPageWithLayout } from "@/types/app";
 import { DefaultLayout } from "@/layouts/DefaultLayout";
 import netlifyIdentity from "netlify-identity-widget";
@@ -14,11 +15,18 @@ type AppPropsWithLayout = AppProps & {
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout || DefaultLayout;
 
+  const router = useRouter();
   const [user, setUser] = useState<NetlifyUser | null>(null);
 
   useEffect(() => {
     netlifyIdentity.on("init", (user) => {
-      console.log("INITTT");
+      setUser(user);
+    });
+
+    netlifyIdentity.on("login", (user) => {
+      if (router.pathname === "/") {
+        router.push("/admin");
+      }
       setUser(user);
     });
 

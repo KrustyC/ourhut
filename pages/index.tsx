@@ -1,22 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   const hash = window.location.hash;
-
-  //   if (hash.startsWith("#access_token")) {
-  //     router.push(`/admin${hash}`);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   return (
     <div className={styles.container}>
       <Head>
