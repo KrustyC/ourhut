@@ -13,8 +13,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
-      <main>Our Hut</main>
+      <Navbar
+        config={{
+          burgerColor: "bg-primary",
+          textColor: "text-black",
+          logoColor: "bg-primary",
+        }}
+      />
+      <div>Our Hut</div>
     </div>
   );
 };

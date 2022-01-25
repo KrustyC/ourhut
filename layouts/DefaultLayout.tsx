@@ -1,7 +1,12 @@
+import { Navbar } from "@/components/Navbar";
+
 export const DefaultLayout: React.FC = ({ children }) => {
   return (
-    <div className="flex justify-between items-center">
-      <div>{children}</div>
-    </div>
+    <>
+      <div>
+        {/* <Navbar /> */}
+        {children}
+      </div>
+    </>
   );
 };

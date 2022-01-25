@@ -5,6 +5,7 @@ const newColors = {
   primary: "#F47E21",
   accent: "#80ED99",
   link: "#80ED99",
+  "light-gray": "#F5F5F5",
   "admin-link": "#0FC670",
   "admin-primary": "#2D719F",
   "admin-primary-dark": "#1768A0",

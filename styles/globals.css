@@ -35,6 +35,14 @@
     @apply bg-white;
   }
 
+  .btn {
+    @apply h-12 w-auto px-5 py-3 text-sm shadow-sm font-medium tracking-wider transition-all duration-200 ease-in-out;
+  }
+
+  .btn.btn-primary {
+    @apply text-white border-white border-2 bg-primary hover:bg-white hover:text-primary;
+  }
+
   .btn-admin {
     @apply h-12 w-auto px-5 py-2 text-sm shadow-sm font-medium tracking-wider rounded-lg hover:shadow-lg disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:text-gray-800 disabled:border-gray-200 disabled:shadow-none  disabled:cursor-not-allowed;
   }
@@ -93,7 +101,6 @@
   transition: all 0.3s linear;
   position: relative;
   transform-origin: 1px;
-  @apply bg-primary;
 }
 
 #burger-menu > div:first-child {
