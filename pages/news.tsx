@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import NextLink from "next/link";
 import Head from "next/head";
-import { Event } from "@/types/global";
+import { Event, News } from "@/types/global";
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
 import { PastEventCard } from "@/components/PastEventCard";
@@ -154,7 +154,13 @@ const FAKE_EVENTS: Event[] = [
   },
 ];
 
-const NewsPage: NextPage = () => {
+interface NewsPageProps {
+  events: Event[];
+  news: News[];
+}
+
+const NewsPage: NextPage<NewsPageProps> = ({ events }) => {
+  console.log("EVENTS", events);
   return (
     <div>
       <Head>
@@ -250,5 +256,15 @@ const NewsPage: NextPage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    `${process.env.baseUrl}/.netlify/functions/events-and-news`
+  );
+  const { events = [], news = [] } = await res.json();
+
+  console.log(("EVENTS", events));
+  return { props: { events, news } };
+}
 
 export default NewsPage;
