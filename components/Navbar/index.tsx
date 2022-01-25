@@ -58,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="absolute top-0 left-0 w-screen h-screen bg-black">
+        <div className="fixed top-0 left-0 w-screen h-screen bg-black z-50">
           <div className="w-screen h-24 flex justify-between items-center px-16">
             <div className="flex items-center">
               <div className="h-3 w-3 mr-1 rounded-full bg-primary" />
