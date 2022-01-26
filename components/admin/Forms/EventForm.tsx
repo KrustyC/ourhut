@@ -46,7 +46,7 @@ export const EventForm: React.FC<EventFormProps> = ({
   const {
     register,
     control,
-    formState: { isDirty, errors, isValid },
+    formState: { errors, isValid },
     handleSubmit,
   } = useForm<Event>({
     defaultValues: { ...event },
@@ -224,7 +224,7 @@ export const EventForm: React.FC<EventFormProps> = ({
           className="btn-admin btn-primary mr-4"
           type="button"
           onClick={onSaveDraft}
-          disabled={pending || !isValid || !isDirty}
+          disabled={pending || !isValid}
         >
           {pending ? <LoadingSpinner /> : "Save Draft"}
         </button>
@@ -233,9 +233,9 @@ export const EventForm: React.FC<EventFormProps> = ({
           className="btn-admin btn-outlined-primary mr-4"
           type="button"
           onClick={onPublish}
-          disabled={pending || !isValid || !isDirty}
+          disabled={pending || !isValid}
         >
-          {pending ? <LoadingSpinner /> : "Published Event"}
+          {pending ? <LoadingSpinner /> : "Publish Event"}
         </button>
       </div>
     </form>

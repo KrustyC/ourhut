@@ -1,4 +1,5 @@
 import { Handler } from "@netlify/functions";
+import { parse, isPast } from "date-fns";
 import { jsonResponse } from "../shared/utils";
 import { connect } from "../shared/mongodb-client";
 import { HTTP_METHODS } from "../shared/variables";
@@ -15,11 +16,34 @@ async function get() {
     }
 
     // @TODO Only takes published events
-    const fetchEvents = client
-      .db(process.env.MONGO_DB_NAME)
-      .collection(EVENTS_COLLECTION)
-      .find()
-      .toArray();
+    const fetchEvents = async () => {
+      const events = await client
+        .db(process.env.MONGO_DB_NAME)
+        .collection(EVENTS_COLLECTION)
+        .find({ isPublished: true })
+        .toArray();
+
+      return events.reduce(
+        (acc, currentEvent) => {
+          const date = parse(currentEvent.date.day, "dd/MM/yyyy", new Date());
+
+          if (isPast(date)) {
+            return {
+              ...acc,
+              pastEvents: [...acc.pastEvents, currentEvent],
+              upcomingEvents: [...acc.upcomingEvents, currentEvent],
+            } as any;
+          }
+
+          return {
+            ...acc,
+            upcomingEvents: [...acc.upcomingEvents, currentEvent],
+            pastEvents: [...acc.pastEvents, currentEvent],
+          } as any;
+        },
+        { pastEvents: [], upcomingEvents: [] }
+      );
+    };
 
     const fetchNews = client
       .db(process.env.MONGO_DB_NAME)
@@ -27,9 +51,7 @@ async function get() {
       .find()
       .toArray();
 
-    const [events, news] = await Promise.all([fetchEvents, fetchNews]);
-
-    // @TODO Events should be split into past and future
+    const [events, news] = await Promise.all([fetchEvents(), fetchNews]);
 
     return jsonResponse({
       status: 200,

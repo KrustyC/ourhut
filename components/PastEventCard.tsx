@@ -1,20 +1,24 @@
 import { Event } from "@/types/global";
+import Link from "next/link";
 
 interface PartEventCardProps {
   event: Event;
 }
 
-export const PastEventCard: React.FC<PartEventCardProps> = () => (
-  <div className="cursor-pointer w-full h-72 bg-red-100 relative">
-    <img
-      className="absolute inset-0 bg-cover bg-center z-0"
-      style={{
-        backgroundImage:
-          "url('https://upload.wikimedia.org/wikipedia/en/3/3c/JumanjiTheNextLevelTeaserPoster.jpg')",
-      }}
-    />
-    <div className="opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-6xl text-white font-semibold">
-      Dwayne
-    </div>
-  </div>
+// @TODO Ask Bea, should this be link?
+
+export const PastEventCard: React.FC<PartEventCardProps> = ({ event }) => (
+  <Link href={`/events/${event.slug}`} passHref>
+    <a className="cursor-pointer w-full h-72 bg-red-100 relative">
+      <img className="absolute object-cover w-full h-full" src={event.image} />
+      <div className="opacity-0 hover:opacity-100 duration-500 bg-gray-300 p-4 absolute inset-0 z-10 flex justify-start items-end text-white font-bold">
+        <div className="flex flex-col">
+          <span className="text-14px">{event.title}</span>
+          <span className="text-14px">
+            {event.date.day.replace(/\//g, "-")}
+          </span>
+        </div>
+      </div>
+    </a>
+  </Link>
 );

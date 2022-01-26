@@ -35,7 +35,6 @@ export function isValidDate(date: string): string | true {
 }
 
 export function isValidDescription(description: any): string | true {
-  console.log(description, !description[0]?.content?.length);
   if (!description?.content?.[0]?.content?.length) {
     return "Make sure to add a description";
   }

@@ -36,8 +36,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     mode: "onBlur",
   });
 
-  console.log(errors, isValid);
-
   return (
     <form
       className="flex flex-col w-full"
