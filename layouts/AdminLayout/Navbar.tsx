@@ -9,7 +9,7 @@ export const NavBar: React.FC<NavBarProps> = ({ onLogout }) => (
     <div className="px-3 py-3 lg:px-5 lg:pl-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-start">
-          <div className="text-xl font-bold flex items-center lg:ml-2.5">
+          <div className="text-xl flex items-center lg:ml-2.5">
             <Image
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Location_dot_orange.svg/480px-Location_dot_orange.svg.png"
               className="h-3 mr-2"
@@ -17,7 +17,7 @@ export const NavBar: React.FC<NavBarProps> = ({ onLogout }) => (
               height="20"
               alt="Windster Logo"
             />
-            <span className="self-center whitespace-nowrap text-gray-800">
+            <span className="self-center font-medium whitespace-nowrap text-gray-800">
               Our Hut
             </span>
           </div>

@@ -43,6 +43,10 @@
     @apply text-white border-white border-2 bg-primary hover:bg-white hover:text-primary;
   }
 
+  .btn.btn-transparent-outlined {
+    @apply text-black border-black border-2 bg-transparent hover:bg-black hover:text-white;
+  }
+
   .btn-admin {
     @apply h-12 w-auto px-5 py-2 text-sm shadow-sm font-medium tracking-wider rounded-lg hover:shadow-lg disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:text-gray-800 disabled:border-gray-200 disabled:shadow-none  disabled:cursor-not-allowed;
   }

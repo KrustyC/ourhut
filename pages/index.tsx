@@ -20,7 +20,7 @@ const Home: NextPage = () => {
           logoColor: "bg-primary",
         }}
       />
-      <div>Our Hut</div>
+      <div>Work in progress...</div>
     </div>
   );
 };

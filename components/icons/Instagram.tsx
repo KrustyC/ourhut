@@ -1,10 +1,9 @@
-interface BurgerIconProps {
+interface InstagramIconProps {
   className?: string;
-  onClick?: VoidFunction;
 }
 
-export const InstagramIcon: React.FC<BurgerIconProps> = ({
-  className = "",
+export const InstagramIcon: React.FC<InstagramIconProps> = ({
+  className = "h-6 w-6",
 }) => (
   <svg
     className={className}
