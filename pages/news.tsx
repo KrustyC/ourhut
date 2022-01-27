@@ -7,7 +7,7 @@ import { TwitterIcon } from "@/components/icons/Twitter";
 import { Navbar } from "@/components/Navbar";
 import { Carousel } from "@/components/FutureEventsCarousel";
 import { PastEventCard } from "@/components/PastEventCard";
-import { FutureEventCard } from "@/components/FutureEventsCarousel/FutureEventCard";
+import { Footer } from "@/components/Footer";
 import { GuardianNews } from "@/components/GuardianNews";
 
 interface NewsPageProps {
@@ -38,8 +38,8 @@ const NewsPage: NextPage<NewsPageProps> = ({
         />
 
         <div className="pl-32 pr-16">
-          <h1 className="text-white font-bold">News</h1>
-          <p className="mt-4 text-white font-bold w-1/2">
+          <p className="text-6xl text-white font-semibold ml-[-4px]">News</p>
+          <p className="mt-4 text-white font-medium w-1/2">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
             officiis nobis itaque quaerat suscipit odio, dolor sunt distinctio
             reprehenderit eum iste assumenda repellat aspernatur explicabo
@@ -63,12 +63,14 @@ const NewsPage: NextPage<NewsPageProps> = ({
 
       <div className="flex flex-col">
         <div className="flex flex-col py-16">
-          <h1 className="text-black font-semibold ml-32 mb-12">Future Events</h1>
+          <h1 className="text-black font-semibold ml-32 mb-12">
+            Future Events
+          </h1>
           <Carousel events={upcomingEvents} />
         </div>
 
         <div className="flex flex-col px-32 py-16 bg-light-gray">
-          <h1 className="text-black font-bold mb-8">Past Events</h1>
+          <h1 className="text-black font-semibold mb-8">Past Events</h1>
           <div className="grid grid-cols-4 gap-16">
             {pastEvents.map((event) => (
               <PastEventCard key={event._id} event={event} />
@@ -77,15 +79,17 @@ const NewsPage: NextPage<NewsPageProps> = ({
         </div>
 
         <div className="flex flex-col py-16 px-32">
-          <h1 className="text-black font-bold mb-8">Recent Press</h1>
+          <h1 className="text-black font-semibold mb-8">Recent Press</h1>
           <GuardianNews />
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(
     `${process.env.baseUrl}/.netlify/functions/events-and-news`
   );

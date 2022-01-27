@@ -12,13 +12,11 @@ export const FutureEventCard: React.FC<FutureEventCardProps> = ({
   event,
   isFirst,
 }) => {
-  // const visibility = useContext(VisibilityContext);
-  console.log(isFirst);
   return (
     <div
       className={`w-[800px] h-auto mr-5 text-dark ${isFirst ? "ml-32" : ""}`}
     >
-      <img className="object-fill w-full h-[400px]" src={event.image} />
+      <img className="object-cover w-full h-[400px]" src={event.image} />
       <div className="mt-4 flex flex-col">
         <h3 className="font-bold text-black text-2xl">{event.title}</h3>
         <p className="my-2">
