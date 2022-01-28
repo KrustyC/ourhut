@@ -1,0 +1,87 @@
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { AdminLayout } from "src/layouts/AdminLayout";
+import { DeleteItemModal } from "src/components/admin/DeleteItemModal";
+import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
+import { IndexLayout } from "src/layouts/AdminIndexLayout";
+import { TrusteeCard } from "src/components/admin/Cards/TrusteeCard";
+import { Trustee } from "src/types/global";
+import { useAdminIndexList } from "src/hooks/useAdminIndexList";
+import { NextPageWithLayout } from "src/types/app";
+
+const AdminTrustees: NextPageWithLayout = () => {
+  const {
+    items: trustees,
+    loading,
+    error,
+    itemToRemoveIndex: trusteeToRemoveIndex,
+    onWantToRemoveItem: onWantToRemoveTrustee,
+    onRemoveConfirmed,
+    onRemoveCancelled,
+  } = useAdminIndexList<{ trustees: Trustee[] }, Trustee>({
+    fetchPath: "/admin-trustees",
+    parseResponse: (response) => response.trustees,
+  });
+
+  useEffect(() => {
+    if (error) {
+      toast.error("Error fetching trustees");
+    }
+  }, [error]);
+
+  return (
+    <div className="h-screen bg-admin-grey">
+      <div className="flex flex-wrap">
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
+            {trustees.map((trustee, index) => (
+              <TrusteeCard
+                key={trustee._id}
+                trustee={trustee}
+                onWantToRemoveTrustee={() => onWantToRemoveTrustee(index)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {trusteeToRemoveIndex > -1 ? (
+        <DeleteItemModal
+          itemGenericName="trustee"
+          itemToDelete={trustees[trusteeToRemoveIndex]}
+          questionItem={trustees[trusteeToRemoveIndex].name}
+          deletePath={`/admin-trustees?id=${trustees[trusteeToRemoveIndex]._id}`}
+          onSuccess={onRemoveConfirmed}
+          onCancel={onRemoveCancelled}
+        />
+      ) : null}
+    </div>
+  );
+};
+
+const AdminTrusteesLayout: React.FC = ({ children }) => (
+  <AdminLayout>
+    <IndexLayout
+      title="Trustees"
+      subtitle="Here you can manage your trustees."
+      itemName="Trustee"
+      createItemPath="/admin/trustees/new"
+    >
+      {children}
+    </IndexLayout>
+  </AdminLayout>
+);
+
+AdminTrustees.Layout = AdminTrusteesLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
+
+export default AdminTrustees;

@@ -1,5 +1,5 @@
 import { Handler, HandlerEvent } from "@netlify/functions";
-import { NetlifyUser } from "../../types/auth";
+import { NetlifyUser } from "../../src/types/auth";
 import { jsonResponse } from "../shared/utils";
 import {
   FOLDERS,

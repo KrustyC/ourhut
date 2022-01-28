@@ -1,0 +1,115 @@
+import { useEffect } from "react";
+import { GetStaticPaths } from "next";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import { useAuth } from "src/contexts/AuthContext";
+import { AdminLayout } from "src/layouts/AdminLayout";
+import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
+import { EventForm } from "src/components/admin/Forms/EventForm";
+import { useNetlifyGetFunction } from "src/hooks/useNetlifyGetFunction";
+import { useNetlifyPutFunction } from "src/hooks/useNetlifyPutFunction";
+import { Panel } from "src/components/admin/Panel";
+import { Event } from "src/types/global";
+import { NextPageWithLayout } from "src/types/app";
+
+interface EditProps {
+  slug: string;
+}
+
+const Edit: React.FC<EditProps> = ({ slug }) => {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  const { data, loading, error } = useNetlifyGetFunction<{ event: Event }>({
+    fetchUrlPath: `/admin-events?slug=${slug}`,
+    user,
+  });
+
+  const {
+    onUpdate,
+    pending,
+    error: updateError,
+  } = useNetlifyPutFunction<{ event: Event; status: "publish" | "draft" }>({
+    user,
+  });
+
+  const onEditEvent = async (
+    updatedEvent: Event,
+    status: "publish" | "draft"
+  ) => {
+    const res = await onUpdate(`/admin-events?slug=${slug}`, {
+      event: updatedEvent,
+      status,
+    });
+
+    if (res !== undefined) {
+      toast.success("Event successfully updated!");
+      setTimeout(() => {
+        router.push("/admin/events");
+      }, 800);
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      toast.error("Error fetching event");
+    }
+
+    if (updateError) {
+      toast.error("Error updating event");
+    }
+  }, [error, updateError]);
+
+  return (
+    <div className="p-4">
+      <div className="flex justify-between items-center">
+        <h2 className="text-gray-600 font-bold">Edit Event</h2>
+      </div>
+
+      <div className="flex justify-between w-100 mt-4">
+        <Panel className="mr-4 sm:w-full xl:w-8/12 ">
+          {loading ? (
+            <LoadingSpinner />
+          ) : (
+            <EventForm
+              pending={pending}
+              event={data?.event}
+              onSaveEvent={onEditEvent}
+            />
+          )}
+        </Panel>
+      </div>
+    </div>
+  );
+};
+
+const AdminEventsEdit: NextPageWithLayout = () => {
+  const router = useRouter();
+
+  const { slug } = router.query as { slug?: string };
+
+  if (!slug) {
+    return null;
+  }
+
+  return <Edit slug={slug} />;
+};
+
+AdminEventsEdit.Layout = AdminLayout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
+
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+  return {
+    paths: [], //indicates that no page needs be created at build time
+    fallback: "blocking", //indicates the type of fallback
+  };
+};
+
+export default AdminEventsEdit;

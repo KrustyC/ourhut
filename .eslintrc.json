@@ -4,12 +4,12 @@
     "import/resolver": {
       "alias": {
         "map": [
-          ["@/components", "./components"],
-          ["@/hooks/*", "hooks/*"],
-          ["@/contexts/*", "contexts/*"],
-          ["@/layouts/*", "./layouts/*"],
-          ["@/types/*", "types/*"],
-          ["@/utils/*", "utils/*"]
+          ["@/components", "src/components"],
+          ["@/hooks/*", "src/hooks/*"],
+          ["@/contexts/*", "src/contexts/*"],
+          ["@/layouts/*", "src/layouts/*"],
+          ["@/types/*", "src/types/*"],
+          ["@/utils/*", "src/utils/*"]
         ],
         "extensions": [".ts", ".js", ".jsx", ".json"]
       }
