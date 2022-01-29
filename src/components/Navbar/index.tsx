@@ -1,6 +1,9 @@
 import { useState } from "react";
 import NextLink from "next/link";
 import { Transition } from "@tailwindui/react";
+import { InstagramIcon } from "@/components/icons/Instagram";
+import { TwitterIcon } from "@/components/icons/Twitter";
+import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
 import { BurgerMenu } from "./BurgerMenu";
 
 const LINKS = [
@@ -77,19 +80,34 @@ export const Navbar: React.FC<NavbarProps> = ({
             <BurgerMenu color="bg-primary" isOpen onClick={onToggle} />
           </div>
 
-          <div className="flex flex-col ml-20 ">
-            {LINKS.map(({ path, label }) => {
-              return (
-                <NextLink href={path} key={path}>
-                  <a
-                    className="w-auto text-white font-bold text-6xl mb-8 hover:text-primary"
-                    onClick={onClose}
-                  >
-                    {label}
-                  </a>
-                </NextLink>
-              );
-            })}
+          <div className="flex flex-col ml-20 mt-4">
+            <div className="flex flex-col">
+              {LINKS.map(({ path, label }) => {
+                return (
+                  <NextLink href={path} key={path}>
+                    <a
+                      className="w-auto text-white font-bold text-6xl mb-8 hover:text-primary"
+                      onClick={onClose}
+                    >
+                      {label}
+                    </a>
+                  </NextLink>
+                );
+              })}
+            </div>
+
+            <div className="flex mt-8">
+              <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
+                <TwitterIcon className="h-10 w-10 fill-white mr-4" />
+              </a>
+              <a
+                href={INSTAGRAM_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <InstagramIcon className="h-10 w-10 fill-white" />
+              </a>
+            </div>
           </div>
         </div>
       </Transition>

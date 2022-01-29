@@ -68,14 +68,14 @@ const NewsPage: NextPage<NewsPageProps> = ({
 
       <div className="flex flex-col">
         <div className="flex flex-col py-16">
-          <h1 className="text-black font-semibold ml-32 mb-12">
+          <h1 className="text-black font-bold ml-32 mb-12">
             Future Events
           </h1>
           <Carousel events={upcomingEvents} />
         </div>
 
         <div className="flex flex-col px-32 py-16 bg-light-gray">
-          <h1 className="text-black font-semibold mb-8">Past Events</h1>
+          <h1 className="text-black font-bold mb-8">Past Events</h1>
           <div className="grid grid-cols-4 gap-16">
             {pastEvents.map((event) => (
               <PastEventCard key={event._id} event={event} />
@@ -84,7 +84,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
         </div>
 
         <div className="flex flex-col py-16 px-32">
-          <h1 className="text-black font-semibold mb-8">Recent Press</h1>
+          <h1 className="text-black font-bold mb-8">Recent Press</h1>
           <GuardianNews />
         </div>
       </div>
