@@ -9,9 +9,10 @@ import TipTapContent from "@/components/TipTapContent";
 
 interface AboutUsPageProps {
   trustees: Trustee[];
+  partnerLogos: string[];
 }
 
-const AboutUsPage: NextPage<AboutUsPageProps> = ({ trustees }) => {
+const AboutUsPage: NextPage<AboutUsPageProps> = ({ trustees, partnerLogos }) => {
   return (
     <div>
       <Head>
@@ -131,15 +132,8 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ trustees }) => {
           Partners + Funders
         </h1>
         <div className="grid grid-cols-5 gap-x-4 gap-y-4 mt-4 px-16 mt-16">
-          {trustees.map((trustee) => (
-            <div key={trustee._id} className="flex flex-col items-start">
-              <h3 className="text-black font-semibold text-3xl">
-                {trustee.name}
-              </h3>
-              <div className="mt-4">
-                <TipTapContent content={trustee.description} />
-              </div>
-            </div>
+          {partnerLogos.map((logoUrl, index) => (
+            <img key="index" src={logoUrl} width="100%" height="160px" />
           ))}
         </div>
       </div>
@@ -149,11 +143,21 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ trustees }) => {
   );
 };
 
-export async function getStaticProps() {
+async function fetchTrustees(): Promise<{ trustees: Trustee[] }> {
   const res = await fetch(`${process.env.baseUrl}/.netlify/functions/trustees`);
-  const { trustees = [] } = await res.json();
+  return res.json();
+}
 
-  return { props: { trustees } };
+async function fetchPartners(): Promise<{ partnerLogos: string[] }> {
+  const res = await fetch(`${process.env.baseUrl}/.netlify/functions/partners`);
+  return res.json();
+}
+
+export async function getStaticProps() {
+  const { trustees = [] } = await fetchTrustees();
+  const { partnerLogos = [] } = await fetchPartners();
+
+  return { props: { trustees, partnerLogos } };
 }
 
 export default AboutUsPage;

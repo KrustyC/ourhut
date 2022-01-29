@@ -17,7 +17,9 @@ async function get() {
     const listObjects = await getAllS3Files(params);
 
     const partnerLogosUrls =
-      listObjects?.Contents?.map((file) => {
+      listObjects?.Contents?.filter((file) => {
+        return file.Size > 0;
+      }).map((file) => {
         return `https://${process.env.S3_OUR_HUT_BUCKET}.s3.amazonaws.com/${file.Key}`;
       }) || [];
 

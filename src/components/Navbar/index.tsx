@@ -42,8 +42,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     <>
       <div className="w-screen h-24 flex bg-transparent justify-between items-center px-16 z-50">
         <div className="flex items-center  z-50">
-          <div className={`h-3 w-3 mr-1 rounded-full ${logoColor}`} />
-          <span className={`text-3xl font-semibold ${textColor}`}>Our Hut</span>
+          <NextLink href="/">
+            <a className="flex items-center z-50">
+              <div className={`h-3 w-3 mr-1 rounded-full ${logoColor}`} />
+              <span className={`text-3xl font-semibold ${textColor}`}>
+                Our Hut
+              </span>
+            </a>
+          </NextLink>
         </div>
 
         <BurgerMenu color={burgerColor} isOpen={isOpen} onClick={onToggle} />
@@ -60,10 +66,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       >
         <div className="fixed top-0 left-0 w-screen h-screen bg-black z-50">
           <div className="w-screen h-24 flex justify-between items-center px-16">
-            <div className="flex items-center">
-              <div className="h-3 w-3 mr-1 rounded-full bg-primary" />
-              <span className="text-3xl font-semibold text-white">Our Hut</span>
-            </div>
+            <NextLink href="/">
+              <a className="flex items-center z-50">
+                <div className="h-3 w-3 mr-1 rounded-full bg-primary" />
+                <span className="text-3xl font-semibold text-white">
+                  Our Hut
+                </span>
+              </a>
+            </NextLink>
             <BurgerMenu color="bg-primary" isOpen onClick={onToggle} />
           </div>
 
