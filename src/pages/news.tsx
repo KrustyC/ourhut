@@ -9,6 +9,7 @@ import { Carousel } from "@/components/FutureEventsCarousel";
 import { PastEventCard } from "@/components/PastEventCard";
 import { Footer } from "@/components/Footer";
 import { GuardianNews } from "@/components/GuardianNews";
+import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
 
 interface NewsPageProps {
   events: {
@@ -55,8 +56,12 @@ const NewsPage: NextPage<NewsPageProps> = ({
             </NextLink>
           </div>
           <div className="mt-8 flex justify-end">
-            <TwitterIcon className="h-6 w-6 fill-white mr-4" />
-            <InstagramIcon className="h-6 w-6 fill-white" />
+            <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
+              <TwitterIcon className="h-6 w-6 fill-white mr-4" />
+            </a>
+            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
+              <InstagramIcon className="h-6 w-6 fill-white" />
+            </a>
           </div>
         </div>
       </div>

@@ -1,8 +1,6 @@
 import Head from "next/head";
+import Link from "next/link";
 import { RightArrowIcon } from "@/components/icons/RightArrow";
-import { TwitterIcon } from "@/components/icons/Twitter";
-import { FacebookIcon } from "@/components/icons/Facebook";
-import { InstagramIcon } from "@/components/icons/Instagram";
 import { Navbar } from "@/components/Navbar";
 
 const ContactsPage = () => (
@@ -83,14 +81,15 @@ const ContactsPage = () => (
                 <RightArrowIcon className="fill-black h-4 h-4 mr-2" /> Cookie
                 Policy
               </a>
-              <a
-                href=""
-                target="_blank"
-                className="flex items-center text-black font-semibold mt-4 text-lg"
-              >
-                <RightArrowIcon className="fill-black h-4 h-4 mr-2" /> Privacy
-                Policy
-              </a>
+              <Link href="/privacy-policy">
+                <a
+                  target="_blank"
+                  className="flex items-center text-black font-semibold mt-4 text-lg"
+                >
+                  <RightArrowIcon className="fill-black h-4 h-4 mr-2" /> Privacy
+                  Policy
+                </a>
+              </Link>
             </div>
 
             <div className="flex flex-col">

@@ -1,6 +1,7 @@
 import { RightArrowIcon } from "@/components/icons/RightArrow";
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
+import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
 
 export const Footer: React.FC = () => {
   return (
@@ -26,8 +27,12 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className="flex items-center">
-        <TwitterIcon className="h-6 w-6 fill-gray-400 mr-4" />
-        <InstagramIcon className="h-6 w-6 fill-gray-400" />
+        <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
+          <TwitterIcon className="h-6 w-6 fill-gray-400 mr-4" />
+        </a>
+        <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
+          <InstagramIcon className="h-6 w-6 fill-gray-400" />
+        </a>
       </div>
     </div>
   );
