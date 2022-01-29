@@ -44,7 +44,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
               <p className="mt-4">
                 Our Hut was founded in 2004 by Lucy Lavers, Judy Ovens and
                 Suzanna Prizeman, who bring together a combination of experience
-                in
+                in architecture, design and education.
               </p>
             </p>
             <div className="flex mt-16">
@@ -62,13 +62,13 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
             </div>
           </div>
 
-          <div className="flex flex-col w-6/12 h-[707px]">
+          <div className="flex flex-col w-6/12 h-[707px] relative">
             <Image
               className="w-full h-full"
-              width="500px"
-              height="707px"
+              layout="fill"
+              objectFit="cover"
               alt="Photo of Lucy, Suzanna and Judy"
-              src="/about-us.jpg"
+              src="/images/about-us.jpg"
             />
           </div>
         </div>
@@ -78,9 +78,9 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
         <div className="w-screen top-0 left-0 right-0 bg-white">
           <Image
             layout="fill"
-            objectFit="fill"
+            objectFit="cover"
             alt="Kids attending a workshop"
-            src="/kids.jpg"
+            src="/images/architecture.jpg"
           />
         </div>
 

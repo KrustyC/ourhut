@@ -3,7 +3,7 @@ import Image from "next/image";
 export const GuardianNews: React.FC = () => (
   <div className="flex">
     <div className="w-1/2 h-[450px] relative">
-      <Image layout="fill" alt="vent" src="/guardian.jpg" />
+      <Image layout="fill" alt="vent" src="/images/guardian.jpg" />
     </div>
 
     <div className="w-1/2 pl-8">

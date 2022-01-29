@@ -17,7 +17,7 @@ export default function Custom404() {
           width="630px"
           height="180px"
           alt="dynosaur"
-          src="/dynosaur.jpg"
+          src="/images/dynosaur.jpg"
         />
         <h1 className="text-6xl text-black font-bold mt-8">
           Oops, we cannot find the page!
