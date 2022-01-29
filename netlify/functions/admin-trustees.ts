@@ -68,7 +68,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
     try {
       trusteeDocument = await trusteeSchema.validate(trustee);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return jsonResponse({
         status: 400,
         body: {

@@ -12,7 +12,10 @@ interface AboutUsPageProps {
   partnerLogos: string[];
 }
 
-const AboutUsPage: NextPage<AboutUsPageProps> = ({ trustees, partnerLogos }) => {
+const AboutUsPage: NextPage<AboutUsPageProps> = ({
+  trustees,
+  partnerLogos,
+}) => {
   return (
     <div>
       <Head>

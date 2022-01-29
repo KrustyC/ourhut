@@ -76,7 +76,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
     try {
       productDocument = await productSchema.validate(product);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return jsonResponse({
         status: 400,
         body: {

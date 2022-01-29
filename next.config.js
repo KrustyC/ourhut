@@ -6,7 +6,7 @@ const nextConfig = {
     s3BucketUrl: `https://${process.env.S3_OUR_HUT_BUCKET}.s3.amazonaws.com`,
   },
   images: {
-    domains: ["upload.wikimedia.org", "our-hut-dev.s3.amazonaws.com"],
+    domains: ["upload.wikimedia.org", "our-hut-dev.s3.amazonaws.com", "ourhut.s3.amazonaws.com"],
   },
 };
 
