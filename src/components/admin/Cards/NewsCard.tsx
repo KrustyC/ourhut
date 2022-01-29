@@ -1,4 +1,4 @@
-import { News } from "src/types/global";
+import { News } from "@/types/global";
 
 interface NewsCardProps {
   news: News;

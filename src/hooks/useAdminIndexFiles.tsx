@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import { useAuth } from "src/contexts/AuthContext";
-import { useNetlifyGetFunction } from "src/hooks/useNetlifyGetFunction";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
 
 interface UseFilesProps<FetchResult> {
   fetchUrlPath: string;

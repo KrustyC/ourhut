@@ -1,4 +1,4 @@
-import { getImageName } from "src/utils/images";
+import { getImageName } from "@/utils/images";
 import styles from "./ImageCard.module.css";
 
 interface ImageCardProps {

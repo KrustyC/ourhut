@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 import type { ReactElement } from "react";
-import { useAuth } from "src/contexts/AuthContext";
-import { useNetlifyGetFunction } from "src/hooks/useNetlifyGetFunction";
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { SummaryCard } from "src/components/admin/Cards/SummaryCard";
-import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
-import { NextPageWithLayout } from "src/types/app";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { SummaryCard } from "@/components/admin/Cards/SummaryCard";
+import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
+import { NextPageWithLayout } from "@/types/app";
 
 type Stats = {
   news: number;

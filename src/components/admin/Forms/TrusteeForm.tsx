@@ -1,6 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
-import { Trustee } from "src/types/global";
-import { isValidDescription } from "src/utils/validators";
+import { Trustee } from "@/types/global";
+import { isValidDescription } from "@/utils/validators";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { Input } from "../Input";
 import { Editor } from "../Editor";

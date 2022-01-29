@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
-import { useAuth } from "src/contexts/AuthContext";
-import { uploadFileToS3 } from "src/utils/upload-file";
+import { useAuth } from "@/contexts/AuthContext";
+import { uploadFileToS3 } from "@/utils/upload-file";
 import { ImagesUploadPreviewModal } from "./ImagesUploadPreviewModal";
 
 interface UploadImageButtonProps {

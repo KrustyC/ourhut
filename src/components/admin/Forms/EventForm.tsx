@@ -1,13 +1,13 @@
 import { Controller, useForm } from "react-hook-form";
-import { Event } from "src/types/global";
-import { ImageSelector } from "src/components/admin/ImageSelector";
-import { DayPicker } from "src/components/admin/DayPicker";
-import { TimePeriodSelector } from "src/components/admin/TimePeriodSelector";
+import { Event } from "@/types/global";
+import { ImageSelector } from "@/components/admin/ImageSelector";
+import { DayPicker } from "@/components/admin/DayPicker";
+import { TimePeriodSelector } from "@/components/admin/TimePeriodSelector";
 import {
   isValidTime,
   isValidDate,
   isValidDescription,
-} from "src/utils/validators";
+} from "@/utils/validators";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { InputErrorMessage } from "../InputErrorMessage";
 import { Input } from "../Input";

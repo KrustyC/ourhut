@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { School } from "src/types/global";
+import { School } from "@/types/global";
 import { Input } from "../Input";
 import { LoadingSpinner } from "../LoadingSpinner";
 

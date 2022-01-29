@@ -1,10 +1,9 @@
+import Image from "next/image";
+
 export const GuardianNews: React.FC = () => (
   <div className="flex">
-    <div className="w-1/2">
-      <img
-        src="https://i.guim.co.uk/img/media/00d4d57a15c927716808df0bc21ea28df91970b2/0_177_3329_2121/master/3329.jpg?width=465&quality=45&auto=format&fit=max&dpr=2&s=d7d20c67135dc64dd6253b005e3092a0"
-        className="w-full"
-      />
+    <div className="w-1/2 h-[450px] relative">
+      <Image layout="fill" alt="vent" src="/guardian.jpg" />
     </div>
 
     <div className="w-1/2 pl-8">

@@ -1,6 +1,6 @@
-import { RightArrowIcon } from "src/components/icons/RightArrow";
-import { InstagramIcon } from "src/components/icons/Instagram";
-import { TwitterIcon } from "src/components/icons/Twitter";
+import { RightArrowIcon } from "@/components/icons/RightArrow";
+import { InstagramIcon } from "@/components/icons/Instagram";
+import { TwitterIcon } from "@/components/icons/Twitter";
 
 export const Footer: React.FC = () => {
   return (

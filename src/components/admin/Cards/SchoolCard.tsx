@@ -1,4 +1,4 @@
-import { School } from "src/types/global";
+import { School } from "@/types/global";
 import { MarkerIcon } from "../../icons/Marker";
 
 interface SchoolCardProps {

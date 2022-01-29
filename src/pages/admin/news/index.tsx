@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { IndexLayout } from "src/layouts/AdminIndexLayout";
-import { DeleteItemModal } from "src/components/admin/DeleteItemModal";
-import { NewsCard } from "src/components/admin/Cards/NewsCard";
-import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
-import { useAdminIndexList } from "src/hooks/useAdminIndexList";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { IndexLayout } from "@/layouts/AdminIndexLayout";
+import { DeleteItemModal } from "@/components/admin/DeleteItemModal";
+import { NewsCard } from "@/components/admin/Cards/NewsCard";
+import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
+import { useAdminIndexList } from "@/hooks/useAdminIndexList";
 import { toast } from "react-toastify";
-import { News } from "src/types/global";
-import { NextPageWithLayout } from "src/types/app";
+import { News } from "@/types/global";
+import { NextPageWithLayout } from "@/types/app";
 
 const AdminNews: NextPageWithLayout = () => {
   const {

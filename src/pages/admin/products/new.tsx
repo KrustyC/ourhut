@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { useAuth } from "src/contexts/AuthContext";
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { ProductForm } from "src/components/admin/Forms/ProductForm";
-import { Panel } from "src/components/admin/Panel";
-import { useNetlifyPostFunction } from "src/hooks/useNetlifyPostFunction";
-import { Product } from "src/types/global";
+import { useAuth } from "@/contexts/AuthContext";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { ProductForm } from "@/components/admin/Forms/ProductForm";
+import { Panel } from "@/components/admin/Panel";
+import { useNetlifyPostFunction } from "@/hooks/useNetlifyPostFunction";
+import { Product } from "@/types/global";
 import { useRouter } from "next/router";
-import { NextPageWithLayout } from "src/types/app";
+import { NextPageWithLayout } from "@/types/app";
 
 const AdminProductsCreate: NextPageWithLayout = () => {
   const { user } = useAuth();

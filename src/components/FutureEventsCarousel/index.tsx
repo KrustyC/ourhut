@@ -1,5 +1,5 @@
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
-import { Event } from "src/types/global";
+import { Event } from "@/types/global";
 import { LeftArrow } from "./LeftArrow";
 import { RightArrow } from "./RightArrow";
 import { FutureEventCard } from "./FutureEventCard";

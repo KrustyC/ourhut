@@ -1,11 +1,11 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import type { NextPageWithLayout } from "src/types/app";
-import { DefaultLayout } from "src/layouts/DefaultLayout";
+import type { NextPageWithLayout } from "@/types/app";
+import { DefaultLayout } from "@/layouts/DefaultLayout";
 import netlifyIdentity from "netlify-identity-widget";
 import { useState, useEffect } from "react";
-import { AuthContext } from "src/contexts/AuthContext";
+import { AuthContext } from "@/contexts/AuthContext";
 import { NetlifyUser } from "../types/auth";
 
 type AppPropsWithLayout = AppProps & {

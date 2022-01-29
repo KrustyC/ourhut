@@ -36,7 +36,7 @@
   }
 
   .btn {
-    @apply h-12 w-auto px-5 py-3 text-sm shadow-sm font-medium tracking-wider transition-all duration-200 ease-in-out;
+    @apply h-12 w-auto px-5 py-3 text-sm shadow-sm font-medium tracking-wider transition-all duration-200 ease-in-out text-center;
   }
 
   .btn.btn-primary {
@@ -45,6 +45,10 @@
 
   .btn.btn-transparent-outlined {
     @apply text-black border-black border-2 bg-transparent hover:bg-black hover:text-white;
+  }
+
+  .btn.btn-transparent-outlined-white {
+    @apply text-white border-white border-2 bg-transparent hover:bg-white hover:text-primary;
   }
 
   .btn-admin {

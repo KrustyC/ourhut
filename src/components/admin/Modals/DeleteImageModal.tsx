@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { getImageName } from "src/utils/images";
+import { getImageName } from "@/utils/images";
 import { Modal } from "../Modal";
 import { LoadingSpinner } from "../LoadingSpinner";
-import { useNetlifyDeleteFunction } from "src/hooks/useNetlifyDeleteFunction";
-import { useAuth } from "src/contexts/AuthContext";
+import { useNetlifyDeleteFunction } from "@/hooks/useNetlifyDeleteFunction";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface DeleteImageModalProps {
   imageToDelete: string;

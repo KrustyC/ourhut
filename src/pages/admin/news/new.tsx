@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { useAuth } from "src/contexts/AuthContext";
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { NewsForm } from "src/components/admin/Forms/NewsForm";
-import { Panel } from "src/components/admin/Panel";
-import { useNetlifyPostFunction } from "src/hooks/useNetlifyPostFunction";
-import { News } from "src/types/global";
+import { useAuth } from "@/contexts/AuthContext";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { NewsForm } from "@/components/admin/Forms/NewsForm";
+import { Panel } from "@/components/admin/Panel";
+import { useNetlifyPostFunction } from "@/hooks/useNetlifyPostFunction";
+import { News } from "@/types/global";
 import { useRouter } from "next/router";
-import { NextPageWithLayout } from "src/types/app";
+import { NextPageWithLayout } from "@/types/app";
 
 const AdminNewsCreate: NextPageWithLayout = () => {
   const { user } = useAuth();

@@ -1,4 +1,4 @@
-import { Product } from "src/types/global";
+import { Product } from "@/types/global";
 import { LinkIcon } from "../../icons/Link";
 import { PriceIcon } from "../../icons/Price";
 

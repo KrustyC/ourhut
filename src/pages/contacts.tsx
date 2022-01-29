@@ -1,9 +1,9 @@
 import Head from "next/head";
-import { RightArrowIcon } from "src/components/icons/RightArrow";
-import { TwitterIcon } from "src/components/icons/Twitter";
-import { FacebookIcon } from "src/components/icons/Facebook";
-import { InstagramIcon } from "src/components/icons/Instagram";
-import { Navbar } from "src/components/Navbar";
+import { RightArrowIcon } from "@/components/icons/RightArrow";
+import { TwitterIcon } from "@/components/icons/Twitter";
+import { FacebookIcon } from "@/components/icons/Facebook";
+import { InstagramIcon } from "@/components/icons/Instagram";
+import { Navbar } from "@/components/Navbar";
 
 const ContactsPage = () => (
   <div>

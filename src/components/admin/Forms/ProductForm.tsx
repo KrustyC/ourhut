@@ -1,7 +1,7 @@
 import { Controller, useForm } from "react-hook-form";
-import { Product } from "src/types/global";
-import { ImageSelector } from "src/components/admin/ImageSelector";
-import { isValidDescription } from "src/utils/validators";
+import { Product } from "@/types/global";
+import { ImageSelector } from "@/components/admin/ImageSelector";
+import { isValidDescription } from "@/utils/validators";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { Input } from "../Input";
 import { Editor } from "../Editor";

@@ -7,7 +7,7 @@ export const RightArrow = () => {
   return (
     <button
       disabled={isLastItemVisible}
-      className="absolute p-2 rounded-full bg-white top-1/2 right-8 bg-primary disabled:bg-gray-50 z-50"
+      className="absolute p-2 rounded-full bg-white top-1/2 right-8 bg-primary disabled:bg-gray-50 z-40"
       onClick={() => scrollNext()}
     >
       <svg

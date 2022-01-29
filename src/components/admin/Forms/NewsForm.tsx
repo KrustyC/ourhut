@@ -1,8 +1,8 @@
 import { Controller, useForm } from "react-hook-form";
-import { News } from "src/types/global";
-import { ImageSelector } from "src/components/admin/ImageSelector";
-import { DayPicker } from "src/components/admin/DayPicker";
-import { isValidDescription, isValidDate } from "src/utils/validators";
+import { News } from "@/types/global";
+import { ImageSelector } from "@/components/admin/ImageSelector";
+import { DayPicker } from "@/components/admin/DayPicker";
+import { isValidDescription, isValidDate } from "@/utils/validators";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { Input } from "../Input";
 import { Editor } from "../Editor";

@@ -1,14 +1,14 @@
 import type { NextPage } from "next";
 import NextLink from "next/link";
 import Head from "next/head";
-import { Event, News } from "src/types/global";
-import { InstagramIcon } from "src/components/icons/Instagram";
-import { TwitterIcon } from "src/components/icons/Twitter";
-import { Navbar } from "src/components/Navbar";
-import { Carousel } from "src/components/FutureEventsCarousel";
-import { PastEventCard } from "src/components/PastEventCard";
-import { Footer } from "src/components/Footer";
-import { GuardianNews } from "src/components/GuardianNews";
+import { Event, News } from "@/types/global";
+import { InstagramIcon } from "@/components/icons/Instagram";
+import { TwitterIcon } from "@/components/icons/Twitter";
+import { Navbar } from "@/components/Navbar";
+import { Carousel } from "@/components/FutureEventsCarousel";
+import { PastEventCard } from "@/components/PastEventCard";
+import { Footer } from "@/components/Footer";
+import { GuardianNews } from "@/components/GuardianNews";
 
 interface NewsPageProps {
   events: {

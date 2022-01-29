@@ -1,7 +1,7 @@
 import { Modal } from "../Modal";
 import { LoadingSpinner } from "../LoadingSpinner";
-import { useNetlifyGetFunction } from "src/hooks/useNetlifyGetFunction";
-import { useAuth } from "src/contexts/AuthContext";
+import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
+import { useAuth } from "@/contexts/AuthContext";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 

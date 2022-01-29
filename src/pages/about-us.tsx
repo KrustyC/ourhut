@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 import NextLink from "next/link";
 import Head from "next/head";
-import { Trustee } from "src/types/global";
+import { Trustee } from "@/types/global";
 import Image from "next/image";
-import { Navbar } from "src/components/Navbar";
-import { Footer } from "src/components/Footer";
-import { TipTapContent } from "src/components/TipTapContent";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import TipTapContent from "@/components/TipTapContent";
 
 interface AboutUsPageProps {
   trustees: Trustee[];
@@ -19,7 +19,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ trustees }) => {
         <meta name="description" content="Checkout our latest AboutUs" />
       </Head>
 
-      <div className="bg-primary pb-8 relative h-[707px]">
+      <div className="bg-white pb-8 relative h-[707px]">
         <Navbar
           config={{
             burgerColor: "bg-primary",
@@ -29,7 +29,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ trustees }) => {
         />
 
         <div className="w-full flex absolute top-0 z-0">
-          <div className="flex flex-col w-5/12 bg-white px-32 pt-32">
+          <div className="flex flex-col w-6/12 bg-white px-32 pt-32">
             <h1 className="text-6xl text-black font-bold">About Us</h1>
             <p className="text-xl text-black font-medium mt-8">
               <p>
@@ -50,7 +50,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ trustees }) => {
                 </a>
               </NextLink>
 
-              <NextLink href="/projects">
+              <NextLink href="/contacts">
                 <a className="btn btn-transparent-outlined font-bold w-40 text-black ml-8">
                   Contact Us
                 </a>
@@ -58,10 +58,10 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ trustees }) => {
             </div>
           </div>
 
-          <div className="flex flex-col w-7/12 h-[707px]">
+          <div className="flex flex-col w-6/12 h-[707px]">
             <Image
               className="w-full h-full"
-              width="900px"
+              width="500px"
               height="707px"
               alt="Photo of Lucy, Suzanna and Judy"
               src="/about-us.jpg"
@@ -70,9 +70,67 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ trustees }) => {
         </div>
       </div>
 
+      <div className="flex flex-col px-32 py-16 bg-white relative h-[700px] bg-black">
+        <div className="w-screen top-0 left-0 right-0 bg-white">
+          <Image
+            layout="fill"
+            objectFit="fill"
+            alt="Kids attending a workshop"
+            src="/kids.jpg"
+          />
+        </div>
+
+        <div className="bg-primary opacity-60 w-screen h-[700px] absolute top-0 left-0" />
+
+        <div className="absolute flex flex-col right-0 top-0 w-5/12 h-full justify-center pr-32">
+          <h1 className="text-6xl text-white font-semibold ml-[-4px]">
+            What we do
+          </h1>
+          <p className="text-white font-semibold text-xl mt-4">
+            <p>
+              Our Hut{"'"}s aim is to equip future generations to get involved
+              in shaping positive sustainable environments. We inspire and
+              educate young people and local communities through programmes of
+              interactive workshops about the built environment.
+            </p>
+
+            <p className="mt-8">
+              We believe that knowledge and understanding of architecture and
+              design are vital in developing children{"'"}s sense of
+              responsibility in respecting, shaping and improving the built
+              environment.
+            </p>
+          </p>
+
+          <NextLink href="/projects">
+            <a className="btn btn-transparent-outlined-white font-bold w-60 text-black mt-8">
+              Educational Approach
+            </a>
+          </NextLink>
+        </div>
+      </div>
+
       <div className="flex flex-col px-32 py-16 bg-gray-100">
-        <p className="text-6xl text-black font-bold ml-[-4px]">Trustees</p>
+        <h1 className="text-6xl text-black font-bold ml-[-4px]">Trustees</h1>
         <div className="grid grid-cols-2 gap-x-32 gap-y-16 mt-4 px-32 mt-16">
+          {trustees.map((trustee) => (
+            <div key={trustee._id} className="flex flex-col items-start">
+              <h3 className="text-black font-semibold text-3xl">
+                {trustee.name}
+              </h3>
+              <div className="mt-4">
+                <TipTapContent content={trustee.description} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col px-32 py-16 bg-white">
+        <h1 className="text-6xl text-black font-bold ml-[-4px]">
+          Partners + Funders
+        </h1>
+        <div className="grid grid-cols-5 gap-x-4 gap-y-4 mt-4 px-16 mt-16">
           {trustees.map((trustee) => (
             <div key={trustee._id} className="flex flex-col items-start">
               <h3 className="text-black font-semibold text-3xl">

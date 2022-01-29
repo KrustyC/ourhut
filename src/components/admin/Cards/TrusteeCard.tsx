@@ -1,4 +1,4 @@
-import { Trustee } from "src/types/global";
+import { Trustee } from "@/types/global";
 
 interface TrusteeCardProps {
   trustee: Trustee;

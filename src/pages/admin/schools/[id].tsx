@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import { GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { useAuth } from "src/contexts/AuthContext";
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
-import { SchoolForm } from "src/components/admin/Forms/SchoolForm";
-import { useNetlifyGetFunction } from "src/hooks/useNetlifyGetFunction";
-import { useNetlifyPutFunction } from "src/hooks/useNetlifyPutFunction";
-import { Panel } from "src/components/admin/Panel";
-import { School } from "src/types/global";
-import { NextPageWithLayout } from "src/types/app";
+import { useAuth } from "@/contexts/AuthContext";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
+import { SchoolForm } from "@/components/admin/Forms/SchoolForm";
+import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
+import { useNetlifyPutFunction } from "@/hooks/useNetlifyPutFunction";
+import { Panel } from "@/components/admin/Panel";
+import { School } from "@/types/global";
+import { NextPageWithLayout } from "@/types/app";
 
 interface EditProps {
   id: string;

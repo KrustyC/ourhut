@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { useAuth } from "src/contexts/AuthContext";
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { TrusteeForm } from "src/components/admin/Forms/TrusteeForm";
-import { Panel } from "src/components/admin/Panel";
-import { useNetlifyPostFunction } from "src/hooks/useNetlifyPostFunction";
-import { Trustee } from "src/types/global";
+import { useAuth } from "@/contexts/AuthContext";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { TrusteeForm } from "@/components/admin/Forms/TrusteeForm";
+import { Panel } from "@/components/admin/Panel";
+import { useNetlifyPostFunction } from "@/hooks/useNetlifyPostFunction";
+import { Trustee } from "@/types/global";
 import { useRouter } from "next/router";
-import { NextPageWithLayout } from "src/types/app";
+import { NextPageWithLayout } from "@/types/app";
 
 const AdminTrusteesCreate: NextPageWithLayout = () => {
   const { user } = useAuth();

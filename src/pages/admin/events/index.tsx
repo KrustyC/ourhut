@@ -2,14 +2,14 @@ import type { NextPage } from "next";
 import type { ReactElement } from "react";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { IndexLayout } from "src/layouts/AdminIndexLayout";
-import { DeleteItemModal } from "src/components/admin/DeleteItemModal";
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
-import { EventCard } from "src/components/admin/Cards/EventCard";
-import { Event } from "src/types/global";
-import { useAdminIndexList } from "src/hooks/useAdminIndexList";
-import { NextPageWithLayout } from "src/types/app";
+import { IndexLayout } from "@/layouts/AdminIndexLayout";
+import { DeleteItemModal } from "@/components/admin/DeleteItemModal";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
+import { EventCard } from "@/components/admin/Cards/EventCard";
+import { Event } from "@/types/global";
+import { useAdminIndexList } from "@/hooks/useAdminIndexList";
+import { NextPageWithLayout } from "@/types/app";
 
 const AdminEvents: NextPageWithLayout = () => {
   const {

@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { DeleteItemModal } from "src/components/admin/DeleteItemModal";
-import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
-import { IndexLayout } from "src/layouts/AdminIndexLayout";
-import { TrusteeCard } from "src/components/admin/Cards/TrusteeCard";
-import { Trustee } from "src/types/global";
-import { useAdminIndexList } from "src/hooks/useAdminIndexList";
-import { NextPageWithLayout } from "src/types/app";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { DeleteItemModal } from "@/components/admin/DeleteItemModal";
+import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
+import { IndexLayout } from "@/layouts/AdminIndexLayout";
+import { TrusteeCard } from "@/components/admin/Cards/TrusteeCard";
+import { Trustee } from "@/types/global";
+import { useAdminIndexList } from "@/hooks/useAdminIndexList";
+import { NextPageWithLayout } from "@/types/app";
 
 const AdminTrustees: NextPageWithLayout = () => {
   const {

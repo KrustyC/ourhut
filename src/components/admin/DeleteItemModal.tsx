@@ -1,7 +1,7 @@
 import { Modal } from "./Modal";
-import { useNetlifyDeleteFunction } from "src/hooks/useNetlifyDeleteFunction";
-import { useAuth } from "src/contexts/AuthContext";
-import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
+import { useNetlifyDeleteFunction } from "@/hooks/useNetlifyDeleteFunction";
+import { useAuth } from "@/contexts/AuthContext";
+import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
 
 interface DeleteItemModalProps {
   itemGenericName: string;

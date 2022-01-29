@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import { GetStaticPaths } from "next";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import { useAuth } from "src/contexts/AuthContext";
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
-import { EventForm } from "src/components/admin/Forms/EventForm";
-import { useNetlifyGetFunction } from "src/hooks/useNetlifyGetFunction";
-import { useNetlifyPutFunction } from "src/hooks/useNetlifyPutFunction";
-import { Panel } from "src/components/admin/Panel";
-import { Event } from "src/types/global";
-import { NextPageWithLayout } from "src/types/app";
+import { useAuth } from "@/contexts/AuthContext";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
+import { EventForm } from "@/components/admin/Forms/EventForm";
+import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
+import { useNetlifyPutFunction } from "@/hooks/useNetlifyPutFunction";
+import { Panel } from "@/components/admin/Panel";
+import { Event } from "@/types/global";
+import { NextPageWithLayout } from "@/types/app";
 
 interface EditProps {
   slug: string;

@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { useAdminIndexFiles } from "src/hooks/useAdminIndexFiles";
-import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
-import { ImageCard } from "src/components/admin/Cards/ImageCard";
-import { ViewImageModal } from "src/components/admin/Modals/ViewImageModal";
-import { DeleteImageModal } from "src/components/admin/Modals/DeleteImageModal";
-import { UploadImageButton } from "src/components/admin/UploadImageButton";
-import { NextPageWithLayout } from "src/types/app";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { useAdminIndexFiles } from "@/hooks/useAdminIndexFiles";
+import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
+import { ImageCard } from "@/components/admin/Cards/ImageCard";
+import { ViewImageModal } from "@/components/admin/Modals/ViewImageModal";
+import { DeleteImageModal } from "@/components/admin/Modals/DeleteImageModal";
+import { UploadImageButton } from "@/components/admin/UploadImageButton";
+import { NextPageWithLayout } from "@/types/app";
 
 const AdminImages: NextPageWithLayout = () => {
   const {

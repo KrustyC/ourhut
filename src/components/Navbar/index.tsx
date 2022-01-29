@@ -41,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <div className="w-screen h-24 flex bg-transparent justify-between items-center px-16 z-50">
-        <div className="flex items-center">
+        <div className="flex items-center  z-50">
           <div className={`h-3 w-3 mr-1 rounded-full ${logoColor}`} />
           <span className={`text-3xl font-semibold ${textColor}`}>Our Hut</span>
         </div>
@@ -62,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="w-screen h-24 flex justify-between items-center px-16">
             <div className="flex items-center">
               <div className="h-3 w-3 mr-1 rounded-full bg-primary" />
-              {/* <span className="text-xl font-bold text-white">Our Hut</span> */}
+              <span className="text-3xl font-semibold text-white">Our Hut</span>
             </div>
             <BurgerMenu color="bg-primary" isOpen onClick={onToggle} />
           </div>

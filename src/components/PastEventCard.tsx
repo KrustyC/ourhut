@@ -1,4 +1,4 @@
-import { Event } from "src/types/global";
+import { Event } from "@/types/global";
 import Link from "next/link";
 
 interface PartEventCardProps {

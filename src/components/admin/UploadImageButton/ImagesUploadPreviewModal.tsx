@@ -1,5 +1,5 @@
 import { Modal } from "../Modal";
-import { LoadingSpinner } from "src/components/admin/LoadingSpinner";
+import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
 
 interface ImagesUploadPreviewModalProps {
   file: File;

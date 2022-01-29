@@ -1,4 +1,4 @@
-import { useAuth } from "src/contexts/AuthContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { NavBar } from "./Navbar";
 import { Sidebar } from "./Sidebar";
 import { ToastContainer } from "react-toastify";

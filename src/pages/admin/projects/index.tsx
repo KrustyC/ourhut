@@ -1,6 +1,6 @@
-import { AdminLayout } from "src/layouts/AdminLayout";
-import { IndexLayout } from "src/layouts/AdminIndexLayout";
-import { NextPageWithLayout } from "src/types/app";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { IndexLayout } from "@/layouts/AdminIndexLayout";
+import { NextPageWithLayout } from "@/types/app";
 
 const AdminProjects: NextPageWithLayout = () => {
   return (

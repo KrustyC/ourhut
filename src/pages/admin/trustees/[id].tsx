@@ -3,7 +3,7 @@ import { GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useAuth } from "@/contexts/AuthContext";
-import { AdminLayout } from "src/layouts/AdminLayout";
+import { AdminLayout } from "@/layouts/AdminLayout";
 import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
 import { TrusteeForm } from "@/components/admin/Forms/TrusteeForm";
 import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
