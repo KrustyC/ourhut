@@ -12,7 +12,7 @@ export default function Custom404() {
           logoColor: "bg-primary",
         }}
       />
-      <div className="w-full h-5/6 flex flex-col items-center justify-center">
+      <div className="w-full h-5/6 flex flex-col items-center justify-center z-1">
         <Image
           width="630px"
           height="180px"

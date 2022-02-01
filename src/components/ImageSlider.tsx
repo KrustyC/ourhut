@@ -36,6 +36,8 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   const name = images[currentIndex].name;
   const description = images[currentIndex].description;
 
+  // @TODO See if I can use Transition form Taiwlind
+
   return (
     <section className="relative h-screen flex justify-center items-center">
       <div className="h-screen w-screen relative bottom-0 left-0 w-screen">

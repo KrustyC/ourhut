@@ -147,3 +147,11 @@
 #burger-menu > div:nth-child(3).open {
   transform: rotate(-45deg);
 }
+
+#educational-approach-parallax {
+  background-image: url(/images/educational-approach.jpg);
+  /* background-attachment: fixed; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

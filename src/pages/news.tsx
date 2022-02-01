@@ -39,7 +39,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
         />
 
         <div className="pl-32 pr-16">
-          <p className="text-6xl text-white font-semibold ml-[-4px]">News</p>
+          <p className="text-6xl text-white font-bold ml-[-4px]">News</p>
           <p className="mt-4 text-white font-medium w-1/2">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
             officiis nobis itaque quaerat suscipit odio, dolor sunt distinctio

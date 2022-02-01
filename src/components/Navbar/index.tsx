@@ -12,7 +12,7 @@ const LINKS = [
   { path: "/resources", label: "Resources" },
   { path: "/shop", label: "Shop" },
   { path: "/about-us", label: "About Us" },
-  { path: "/schools", label: "Schools" },
+  { path: "/educational-approach", label: "Schools" },
   { path: "/contacts", label: "Contact us" },
 ];
 
@@ -44,7 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <div className="w-screen h-24 flex bg-transparent justify-between items-center px-16 z-50">
-        <div className="flex items-center  z-50">
+        <div className="flex items-center z-50">
           <NextLink href="/">
             <a className="flex items-center z-50">
               <div className={`h-3 w-3 mr-1 rounded-full ${logoColor}`} />
