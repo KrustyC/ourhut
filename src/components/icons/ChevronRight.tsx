@@ -1,9 +1,9 @@
-interface RightArrowIconProps {
+interface ChevronRightIconProps {
   className?: string;
   onClick?: VoidFunction;
 }
 
-export const RightArrowIcon: React.FC<RightArrowIconProps> = ({
+export const ChevronRightIcon: React.FC<ChevronRightIconProps> = ({
   className = "",
   onClick,
 }) => (
@@ -11,12 +11,12 @@ export const RightArrowIcon: React.FC<RightArrowIconProps> = ({
     xmlns="http://www.w3.org/2000/svg"
     className={className}
     viewBox="0 0 20 20"
-    fill="currentColor"
+    stroke="transparent"
     onClick={onClick}
   >
     <path
       fillRule="evenodd"
-      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
       clipRule="evenodd"
     />
   </svg>

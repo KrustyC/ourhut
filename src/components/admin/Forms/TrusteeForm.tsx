@@ -31,8 +31,6 @@ export const TrusteeForm: React.FC<TrusteeFormProps> = ({
     defaultValues: { ...trustee },
   });
 
-  console.log("TRUSTEE FORM", errors);
-
   return (
     <form
       className="flex flex-col w-full"

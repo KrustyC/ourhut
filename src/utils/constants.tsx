@@ -1,2 +1,2 @@
-export const INSTAGRAM_LINK = "https://www.instagram.com/";
-export const TWITTER_LINK = "https://www.twitter.com/";
+export const INSTAGRAM_LINK = "https://www.instagram.com/ourhutarchitecture/?hl=en";
+export const TWITTER_LINK = "https://twitter.com/ourhutuk";
