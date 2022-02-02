@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { Transition } from "@tailwindui/react";
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
@@ -48,35 +49,37 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
 
   return (
     <section className="relative h-screen flex justify-center items-center">
-      <div className="h-screen w-screen relative bottom-0 left-0 w-screen">
+      <div className="h-screen bg-black w-screen relative bottom-0 left-0 w-screen">
         {images.map((slide, index) => {
           return (
-            <div
-              className={`absolute w-screen h-screen ${
-                index === currentIndex ? "slide active" : "slide"
-              }`}
+            <Transition
+              show={currentIndex === index}
               key={index}
+              enter="transition-opacity duration-75"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity duration-150"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
             >
-              {index === currentIndex && (
-                <Image
-                  src={slide.src}
-                  alt="an imaeg"
-                  placeholder="blur"
-                  blurDataURL={slide.blurSrc}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              )}
-            </div>
+              <Image
+                src={slide.src}
+                alt={slide.description}
+                placeholder="blur"
+                blurDataURL={slide.blurSrc}
+                layout="fill"
+                objectFit="cover"
+              />
+            </Transition>
           );
         })}
       </div>
 
-      <div className="h-24 px-16 absolute bottom-0 left-0 w-screen flex justify-between items-end pb-8">
-        <span className="text-sm text-white z-50">© Our Hut 2022</span>
+      <div className="h-24 px-16 absolute bottom-0 left-0 w-screen flex justify-between items-end pb-8 z-40">
+        <span className="text-sm text-white z-0">© Our Hut 2022</span>
 
         <div className="flex flex-col justify-end items-center z-50">
-          <div className="text-white w-full flex justify-center items-center mb-2">
+          <div className="text-white w-full flex justify-center items-center mb-2 z-40">
             <span className="font-semibold">{name}</span>
             <span className="font-bold mx-2">-</span>
             <span className="font-normal mr-2">{description}</span>
@@ -84,7 +87,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
 
           <div className="flex justify-center items-center">
             <ChevronLeftIcon
-              className="h-5 w-5 fill-white cursor-pointer mr-2 z-50"
+              className="h-5 w-5 fill-white cursor-pointer mr-2 z-40"
               onClick={prevSlide}
             />
             {images.map((_, i) => (

@@ -96,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               })}
             </div>
 
-            <div className="flex mt-8">
+            <div className="flex mt-8 z-50">
               <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
                 <TwitterIcon className="h-10 w-10 fill-white mr-4" />
               </a>
