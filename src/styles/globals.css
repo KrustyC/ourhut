@@ -79,7 +79,7 @@
     @apply bg-admin-danger border text-white hover:bg-admin-danger-dark disabled:bg-admin-danger-light disabled:hover:bg-admin-danger-light disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none;
   }
 
-  .slide {
+  /* .slide {
     opacity: 0;
     transition-duration: 1s ease;
   }
@@ -87,8 +87,8 @@
   .slide.active {
     opacity: 1;
     transition-duration: 0.5s;
-    /* transform: scale(1.08); */
-  }
+    transform: scale(1.08);
+  } */
 }
 
 .ProseMirror {

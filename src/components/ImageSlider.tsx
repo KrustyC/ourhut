@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
@@ -20,6 +20,14 @@ interface ImageSliderProps {
 export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   const [currentIndex, setCurrent] = useState(0);
   const length = images.length;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent(currentIndex === length - 1 ? 0 : currentIndex + 1);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, length]);
 
   const nextSlide = () => {
     setCurrent(currentIndex === length - 1 ? 0 : currentIndex + 1);
