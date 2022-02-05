@@ -1,8 +1,8 @@
 import { createContext, useContext } from "react";
-import { NetlifyUser } from "../types/auth";
+import netlifyIdentity from "netlify-identity-widget";
 
 type AuthContextType = {
-  user: NetlifyUser | null;
+  user: netlifyIdentity.User | null;
   login: VoidFunction;
   logout: VoidFunction;
   authReady: boolean;

@@ -1,5 +1,3 @@
-import type { NextPage } from "next";
-import type { ReactElement } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
 import { AdminLayout } from "@/layouts/AdminLayout";
@@ -40,7 +38,7 @@ const AdminDashboard: NextPageWithLayout = () => {
   return (
     <div className="p-4">
       <h2 className="text-gray-600 font-bold">
-        Welcome back {user?.user_metadata.full_name}
+        Welcome back {user?.user_metadata?.full_name}
       </h2>
       <p className="text-gray-600">
         This is your admin panel, where you can handle everything about events,

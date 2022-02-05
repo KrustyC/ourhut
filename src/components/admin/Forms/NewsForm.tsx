@@ -16,7 +16,7 @@ interface NewsFormProps {
 
 const DEFAULT_NEWS: News = {
   title: "",
-  description: {},
+  description: "",
   image: "",
   expirationDate: "",
 };

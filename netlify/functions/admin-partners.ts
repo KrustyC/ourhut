@@ -1,5 +1,5 @@
 import { Handler, HandlerEvent } from "@netlify/functions";
-import { NetlifyUser } from "../../src/types/auth";
+import netlifyIdentity from "netlify-identity-widget";
 import { jsonResponse } from "../shared/utils";
 import {
   FOLDERS,
@@ -63,7 +63,7 @@ async function deleteImage(handlerEvent: HandlerEvent) {
 }
 
 const handler: Handler = async (event, context) => {
-  const { user } = context.clientContext as { user?: NetlifyUser };
+  const { user } = context.clientContext as { user?: netlifyIdentity.User };
 
   if (!user) {
     return jsonResponse({

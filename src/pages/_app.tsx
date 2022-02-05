@@ -6,7 +6,6 @@ import { DefaultLayout } from "@/layouts/DefaultLayout";
 import netlifyIdentity from "netlify-identity-widget";
 import { useState, useEffect } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
-import { NetlifyUser } from "../types/auth";
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
@@ -16,7 +15,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout || DefaultLayout;
 
   const router = useRouter();
-  const [user, setUser] = useState<NetlifyUser | null>(null);
+  const [user, setUser] = useState<netlifyIdentity.User | null>(null);
 
   useEffect(() => {
     netlifyIdentity.on("init", (user) => {

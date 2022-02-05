@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { fetchJson } from "../utils/fetch-json";
-import { NetlifyUser } from "../types/auth";
+import netlifyIdentity from "netlify-identity-widget";
 
 interface UseNetlifyFunctionProps {
   fetchUrlPath: string;
-  user?: NetlifyUser | null;
+  user?: netlifyIdentity.User | null;
 }
 
 interface UseNetlifyFunctionReturn<T> {

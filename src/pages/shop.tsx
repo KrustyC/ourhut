@@ -11,7 +11,6 @@ interface ShopPageProps {
 }
 
 const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
-  console.log("RPG", products);
   return (
     <div>
       <Head>
