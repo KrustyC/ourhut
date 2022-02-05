@@ -25,8 +25,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onWantToRemoveProduct,
 }) => (
   <div className="bg-white shadow rounded-lg p-4 ">
-    <div className="flex flex-col">
-      <span className="text-xl font-bold text-gray-900">{product.name}</span>
+    <div className="flex flex-col h-full">
+      <span className="text-xl font-bold text-gray-900 mb-2">{product.name}</span>
 
       <div className="flex mb-2">
         <div className="flex items-end mr-4">
@@ -55,7 +55,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
 
-      <div className="flex items-end justify-end mt-2 w-100">
+      <div className="flex items-end justify-end mt-2 w-100 grow">
         <div>
           <a
             href={`/admin/products/${product._id}`}

@@ -19,8 +19,6 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
       .find()
       .toArray();
 
-    console.log(newsHeadline);
-
     return jsonResponse({
       status: 200,
       body: {
@@ -76,7 +74,6 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    console.log("dio cane", newsDocument);
     await client
       .db(process.env.MONGO_DB_NAME)
       .collection(NEWS_HEADLINE_COLLECTION)

@@ -25,8 +25,6 @@ const NewsPage: NextPage<NewsPageProps> = ({
   events: { pastEvents, upcomingEvents },
   newsHeadline,
 }) => {
-  console.log("HEAD", newsHeadline);
-
   return (
     <div>
       <Head>

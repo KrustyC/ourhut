@@ -15,8 +15,9 @@ interface ProductFormProps {
 
 const DEFAULT_PRODUCT: Product = {
   name: "",
-  description: {},
+  description: "",
   image: "",
+  order: 0,
   price: null,
   etsyLink: "",
 };
@@ -68,18 +69,30 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     className={`shadow appearance-none border ${
                       errors?.price ? "border-red-500" : ""
                     } rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
-                    type="number"
+                    type="text"
                     placeholder="Product price (in gbp)"
                     {...rest}
                     value={value as number}
                     onChange={(e) => {
-                      const val = parseInt(e.target.value, 10);
+                      const val = parseFloat(e.target.value);
                       onChange(isNaN(val) ? 0 : val);
                     }}
                   />
                 </div>
               )}
               control={control}
+            />
+          </div>
+
+          <div className="mb-4">
+            <Input
+              register={register}
+              options={{ required: "Please select the order of display" }}
+              error={errors.etsyLink}
+              type="number"
+              label="Order of Display"
+              name="order"
+              placeholder="1"
             />
           </div>
 

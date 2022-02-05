@@ -14,6 +14,7 @@ export type School = {
 export type Product = {
   _id?: string;
   name: string;
+  order: number;
   description: string;
   image: string;
   price: number | null;

@@ -31,8 +31,6 @@ export const Editor: React.FC<EditorProps> = ({
     },
   });
 
-  console.log(value);
-
   return (
     <>
       {editor && <BubbleMenu editor={editor} />}
