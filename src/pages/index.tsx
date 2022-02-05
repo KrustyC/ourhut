@@ -71,7 +71,7 @@ const Home: NextPage = () => {
           ></div>
         </div>
 
-        <div className="fixed right-0 h-screen flex justify-center items-center w-96 z-1">
+        <div className="absolute top-0 right-0 h-screen flex justify-center items-center w-96 z-1">
           <div className="mr-[-320px] flex text-sm text-white transform rotate-90 top-1/2">
             <span className="flex items-center mr-8">
               <RightArrowIcon className="fill-primary h-5 h-5 mr-2" /> Volunteer

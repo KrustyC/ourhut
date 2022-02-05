@@ -62,4 +62,7 @@ export async function getStaticProps() {
   };
 }
 
+
+// http://www.ourhut.co.uk/sublime-structures-lesson-plans/
+
 export default AdminNewsCreate;

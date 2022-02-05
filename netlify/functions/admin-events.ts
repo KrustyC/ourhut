@@ -13,7 +13,7 @@ const timeValidator = yup.object().shape({
 
 export const eventSchema = yup.object().shape({
   title: yup.string().required(),
-  description: yup.object().required(),
+  description: yup.string().required(),
   image: yup.string(),
   eventbriteLink: yup.string().url(),
   date: yup

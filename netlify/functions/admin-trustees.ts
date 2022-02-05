@@ -7,7 +7,7 @@ import { HTTP_METHODS } from "../shared/variables";
 
 export const trusteeSchema = yup.object().shape({
   name: yup.string().required(),
-  description: yup.object().required(),
+  description: yup.string().required(),
 });
 
 const TRUSTEES_COLLECTION = "trustees";

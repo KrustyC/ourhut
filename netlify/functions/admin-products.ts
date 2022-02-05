@@ -8,7 +8,7 @@ import { HTTP_METHODS } from "../shared/variables";
 export const productSchema = yup.object().shape({
   name: yup.string().required("please enter a name for the product"),
   description: yup
-    .object()
+    .string()
     .required("please enter a description for the product"),
   image: yup.string().required("please enter an image for the product"),
   price: yup

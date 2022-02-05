@@ -14,7 +14,7 @@ interface TrusteeFormProps {
 
 const DEFAULT_TRUSTEE: Trustee = {
   name: "",
-  description: {},
+  description: "",
 };
 
 export const TrusteeForm: React.FC<TrusteeFormProps> = ({
@@ -73,6 +73,7 @@ export const TrusteeForm: React.FC<TrusteeFormProps> = ({
         <button
           className="btn-admin btn-primary mr-4"
           type="submit"
+          // disabled={pending || !isValid || !isDirty}
           disabled={pending || !isValid || !isDirty}
         >
           {pending ? <LoadingSpinner /> : "Save Trustee"}

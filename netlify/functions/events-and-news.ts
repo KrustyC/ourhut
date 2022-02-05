@@ -6,6 +6,7 @@ import { HTTP_METHODS } from "../shared/variables";
 
 const EVENTS_COLLECTION = "events";
 const NEWS_COLLECTION = "news";
+const NEWS_HEADLINE_COLLECTION = "news_headline";
 
 async function get() {
   try {
@@ -51,11 +52,21 @@ async function get() {
       .find()
       .toArray();
 
-    const [events, news] = await Promise.all([fetchEvents(), fetchNews]);
+    const fetchNewsHeadline = client
+      .db(process.env.MONGO_DB_NAME)
+      .collection(NEWS_HEADLINE_COLLECTION)
+      .find()
+      .toArray();
+
+    const [events, news, newsHeadline] = await Promise.all([
+      fetchEvents(),
+      fetchNews,
+      fetchNewsHeadline,
+    ]);
 
     return jsonResponse({
       status: 200,
-      body: { events, news },
+      body: { events, news, newsHeadline: newsHeadline[0] || null },
     });
   } catch (error) {
     return jsonResponse({

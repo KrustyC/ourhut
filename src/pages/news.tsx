@@ -10,6 +10,7 @@ import { PastEventCard } from "@/components/PastEventCard";
 import { Footer } from "@/components/Footer";
 import { GuardianNews } from "@/components/GuardianNews";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
+import parse from "html-react-parser";
 
 interface NewsPageProps {
   events: {
@@ -17,11 +18,15 @@ interface NewsPageProps {
     upcomingEvents: Event[];
   };
   news: News[];
+  newsHeadline: string | null;
 }
 
 const NewsPage: NextPage<NewsPageProps> = ({
   events: { pastEvents, upcomingEvents },
+  newsHeadline,
 }) => {
+  console.log("HEAD", newsHeadline);
+
   return (
     <div>
       <Head>
@@ -40,12 +45,13 @@ const NewsPage: NextPage<NewsPageProps> = ({
 
         <div className="pl-32 pr-16">
           <p className="text-6xl text-white font-bold ml-[-4px]">News</p>
-          <p className="mt-4 text-white font-medium w-1/2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-            officiis nobis itaque quaerat suscipit odio, dolor sunt distinctio
-            reprehenderit eum iste assumenda repellat aspernatur explicabo
-            voluptate, nisi facere magni aperiam.
-          </p>
+
+          {newsHeadline ? (
+            <p className="mt-4 text-white font-medium w-1/2 h-40">
+              {parse(newsHeadline)}
+            </p>
+          ) : null}
+
           <div className="mt-8">
             <NextLink href="/">
               <a className="btn btn-primary">Link to Article</a>
@@ -68,9 +74,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
 
       <div className="flex flex-col">
         <div className="flex flex-col py-16">
-          <h1 className="text-black font-bold ml-32 mb-12">
-            Future Events
-          </h1>
+          <h1 className="text-black font-bold ml-32 mb-12">Future Events</h1>
           <Carousel events={upcomingEvents} />
         </div>
 
@@ -98,10 +102,16 @@ export async function getStaticProps() {
   const res = await fetch(
     `${process.env.baseUrl}/.netlify/functions/events-and-news`
   );
-  const { events = { pastEvents: [], upcomingEvents: [] }, news = [] } =
-    await res.json();
 
-  return { props: { events, news } };
+  const {
+    events = { pastEvents: [], upcomingEvents: [] },
+    news = [],
+    newsHeadline,
+  } = await res.json();
+
+  return {
+    props: { events, news, newsHeadline: newsHeadline?.headline || null },
+  };
 }
 
 export default NewsPage;

@@ -8,7 +8,7 @@ import { HTTP_METHODS } from "../shared/variables";
 
 export const newsSchema = yup.object().shape({
   title: yup.string().required("please enter a title for the news"),
-  description: yup.object().required("please enter a description for the news"),
+  description: yup.string().required("please enter a description for the news"),
   image: yup.string(),
   expirationDate: yup.string().required(), // use Regex,
 });

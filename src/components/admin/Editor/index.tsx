@@ -6,9 +6,9 @@ import { InputErrorMessage } from "../InputErrorMessage";
 import { BubbleMenu } from "./BubbleMenu";
 
 interface EditorProps {
-  value: JSONContent | null;
+  value: string;
   error?: FieldError;
-  onChange: (content: JSONContent) => void;
+  onChange: (content: string) => void;
   onBlur?: VoidFunction;
 }
 
@@ -27,16 +27,18 @@ export const Editor: React.FC<EditorProps> = ({
     ],
     content: value === null || Object.keys(value).length === 0 ? null : value,
     onUpdate({ editor }) {
-      onChange(editor.getJSON());
+    onChange(editor.getHTML());
     },
   });
+
+  console.log(value);
 
   return (
     <>
       {editor && <BubbleMenu editor={editor} />}
 
       <div
-        className={`min-h-full shadow appearance-none border ${
+        className={`editor-container min-h-full h-full shadow appearance-none border ${
           error ? "border-red-500" : ""
         } rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
       >

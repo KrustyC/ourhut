@@ -2,10 +2,10 @@ import type { NextPage } from "next";
 import NextLink from "next/link";
 import Head from "next/head";
 import { Trustee } from "@/types/global";
+import parse from "html-react-parser";
 import Image from "next/image";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import TipTapContent from "@/components/TipTapContent";
 
 interface AboutUsPageProps {
   trustees: Trustee[];
@@ -64,6 +64,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
 
           <div className="flex flex-col w-6/12 h-[707px] relative">
             <Image
+              priority
               className="w-full h-full"
               layout="fill"
               objectFit="cover"
@@ -90,7 +91,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
           <h1 className="text-6xl text-white font-semibold ml-[-4px]">
             What we do
           </h1>
-          <p className="text-white font-semibold text-xl mt-4">
+          <div className="text-white font-semibold text-xl mt-4">
             <p>
               Our Hut{"'"}s aim is to equip future generations to get involved
               in shaping positive sustainable environments. We inspire and
@@ -104,7 +105,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
               responsibility in respecting, shaping and improving the built
               environment.
             </p>
-          </p>
+          </div>
 
           <NextLink href="/projects">
             <a className="btn btn-transparent-outlined-white font-bold w-60 text-black mt-8">
@@ -122,9 +123,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
               <h3 className="text-black font-semibold text-3xl">
                 {trustee.name}
               </h3>
-              <div className="mt-4">
-                <TipTapContent content={trustee.description} />
-              </div>
+              <div className="mt-4">{parse(trustee.description)}</div>
             </div>
           ))}
         </div>
@@ -136,7 +135,13 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
         </h1>
         <div className="grid grid-cols-5 gap-x-4 gap-y-4 mt-4 px-16 mt-16">
           {partnerLogos.map((logoUrl, index) => (
-            <img key="index" src={logoUrl} width="100%" height="160px" />
+            <img
+              key={index}
+              src={logoUrl}
+              alt="logo"
+              width="100%"
+              height="160px"
+            />
           ))}
         </div>
       </div>

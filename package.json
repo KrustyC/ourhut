@@ -11,7 +11,6 @@
     "@netlify/functions": "^0.10.0",
     "@tailwindui/react": "^0.1.1",
     "@tiptap/extension-bubble-menu": "^2.0.0-beta.54",
-    "@tiptap/html": "^2.0.0-beta.170",
     "@tiptap/react": "^2.0.0-beta.105",
     "@tiptap/starter-kit": "^2.0.0-beta.171",
     "aws-sdk": "^2.1058.0",

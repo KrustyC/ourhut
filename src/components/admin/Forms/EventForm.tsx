@@ -23,7 +23,7 @@ interface EventFormProps {
 const DEFAULT_EVENT: Event = {
   title: "",
   image: "",
-  description: {},
+  description: "",
   eventbriteLink: "",
   date: {
     day: "",

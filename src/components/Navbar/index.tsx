@@ -48,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <NextLink href="/">
             <a className="flex items-center z-50">
               <div className={`h-3 w-3 mr-1 rounded-full ${logoColor}`} />
-              <span className={`text-3xl font-semibold ${textColor}`}>
+              <span className={`text-4xl font-semibold ${textColor}`}>
                 Our Hut
               </span>
             </a>

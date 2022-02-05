@@ -14,7 +14,7 @@ export type School = {
 export type Product = {
   _id?: string;
   name: string;
-  description: { [x: string]: {} | undefined };
+  description: string;
   image: string;
   price: number | null;
   etsyLink: string;
@@ -23,7 +23,7 @@ export type Product = {
 export type News = {
   _id?: string;
   title: string;
-  description: { [x: string]: {} | undefined };
+  description: string;
   image?: string;
   expirationDate: string;
 };
@@ -31,7 +31,7 @@ export type News = {
 export type Trustee = {
   _id?: string;
   name: string;
-  description: { [x: string]: {} | undefined };
+  description: string;
 };
 
 export type Event = {
@@ -39,7 +39,7 @@ export type Event = {
   slug?: string;
   title: string;
   image: string;
-  description: { [x: string]: {} | undefined };
+  description: string;
   eventbriteLink: string;
   date: {
     day: string;

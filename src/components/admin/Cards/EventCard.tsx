@@ -21,7 +21,7 @@ export const EventCard: React.FC<EventCardProps> = ({
 
   return (
     <div className="bg-white shadow rounded-lg p-4 ">
-      <div className="flex flex-col">
+      <div className="flex flex-col h-full">
         <span className="text-xl font-bold text-gray-900">{event.title}</span>
 
         <div className="flex items-end mt-3 mb-1">
@@ -61,7 +61,7 @@ export const EventCard: React.FC<EventCardProps> = ({
           </span>
         </div>
 
-        <div className="flex items-end justify-between mt-2 w-100">
+        <div className="flex justify-between items-end grow mt-2 w-100">
           <div>
             <span
               className={`${bgColor} ${fontColor} inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none rounded-full uppercase`}
