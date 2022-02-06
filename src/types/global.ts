@@ -13,6 +13,20 @@ export type School = {
   type: "primary" | "secondary";
 };
 
+export type TeachingResourceMaterial = {
+  name: string;
+  date: string;
+  host: string;
+  link: string;
+};
+
+export type TeachingResource = {
+  _id?: string;
+  title: string;
+  image: string;
+  materials: TeachingResourceMaterial[];
+};
+
 export type Product = {
   _id?: string;
   name: string;

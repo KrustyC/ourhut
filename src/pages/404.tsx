@@ -20,7 +20,7 @@ export default function Custom404() {
           src="/images/dynosaur.jpg"
         />
         <h1 className="text-6xl text-black font-bold mt-8">
-          Oops, we cannot find the page!
+          Oops, we can not find the page!
         </h1>
         <Link href="/" passHref>
           <a className="text-primary mt-8 underline">

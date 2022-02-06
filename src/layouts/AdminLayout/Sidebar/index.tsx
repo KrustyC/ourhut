@@ -6,6 +6,8 @@ import { CartIcon } from "../../../components/icons/Cart";
 import { ArchiveIcon } from "../../../components/icons/Archive";
 import { LoveIcon } from "../../../components/icons/Love";
 import { PeopleIcon } from "../../../components/icons/People";
+import { ResearchIcon } from "../../../components/icons/Research";
+import { NewspaperIcon } from "../../../components/icons/Newspaper";
 import { SchoolIcon } from "../../../components/icons/School";
 import { ImageIcon } from "../../../components/icons/Image";
 import { DocumentIcon } from "../../../components/icons/Document";
@@ -60,12 +62,30 @@ export const Sidebar: React.FC = () => (
                 icon={<CartIcon />}
               />
             </li>
+          </ul>
+
+          <ul className="py-2">
+            <li>
+              <SidebarLink
+                href="/admin/teaching-resources/"
+                label="Teacher Resources"
+                icon={<ArchiveIcon />}
+              />
+            </li>
 
             <li>
               <SidebarLink
-                href="/admin/inventory/"
-                label="Resources"
-                icon={<ArchiveIcon />}
+                href="/admin/publications/"
+                label="Press & Publications"
+                icon={<NewspaperIcon />}
+              />
+            </li>
+
+            <li>
+              <SidebarLink
+                href="/admin/research/"
+                label="Research"
+                icon={<ResearchIcon />}
               />
             </li>
           </ul>
