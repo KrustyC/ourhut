@@ -6,6 +6,7 @@ import { ImagesUploadPreviewModal } from "./ImagesUploadPreviewModal";
 
 interface UploadImageButtonProps {
   actionCopy: string;
+  className?: string;
   folder: "images" | "files" | "partners_logos";
   onConfirm: (newImage: string) => void;
 }
@@ -16,6 +17,7 @@ export type FileEventTarget = React.ChangeEventHandler<HTMLInputElement> & {
 
 export const UploadImageButton: React.FC<UploadImageButtonProps> = ({
   actionCopy,
+  className = "btn-admin btn-primary btn-sm",
   folder,
   onConfirm,
 }) => {
@@ -63,7 +65,7 @@ export const UploadImageButton: React.FC<UploadImageButtonProps> = ({
 
   return (
     <div>
-      <button className="btn-admin btn-primary btn-sm" onClick={onWantToUpload}>
+      <button type="button" className={className} onClick={onWantToUpload}>
         {actionCopy}
       </button>
       <input

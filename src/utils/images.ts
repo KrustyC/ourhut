@@ -1,3 +1,3 @@
-export function getImageName(imageSrc: string): string | undefined {
-  return imageSrc.split("/").pop();
+export function getFileName(imageSrc: string): string {
+  return imageSrc.split("/").pop() || "";
 }

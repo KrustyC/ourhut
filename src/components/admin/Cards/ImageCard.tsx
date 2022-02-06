@@ -1,4 +1,4 @@
-import { getImageName } from "@/utils/images";
+import { getFileName } from "@/utils/images";
 import styles from "./ImageCard.module.css";
 
 interface ImageCardProps {
@@ -16,7 +16,7 @@ export const ImageCard: React.FC<ImageCardProps> = ({ image, onClick }) => (
     <div
       className={`${styles["img-name"]} p-2 flex w-full h-auto bg-white flex justify-center items-center z-50`}
     >
-      {getImageName(image)}
+      {getFileName(image)}
     </div>
   </div>
 );

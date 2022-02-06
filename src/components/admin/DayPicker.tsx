@@ -8,6 +8,8 @@ import "react-day-picker/lib/style.css";
 
 interface DayPickerProps {
   value: string;
+  className?: string;
+  placeholder?: string;
   error?: FieldError;
   onChange: (date: string) => void;
 }
@@ -16,6 +18,8 @@ const FORMAT = "dd/MM/yyyy";
 
 export const DayPicker: React.FC<DayPickerProps> = ({
   value,
+  className = "",
+  placeholder = "DD/MM/YYYY",
   error,
   onChange,
 }) => {
@@ -29,7 +33,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({
     <div className="flex flex-col">
       <DayPickerInput
         value={value}
-        placeholder="DD/MM/YYYY"
+        placeholder={placeholder}
         format={FORMAT}
         component={React.forwardRef((props: any, ref) => (
           <input
@@ -37,7 +41,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({
             ref={ref}
             className={`shadow appearance-none border ${
               error ? "border-red-500" : ""
-            } rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
+            } rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${className}`}
           />
         ))}
         formatDate={(date, format) => dateFnsFormat(date, format)}

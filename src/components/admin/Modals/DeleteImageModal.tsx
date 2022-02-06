@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { getImageName } from "@/utils/images";
+import { getFileName } from "@/utils/images";
 import { Modal } from "../Modal";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { useNetlifyDeleteFunction } from "@/hooks/useNetlifyDeleteFunction";
@@ -29,7 +29,7 @@ export const DeleteImageModal: React.FC<DeleteImageModalProps> = ({
   }, [error]);
 
   const onDeleteImage = async () => {
-    const fileName = getImageName(imageToDelete);
+    const fileName = getFileName(imageToDelete);
 
     const res = await onDelete(`/admin-images?name=${fileName}`);
 
