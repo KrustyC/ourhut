@@ -13,15 +13,12 @@ export const NavBar: React.FC<NavBarProps> = ({ onLogout }) => (
             className="text-xl flex items-center lg:ml-2.5 z-40"
             style={{ zIndex: "500" }}
           >
-            <Image
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Location_dot_orange.svg/480px-Location_dot_orange.svg.png"
-              className="h-3 mr-2"
-              width="20"
-              height="20"
-              alt="Windster Logo"
-            />
-            <span className="self-center font-medium whitespace-nowrap text-gray-800">
+            <div className="h-3 w-3 mr-1 rounded-full bg-primary" />
+            <span className="self-center font-semibold whitespace-nowrap text-gray-800 ml-1">
               Our Hut
+            </span>
+            <span className="self-center font-semibold text-sm whitespace-nowrap text-gray-500 ml-1">
+              / Admin Panel
             </span>
           </div>
         </div>

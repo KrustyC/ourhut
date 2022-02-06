@@ -24,7 +24,7 @@ const ContactsPage = () => (
           <div className="w-8/12 flex h-full flex-col justify-between">
             <div className="flex flex-col">
               <p className="font-bold text-xl leading-8">
-                Our Hut Charity
+                Our Hut
                 <br />
                 Registered Charity
                 <br />
