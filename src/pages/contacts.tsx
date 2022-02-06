@@ -10,7 +10,7 @@ const ContactsPage = () => (
       <meta name="description" content="Get in touch" />
     </Head>
 
-    <div className="h-screen bg-white">
+    <div className="h-screen bg-white flex flex-col">
       <Navbar
         config={{
           burgerColor: "bg-primary",
@@ -18,7 +18,8 @@ const ContactsPage = () => (
           logoColor: "bg-primary",
         }}
       />
-      <div className="flex w-screen px-60 h-5/6">
+
+      <div className="flex items-center w-screen px-60 grow">
         <div className="flex bg-gray-100 px-16 py-12 h-[700px] w-full">
           <div className="w-8/12 flex h-full flex-col justify-between">
             <div className="flex flex-col">
