@@ -57,30 +57,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           </div>
 
           <div className="mb-4">
-            <Controller
+            <Input
+              register={register}
+              options={{ required: "Please add a price" }}
+              error={errors.price}
+              type="text"
+              label="Price"
               name="price"
-              rules={{ required: true }}
-              render={({ field: { onChange, value, ...rest } }) => (
-                <div className="flex flex-col">
-                  <label className="uppercase block text-gray-700 text-sm font-bold mb-2">
-                    Price (in gbp)
-                  </label>
-                  <input
-                    className={`shadow appearance-none border ${
-                      errors?.price ? "border-red-500" : ""
-                    } rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
-                    type="text"
-                    placeholder="Product price (in gbp)"
-                    {...rest}
-                    value={value as number}
-                    onChange={(e) => {
-                      const val = parseFloat(e.target.value);
-                      onChange(isNaN(val) ? 0 : val);
-                    }}
-                  />
-                </div>
-              )}
-              control={control}
+              placeholder="10.50"
             />
           </div>
 
@@ -88,7 +72,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             <Input
               register={register}
               options={{ required: "Please select the order of display" }}
-              error={errors.etsyLink}
+              error={errors.order}
               type="number"
               label="Order of Display"
               name="order"

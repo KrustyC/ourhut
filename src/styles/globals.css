@@ -60,7 +60,7 @@
   }
 
   .btn-admin.btn-primary {
-    @apply bg-blue-500 border text-white hover:bg-admin-primary-dark;
+    @apply bg-blue-500 border border-blue-500 text-white hover:bg-admin-primary-dark;
   }
 
   .btn-admin.btn-dark {

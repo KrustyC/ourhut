@@ -1,23 +1,11 @@
 import { Product } from "@/types/global";
 import { LinkIcon } from "../../icons/Link";
 import { PriceIcon } from "../../icons/Price";
+import { formatPriceBrowser } from "@/utils/price";
 
 interface ProductCardProps {
   product: Product;
   onWantToRemoveProduct: VoidFunction;
-}
-
-function formatPriceBrowser(price: number | null): string {
-  if (price === null) {
-    return "Free";
-  }
-
-  const formatter = new Intl.NumberFormat("en-UK", {
-    style: "currency",
-    currency: "GBP",
-  });
-
-  return formatter.format(price);
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -26,7 +14,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => (
   <div className="bg-white shadow rounded-lg p-4 ">
     <div className="flex flex-col h-full">
-      <span className="text-xl font-bold text-gray-900 mb-2">{product.name}</span>
+      <span className="text-xl font-bold text-gray-900 mb-2">
+        {product.name}
+      </span>
 
       <div className="flex mb-2">
         <div className="flex items-end mr-4">

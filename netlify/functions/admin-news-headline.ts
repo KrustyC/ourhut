@@ -93,7 +93,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
       body: { message: "News Headline successfully updated" },
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return jsonResponse({
       status: 500,
       body: {

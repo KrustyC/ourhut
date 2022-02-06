@@ -7,10 +7,6 @@ import { HTTP_METHODS } from "../shared/variables";
 
 export const productSchema = yup.object().shape({
   name: yup.string().required("please enter a name for the product"),
-  order: yup
-    .number()
-    .positive("please enter a valid order number")
-    .required("please enter give an order"),
   description: yup
     .string()
     .required("please enter a description for the product"),
@@ -26,15 +22,34 @@ const PRODUCTS_COLLECTION = "products";
 
 async function get(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
+    const { id } = handlerEvent.queryStringParameters as { id?: string };
+
+    if (id) {
+      const product = await client
+        .db(process.env.MONGO_DB_NAME)
+        .collection(PRODUCTS_COLLECTION)
+        .findOne({ _id: new ObjectId(id) });
+
+      if (!product) {
+        return jsonResponse({
+          status: 404,
+          body: {
+            message: `Product with id "${id}" could not be found`,
+          },
+        });
+      }
+
+      return jsonResponse({
+        status: 200,
+        body: { product },
+      });
+    }
+
     const products = await client
       .db(process.env.MONGO_DB_NAME)
       .collection(PRODUCTS_COLLECTION)
       .find()
       .toArray();
-
-    products.sort((a, b) =>
-      a.order > b.order ? 1 : b.order > a.order ? -1 : 0
-    );
 
     return jsonResponse({
       status: 200,

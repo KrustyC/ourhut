@@ -9,6 +9,8 @@ export type School = {
   _id?: string;
   name: string;
   postcode: string;
+  geographicalArea: string;
+  type: "primary" | "secondary";
 };
 
 export type Product = {

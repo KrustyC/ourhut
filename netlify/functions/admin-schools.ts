@@ -7,7 +7,9 @@ import { HTTP_METHODS } from "../shared/variables";
 
 export const schoolSchema = yup.object().shape({
   name: yup.string().required("Please enter a name for the school"),
+  geographicalArea: yup.string().required("Please enter a geographical area"),
   postcode: yup.string().required("Please enter a postcode"),
+  type: yup.string().required().oneOf(["primary", "secondary"]),
 });
 
 const SCHOOLS_COLLECTION = "schools";
@@ -83,7 +85,10 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
       .db(process.env.MONGO_DB_NAME)
       .collection(SCHOOLS_COLLECTION)
       .insertOne({
-        ...schoolDocument,
+        name: schoolDocument.name,
+        postcode: schoolDocument.postcode,
+        geographicalArea: schoolDocument.geographicalArea,
+        type: schoolDocument.type,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -150,6 +155,8 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
           $set: {
             name: schoolDocument.name,
             postcode: schoolDocument.postcode,
+            geographicalArea: schoolDocument.geographicalArea,
+            type: schoolDocument.type,
             updatedAt: new Date(),
           },
         }

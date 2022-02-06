@@ -19,9 +19,25 @@ async function get() {
       .find()
       .toArray();
 
+    const { primarySchools, secondarySchools } = schools.reduce(
+      (acc, curr) => {
+        return {
+          primarySchools:
+            curr.type === "primary"
+              ? [...acc.primarySchools, curr]
+              : acc.primarySchools,
+          secondarySchools:
+            curr.type === "secondary"
+              ? [...acc.secondarySchools, curr]
+              : acc.secondarySchools,
+        };
+      },
+      { primarySchools: [], secondarySchools: [] }
+    );
+
     return jsonResponse({
       status: 200,
-      body: { schools },
+      body: { primarySchools, secondarySchools },
     });
   } catch (error) {
     return jsonResponse({

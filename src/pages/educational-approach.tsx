@@ -5,13 +5,15 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 interface EducationalApproachPageProps {
-  schools: School[];
+  primarySchools: School[];
+  secondarySchools: School[];
 }
 
 // @TODO Need to understand if necessary primary/secondary split
 
 const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
-  schools,
+  primarySchools,
+  secondarySchools,
 }) => {
   return (
     <div>
@@ -58,16 +60,16 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
 
       <div className="flex flex-col px-32 py-16 bg-light-gray">
         <h1 className="text-black font-bold mb-8">
-          School we have worked with
+          Schools we have worked with
         </h1>
         <div className="flex flex-col mt-16 px-16">
           <div className="flex flex-col">
             <h3 className="font-bold text-black mb-8">Primary Schools</h3>
             <div className="grid grid-cols-2 gap-16">
-              {schools.map((school, i) => (
+              {primarySchools.map((school, i) => (
                 <div key={i} className="flex font-semibold">
                   <span className="text-black mr-2">{school.name},</span>
-                  <span className="text-gray-500 ">{school.postcode}</span>
+                  <span className="text-gray-500 ">{school.geographicalArea}, {school.postcode}</span>
                 </div>
               ))}
             </div>
@@ -75,11 +77,11 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
 
           <div className="flex flex-col mt-16">
             <h3 className="font-bold text-black mb-8">Secondary Schools</h3>
-            <div className="grid grid-cols-2 gap-16">
-              {schools.map((school, i) => (
+            <div className="grid grid-cols-2 gap-x-16 gap-y-2">
+              {secondarySchools.map((school, i) => (
                 <div key={i} className="flex font-semibold">
                   <span className="text-black mr-2">{school.name},</span>
-                  <span className="text-gray-500 ">{school.postcode}</span>
+                  <span className="text-gray-500 ">{school.geographicalArea}, {school.postcode}</span>
                 </div>
               ))}
             </div>
@@ -94,9 +96,9 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
 
 export async function getStaticProps() {
   const res = await fetch(`${process.env.baseUrl}/.netlify/functions/schools`);
-  const { schools = [] } = await res.json();
+  const { primarySchools = [], secondarySchools = [] } = await res.json();
 
-  return { props: { schools } };
+  return { props: { primarySchools, secondarySchools } };
 }
 
 export default EducationalApproachPage;

@@ -33,7 +33,10 @@ const Edit: React.FC<EditProps> = ({ id }) => {
 
   const onEditProduct = async (updatedProduct: Product) => {
     const res = await onUpdate(`/admin-products?id=${id}`, {
-      product: updatedProduct,
+      product: {
+        ...updatedProduct,
+        price: parseFloat((updatedProduct.price as any) || "0"),
+      },
     });
 
     if (res !== undefined) {
@@ -42,10 +45,6 @@ const Edit: React.FC<EditProps> = ({ id }) => {
         router.push("/admin/products");
       }, 800);
     }
-
-    setTimeout(() => {
-      router.push("/admin/products");
-    }, 800);
   };
 
   useEffect(() => {

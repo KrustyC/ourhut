@@ -19,6 +19,10 @@ async function get() {
       .find()
       .toArray();
 
+    products.sort((a, b) =>
+      a.order > b.order ? 1 : b.order > a.order ? -1 : 0
+    );
+
     return jsonResponse({
       status: 200,
       body: { products },

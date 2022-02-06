@@ -1,10 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { Product } from "@/types/global";
+import { ShopProductCard } from "@/components/ShopProductCard";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import parse from "html-react-parser";
 
 interface ShopPageProps {
   products: Product[];
@@ -32,37 +31,12 @@ const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
 
           <div className="flex flex-col">
             {products.map((product, i) => (
-              <div
-                className={`flex mb-8 px-16 py-16 h-[740px] bg-${
-                  i % 2 === 0 ? "gray-100" : "white"
-                }`}
-                key={product._id}
-              >
-                <div className="relative h-full w-7/12">
-                  <Image
-                    priority={i === 0}
-                    className="w-full h-40"
-                    objectFit="contain"
-                    layout="fill"
-                    alt={product.name}
-                    src={product.image}
-                  />
-                </div>
-                <div className="flex flex-col justify-center h-full w-1/2 pl-16 pr-8 w-5/12">
-                  <h1 className="text-2xl text-black font-bold mb-8">
-                    {product.name}
-                  </h1>
-                  <p className="text-black mb-8">
-                    {parse(product.description)}
-                  </p>
-                  <span className="text-black text-2xl font-bold mb-8">
-                    £9.99
-                  </span>
-                  <a href={product.etsyLink} className="btn btn-transparent-outlined w-40 font-bold">
-                    Buy on Etsy
-                  </a>
-                </div>
-              </div>
+              <ShopProductCard
+                key={i}
+                product={product}
+                hasPriorityImage={i === 0}
+                bgColor={i % 2 === 0 ? "bg-gray-100" : "bg-white"}
+              />
             ))}
           </div>
         </div>
