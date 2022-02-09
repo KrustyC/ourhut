@@ -4,9 +4,10 @@ import { useAuth } from "@/contexts/AuthContext";
 import { uploadFileToS3 } from "@/utils/upload-file";
 import { ImagesUploadPreviewModal } from "./ImagesUploadPreviewModal";
 
-interface UploadImageButtonProps {
+interface UploadFileButtonProps {
   actionCopy: string;
   className?: string;
+  accept: string;
   folder: "images" | "files" | "partners_logos";
   onConfirm: (newImage: string) => void;
 }
@@ -15,8 +16,9 @@ export type FileEventTarget = React.ChangeEventHandler<HTMLInputElement> & {
   target: { files: FileList };
 };
 
-export const UploadImageButton: React.FC<UploadImageButtonProps> = ({
+export const UploadFileButton: React.FC<UploadFileButtonProps> = ({
   actionCopy,
+  accept,
   className = "btn-admin btn-primary btn-sm",
   folder,
   onConfirm,
@@ -72,7 +74,7 @@ export const UploadImageButton: React.FC<UploadImageButtonProps> = ({
         ref={fileInput}
         style={{ display: "none" }}
         type="file"
-        accept=".jpg, .jpeg, .png"
+        accept={accept}
         onChange={(e) => handleFileInput(e as any)}
       />
 

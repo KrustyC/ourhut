@@ -3,7 +3,7 @@ import { Controller, UseFormRegister, Control } from "react-hook-form";
 import { getFileName } from "@/utils/images";
 import { TeachingResourceMaterial } from "@/types/global";
 import { DayPicker } from "@/components/admin/DayPicker";
-import { UploadImageButton } from "@/components/admin/UploadImageButton";
+import { UploadFileButton } from "@/components/admin/UploadFileButton";
 import { isValidDate } from "@/utils/validators";
 
 interface MaterialInputProps {
@@ -73,10 +73,11 @@ export const MaterialInput: React.FC<MaterialInputProps> = ({
           rules={{ required: true, validate: isValidDate }}
           control={control}
           render={(props) => (
-            <UploadImageButton
+            <UploadFileButton
               actionCopy={
                 props.field.value ? getFileName(props.field.value) : "Add Link"
               }
+              accept=".pdf"
               className="w-40 underline text-cyan-500 text-left truncate text-ellipsis"
               folder="files"
               onConfirm={(file) => props.field.onChange(file)}

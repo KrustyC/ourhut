@@ -2,7 +2,7 @@ import { useState } from "react";
 import { getFileName } from "@/utils/images";
 import { TeachingResourceMaterial } from "@/types/global";
 import { DayPicker } from "@/components/admin/DayPicker";
-import { UploadImageButton } from "@/components/admin/UploadImageButton";
+import { UploadFileButton } from "@/components/admin/UploadFileButton";
 import { isValidDescription, isValidDate } from "@/utils/validators";
 
 interface MaterialAddProps {
@@ -39,6 +39,7 @@ export const MaterialAdd: React.FC<MaterialAddProps> = ({ onAdd }) => {
 
   const onClick = () => {
     onAdd(materialInput);
+    setMaterialInput(DEFAULT_MATERIAL_INPUT);
   };
 
   return (
@@ -77,10 +78,11 @@ export const MaterialAdd: React.FC<MaterialAddProps> = ({ onAdd }) => {
       </div>
 
       <div className="w-1/5 pl-2 pr-3">
-        <UploadImageButton
+        <UploadFileButton
           actionCopy={
             materialInput.link ? getFileName(materialInput.link) : "Add Link"
           }
+          accept=".pdf"
           className="w-40 underline text-cyan-500 text-left truncate text-ellipsis"
           folder="files"
           onConfirm={updateMaterialInputImage}
