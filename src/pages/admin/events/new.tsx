@@ -9,7 +9,7 @@ import { Event } from "@/types/global";
 import { useRouter } from "next/router";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminEventsCreate: NextPageWithLayout = () => {
+const AdminEventsCreate: NextPageWithLayout<undefined> =  () => {
   const { user } = useAuth();
   const router = useRouter();
 

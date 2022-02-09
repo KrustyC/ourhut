@@ -1,6 +1,6 @@
-import type { ReactElement, FC } from "react";
+import type { FC } from "react";
 import type { NextPage } from "next";
 
-export type NextPageWithLayout = NextPage & {
+export type NextPageWithLayout<T> = NextPage<T> & {
   Layout?: FC;
 };

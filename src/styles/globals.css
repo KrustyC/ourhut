@@ -16,6 +16,10 @@
     @apply text-gray-700;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply font-montserrat;
   }
@@ -45,6 +49,10 @@
 
   .btn.btn-transparent-outlined {
     @apply text-black border-black border-2 bg-transparent hover:bg-black hover:text-white disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:text-gray-400 disabled:border-gray-200 disabled:shadow-none  disabled:cursor-not-allowed;
+  }
+
+  .btn.btn-transparent-outlined.active {
+    @apply text-black border-black border-2 bg-black text-white;
   }
 
   .btn.btn-transparent-outlined-white {
@@ -156,4 +164,28 @@
 
 .editor-container > div {
   height: 100%;
+}
+
+#teacher-resources-list > div:first-of-type {
+  background: #e5e5e5;
+}
+
+#teacher-resources-list > div:nth-of-type(2) {
+  background: rgba(244, 33, 33, 0.31);
+}
+
+#teacher-resources-list > div:nth-of-type(3) {
+  background: rgba(201, 228, 237, 1);
+}
+
+#teacher-resources-list > div:nth-of-type(4) {
+  background: rgba(244, 126, 33, 0.31);
+}
+
+#teacher-resources-list > div:nth-of-type(5) {
+  background: red;
+}
+
+#teacher-resources-list > div:nth-of-type(6) {
+  background: red;
 }

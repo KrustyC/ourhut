@@ -9,7 +9,7 @@ import { TeachingResource } from "@/types/global";
 import { useRouter } from "next/router";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminTeachingResourceCreate: NextPageWithLayout = () => {
+const AdminTeachingResourceCreate: NextPageWithLayout<undefined> =  () => {
   const { user } = useAuth();
   const router = useRouter();
 

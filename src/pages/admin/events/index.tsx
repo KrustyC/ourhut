@@ -11,7 +11,7 @@ import { Event } from "@/types/global";
 import { useAdminIndexList } from "@/hooks/useAdminIndexList";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminEvents: NextPageWithLayout = () => {
+const AdminEvents: NextPageWithLayout<undefined> =  () => {
   const {
     items: events,
     loading,

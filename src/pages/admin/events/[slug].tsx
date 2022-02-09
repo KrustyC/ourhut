@@ -83,7 +83,7 @@ const Edit: React.FC<EditProps> = ({ slug }) => {
   );
 };
 
-const AdminEventsEdit: NextPageWithLayout = () => {
+const AdminEventsEdit: NextPageWithLayout<undefined> =  () => {
   const router = useRouter();
 
   const { slug } = router.query as { slug?: string };

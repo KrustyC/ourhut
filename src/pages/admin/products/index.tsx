@@ -9,7 +9,7 @@ import { Product } from "@/types/global";
 import { useAdminIndexList } from "@/hooks/useAdminIndexList";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminProducts: NextPageWithLayout = () => {
+const AdminProducts: NextPageWithLayout<undefined> =  () => {
   const {
     items: products,
     loading,

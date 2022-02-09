@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { News } from "@/types/global";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminNews: NextPageWithLayout = () => {
+const AdminNews: NextPageWithLayout<undefined> =  () => {
   const {
     newsHeadline,
     newsHeadlineLoading,

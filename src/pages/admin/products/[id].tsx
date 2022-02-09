@@ -80,7 +80,7 @@ const Edit: React.FC<EditProps> = ({ id }) => {
   );
 };
 
-const AdminProductsEdit: NextPageWithLayout = () => {
+const AdminProductsEdit: NextPageWithLayout<undefined> =  () => {
   const router = useRouter();
 
   const { id } = router.query as { id?: string };

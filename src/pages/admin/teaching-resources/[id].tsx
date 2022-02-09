@@ -82,7 +82,7 @@ const Edit: React.FC<EditProps> = ({ id }) => {
   );
 };
 
-const AdminTeachingResourceEdit: NextPageWithLayout = () => {
+const AdminTeachingResourceEdit: NextPageWithLayout<undefined> =  () => {
   const router = useRouter();
 
   const { id } = router.query as { id?: string };

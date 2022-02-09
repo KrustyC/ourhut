@@ -9,7 +9,7 @@ import { News } from "@/types/global";
 import { useRouter } from "next/router";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminNewsCreate: NextPageWithLayout = () => {
+const AdminNewsCreate: NextPageWithLayout<undefined> =  () => {
   const { user } = useAuth();
   const router = useRouter();
 
