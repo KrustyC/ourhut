@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { Controller, UseFormRegister, Control } from "react-hook-form";
 import { getFileName } from "@/utils/images";
-import { TeachingResourceMaterial } from "@/types/global";
 import { DayPicker } from "@/components/admin/DayPicker";
 import { UploadFileButton } from "@/components/admin/UploadFileButton";
 import { isValidDate } from "@/utils/validators";
@@ -12,13 +10,6 @@ interface MaterialInputProps {
   register: UseFormRegister<any>;
   onRemove: VoidFunction;
 }
-
-const DEFAULT_MATERIAL_INPUT: TeachingResourceMaterial = {
-  name: "",
-  date: "",
-  host: "",
-  link: "",
-};
 
 export const MaterialInput: React.FC<MaterialInputProps> = ({
   name,
@@ -70,7 +61,7 @@ export const MaterialInput: React.FC<MaterialInputProps> = ({
       <div className="w-1/5 pl-2 pr-3">
         <Controller
           name={`${name}.link`}
-          rules={{ required: true, validate: isValidDate }}
+          rules={{ required: true }}
           control={control}
           render={(props) => (
             <UploadFileButton
@@ -84,7 +75,6 @@ export const MaterialInput: React.FC<MaterialInputProps> = ({
             />
           )}
         />
-        {/*  */}
       </div>
 
       <button

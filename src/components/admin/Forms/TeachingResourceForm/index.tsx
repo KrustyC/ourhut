@@ -5,7 +5,6 @@ import { TeachingResourceMaterial } from "@/types/global";
 import { LoadingSpinner } from "../../LoadingSpinner";
 import { Input } from "../../Input";
 import { MaterialInput } from "./MaterialInput";
-import { MaterialAdd } from "./MaterialAdd";
 
 interface TeachingResourceFormProps {
   className?: string;
@@ -16,8 +15,15 @@ interface TeachingResourceFormProps {
 
 const DEFAULT_TEACHING_RESOURCE: TeachingResource = {
   title: "",
-  materials: [],
   image: "",
+  materials: [],
+};
+
+const DEFAULT_MATERIAL: TeachingResourceMaterial = {
+  name: "",
+  date: "",
+  host: "",
+  link: "",
 };
 
 export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
@@ -49,15 +55,13 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
     };
   });
 
-  const onAddMaterial = (material: TeachingResourceMaterial) => {
-    append(material);
+  const onAddDefaultMaterial = () => {
+    append(DEFAULT_MATERIAL);
   };
 
   const onRemoveMaterial = (index: number) => {
     remove(index);
   };
-
-  console.log("materials", controlledFields);
 
   return (
     <form
@@ -118,12 +122,13 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
           ))}
         </ul>
 
-        <h3 className="text-xl text-black font-semibold mb-2 mt-8">
-          Add New Material
-        </h3>
-        <div className="flex flex-col">
-          <MaterialAdd onAdd={onAddMaterial} />
-        </div>
+        <button
+          role="button"
+          className="btn-admin btn-primary btn-sm font-bold mb-2 mt-8"
+          onClick={onAddDefaultMaterial}
+        >
+          Add material
+        </button>
       </div>
 
       <div className="flex items-center border-t-2 border-slate-300 pt-4 h-24">

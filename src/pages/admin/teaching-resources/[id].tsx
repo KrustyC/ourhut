@@ -5,11 +5,11 @@ import { toast } from "react-toastify";
 import { useAuth } from "@/contexts/AuthContext";
 import { AdminLayout } from "@/layouts/AdminLayout";
 import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
-import { NewsForm } from "@/components/admin/Forms/NewsForm";
+import { TeachingResourceForm } from "@/components/admin/Forms/TeachingResourceForm";
 import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
 import { useNetlifyPutFunction } from "@/hooks/useNetlifyPutFunction";
 import { Panel } from "@/components/admin/Panel";
-import { News } from "@/types/global";
+import { TeachingResource } from "@/types/global";
 import { NextPageWithLayout } from "@/types/app";
 
 interface EditProps {
@@ -20,8 +20,10 @@ const Edit: React.FC<EditProps> = ({ id }) => {
   const { user } = useAuth();
   const router = useRouter();
 
-  const { data, loading, error } = useNetlifyGetFunction<{ news: News }>({
-    fetchUrlPath: `/admin-news?id=${id}`,
+  const { data, loading, error } = useNetlifyGetFunction<{
+    teachingResource: TeachingResource;
+  }>({
+    fetchUrlPath: `/admin-teaching-resources?id=${id}`,
     user,
   });
 
@@ -29,36 +31,38 @@ const Edit: React.FC<EditProps> = ({ id }) => {
     onUpdate,
     pending,
     error: updateError,
-  } = useNetlifyPutFunction<{ news: News }>({ user });
+  } = useNetlifyPutFunction<{ teachingResource: TeachingResource }>({ user });
 
-  const onEditNews = async (updatedNews: News) => {
-    const res = await onUpdate(`/admin-news?id=${id}`, {
-      news: updatedNews,
+  const onEditTeachingResource = async (
+    updatedTeachingResource: TeachingResource
+  ) => {
+    const res = await onUpdate(`/admin-teaching-resources?id=${id}`, {
+      teachingResource: updatedTeachingResource,
     });
 
     if (res !== undefined) {
-      toast.success("News successfully updated");
+      toast.success("TeachingResource successfully updated");
 
       setTimeout(() => {
-        router.push("/admin/news");
+        router.push("/admin/teaching-resources");
       }, 800);
     }
   };
 
   useEffect(() => {
     if (error) {
-      toast.error("Error fetching news");
+      toast.error("Error fetching teacher resource");
     }
 
     if (updateError) {
-      toast.error("Error updating news");
+      toast.error("Error updating teacher resource");
     }
   }, [error, updateError]);
 
   return (
     <div className="p-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-gray-600 font-bold">Edit News</h2>
+        <h2 className="text-gray-600 font-bold">Edit TeachingResource</h2>
       </div>
 
       <div className="flex justify-between w-100 mt-4">
@@ -66,10 +70,10 @@ const Edit: React.FC<EditProps> = ({ id }) => {
           {loading ? (
             <LoadingSpinner />
           ) : (
-            <NewsForm
+            <TeachingResourceForm
               pending={pending}
-              news={data?.news}
-              onSaveNews={onEditNews}
+              teachingResource={data?.teachingResource}
+              onSaveTeachingResource={onEditTeachingResource}
             />
           )}
         </Panel>
@@ -78,7 +82,7 @@ const Edit: React.FC<EditProps> = ({ id }) => {
   );
 };
 
-const AdminNewsEdit: NextPageWithLayout = () => {
+const AdminTeachingResourceEdit: NextPageWithLayout = () => {
   const router = useRouter();
 
   const { id } = router.query as { id?: string };
@@ -90,7 +94,7 @@ const AdminNewsEdit: NextPageWithLayout = () => {
   return <Edit id={id} />;
 };
 
-AdminNewsEdit.Layout = AdminLayout;
+AdminTeachingResourceEdit.Layout = AdminLayout;
 
 export async function getStaticProps() {
   return {
@@ -107,4 +111,4 @@ export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
   };
 };
 
-export default AdminNewsEdit;
+export default AdminTeachingResourceEdit;

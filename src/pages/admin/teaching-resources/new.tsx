@@ -17,16 +17,20 @@ const AdminTeachingResourceCreate: NextPageWithLayout = () => {
     onCreate,
     pending,
     error: updateError,
-  } = useNetlifyPostFunction<{ news: TeachingResource }>({ user });
+  } = useNetlifyPostFunction<{ teachingResource: TeachingResource }>({ user });
 
-  const onCreateTeachingResource = async (news: TeachingResource) => {
-    const res = await onCreate(`/admin-news`, { news });
+  const onCreateTeachingResource = async (
+    teachingResource: TeachingResource
+  ) => {
+    const res = await onCreate(`/admin-teaching-resources`, {
+      teachingResource,
+    });
 
     if (res !== undefined) {
       toast.success("Teacher Resource successfully created!");
 
       setTimeout(() => {
-        router.push("/admin/news");
+        router.push("/admin/teaching-resources");
       }, 800);
     }
   };

@@ -27,8 +27,8 @@ export const NewsletterSubscriber = () => {
     setTimeout(() => {
       setPending(false);
       setSuccess(true);
+      console.log("SUBSCRIBE", email);
     }, 3000);
-    console.log("SUBSCRIBE", email);
   };
 
   if (success) {

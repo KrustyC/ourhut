@@ -16,8 +16,25 @@ export const TeachingResourceCard: React.FC<TeachingResourceCardProps> = ({
       </span>
 
       <div className="flex items-end mr-4 mb-2 text-sm text-gray-600">
-        {teachingResource.materials.length} materials
+        {teachingResource.materials.length} material
+        {teachingResource.materials.length > 1 ? "s" : ""}
       </div>
+    </div>
+
+    <div className="flex justify-end items-end grow mt-2 w-100">
+      <a
+        href={`/admin/teaching-resources/${teachingResource._id}`}
+        className="btn-admin btn-primary btn-sm text-base uppercase mr-2"
+      >
+        Edit
+      </a>
+
+      <button
+        className="btn-admin btn-danger btn-sm text-base uppercase"
+        onClick={onWantToRemoveTeachingResource}
+      >
+        Remove
+      </button>
     </div>
   </div>
 );
