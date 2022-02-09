@@ -70,9 +70,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="fixed top-0 left-0 w-screen h-screen bg-black z-50">
           <div className="w-screen h-24 flex justify-between items-center px-16">
             <NextLink href="/">
-              <a className="flex items-center z-50">
+              <a className="flex items-center z-50 inline-block">
                 <div className="h-3 w-3 mr-1 rounded-full bg-primary" />
-                <span className="text-3xl font-semibold text-white">
+                <span className="text-4xl font-semibold text-white">
                   Our Hut
                 </span>
               </a>
@@ -80,8 +80,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             <BurgerMenu color="bg-primary" isOpen onClick={onToggle} />
           </div>
 
-          <div className="flex flex-col ml-20 mt-4">
-            <div className="flex flex-col">
+          <div className="flex flex-col mx-20 mt-4">
+            <div className="flex flex-col items-start">
               {LINKS.map(({ path, label }) => {
                 return (
                   <NextLink href={path} key={path}>
