@@ -68,15 +68,22 @@ export const MaterialInput: React.FC<MaterialInputProps> = ({
       </div>
 
       <div className="w-1/5 pl-2 pr-3">
-        link
-        {/* <UploadImageButton
-          actionCopy={
-            materialInput.link ? getFileName(materialInput.link) : "Add Link"
-          }
-          className="w-40 underline text-cyan-500 text-left truncate text-ellipsis"
-          folder="files"
-          onConfirm={updateMaterialInputImage}
-        /> */}
+        <Controller
+          name={`${name}.link`}
+          rules={{ required: true, validate: isValidDate }}
+          control={control}
+          render={(props) => (
+            <UploadImageButton
+              actionCopy={
+                props.field.value ? getFileName(props.field.value) : "Add Link"
+              }
+              className="w-40 underline text-cyan-500 text-left truncate text-ellipsis"
+              folder="files"
+              onConfirm={(file) => props.field.onChange(file)}
+            />
+          )}
+        />
+        {/*  */}
       </div>
 
       <button

@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { RightArrowIcon } from "@/components/icons/RightArrow";
 import { Navbar } from "@/components/Navbar";
+import { NewsletterSubscriber } from "@/components/NewsletterSubscriber";
 
 const ContactsPage = () => (
   <div>
@@ -19,7 +20,7 @@ const ContactsPage = () => (
         }}
       />
 
-      <div className="flex items-center w-screen px-60 grow">
+      <div className="flex items-center w-screen px-20 xl:px-60 grow">
         <div className="flex bg-gray-100 px-16 py-12 h-[700px] w-full">
           <div className="w-8/12 flex h-full flex-col justify-between">
             <div className="flex flex-col">
@@ -41,7 +42,7 @@ const ContactsPage = () => (
                 <br />
               </p>
 
-              <div className="flex flex-col font-semibold text-sm text-black mt-8">
+              <div className="flex flex-col font-medium text-sm text-black mt-8">
                 <a className="text-black" href="mailto:ourhutteam@ourhut.co.uk">
                   ourhutteam@ourhut.co.uk
                 </a>
@@ -60,8 +61,9 @@ const ContactsPage = () => (
           <div className=" flex flex-col justify-between w-4/12 border-l-4 border-black pl-16">
             <div className="flex flex-col">
               <a
-                href=""
+                href="https://www.etsy.com/uk/shop/OurHutShop"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center text-black font-semibold text-lg"
               >
                 <RightArrowIcon className="fill-black h-4 h-4 mr-2" /> Etsy Shop
@@ -93,23 +95,7 @@ const ContactsPage = () => (
               </Link>
             </div>
 
-            <div className="flex flex-col">
-              <span className="text-black font-medium text-xl mb-2">
-                Subscribe to our newsletter
-              </span>
-
-              <span className="text-primary underline font-semibold text-xl mb-8">
-                Enter your email address
-              </span>
-              <div>
-                <button
-                  className="btn btn-transparent-outlined font-bold w-40 text-black"
-                  onClick={() => console.log("subscribe")}
-                >
-                  Subscribe
-                </button>
-              </div>
-            </div>
+            <NewsletterSubscriber />
           </div>
         </div>
       </div>

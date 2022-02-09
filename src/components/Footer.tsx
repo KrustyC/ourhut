@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { RightArrowIcon } from "@/components/icons/RightArrow";
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
@@ -9,19 +10,23 @@ export const Footer: React.FC = () => {
       <div className="flex items-center">© Our Hut 2022</div>
 
       <div className="flex text-sm">
-        <span className="flex items-center mr-4">
-          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Cookie
-          Policy
-        </span>
-        <span className="flex items-center mr-4">
-          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Contact Us
-        </span>
-        <span className="flex items-center mr-4">
-          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Volunteer
+        <Link href="/privacy-policy">
+          <a className="flex items-center mr-8 text-gray-400">
+            <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-1" /> Privacy
+            Policy
+          </a>
+        </Link>
+        <Link href="/contacts">
+          <a className="flex items-center mr-8 text-gray-400">
+            <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-1" /> Contact Us
+          </a>
+        </Link>
+        <span className="flex items-center mr-8">
+          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-1" /> Volunteer
           Form
         </span>
-        <span className="flex items-center mr-4">
-          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Teacher
+        <span className="flex items-center mr-8">
+          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-1" /> Teacher
           Resources
         </span>
       </div>

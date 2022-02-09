@@ -44,7 +44,7 @@
   }
 
   .btn.btn-transparent-outlined {
-    @apply text-black border-black border-2 bg-transparent hover:bg-black hover:text-white;
+    @apply text-black border-black border-2 bg-transparent hover:bg-black hover:text-white disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:text-gray-400 disabled:border-gray-200 disabled:shadow-none  disabled:cursor-not-allowed;
   }
 
   .btn.btn-transparent-outlined-white {
