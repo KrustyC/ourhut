@@ -12,7 +12,7 @@ export const GuardianNews: React.FC = () => (
         underworld
       </h2>
 
-      <p>Oliver Wainwright - Tue 29 Jun 2021 10.01 BST</p>
+      <p className="pt-2">Oliver Wainwright - Tue 29 Jun 2021 10.01 BST</p>
 
       <p className="mt-6 mb-4">
         The Sublime Structures in Crystal Palace Park Project, devised and run

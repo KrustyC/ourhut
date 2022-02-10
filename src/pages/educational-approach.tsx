@@ -29,8 +29,8 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
         <Navbar
           config={{
             burgerColor: "bg-white",
-            textColor: "text-white",
-            logoColor: "bg-white",
+            textColor: "fill-white",
+            logoColor: "fill-white",
           }}
         />
 

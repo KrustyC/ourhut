@@ -49,16 +49,18 @@ export const NewsletterSubscriber = () => {
     );
   }
 
+  // @TODO autofocus on input and useCLickOutside with barriera
+
   return (
     <div className="flex flex-col">
-      <span className="text-black font-medium text-xl mb-1">
+      <span className="text-black font-medium text-sm mb-1">
         Subscribe to our newsletter
       </span>
 
-      <div className="h-12 mb-4 flex items-center">
+      <div className="h-8 mb-4 flex items-center">
         {!displayEmailInput ? (
           <span
-            className="text-primary underline font-semibold text-xl underline"
+            className="text-primary underline font-semibold text-sm underline"
             role="button"
             onClick={onDisplayEmailInput}
           >
@@ -67,7 +69,7 @@ export const NewsletterSubscriber = () => {
         ) : (
           <input
             type="text"
-            className="h-full w-full  form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            className="appearance-none bg-transparent border-b-2 border-black w-full text-gray-700 mr-3 py-1 leading-tight focus:outline-none w-full"
             value={email}
             onChange={onChangeEmail}
           />

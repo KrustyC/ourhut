@@ -21,8 +21,8 @@ const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
         <Navbar
           config={{
             burgerColor: "bg-primary",
-            textColor: "text-black",
-            logoColor: "bg-primary",
+            textColor: "fill-black",
+            logoColor: "fill-primary",
           }}
         />
 

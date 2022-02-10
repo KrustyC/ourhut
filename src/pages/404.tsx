@@ -8,8 +8,8 @@ export default function Custom404() {
       <Navbar
         config={{
           burgerColor: "bg-primary",
-          textColor: "text-black",
-          logoColor: "bg-primary",
+          textColor: "fill-black",
+          logoColor: "fill-primary",
         }}
       />
       <div className="w-full h-5/6 flex flex-col items-center justify-center z-1">

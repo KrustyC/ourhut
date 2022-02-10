@@ -56,8 +56,8 @@ const Home: NextPage = () => {
         <Navbar
           config={{
             burgerColor: "bg-primary",
-            textColor: "text-white",
-            logoColor: "bg-primary",
+            textColor: "fill-white",
+            logoColor: "fill-primary",
           }}
         />
 
@@ -75,13 +75,13 @@ const Home: NextPage = () => {
           <div className="mr-[-320px] flex text-sm text-white transform rotate-90 top-1/2">
             <span className="flex items-center mr-8">
               <RightArrowIcon className="fill-primary h-5 h-5 mr-2" /> Volunteer
-              Form
+              &nbsp; Form
             </span>
 
-            <Link href="/teaching-resources">
+            <Link href="/resources">
               <a className="flex items-center text-white">
                 <RightArrowIcon className="fill-primary h-5 h-5 mr-2" /> Teacher
-                Resources
+                &nbsp; Resources
               </a>
             </Link>
           </div>

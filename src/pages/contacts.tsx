@@ -15,8 +15,8 @@ const ContactsPage = () => (
       <Navbar
         config={{
           burgerColor: "bg-primary",
-          textColor: "text-black",
-          logoColor: "bg-primary",
+          textColor: "fill-black",
+          logoColor: "fill-primary",
         }}
       />
 
@@ -24,7 +24,7 @@ const ContactsPage = () => (
         <div className="flex bg-gray-100 px-16 py-12 h-[700px] w-full">
           <div className="w-8/12 flex h-full flex-col justify-between">
             <div className="flex flex-col">
-              <p className="font-bold text-xl leading-8">
+              <p className="font-bold text-xl leading-7">
                 Our Hut
                 <br />
                 Registered Charity
@@ -58,7 +58,7 @@ const ContactsPage = () => (
             </div>
           </div>
 
-          <div className=" flex flex-col justify-between w-4/12 border-l-4 border-black pl-16">
+          <div className=" flex flex-col justify-between w-4/12 border-l-4 border-black border-rounded pl-16">
             <div className="flex flex-col">
               <a
                 href="https://www.etsy.com/uk/shop/OurHutShop"

@@ -12,21 +12,21 @@ export const Footer: React.FC = () => {
       <div className="flex text-sm">
         <Link href="/privacy-policy">
           <a className="flex items-center mr-8 text-gray-400">
-            <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-1" /> Privacy
+            <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Privacy
             Policy
           </a>
         </Link>
         <Link href="/contacts">
           <a className="flex items-center mr-8 text-gray-400">
-            <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-1" /> Contact Us
+            <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Contact Us
           </a>
         </Link>
         <span className="flex items-center mr-8">
-          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-1" /> Volunteer
+          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Volunteer
           Form
         </span>
         <span className="flex items-center mr-8">
-          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-1" /> Teacher
+          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Teacher
           Resources
         </span>
       </div>

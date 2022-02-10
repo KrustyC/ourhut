@@ -36,13 +36,13 @@ const NewsPage: NextPage<NewsPageProps> = ({
         <Navbar
           config={{
             burgerColor: "bg-white",
-            textColor: "text-white",
-            logoColor: "bg-white",
+            textColor: "fill-white",
+            logoColor: "fill-white",
           }}
         />
 
-        <div className="pl-32 pr-16">
-          <p className="text-6xl text-white font-bold ml-[-4px]">News</p>
+        <div className="pt-6 pl-48 pr-16 pb-8">
+          <p className="text-6xl text-white font-semibold ml-[-4px]">News</p>
 
           {newsHeadline ? (
             <p className="mt-4 text-white font-medium w-1/2 h-40">
@@ -71,24 +71,26 @@ const NewsPage: NextPage<NewsPageProps> = ({
       </div>
 
       <div className="flex flex-col">
-        <div className="flex flex-col py-16">
-          <h1 className="text-black font-bold ml-32 mb-12">Future Events</h1>
+        <div className="flex flex-col py-24">
+          <h1 className="text-black font-semibold ml-48 mb-12">
+            Future Events
+          </h1>
           <Carousel events={upcomingEvents} />
         </div>
 
-        <div className="flex flex-col px-32 py-16 bg-light-gray">
-          <h1 className="text-black font-bold mb-8">Past Events</h1>
-          <div className="grid grid-cols-4 gap-16">
+        <div className="flex flex-col px-48 py-24 pb-32 bg-light-gray">
+          <h1 className="text-black font-bold mb-16">Past Events</h1>
+          <div className="grid grid-cols-4 gap-8">
             {pastEvents.map((event) => (
               <PastEventCard key={event._id} event={event} />
             ))}
           </div>
         </div>
+      </div>
 
-        <div className="flex flex-col py-16 px-32">
-          <h1 className="text-black font-bold mb-8">Recent Press</h1>
-          <GuardianNews />
-        </div>
+      <div className="flex flex-col py-24 px-48">
+        <h1 className="text-black font-bold mb-8">Recent Press</h1>
+        <GuardianNews />
       </div>
 
       <Footer />

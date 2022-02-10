@@ -15,8 +15,8 @@ const PrivacyPolicyPage: NextPage = () => {
         <Navbar
           config={{
             burgerColor: "bg-primary",
-            textColor: "text-black",
-            logoColor: "bg-primary",
+            textColor: "fill-black",
+            logoColor: "fill-primary",
           }}
         />
 

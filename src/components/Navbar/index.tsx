@@ -1,6 +1,8 @@
 import { useState } from "react";
 import NextLink from "next/link";
 import { Transition } from "@tailwindui/react";
+import { OurHutLogoIcon } from "@/components/icons/OurHutLogo";
+import { OurHutLogoTextIcon } from "@/components/icons/OurHutLogoText";
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
@@ -27,8 +29,8 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   config: {
     burgerColor = "bg-primary",
-    logoColor = "bg-primary",
-    textColor = "text-black",
+    logoColor = "fill-primary",
+    textColor = "fill-black",
   },
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,10 +49,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center z-50">
           <NextLink href="/">
             <a className="flex items-center z-50">
-              <div className={`h-3 w-3 mr-1 rounded-full ${logoColor}`} />
-              <span className={`text-4xl font-semibold ${textColor}`}>
-                Our Hut
-              </span>
+              <OurHutLogoIcon className={`h-4 w-4 ${logoColor}`} />
+              <OurHutLogoTextIcon className={`ml-4 h-8 w-32 ${textColor}`} />
             </a>
           </NextLink>
         </div>
@@ -71,10 +71,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="w-screen h-24 flex justify-between items-center px-16">
             <NextLink href="/">
               <a className="flex items-center z-50 inline-block">
-                <div className="h-3 w-3 mr-1 rounded-full bg-primary" />
-                <span className="text-4xl font-semibold text-white">
-                  Our Hut
-                </span>
+                <OurHutLogoIcon className="h-4 w-4 fill-white" />
+                <OurHutLogoTextIcon className={`ml-4 h-8 w-32 fill-white`} />
               </a>
             </NextLink>
             <BurgerMenu color="bg-primary" isOpen onClick={onToggle} />
