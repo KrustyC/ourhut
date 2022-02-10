@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
+  Component: NextPageWithLayout<any>;
 };
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
