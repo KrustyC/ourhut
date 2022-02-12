@@ -1,27 +1,25 @@
-import { Modal } from "./Modal";
+import type { ReactElement } from "react";
 import { useNetlifyDeleteFunction } from "@/hooks/useNetlifyDeleteFunction";
 import { useAuth } from "@/contexts/AuthContext";
 import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
+import { Modal } from "./Modal";
 
-interface DeleteItemModalProps {
+interface DeleteItemModalProps<T> {
   itemGenericName: string;
-  itemToDelete: any;
+  itemToDelete: T;
   questionItem: string;
   deletePath: string;
   onSuccess: () => void;
   onCancel: () => void;
 }
 
-export const DeleteItemModal: React.FC<DeleteItemModalProps> = ({
-  itemGenericName,
-  itemToDelete,
-  questionItem,
-  deletePath,
-  onSuccess,
-  onCancel,
-}) => {
+export const DeleteItemModal = <T extends object>(
+  props: DeleteItemModalProps<T>
+): ReactElement | null => {
+  const { itemToDelete, questionItem, deletePath, onSuccess, onCancel } = props;
+
   const { user } = useAuth();
-  const { onDelete, pending, error } = useNetlifyDeleteFunction({
+  const { onDelete, pending } = useNetlifyDeleteFunction({
     user,
   });
 

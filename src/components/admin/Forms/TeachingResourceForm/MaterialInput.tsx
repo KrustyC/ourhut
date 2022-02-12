@@ -1,22 +1,27 @@
-import { Controller, UseFormRegister, Control } from "react-hook-form";
+import type { ReactElement } from "react";
+import {
+  Controller,
+  UseFormRegister,
+  Control,
+  FieldPath,
+} from "react-hook-form";
 import { getFileName } from "@/utils/images";
 import { DayPicker } from "@/components/admin/DayPicker";
 import { UploadFileButton } from "@/components/admin/UploadFileButton";
 import { isValidDate } from "@/utils/validators";
 
-interface MaterialInputProps {
-  name: string;
-  control: Control;
-  register: UseFormRegister<any>;
+interface MaterialInputProps<T> {
+  name: FieldPath<T>;
+  control: Control<T>;
+  register: UseFormRegister<T>;
   onRemove: VoidFunction;
 }
 
-export const MaterialInput: React.FC<MaterialInputProps> = ({
-  name,
-  register,
-  control,
-  onRemove,
-}) => {
+export const MaterialInput = <T extends object>(
+  props: MaterialInputProps<T>
+): ReactElement | null => {
+  const { name, register, control, onRemove } = props;
+
   return (
     <div className="flex items-center rounded border-b border-slate-500 px-4 py-2 w-full">
       <div className="w-3/12">

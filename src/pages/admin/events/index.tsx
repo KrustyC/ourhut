@@ -1,5 +1,3 @@
-import type { NextPage } from "next";
-import type { ReactElement } from "react";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { IndexLayout } from "@/layouts/AdminIndexLayout";
@@ -11,7 +9,7 @@ import { Event } from "@/types/global";
 import { useAdminIndexList } from "@/hooks/useAdminIndexList";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminEvents: NextPageWithLayout<undefined> =  () => {
+const AdminEvents: NextPageWithLayout<undefined> = () => {
   const {
     items: events,
     loading,

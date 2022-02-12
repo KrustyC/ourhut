@@ -1,7 +1,8 @@
+import { Editor } from "@tiptap/react";
 import { BubbleMenu as TipTapBubbleMenu } from "@tiptap/react";
 
 interface BubbleMenuProps {
-  editor: any;
+  editor: Editor;
 }
 
 interface BubbleMenuButtonProps {

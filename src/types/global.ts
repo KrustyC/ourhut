@@ -38,6 +38,23 @@ export type Product = {
   etsyLink: string;
 };
 
+export type FormProduct = Omit<Product, "price"> & {
+  price: string;
+};
+
+export type Project = {
+  _id?: string;
+  title: string;
+  intro: string;
+  description: string;
+  images: string;
+  links: {
+    teacherResources?: string;
+    press?: string;
+    research?: string;
+  };
+};
+
 export type News = {
   _id?: string;
   title: string;
@@ -70,4 +87,5 @@ export type Event = {
       period: "AM" | "PM";
     };
   };
+  isPublished?: boolean;
 };

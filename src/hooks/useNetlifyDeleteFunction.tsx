@@ -10,7 +10,7 @@ interface UseNetlifyFunctionProps {
 interface UseNetlifyFunctionReturn<T> {
   pending: boolean;
   error?: Error | undefined;
-  onDelete: (path: string) => Promise<any>;
+  onDelete: (path: string) => Promise<unknown>;
 }
 
 export function useNetlifyDeleteFunction<T>({
@@ -19,7 +19,7 @@ export function useNetlifyDeleteFunction<T>({
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<Error>();
 
-  const onDelete = async (path: string): Promise<any> => {
+  const onDelete = async (path: string): Promise<unknown> => {
     setPending(true);
     setError(undefined);
 

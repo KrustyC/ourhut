@@ -10,7 +10,7 @@ interface UseNetlifyFunctionProps {
 interface UseNetlifyFunctionReturn<T> {
   pending: boolean;
   error?: Error | undefined;
-  onUpdate: (path: string, body: T) => Promise<any>;
+  onUpdate: (path: string, body: T) => Promise<unknown>;
 }
 
 export function useNetlifyPutFunction<T>({
@@ -19,7 +19,7 @@ export function useNetlifyPutFunction<T>({
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<Error>();
 
-  const onUpdate = async (path: string, body: T): Promise<any> => {
+  const onUpdate = async (path: string, body: T): Promise<unknown> => {
     setPending(true);
     setError(undefined);
 

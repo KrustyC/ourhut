@@ -1,4 +1,5 @@
 import { format, parse } from "date-fns";
+import { Event } from "@/types/global";
 import { CalendarIcon } from "../../icons/Calendar";
 import { LinkIcon } from "../../icons/Link";
 
@@ -7,7 +8,7 @@ function formatDate(day: string): string {
 }
 
 interface EventCardProps {
-  event: any;
+  event: Event;
   onWantToRemoveEvent: VoidFunction;
 }
 

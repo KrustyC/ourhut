@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
+
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { getFileName } from "@/utils/images";
 import { Modal } from "../Modal";

@@ -124,7 +124,7 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
               <MaterialInput
                 name={`materials.${index}`}
                 register={register}
-                control={control as any}
+                control={control}
                 onRemove={() => onRemoveMaterial(index)}
               />
             </li>

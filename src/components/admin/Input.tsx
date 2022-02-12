@@ -1,11 +1,13 @@
+import type { ReactElement } from "react";
 import type {
   RegisterOptions,
   UseFormRegister,
   FieldError,
+  FieldPath,
 } from "react-hook-form";
 
-interface InputProps {
-  name: string;
+interface InputProps<T> {
+  name: FieldPath<T>;
   label?: string;
   error?: FieldError;
   hideErrorMessage?: boolean;
@@ -13,20 +15,24 @@ interface InputProps {
   placeholder: string;
   width?: string;
   options?: RegisterOptions;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<T>;
 }
 
-export const Input: React.FC<InputProps> = ({
-  width = "",
-  name,
-  hideErrorMessage = false,
-  error,
-  type,
-  options = {},
-  label,
-  placeholder,
-  register,
-}) => {
+export const Input = <T extends object>(
+  props: InputProps<T>
+): ReactElement | null => {
+  const {
+    width = "",
+    name,
+    hideErrorMessage = false,
+    error,
+    type,
+    options = {},
+    label,
+    placeholder,
+    register,
+  } = props;
+
   return (
     <div className={`flex flex-col ${width}`}>
       {label ? (

@@ -3,7 +3,7 @@ import { ResourcesLayout } from "@/layouts/ResourcesLayout";
 import { NextPageWithLayout } from "@/types/app";
 
 interface ResearchPageProps {
-  publications: any[];
+  publications: unknown[];
 }
 
 const ResearchPage: NextPageWithLayout<ResearchPageProps> = ({

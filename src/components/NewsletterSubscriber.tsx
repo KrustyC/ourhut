@@ -11,7 +11,7 @@ export const NewsletterSubscriber = () => {
 
   const [pending, setPending] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
 
   const onDisplayEmailInput = () => {
     setDisplayEmailInput(true);

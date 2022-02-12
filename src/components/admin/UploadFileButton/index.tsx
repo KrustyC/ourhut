@@ -75,7 +75,7 @@ export const UploadFileButton: React.FC<UploadFileButtonProps> = ({
         style={{ display: "none" }}
         type="file"
         accept={accept}
-        onChange={(e) => handleFileInput(e as any)}
+        onChange={(e) => handleFileInput(e as unknown as FileEventTarget)}
       />
 
       {file !== null ? (

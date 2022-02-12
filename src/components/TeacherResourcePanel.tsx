@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { parse, format } from "date-fns";
 import { TeachingResource } from "@/types/global";
@@ -20,7 +20,12 @@ interface ResourceLinkProps {
 const ResourceLink: React.FC<ResourceLinkProps> = ({ pdf, website }) => {
   if (!!pdf) {
     return (
-      <a className="text-black underline" href={pdf} target="_blank" rel="noopener noreferrer">
+      <a
+        className="text-black underline"
+        href={pdf}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         pdf
       </a>
     );
@@ -28,7 +33,12 @@ const ResourceLink: React.FC<ResourceLinkProps> = ({ pdf, website }) => {
 
   if (!!website) {
     return (
-      <a className="text-black underline" href={website} target="_blank" rel="noopener noreferrer">
+      <a
+        className="text-black underline"
+        href={website}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         website
       </a>
     );

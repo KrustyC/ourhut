@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import { Modal } from "../Modal";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";

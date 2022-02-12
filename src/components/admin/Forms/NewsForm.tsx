@@ -86,7 +86,7 @@ export const NewsForm: React.FC<NewsFormProps> = ({
                 render={({ field: { value, onChange, onBlur } }) => (
                   <Editor
                     value={value}
-                    error={errors?.description as any}
+                    error={errors?.description}
                     onChange={onChange}
                     onBlur={onBlur}
                   />

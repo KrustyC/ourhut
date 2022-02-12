@@ -1,5 +1,4 @@
-import type { NextPage } from "next";
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { AdminLayout } from "@/layouts/AdminLayout";
 import { useAdminIndexFiles } from "@/hooks/useAdminIndexFiles";
@@ -10,7 +9,7 @@ import { DeleteImageModal } from "@/components/admin/Modals/DeleteImageModal";
 import { UploadFileButton } from "@/components/admin/UploadFileButton";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminPartners: NextPageWithLayout<undefined> =  () => {
+const AdminPartners: NextPageWithLayout<undefined> = () => {
   const {
     files: partners,
     loading,

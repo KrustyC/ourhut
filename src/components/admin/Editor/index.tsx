@@ -1,4 +1,4 @@
-import { useEditor, EditorContent, JSONContent } from "@tiptap/react";
+import { useEditor, EditorContent } from "@tiptap/react";
 import { FieldError } from "react-hook-form";
 import StarterKit from "@tiptap/starter-kit";
 import BubbleMenuExtension from "@tiptap/extension-bubble-menu";
@@ -22,12 +22,12 @@ export const Editor: React.FC<EditorProps> = ({
     extensions: [
       StarterKit,
       BubbleMenuExtension.configure({
-        element: document.querySelector(".bubble-menu") as any,
+        element: document.querySelector(".bubble-menu") as HTMLElement,
       }),
     ],
     content: value === null || Object.keys(value).length === 0 ? null : value,
     onUpdate({ editor }) {
-    onChange(editor.getHTML());
+      onChange(editor.getHTML());
     },
   });
 

@@ -1,5 +1,5 @@
 import { Controller, useForm } from "react-hook-form";
-import { Product } from "@/types/global";
+import { Product, FormProduct } from "@/types/global";
 import { ImageSelector } from "@/components/admin/ImageSelector";
 import { isValidDescription } from "@/utils/validators";
 import { LoadingSpinner } from "../LoadingSpinner";
@@ -10,7 +10,7 @@ interface ProductFormProps {
   className?: string;
   product?: Product;
   pending?: boolean;
-  onSaveProduct: (product: Product) => void;
+  onSaveProduct: (product: FormProduct) => void;
 }
 
 const DEFAULT_PRODUCT: Product = {
@@ -32,8 +32,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     control,
     handleSubmit,
     formState: { isDirty, errors, isValid },
-  } = useForm<Product>({
-    defaultValues: { ...product },
+  } = useForm<FormProduct>({
+    defaultValues: { ...product, price: product.price?.toString() || "" },
     mode: "onBlur",
   });
 
@@ -128,7 +128,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             render={({ field: { value, onChange, onBlur } }) => (
               <Editor
                 value={value}
-                error={errors?.description as any}
+                error={errors?.description}
                 onChange={onChange}
                 onBlur={onBlur}
               />

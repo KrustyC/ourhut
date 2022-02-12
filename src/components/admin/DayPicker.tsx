@@ -1,4 +1,6 @@
 /* eslint-disable react/display-name */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React from "react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { FieldError } from "react-hook-form";

@@ -9,7 +9,7 @@ import { ProductForm } from "@/components/admin/Forms/ProductForm";
 import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
 import { useNetlifyPutFunction } from "@/hooks/useNetlifyPutFunction";
 import { Panel } from "@/components/admin/Panel";
-import { Product } from "@/types/global";
+import { Product, FormProduct } from "@/types/global";
 import { NextPageWithLayout } from "@/types/app";
 
 interface EditProps {
@@ -31,11 +31,11 @@ const Edit: React.FC<EditProps> = ({ id }) => {
     error: updateError,
   } = useNetlifyPutFunction<{ product: Product }>({ user });
 
-  const onEditProduct = async (updatedProduct: Product) => {
+  const onEditProduct = async (updatedProduct: FormProduct) => {
     const res = await onUpdate(`/admin-products?id=${id}`, {
       product: {
         ...updatedProduct,
-        price: parseFloat((updatedProduct.price as any) || "0"),
+        price: parseFloat(updatedProduct.price || "0"),
       },
     });
 
@@ -80,7 +80,7 @@ const Edit: React.FC<EditProps> = ({ id }) => {
   );
 };
 
-const AdminProductsEdit: NextPageWithLayout<undefined> =  () => {
+const AdminProductsEdit: NextPageWithLayout<undefined> = () => {
   const router = useRouter();
 
   const { id } = router.query as { id?: string };

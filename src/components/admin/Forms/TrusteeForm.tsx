@@ -60,7 +60,7 @@ export const TrusteeForm: React.FC<TrusteeFormProps> = ({
             render={({ field: { onBlur, onChange, value } }) => (
               <Editor
                 value={value}
-                error={errors?.description as any}
+                error={errors?.description}
                 onChange={onChange}
                 onBlur={onBlur}
               />

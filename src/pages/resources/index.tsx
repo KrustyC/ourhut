@@ -22,7 +22,7 @@ const TeacherResourcesPage: NextPageWithLayout<TeacherResourcesPageProps> = ({
       </Head>
 
       <div id="teacher-resources-list" className="flex flex-col">
-        {teachingResources.map((teachingResource, i) => (
+        {teachingResources.map((teachingResource) => (
           <TeacherResourcePanel
             key={teachingResource._id}
             teachingResource={teachingResource}

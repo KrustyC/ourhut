@@ -5,7 +5,7 @@ interface BurgerIconProps {
 
 export const BurgerIcon: React.FC<BurgerIconProps> = ({
   className = "h-6 w-6",
-  onClick = () => {},
+  onClick = () => null,
 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
