@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { Product } from "@/types/global";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -26,11 +27,25 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
             logoColor: "fill-primary",
           }}
         />
-
         <div className="px-32">
-          <h1 className="text-6xl text-black font-bold my-8">
+          <h1 className="text-6xl text-black font-semibold my-8">
             Our Hut Projects
           </h1>
+
+          <div className="grid grid-cols-4 gap-4 mt-4 px-5">
+            {projects.map((project) => (
+              <Link
+                key={project._id}
+                href={`/projects/${project._id}`}
+                passHref
+              >
+                <a className="cursor-pointer w-full h-72 bg-red-100 relative">
+                  {/* <img className="absolute object-cover w-full h-full" src={event.image} /> */}
+                  Whats my motherfucking name
+                </a>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
 

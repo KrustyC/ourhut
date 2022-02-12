@@ -197,3 +197,7 @@
 #teacher-resources-list > div:nth-of-type(6) {
   background: red;
 }
+
+#project-description > p {
+  margin-bottom: 20px !important;
+}

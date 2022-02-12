@@ -1,5 +1,6 @@
 import { Handler, HandlerEvent } from "@netlify/functions";
 import { jsonResponse } from "../shared/utils";
+import { ObjectId } from "mongodb";
 import { connect } from "../shared/mongodb-client";
 import { HTTP_METHODS } from "../shared/variables";
 
@@ -18,7 +19,7 @@ async function get(event: HandlerEvent) {
       const project = await client
         .db(process.env.MONGO_DB_NAME)
         .collection(PROJECTS_COLLECTION)
-        .findOne({ _id: id });
+        .findOne({ _id: new ObjectId(id) });
 
       if (!project) {
         return jsonResponse({
