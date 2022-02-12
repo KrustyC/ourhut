@@ -17,7 +17,8 @@ export type TeachingResourceMaterial = {
   name: string;
   date: string;
   host: string;
-  link: string;
+  pdf: string;
+  website: string;
 };
 
 export type TeachingResource = {

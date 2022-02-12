@@ -12,6 +12,31 @@ function formatDate(date: string) {
   return format(parse(date, "dd/MM/yyyy", new Date()), "dd-MM-yyyy");
 }
 
+interface ResourceLinkProps {
+  pdf?: string;
+  website?: string;
+}
+
+const ResourceLink: React.FC<ResourceLinkProps> = ({ pdf, website }) => {
+  if (!!pdf) {
+    return (
+      <a className="text-black underline" href={pdf} target="_blank" rel="noopener noreferrer">
+        pdf
+      </a>
+    );
+  }
+
+  if (!!website) {
+    return (
+      <a className="text-black underline" href={website} target="_blank" rel="noopener noreferrer">
+        website
+      </a>
+    );
+  }
+
+  return <span>-</span>;
+};
+
 export const TeacherResourcePanel: React.FC<TeacherResourcePanelProps> = ({
   teachingResource,
 }) => {
@@ -75,7 +100,12 @@ export const TeacherResourcePanel: React.FC<TeacherResourcePanelProps> = ({
                   <td className="w-1/4 py-4 overflow-hidden truncate text-ellipsis px-2">
                     {material.host}
                   </td>
-                  <td className="w-1/12 py-4 px-2">1961</td>
+                  <td className="w-1/12 py-4 px-2">
+                    <ResourceLink
+                      pdf={material.pdf}
+                      website={material.website}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>

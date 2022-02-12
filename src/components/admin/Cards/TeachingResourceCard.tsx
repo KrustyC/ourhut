@@ -9,7 +9,7 @@ export const TeachingResourceCard: React.FC<TeachingResourceCardProps> = ({
   teachingResource,
   onWantToRemoveTeachingResource,
 }) => (
-  <div className="bg-white shadow rounded-lg p-4 ">
+  <div className="bg-white shadow rounded-lg p-4 flex flex-col">
     <div className="flex flex-col">
       <span className="text-xl font-bold text-gray-900">
         {teachingResource.title}
@@ -21,7 +21,7 @@ export const TeachingResourceCard: React.FC<TeachingResourceCardProps> = ({
       </div>
     </div>
 
-    <div className="flex justify-end items-end grow mt-2 w-100">
+    <div className="flex justify-end items-end grow mt-2">
       <a
         href={`/admin/teaching-resources/${teachingResource._id}`}
         className="btn-admin btn-primary btn-sm text-base uppercase mr-2"

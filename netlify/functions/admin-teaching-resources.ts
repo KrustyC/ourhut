@@ -15,7 +15,8 @@ export const teachingResourceSchema = yup.object().shape({
       name: yup.string().required("material needs a name"),
       date: yup.string().required("material needs a date"),
       host: yup.string(),
-      link: yup.string(),
+      pdf: yup.string(),
+      website: yup.string(),
     })
   ),
 });

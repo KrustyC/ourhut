@@ -23,7 +23,8 @@ const DEFAULT_MATERIAL: TeachingResourceMaterial = {
   name: "",
   date: "",
   host: "",
-  link: "",
+  pdf: "",
+  website: "",
 };
 
 export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
@@ -68,7 +69,7 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
       className="flex flex-col w-full"
       onSubmit={handleSubmit(onSaveTeachingResource)}
     >
-      <div className="flex mb-8">
+      <div className="flex mb-4">
         <div className="mb-4 w-full">
           <Input
             register={register}
@@ -90,7 +91,7 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
         <Controller
           name="image"
           render={(props) => (
-            <div className="w-60">
+            <div className="w-full">
               <ImageSelector
                 currentImage={props.field.value}
                 error={errors?.image}
@@ -106,10 +107,18 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
       </div>
 
       <div className="mb-8">
-        <h3 className="text-lx mt-8 text-black font-semibold">
-          Your Materials
+        <h3 className="text-lx mt-8 text-gray-700 font-semibold uppercase">
+          Materials
         </h3>
         <ul className="mt-4">
+          <li className="flex items-center rounded border-b border-slate-500 px-4 py-2 w-full">
+            <div className="w-3/12 text-black font-bold">Name</div>
+            <div className="w-1/12 text-black font-bold">Date</div>
+            <div className="w-3/12 text-black font-bold">Host</div>
+            <div className="w-2/12 text-black font-bold">Website</div>
+            <div className="w-2/12 text-black font-bold">Pdf</div>
+            <div className="w-1/12 text-black font-bold">Actions</div>
+          </li>
           {controlledFields.map((material, index) => (
             <li key={material.id} className="mt-4">
               <MaterialInput

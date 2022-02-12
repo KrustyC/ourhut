@@ -35,7 +35,7 @@ export const ImageSelector: React.FC<ImageSelectorProps> = ({
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col items-start">
         {currentImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
