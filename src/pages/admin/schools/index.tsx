@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { School } from "@/types/global";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminSchools: NextPageWithLayout<undefined> =  () => {
+const AdminSchools: NextPageWithLayout<undefined> = () => {
   const {
     items: schools,
     loading,

@@ -78,7 +78,7 @@ const Edit: React.FC<EditProps> = ({ id }) => {
   );
 };
 
-const AdminNewsEdit: NextPageWithLayout<undefined> =  () => {
+const AdminNewsEdit: NextPageWithLayout<undefined> = () => {
   const router = useRouter();
 
   const { id } = router.query as { id?: string };

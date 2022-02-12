@@ -32,7 +32,8 @@ export const Footer: React.FC = () => {
         {LINKS.map(({ href, label }, i) => (
           <Link key={i} href={href}>
             <a className="group flex items-center mr-8 text-gray-400">
-              <RightArrowIcon className="group-hover:animate-slide fill-gray-400 h-4 h-4 mr-2" /> {label}
+              <RightArrowIcon className="group-hover:animate-slide fill-gray-400 h-4 h-4 mr-2" />{" "}
+              {label}
             </a>
           </Link>
         ))}

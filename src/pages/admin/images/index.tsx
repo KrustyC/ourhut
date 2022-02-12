@@ -9,7 +9,7 @@ import { DeleteImageModal } from "@/components/admin/Modals/DeleteImageModal";
 import { UploadFileButton } from "@/components/admin/UploadFileButton";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminImages: NextPageWithLayout<undefined> =  () => {
+const AdminImages: NextPageWithLayout<undefined> = () => {
   const {
     files: images,
     loading,

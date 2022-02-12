@@ -23,9 +23,7 @@ export default function Custom404() {
           Oops, we can not find the page!
         </h1>
         <Link href="/" passHref>
-          <a className="text-primary mt-8 underline">
-            Back to the home
-          </a>
+          <a className="text-primary mt-8 underline">Back to the home</a>
         </Link>
       </div>
     </div>

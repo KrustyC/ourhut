@@ -11,7 +11,7 @@ type Stats = {
   projects: number;
 };
 
-const AdminDashboard: NextPageWithLayout<undefined> =  () => {
+const AdminDashboard: NextPageWithLayout<undefined> = () => {
   const { user } = useAuth();
 
   const { data, loading, error } = useNetlifyGetFunction<Stats>({

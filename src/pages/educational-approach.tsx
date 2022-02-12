@@ -69,7 +69,9 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
               {primarySchools.map((school, i) => (
                 <div key={i} className="flex font-semibold">
                   <span className="text-black mr-2">{school.name},</span>
-                  <span className="text-gray-500 ">{school.geographicalArea}, {school.postcode}</span>
+                  <span className="text-gray-500 ">
+                    {school.geographicalArea}, {school.postcode}
+                  </span>
                 </div>
               ))}
             </div>
@@ -81,7 +83,9 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
               {secondarySchools.map((school, i) => (
                 <div key={i} className="flex font-semibold">
                   <span className="text-black mr-2">{school.name},</span>
-                  <span className="text-gray-500 ">{school.geographicalArea}, {school.postcode}</span>
+                  <span className="text-gray-500 ">
+                    {school.geographicalArea}, {school.postcode}
+                  </span>
                 </div>
               ))}
             </div>

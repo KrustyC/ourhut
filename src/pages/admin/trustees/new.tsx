@@ -9,7 +9,7 @@ import { Trustee } from "@/types/global";
 import { useRouter } from "next/router";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminTrusteesCreate: NextPageWithLayout<undefined> =  () => {
+const AdminTrusteesCreate: NextPageWithLayout<undefined> = () => {
   const { user } = useAuth();
   const router = useRouter();
 

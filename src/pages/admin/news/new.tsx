@@ -9,7 +9,7 @@ import { News } from "@/types/global";
 import { useRouter } from "next/router";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminNewsCreate: NextPageWithLayout<undefined> =  () => {
+const AdminNewsCreate: NextPageWithLayout<undefined> = () => {
   const { user } = useAuth();
   const router = useRouter();
 
@@ -61,7 +61,6 @@ export async function getStaticProps() {
     },
   };
 }
-
 
 // http://www.ourhut.co.uk/sublime-structures-lesson-plans/
 

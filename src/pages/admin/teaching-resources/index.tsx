@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { TeachingResource } from "@/types/global";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminTeachingResources: NextPageWithLayout<undefined> =  () => {
+const AdminTeachingResources: NextPageWithLayout<undefined> = () => {
   const {
     items: teachingResources,
     loading,

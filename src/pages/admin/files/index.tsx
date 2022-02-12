@@ -1,7 +1,7 @@
 import { AdminLayout } from "@/layouts/AdminLayout";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminFiles: NextPageWithLayout<undefined> =  () => {
+const AdminFiles: NextPageWithLayout<undefined> = () => {
   return (
     <div className="p-4">
       <h2 className="text-gray-600 font-bold">Files</h2>

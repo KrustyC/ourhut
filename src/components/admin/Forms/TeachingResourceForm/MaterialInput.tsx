@@ -29,21 +29,21 @@ export const MaterialInput = <T extends object>(
           className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-4 leading-tight focus:outline-none w-full"
           type="text"
           placeholder="Name"
-          {...register(`${name}.name`)}
+          {...register(`${name}.name` as unknown as FieldPath<T>)}
           aria-label="Resource name"
         />
       </div>
 
       <div className="w-1/12">
         <Controller
-          name={`${name}.date`}
+          name={`${name}.date` as unknown as FieldPath<T>}
           rules={{ required: true, validate: isValidDate }}
           control={control}
           render={(props) => (
             <DayPicker
               className="border-none shadow-none w-32"
               placeholder="Date"
-              value={props.field.value}
+              value={props.field.value as string}
               onChange={(newDate) => {
                 props.field.onChange(newDate);
                 props.field.onBlur();
@@ -58,7 +58,7 @@ export const MaterialInput = <T extends object>(
           className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-4 leading-tight focus:outline-none"
           type="text"
           placeholder="Host"
-          {...register(`${name}.host`)}
+          {...register(`${name}.host` as unknown as FieldPath<T>)}
           aria-label="Host"
         />
       </div>
@@ -68,19 +68,21 @@ export const MaterialInput = <T extends object>(
           className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-4 leading-tight focus:outline-none"
           type="text"
           placeholder="Add Url"
-          {...register(`${name}.website`)}
+          {...register(`${name}.website` as unknown as FieldPath<T>)}
           aria-label="Host"
         />
       </div>
 
       <div className="w-2/12 pl-2 pr-3">
         <Controller
-          name={`${name}.pdf`}
+          name={`${name}.pdf` as unknown as FieldPath<T>}
           control={control}
           render={(props) => (
             <UploadFileButton
               actionCopy={
-                props.field.value ? getFileName(props.field.value) : "Add Pdf"
+                props.field.value
+                  ? getFileName(props.field.value as string)
+                  : "Add Pdf"
               }
               accept=".pdf"
               className="w-40 underline text-cyan-500 text-left truncate text-ellipsis"

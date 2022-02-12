@@ -95,8 +95,14 @@ const NewsPage: NextPage<NewsPageProps> = ({
             ))}
           </div>
           <div>
-            <span className="flex mt-4 justify-end items-center" role="button" onClick={onToggleViewAll}>
-              <p className="font-semibold text-xl items-center mr-2">See {viewAll ? "less" : "more"}</p>
+            <span
+              className="flex mt-4 justify-end items-center"
+              role="button"
+              onClick={onToggleViewAll}
+            >
+              <p className="font-semibold text-xl items-center mr-2">
+                See {viewAll ? "less" : "more"}
+              </p>
               <UpArrowIcon
                 className={`h-6 w-6 cursor-pointer transition-all duration-500 fill-black ${
                   !viewAll ? "rotate-180" : ""

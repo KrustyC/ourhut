@@ -9,7 +9,7 @@ import { Trustee } from "@/types/global";
 import { useAdminIndexList } from "@/hooks/useAdminIndexList";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminTrustees: NextPageWithLayout<undefined> =  () => {
+const AdminTrustees: NextPageWithLayout<undefined> = () => {
   const {
     items: trustees,
     loading,

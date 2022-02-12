@@ -3,9 +3,7 @@ interface TwitterIconProps {
   onClick?: VoidFunction;
 }
 
-export const TwitterIcon: React.FC<TwitterIconProps> = ({
-  className = "",
-}) => (
+export const TwitterIcon: React.FC<TwitterIconProps> = ({ className = "" }) => (
   <svg
     className={className}
     viewBox="0 0 39 33"
