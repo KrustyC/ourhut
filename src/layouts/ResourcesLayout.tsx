@@ -56,7 +56,7 @@ export const ResourcesLayout: React.FC = ({ children }) => {
 
           <div>{children}</div>
 
-          <div className="w-full flex justify-end">
+          <div className="w-full flex justify-end mt-8">
             <span
               role="button"
               className="text-xl flex items-center"

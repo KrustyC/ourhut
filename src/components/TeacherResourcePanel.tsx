@@ -16,37 +16,30 @@ export const TeacherResourcePanel: React.FC<TeacherResourcePanelProps> = ({
   teachingResource,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
 
   const onToggle = () => {
-    if (!isOpen && panelRef.current) {
-      panelRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "start",
-      });
-    }
-
     setIsOpen((currentIsOpen) => !currentIsOpen);
   };
 
   return (
     <div
-      ref={panelRef}
+      id={teachingResource._id}
       key={teachingResource._id}
-      className="flex flex-col w-full px-12 py-12 mb-8"
+      className="flex flex-col w-full px-12 py-12 mt-8"
     >
       <div className="flex justify-between items-center">
         <h3 className="text-4xl text-black font-bold">
           {teachingResource.title}
         </h3>
         <span>
-          <UpArrowIcon
-            className={`h-8 w-8 cursor-pointer transition-all duration-500 fill-black ${
-              !isOpen ? "rotate-180" : ""
-            }`}
-            onClick={onToggle}
-          />
+          <a className="text-black" href={`#${teachingResource._id}`}>
+            <UpArrowIcon
+              className={`h-8 w-8 cursor-pointer transition-all duration-500 fill-black ${
+                !isOpen ? "rotate-180" : ""
+              }`}
+              onClick={onToggle}
+            />
+          </a>
         </span>
       </div>
 

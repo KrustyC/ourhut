@@ -96,14 +96,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <div className="flex mt-8 z-50">
               <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
-                <TwitterIcon className="h-10 w-10 fill-white mr-4" />
+                <TwitterIcon className="hover:animate-wiggle h-10 w-10 fill-white mr-4" />
               </a>
               <a
                 href={INSTAGRAM_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <InstagramIcon className="h-10 w-10 fill-white" />
+                <InstagramIcon className="hover:animate-wiggle h-10 w-10 fill-white" />
               </a>
             </div>
           </div>

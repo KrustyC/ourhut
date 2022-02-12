@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import NextLink from "next/link";
 import Head from "next/head";
 import { Event, News } from "@/types/global";
+import { UpArrowIcon } from "@/components/icons/UpArrow";
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
 import { Navbar } from "@/components/Navbar";
@@ -11,6 +12,7 @@ import { Footer } from "@/components/Footer";
 import { GuardianNews } from "@/components/GuardianNews";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
 import parse from "html-react-parser";
+import { useState } from "react";
 
 interface NewsPageProps {
   events: {
@@ -25,6 +27,13 @@ const NewsPage: NextPage<NewsPageProps> = ({
   events: { pastEvents, upcomingEvents },
   newsHeadline,
 }) => {
+  const [viewAll, setViewAll] = useState(false);
+  const shownPastEvent = viewAll ? pastEvents : pastEvents.slice(0, 4);
+
+  const onToggleViewAll = () => {
+    setViewAll(!viewAll);
+  };
+
   return (
     <div>
       <Head>
@@ -81,9 +90,19 @@ const NewsPage: NextPage<NewsPageProps> = ({
         <div className="flex flex-col px-48 py-24 pb-32 bg-light-gray">
           <h1 className="text-black font-bold mb-16">Past Events</h1>
           <div className="grid grid-cols-4 gap-8">
-            {pastEvents.map((event) => (
+            {shownPastEvent.map((event) => (
               <PastEventCard key={event._id} event={event} />
             ))}
+          </div>
+          <div>
+            <span className="flex mt-4 justify-end items-center" role="button" onClick={onToggleViewAll}>
+              <p className="font-semibold text-xl items-center mr-2">See {viewAll ? "less" : "more"}</p>
+              <UpArrowIcon
+                className={`h-6 w-6 cursor-pointer transition-all duration-500 fill-black ${
+                  !viewAll ? "rotate-180" : ""
+                }`}
+              />
+            </span>
           </div>
         </div>
       </div>

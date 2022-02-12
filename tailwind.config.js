@@ -44,6 +44,20 @@ module.exports = {
       montserrat: ['"Montserrat"', "sans-serif"],
     },
     extend: {
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "translateX(-8deg)" },
+          "50%": { transform: "rotate(8deg)" },
+        },
+        slide: {
+          "0%, 100%": { transform: "translateX(0px)" },
+          "50%": { transform: "translateX(3px)" },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 1s ease-in-out infinite",
+        slide: "slide 1s ease-in-out infinite",
+      },
       spacing: {
         128: "32rem",
         144: "36rem",
