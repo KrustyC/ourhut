@@ -11,7 +11,7 @@ export const newsSchema = yup.object().shape({
 
 const NEWS_HEADLINE_COLLECTION = "news_headline";
 
-async function get(client: MongoClient, handlerEvent: HandlerEvent) {
+async function get(client: MongoClient) {
   try {
     const newsHeadline = await client
       .db(process.env.MONGO_DB_NAME)

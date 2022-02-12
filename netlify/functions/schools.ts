@@ -49,7 +49,7 @@ async function get() {
   }
 }
 
-const handler: Handler = async (event, context) => {
+const handler: Handler = async (event) => {
   if (event.httpMethod !== HTTP_METHODS.GET) {
     return jsonResponse({
       status: 405,
