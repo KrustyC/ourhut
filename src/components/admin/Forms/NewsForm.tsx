@@ -37,7 +37,7 @@ export const NewsForm: React.FC<NewsFormProps> = ({
   });
 
   return (
-    <form className="flex flex-col w-full" onSubmit={handleSubmit(onSaveNews)}>
+    <form className="flex flex-col w-9/12" onSubmit={handleSubmit(onSaveNews)}>
       <div className="flex mb-8">
         <div className="flex flex-col w-1/2">
           <div className="mb-4">
@@ -78,7 +78,7 @@ export const NewsForm: React.FC<NewsFormProps> = ({
             <span className="uppercase block text-gray-700 text-sm font-bold mb-2">
               Description
             </span>
-            <div className="h-40">
+            <div>
               <Controller
                 control={control}
                 name="description"

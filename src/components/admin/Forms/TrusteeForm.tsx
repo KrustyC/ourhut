@@ -52,7 +52,7 @@ export const TrusteeForm: React.FC<TrusteeFormProps> = ({
         <label className="uppercase block text-gray-700 text-sm font-bold mb-2">
           Description
         </label>
-        <div className="h-24">
+        <div>
           <Controller
             control={control}
             name="description"

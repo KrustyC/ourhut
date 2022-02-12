@@ -202,7 +202,7 @@ export const EventForm: React.FC<EventFormProps> = ({
         <span className="uppercase block text-gray-700 text-sm font-bold mb-2">
           Description
         </span>
-        <div className="h-24">
+        <div>
           <Controller
             control={control}
             name="description"

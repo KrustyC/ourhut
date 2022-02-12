@@ -1,4 +1,4 @@
-import { Editor } from "@tiptap/react";
+import type { Editor } from "@tiptap/react";
 import { BubbleMenu as TipTapBubbleMenu } from "@tiptap/react";
 
 interface BubbleMenuProps {
@@ -26,10 +26,12 @@ const Button: React.FC<BubbleMenuButtonProps> = ({
 );
 
 export const BubbleMenu: React.FC<BubbleMenuProps> = ({ editor }) => {
+  console.log("ALLORA");
   return (
     <TipTapBubbleMenu
       editor={editor}
-      className="bubble-menu flex relative items-center bg-gray-800 rounded-lg py-4 h-8"
+      tippyOptions={{ duration: 100 }}
+      className="flex relative items-center bg-gray-800 rounded-lg py-4 h-8 z-50"
     >
       <Button
         isActive={editor.isActive("bold")}

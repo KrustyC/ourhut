@@ -66,7 +66,7 @@ export const MaterialInput = <T extends object>(
       <div className="w-2/12 pl-2 pr-3">
         <input
           className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-4 leading-tight focus:outline-none"
-          type="text"
+          type="url"
           placeholder="Add Url"
           {...register(`${name}.website` as unknown as FieldPath<T>)}
           aria-label="Host"

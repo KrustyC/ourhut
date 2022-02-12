@@ -42,16 +42,21 @@ export type FormProduct = Omit<Product, "price"> & {
   price: string;
 };
 
+export type ProjectLink<T> = Partial<T> & {
+  _id: string;
+};
+
 export type Project = {
   _id?: string;
   title: string;
   intro: string;
   description: string;
-  images: string;
+  images: string[];
   links: {
-    teacherResources?: string;
-    press?: string;
-    research?: string;
+    teacherResources?: ProjectLink<TeachingResource> | null;
+    press?: ProjectLink<unknown> | null;
+    research?: ProjectLink<unknown> | null;
+    shop?: ProjectLink<Product> | null;
   };
 };
 

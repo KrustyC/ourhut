@@ -1,10 +1,10 @@
-import { Handler, HandlerEvent } from "@netlify/functions";
+import { Handler } from "@netlify/functions";
 import { MongoClient } from "mongodb";
 import { adminHandler } from "../shared/admin-handler";
 import { jsonResponse } from "../shared/utils";
 import { HTTP_METHODS } from "../shared/variables";
 
-async function get(client: MongoClient, _handlerEvent: HandlerEvent) {
+async function get(client: MongoClient) {
   try {
     const db = await client.db(process.env.MONGO_DB_NAME);
     const promises = [db.collection("events").countDocuments()];

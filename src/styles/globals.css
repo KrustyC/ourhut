@@ -16,6 +16,14 @@
     @apply text-gray-700;
   }
 
+  #tippy-1 {
+    @apply h-8;
+  }
+
+  #tippy-2 {
+    @apply h-8;
+  }
+
   html {
     scroll-behavior: smooth;
   }

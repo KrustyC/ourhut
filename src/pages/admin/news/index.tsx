@@ -67,7 +67,7 @@ const AdminNews: NextPageWithLayout<undefined> = () => {
               <h2 className="text-3xl text-black font-bold mb-2">
                 Your headline
               </h2>
-              <div className="bg-white w-1/2 h-40">
+              <div className="bg-white w-1/2">
                 <Editor value={newsHeadline} onChange={onChangeHeadline} />
               </div>
               <button

@@ -15,9 +15,34 @@ export const projectSchema = yup.object().shape({
     .array()
     .of(yup.string().required("please enter an image for the project")),
   links: yup.object().shape({
-    teacherResources: yup.string(),
-    press: yup.string(),
-    research: yup.string(),
+    teacherResources: yup
+      .object()
+      .shape({
+        _id: yup.string().nullable(),
+        title: yup.string().nullable(),
+      })
+      .nullable(),
+    press: yup
+      .object()
+      .shape({
+        _id: yup.string().nullable(),
+        title: yup.string().nullable(),
+      })
+      .nullable(),
+    research: yup
+      .object()
+      .shape({
+        _id: yup.string().nullable(),
+        title: yup.string().nullable(),
+      })
+      .nullable(),
+    shop: yup
+      .object()
+      .shape({
+        _id: yup.string().nullable(),
+        name: yup.string().nullable(),
+      })
+      .nullable(),
   }),
 });
 
@@ -96,6 +121,20 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
       .collection(PROJECTS_COLLECTION)
       .insertOne({
         ...projectDocument,
+        links: {
+          teacherResources: projectDocument.links.teacherResources?._id
+            ? projectDocument.links.teacherResources
+            : null,
+          press: projectDocument.links.press._id
+            ? projectDocument.links.press
+            : null,
+          research: projectDocument.links.research._id
+            ? projectDocument.links.research
+            : null,
+          shop: projectDocument.links.shop._id
+            ? projectDocument.links.shop
+            : null,
+        },
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -163,7 +202,20 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
             intro: projectDocument.intro,
             description: projectDocument.description,
             images: projectDocument.images,
-            links: projectDocument.links,
+            links: {
+              teacherResources: projectDocument.links.teacherResources._id
+                ? projectDocument.links.teacherResources
+                : null,
+              press: projectDocument.links.press._id
+                ? projectDocument.links.press
+                : null,
+              research: projectDocument.links.research._id
+                ? projectDocument.links.research
+                : null,
+              shop: projectDocument.links.shop._id
+                ? projectDocument.links.shop
+                : null,
+            },
             updatedAt: new Date(),
           },
         }
