@@ -5,7 +5,7 @@ import { AdminLayout } from "@/layouts/AdminLayout";
 import { ProductForm } from "@/components/admin/Forms/ProductForm";
 import { Panel } from "@/components/admin/Panel";
 import { useNetlifyPostFunction } from "@/hooks/useNetlifyPostFunction";
-import { Product } from "@/types/global";
+import { Product, FormProduct } from "@/types/global";
 import { useRouter } from "next/router";
 import { NextPageWithLayout } from "@/types/app";
 
@@ -19,8 +19,13 @@ const AdminProductsCreate: NextPageWithLayout<undefined> = () => {
     error: updateError,
   } = useNetlifyPostFunction<{ product: Product }>({ user });
 
-  const onCreateProduct = async (product: Product) => {
-    const res = await onCreate(`/admin-products`, { product });
+  const onCreateProduct = async (product: FormProduct) => {
+    const res = await onCreate(`/admin-products`, {
+      product: {
+        ...product,
+        price: parseFloat(product.price),
+      },
+    });
 
     if (res !== undefined) {
       toast.success("Product successfully added!");

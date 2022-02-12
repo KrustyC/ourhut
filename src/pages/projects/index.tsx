@@ -9,7 +9,7 @@ interface ProjectsPageProps {
 }
 
 const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
-  console.log(projects);
+  console.log("PROJECTS", projects);
 
   return (
     <div>
@@ -40,12 +40,12 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
 };
 
 export async function getStaticProps() {
-  //   const res = await fetch(`${process.env.baseUrl}/.netlify/functions/projects`);
+  const res = await fetch(`${process.env.baseUrl}/.netlify/functions/projects`);
 
-  //   const { projects } = await res.json();
+  const { projects } = await res.json();
 
   return {
-    props: { projects: [] },
+    props: { projects },
   };
 }
 

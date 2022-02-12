@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ChooseItemModal } from "./ChooseItemModal";
 
 interface LinkToOtherItemProps<T, Response> {
-  value?: T;
+  value?: T | null;
   onChange: (value: T) => void;
   fetchPath: string;
   labelAttribute: keyof T;
@@ -37,7 +37,7 @@ export const LinkToOtherItemButton = <
       {showModal && (
         <ChooseItemModal
           fetchPath={fetchPath}
-          currentItem={value}
+          currentItem={value || undefined}
           labelAttribute={labelAttribute}
           parseResponse={parseResponse}
           onSelectItem={onSelectItem}
