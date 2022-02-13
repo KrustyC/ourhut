@@ -58,6 +58,8 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
         .collection(PROJECTS_COLLECTION)
         .findOne({ _id: new ObjectId(id) });
 
+      console.log("PROJECT", project);
+
       if (!project) {
         return jsonResponse({
           status: 404,

@@ -6,6 +6,7 @@ import { UpArrowIcon } from "@/components/icons/UpArrow";
 
 interface TeacherResourcePanelProps {
   teachingResource: TeachingResource;
+  isInitialOpen: boolean;
 }
 
 function formatDate(date: string) {
@@ -49,8 +50,9 @@ const ResourceLink: React.FC<ResourceLinkProps> = ({ pdf, website }) => {
 
 export const TeacherResourcePanel: React.FC<TeacherResourcePanelProps> = ({
   teachingResource,
+  isInitialOpen,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(isInitialOpen);
 
   const onToggle = () => {
     setIsOpen((currentIsOpen) => !currentIsOpen);
