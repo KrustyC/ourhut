@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
@@ -36,9 +35,10 @@ export function useAdminIndexFiles<FetchResult>({
     // @TODO This is a temporary fix until we can get the response from the API
 
     setFiles(response);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  const onConfirmImageUpload = (newFile: string) => {
+  const onConfirmFileUpload = (newFile: string) => {
     setFiles([...files, newFile]);
   };
 
@@ -50,8 +50,8 @@ export function useAdminIndexFiles<FetchResult>({
     setFileSelectedForDetail(null);
   };
 
-  const onWantToDeleteImage = () => {
-    const fileToRemove = fileSelectedForDetail;
+  const onWantToDeleteFile = (selectedFile: string | undefined = undefined) => {
+    const fileToRemove = selectedFile || fileSelectedForDetail;
     setFileSelectedForDetail(null);
     setFileSelectedForRemove(fileToRemove);
   };
@@ -80,10 +80,10 @@ export function useAdminIndexFiles<FetchResult>({
     error,
     fileSelectedForDetail,
     fileSelectedForRemove,
-    onConfirmImageUpload,
+    onConfirmFileUpload,
     onSelectFile,
     onCancelView,
-    onWantToDeleteImage,
+    onWantToDeleteFile,
     onDeleteSuccess,
     onCancelDelete,
   };

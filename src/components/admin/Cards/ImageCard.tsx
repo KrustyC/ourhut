@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 
-import { getFileName } from "@/utils/images";
+import { getFileName } from "@/utils/files";
 import styles from "./ImageCard.module.css";
 
 interface ImageCardProps {

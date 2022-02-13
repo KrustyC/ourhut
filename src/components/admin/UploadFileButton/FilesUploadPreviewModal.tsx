@@ -1,15 +1,15 @@
 import { Modal } from "../Modal";
 import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
 
-interface ImagesUploadPreviewModalProps {
+interface FilesUploadPreviewModalProps {
   file: File;
   pending: boolean;
   onConfirm: VoidFunction;
   onCancel: VoidFunction;
 }
 
-export const ImagesUploadPreviewModal: React.FC<
-  ImagesUploadPreviewModalProps
+export const FilesUploadPreviewModal: React.FC<
+  FilesUploadPreviewModalProps
 > = ({ file, pending, onConfirm, onCancel }) => {
   return (
     <Modal width="w-5/12">

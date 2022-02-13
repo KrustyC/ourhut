@@ -5,9 +5,9 @@ import {
   Control,
   FieldPath,
 } from "react-hook-form";
-import { getFileName } from "@/utils/images";
+import { getFileName } from "@/utils/files";
 import { DayPicker } from "@/components/admin/DayPicker";
-import { UploadImageButton } from "@/components/admin/UploadImageButton";
+import { UploadFileButton } from "@/components/admin/UploadFileButton";
 import { isValidDate } from "@/utils/validators";
 
 interface MaterialInputProps<T> {
@@ -78,7 +78,7 @@ export const MaterialInput = <T extends object>(
           name={`${name}.pdf` as unknown as FieldPath<T>}
           control={control}
           render={(props) => (
-            <UploadImageButton
+            <UploadFileButton
               actionCopy={
                 props.field.value
                   ? getFileName(props.field.value as string)

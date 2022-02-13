@@ -6,7 +6,7 @@ import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
 import { ImageCard } from "@/components/admin/Cards/ImageCard";
 import { ViewImageModal } from "@/components/admin/Modals/ViewImageModal";
 import { DeleteImageModal } from "@/components/admin/Modals/DeleteImageModal";
-import { UploadImageButton } from "@/components/admin/UploadImageButton";
+import { UploadFileButton } from "@/components/admin/UploadFileButton";
 import { NextPageWithLayout } from "@/types/app";
 
 const AdminPartners: NextPageWithLayout<undefined> = () => {
@@ -16,9 +16,9 @@ const AdminPartners: NextPageWithLayout<undefined> = () => {
     onSelectFile: onSelectImage,
     fileSelectedForDetail: partnerSelectedForDetail,
     fileSelectedForRemove: partnerSelectedForRemove,
-    onConfirmImageUpload,
+    onConfirmFileUpload,
     onCancelView,
-    onWantToDeleteImage,
+    onWantToDeleteFile,
     onDeleteSuccess,
     onCancelDelete,
     error,
@@ -37,11 +37,11 @@ const AdminPartners: NextPageWithLayout<undefined> = () => {
     <div className="p-4">
       <div className="flex justify-between items-center">
         <h2 className="text-gray-600 font-bold">Partners</h2>
-        <UploadImageButton
+        <UploadFileButton
           accept=".jpg, .jpeg, .png"
           actionCopy="Upload New Partner Logo"
           folder="partners_logos"
-          onConfirm={onConfirmImageUpload}
+          onConfirm={onConfirmFileUpload}
         />
       </div>
 
@@ -70,7 +70,7 @@ const AdminPartners: NextPageWithLayout<undefined> = () => {
         <ViewImageModal
           image={partnerSelectedForDetail}
           onClose={onCancelView}
-          onWantToDeleteImage={onWantToDeleteImage}
+          onWantToDeleteFile={onWantToDeleteFile}
         />
       ) : null}
 

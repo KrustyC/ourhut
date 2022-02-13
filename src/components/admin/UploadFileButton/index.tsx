@@ -2,9 +2,9 @@ import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "@/contexts/AuthContext";
 import { uploadFileToS3 } from "@/utils/upload-file";
-import { ImagesUploadPreviewModal } from "./ImagesUploadPreviewModal";
+import { FilesUploadPreviewModal } from "./FilesUploadPreviewModal";
 
-interface UploadImageButtonProps {
+interface UploadFileButtonProps {
   actionCopy: string;
   className?: string;
   accept: string;
@@ -16,7 +16,7 @@ export type FileEventTarget = React.ChangeEventHandler<HTMLInputElement> & {
   target: { files: FileList };
 };
 
-export const UploadImageButton: React.FC<UploadImageButtonProps> = ({
+export const UploadFileButton: React.FC<UploadFileButtonProps> = ({
   actionCopy,
   accept,
   className = "btn-admin btn-primary btn-sm",
@@ -79,7 +79,7 @@ export const UploadImageButton: React.FC<UploadImageButtonProps> = ({
       />
 
       {file !== null ? (
-        <ImagesUploadPreviewModal
+        <FilesUploadPreviewModal
           file={file}
           pending={pending}
           onConfirm={onUploadToS3}
