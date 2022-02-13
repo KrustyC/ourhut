@@ -26,7 +26,6 @@ const Button: React.FC<BubbleMenuButtonProps> = ({
 );
 
 export const BubbleMenu: React.FC<BubbleMenuProps> = ({ editor }) => {
-  console.log("ALLORA");
   return (
     <TipTapBubbleMenu
       editor={editor}

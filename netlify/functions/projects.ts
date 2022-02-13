@@ -5,6 +5,7 @@ import { connect } from "../shared/mongodb-client";
 import { HTTP_METHODS } from "../shared/variables";
 
 const PROJECTS_COLLECTION = "projects";
+const PRODUCTS_COLLECTION = "products";
 
 async function get(event: HandlerEvent) {
   try {
@@ -28,6 +29,17 @@ async function get(event: HandlerEvent) {
             message: "Project not found",
           },
         });
+      }
+
+      if (project.links.shop) {
+        const product = await client
+          .db(process.env.MONGO_DB_NAME)
+          .collection(PRODUCTS_COLLECTION)
+          .findOne({ _id: new ObjectId(project.links.shop._id) });
+
+        if (product) {
+          project.links.shop = product;
+        }
       }
 
       return jsonResponse({

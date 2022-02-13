@@ -25,7 +25,7 @@ const LINKS = [
 
 export const Footer: React.FC = () => {
   return (
-    <div className="w-screen h-24 flex bg-transparent text-gray-400 justify-between items-center px-16">
+    <div className="w-full h-24 flex bg-transparent text-gray-400 justify-between items-center px-16">
       <div className="flex items-center">© Our Hut 2022</div>
 
       <div className="flex text-sm">
@@ -37,25 +37,6 @@ export const Footer: React.FC = () => {
             </a>
           </Link>
         ))}
-        {/* <Link href="/privacy-policy">
-          <a className="flex items-center mr-8 text-gray-400">
-            <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Privacy
-            Policy
-          </a>
-        </Link>
-        <Link href="/contacts">
-          <a className="flex items-center mr-8 text-gray-400">
-            <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Contact Us
-          </a>
-        </Link>
-        <span className="flex items-center mr-8">
-          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Volunteer
-          Form
-        </span>
-        <span className="flex items-center mr-8">
-          <RightArrowIcon className="fill-gray-400 h-4 h-4 mr-2" /> Teacher
-          Resources
-        </span> */}
       </div>
 
       <div className="flex items-center">

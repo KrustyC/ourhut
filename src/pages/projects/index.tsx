@@ -10,8 +10,6 @@ interface ProjectsPageProps {
 }
 
 const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
-  console.log("PROJECTS", projects);
-
   return (
     <div>
       <Head>
@@ -41,7 +39,6 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
               >
                 <a className="cursor-pointer w-full h-72 bg-red-100 relative">
                   {/* <img className="absolute object-cover w-full h-full" src={event.image} /> */}
-                  Whats my motherfucking name
                 </a>
               </Link>
             ))}

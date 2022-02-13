@@ -2,8 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 import parse from "html-react-parser";
 import { Navbar } from "@/components/Navbar";
-import { Project } from "@/types/global";
+import { Project, Product } from "@/types/global";
 import { LeftArrowIcon } from "@/components/icons/LeftArrow";
+import { ShopProductCard } from "@/components/ShopProductCard";
 
 import { Footer } from "@/components/Footer";
 
@@ -39,15 +40,15 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
       <div className="w-full flex mt-12">
         <div className="w-1/4 flex justify-end">
           <Link href="/projects">
-            <a className="flex text-black text-xl font-medium">
-              <LeftArrowIcon className="fill-black h-5 h-5a mr-2 mt-1" /> Back
-              to all
+            <a className="group flex text-black text-xl font-medium">
+              <LeftArrowIcon className="group-hover:animate-slide fill-black h-5 h-5a mr-2 mt-1" />{" "}
+              Back to all
               <br /> Projects
             </a>
           </Link>
         </div>
 
-        <div className="ml-5 w-3/4 flex flex-col">
+        <div className="ml-10 w-3/4 flex flex-col">
           <div id="project-description" className="w-[820px]">
             {parse(project.description)}
           </div>
@@ -79,7 +80,24 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
         </div>
       </div>
 
-      <Footer />
+      <div className="bg-gray-100 min-h-[800px] pt-16">
+        <h1 className="mx-60 text-6xl text-black font-semibold">
+          Our Hut Shop
+        </h1>
+
+        {project.links.shop ? (
+          <ShopProductCard
+            product={project.links.shop as Product}
+            hasPriorityImage={false}
+            includeLinkToShop
+            bgColor="bg-gray-100"
+          />
+        ) : null}
+
+        <Footer />
+      </div>
+
+      {!project.links.shop ? <Footer /> : null}
     </div>
   </div>
 );

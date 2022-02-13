@@ -40,8 +40,6 @@ export const ChooseItemModal = <T extends Record<string, unknown>, Response>(
     onSelectItem(items[i]);
   };
 
-  console.log("currentItem", currentItem);
-
   return (
     <Modal>
       <div className="flex flex-col">

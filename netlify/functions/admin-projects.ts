@@ -92,6 +92,53 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
     });
   }
 }
+type Links = {
+  teacherResources: {
+    _id: string;
+    title: string;
+  };
+  press: {
+    _id: string;
+    title: string;
+  };
+  research: {
+    _id: string;
+    title: string;
+  };
+  shop: {
+    _id: string;
+    name: string;
+  };
+};
+
+function mapLinksToSchema(links: Links): Partial<Links> {
+  return {
+    teacherResources: links.teacherResources?._id
+      ? {
+          _id: links.teacherResources._id,
+          title: links.teacherResources.title,
+        }
+      : null,
+    press: links.press._id
+      ? {
+          _id: links.press._id,
+          title: links.press.title,
+        }
+      : null,
+    research: links.research._id
+      ? {
+          _id: links.research._id,
+          title: links.research.title,
+        }
+      : null,
+    shop: links.shop._id
+      ? {
+          _id: links.shop._id,
+          name: links.shop.name,
+        }
+      : null,
+  };
+}
 
 async function post(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
@@ -121,20 +168,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
       .collection(PROJECTS_COLLECTION)
       .insertOne({
         ...projectDocument,
-        links: {
-          teacherResources: projectDocument.links.teacherResources?._id
-            ? projectDocument.links.teacherResources
-            : null,
-          press: projectDocument.links.press._id
-            ? projectDocument.links.press
-            : null,
-          research: projectDocument.links.research._id
-            ? projectDocument.links.research
-            : null,
-          shop: projectDocument.links.shop._id
-            ? projectDocument.links.shop
-            : null,
-        },
+        links: mapLinksToSchema(projectDocument.links),
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -202,20 +236,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
             intro: projectDocument.intro,
             description: projectDocument.description,
             images: projectDocument.images,
-            links: {
-              teacherResources: projectDocument.links.teacherResources._id
-                ? projectDocument.links.teacherResources
-                : null,
-              press: projectDocument.links.press._id
-                ? projectDocument.links.press
-                : null,
-              research: projectDocument.links.research._id
-                ? projectDocument.links.research
-                : null,
-              shop: projectDocument.links.shop._id
-                ? projectDocument.links.shop
-                : null,
-            },
+            links: mapLinksToSchema(projectDocument.links),
             updatedAt: new Date(),
           },
         }

@@ -25,7 +25,7 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
         />
       </Head>
 
-      <div className="bg-primary pb-16">
+      <div className="bg-primary">
         <Navbar
           config={{
             burgerColor: "bg-white",
@@ -58,10 +58,11 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
 
       <div id="educational-approach-parallax" className="h-[500px] w-screen" />
 
-      <div className="flex flex-col px-32 py-16 bg-light-gray">
+      <div className="flex flex-col px-32 pt-16 bg-light-gray">
         <h1 className="text-black font-bold mb-8">
           Schools we have worked with
         </h1>
+
         <div className="flex flex-col mt-16 px-16">
           <div className="flex flex-col">
             <h3 className="font-bold text-black mb-8">Primary Schools</h3>
@@ -77,7 +78,7 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
             </div>
           </div>
 
-          <div className="flex flex-col mt-16">
+          <div className="flex flex-col mt-16 mb-16">
             <h3 className="font-bold text-black mb-8">Secondary Schools</h3>
             <div className="grid grid-cols-2 gap-x-16 gap-y-2">
               {secondarySchools.map((school, i) => (
@@ -91,9 +92,9 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
             </div>
           </div>
         </div>
-      </div>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 };

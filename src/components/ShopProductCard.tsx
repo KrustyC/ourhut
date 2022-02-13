@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Product } from "@/types/global";
 import parse from "html-react-parser";
 import { formatPriceBrowser } from "@/utils/price";
@@ -6,12 +7,14 @@ import { formatPriceBrowser } from "@/utils/price";
 interface ShopProductCardProps {
   product: Product;
   hasPriorityImage: boolean;
+  includeLinkToShop?: boolean;
   bgColor: string;
 }
 
 export const ShopProductCard: React.FC<ShopProductCardProps> = ({
   product,
   hasPriorityImage,
+  includeLinkToShop = false,
   bgColor,
 }) => (
   <div
@@ -34,12 +37,21 @@ export const ShopProductCard: React.FC<ShopProductCardProps> = ({
       <span className="text-black text-2xl font-bold mb-8">
         {formatPriceBrowser(product.price)}
       </span>
-      <a
-        href={product.etsyLink}
-        className="btn btn-transparent-outlined w-40 font-bold"
-      >
-        Buy on Etsy
-      </a>
+      <div className="flex">
+        <a
+          href={product.etsyLink}
+          className="btn btn-transparent-outlined w-40 font-medium text-l"
+        >
+          Buy on Etsy
+        </a>
+        {includeLinkToShop ? (
+          <Link href="/shop">
+            <a className="ml-8 btn btn-transparent-outlined w-40 font-medium text-l">
+              Go to Shop
+            </a>
+          </Link>
+        ) : null}
+      </div>
     </div>
   </div>
 );
