@@ -1,9 +1,9 @@
 import { Controller, Control } from "react-hook-form";
-import { TeachingResource, Project, Product } from "@/types/global";
+import { TeachingResource, FormProject, Product } from "@/types/global";
 import { LinkToOtherItemButton } from "@/components/admin/LinkToOtherItemButton";
 
 interface ProjectLinksProps {
-  control: Control<Project>;
+  control: Control<FormProject>;
 }
 
 export const ProjectLinks: React.FC<ProjectLinksProps> = ({ control }) => {

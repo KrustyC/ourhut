@@ -60,6 +60,24 @@ export type Project = {
   };
 };
 
+export type FormProjectImage = {
+  image: string;
+};
+
+export type FormProject = {
+  _id?: string;
+  title: string;
+  intro: string;
+  description: string;
+  images: FormProjectImage[];
+  links: {
+    teacherResources?: ProjectLink<TeachingResource> | null;
+    press?: ProjectLink<unknown> | null;
+    research?: ProjectLink<unknown> | null;
+    shop?: ProjectLink<Product> | null;
+  };
+};
+
 export type News = {
   _id?: string;
   title: string;

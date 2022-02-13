@@ -1,11 +1,13 @@
-import { Controller, useForm } from "react-hook-form";
-import { Project } from "@/types/global";
-// import { ImageSelector } from "@/components/admin/ImageSelector";
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
+import { Controller, useForm, useFieldArray } from "react-hook-form";
+import { FormProject, FormProjectImage, Project } from "@/types/global";
 import { isValidDescription } from "@/utils/validators";
 import { LoadingSpinner } from "../../LoadingSpinner";
 import { Input } from "../../Input";
 import { Editor } from "../../Editor";
 import { ProjectLinks } from "./ProjectLinks";
+import { MultipleImagesInput } from "./MultipleImagesInput";
 
 interface ProjectFormProps {
   className?: string;
@@ -35,16 +37,31 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
   const {
     register,
     control,
+    watch,
     handleSubmit,
     formState: { isDirty, errors, isValid },
-  } = useForm<Project>({
-    defaultValues: { ...project },
+  } = useForm<FormProject>({
+    defaultValues: {
+      ...project,
+      images:
+        project.images?.map((image) => ({
+          image,
+        })) || [],
+    },
     mode: "onBlur",
   });
 
-  const onSubmit = (data: Project) => {
+  const { fields, replace } = useFieldArray({
+    control,
+    name: "images",
+  });
+
+  const watchFieldArray = watch("images");
+
+  const onSubmit = (data: FormProject) => {
     onSaveProject({
       ...data,
+      images: data.images.map(({ image }) => image),
       links: {
         teacherResources: data.links.teacherResources?._id
           ? data.links.teacherResources
@@ -54,6 +71,17 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
         shop: data.links.shop?._id ? data.links.shop : undefined,
       },
     });
+  };
+
+  const controlledFields = fields.map((field, index) => {
+    return {
+      ...field,
+      ...watchFieldArray[index],
+    };
+  });
+
+  const onChangeImages = (images: FormProjectImage[]) => {
+    replace(images);
   };
 
   return (
@@ -116,7 +144,15 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
           </div>
         </div>
 
-        <div className="mb-4">MULTIPLE IMAGES</div>
+        <div className="mb-4">
+          <span className="uppercase block text-gray-700 text-sm font-bold mb-2">
+            Images
+          </span>
+          <MultipleImagesInput
+            images={controlledFields}
+            onChangeImages={onChangeImages}
+          />
+        </div>
 
         <div>
           <ProjectLinks control={control} />
