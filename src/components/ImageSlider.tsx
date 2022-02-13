@@ -107,10 +107,10 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
 
         <div className="flex items-center z-50">
           <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
-            <TwitterIcon className="h-6 w-6 fill-white mr-4" />
+            <TwitterIcon className="hover:animate-wiggle h-6 w-6 fill-white mr-4" />
           </a>
           <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
-            <InstagramIcon className="h-6 w-6 fill-white" />
+            <InstagramIcon className="hover:animate-wiggle h-6 w-6 fill-white" />
           </a>
         </div>
       </div>

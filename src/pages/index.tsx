@@ -73,15 +73,15 @@ const Home: NextPage = () => {
 
         <div className="absolute top-0 right-0 h-screen flex justify-center items-center w-96 z-1">
           <div className="mr-[-320px] flex text-sm text-white transform rotate-90 top-1/2">
-            <span className="flex items-center mr-8">
-              <RightArrowIcon className="fill-primary h-5 h-5 mr-2" /> Volunteer
-              &nbsp; Form
+            <span className="group flex items-center mr-8">
+              <RightArrowIcon className="group-hover:animate-slide fill-primary h-5 h-5 mr-2" />{" "}
+              Volunteer &nbsp; Form
             </span>
 
             <Link href="/resources">
-              <a className="flex items-center text-white">
-                <RightArrowIcon className="fill-primary h-5 h-5 mr-2" /> Teacher
-                &nbsp; Resources
+              <a className="group flex items-center text-white">
+                <RightArrowIcon className="group-hover:animate-slide fill-primary h-5 h-5 mr-2" />{" "}
+                Teacher &nbsp; Resources
               </a>
             </Link>
           </div>
