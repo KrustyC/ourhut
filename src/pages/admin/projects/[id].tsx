@@ -61,7 +61,7 @@ const Edit: React.FC<EditProps> = ({ id }) => {
       </div>
 
       <div className="flex justify-between mt-4">
-        <Panel className="mr-4 sm:w-full xl:w-full ">
+        <Panel className="mr-4 w-full">
           {loading ? (
             <LoadingSpinner />
           ) : (

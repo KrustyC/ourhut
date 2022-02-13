@@ -43,7 +43,7 @@ const AdminProjectsCreate: NextPageWithLayout<undefined> = () => {
       </div>
 
       <div className="flex justify-between w-100 mt-4">
-        <Panel className="mr-4 sm:w-full">
+        <Panel className="mr-4 w-full">
           <ProjectForm pending={pending} onSaveProject={onCreateProject} />
         </Panel>
       </div>

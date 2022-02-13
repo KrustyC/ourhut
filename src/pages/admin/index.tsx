@@ -1,39 +1,39 @@
 import { useAuth } from "@/contexts/AuthContext";
-import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
+// import { useNetlifyGetFunction } from "@/hooks/useNetlifyGetFunction";
 import { AdminLayout } from "@/layouts/AdminLayout";
-import { SummaryCard } from "@/components/admin/Cards/SummaryCard";
-import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
+// import { SummaryCard } from "@/components/admin/Cards/SummaryCard";
+// import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
 import { NextPageWithLayout } from "@/types/app";
 
-type Stats = {
-  news: number;
-  events: number;
-  projects: number;
-};
+// type Stats = {
+//   news: number;
+//   events: number;
+//   projects: number;
+// };
 
 const AdminDashboard: NextPageWithLayout<undefined> = () => {
   const { user } = useAuth();
 
-  const { data, loading, error } = useNetlifyGetFunction<Stats>({
-    fetchUrlPath: "/admin-stats",
-    user,
-  });
+  // const { data, loading, error } = useNetlifyGetFunction<Stats>({
+  //   fetchUrlPath: "/admin-stats",
+  //   user,
+  // });
 
-  if (loading) {
-    return (
-      <div className="p-4">
-        <LoadingSpinner />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="p-4">
+  //       <LoadingSpinner />
+  //     </div>
+  //   );
+  // }
 
-  if (error || !data) {
-    return (
-      <div className="p-4">
-        <h2>Error fetching your stats, please try again later!</h2>
-      </div>
-    );
-  }
+  // if (error || !data) {
+  //   return (
+  //     <div className="p-4">
+  //       <h2>Error fetching your stats, please try again later!</h2>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="p-4">
@@ -45,22 +45,7 @@ const AdminDashboard: NextPageWithLayout<undefined> = () => {
         news, projects and images.
       </p>
 
-      <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        <SummaryCard
-          title={`${data.news} News`}
-          link={{ path: "/admin/news", copy: "Manage News" }}
-        />
-
-        <SummaryCard
-          title={`${data.projects} Projects`}
-          link={{ path: "/admin/projects", copy: "Manage Projects" }}
-        />
-
-        <SummaryCard
-          title={`${data.events} Events`}
-          link={{ path: "/admin/events", copy: "Manage Events" }}
-        />
-      </div>
+      {/* Maybe put some help videos from loom or something */}
     </div>
   );
 };

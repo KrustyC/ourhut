@@ -51,21 +51,21 @@ const AdminFiles: NextPageWithLayout<undefined> = () => {
         in its full size or delete it.
       </p>
 
-      <Panel className="panel">
+      <Panel className="w-10/12">
         {loading ? (
           <LoadingSpinner />
         ) : (
-          <table className="w-10/12 table-fixed">
+          <table className="w-full table-fixed">
             <thead>
               <tr className="w-1/2 text-left text-sm border-b-2 border-black">
-                <th className="w-1/2 pb-1 px-2">Name</th>
-                <th className="w-1/4 pb-1 px-2">Actions</th>
+                <th className="w-1/2 pb-1 px-2 uppercase">Name</th>
+                <th className="w-1/4 pb-1 px-2 uppercase">Actions</th>
               </tr>
             </thead>
 
             <tbody>
               {files.map((file) => (
-                <tr key={file} className="py-20 border-b-2 border-black">
+                <tr key={file} className="py-20 border-b-2 border-gray-500">
                   <td className="w-1/2  py-4 truncate text-ellipsis font-semibold px-2">
                     {getFileName(file)}
                   </td>

@@ -43,7 +43,7 @@ const AdminSchoolsCreate: NextPageWithLayout<undefined> = () => {
       </div>
 
       <div className="flex justify-between w-100 mt-4">
-        <Panel className="mr-4 sm:w-full xl:w-8/12 ">
+        <Panel className="mr-4 sm:w-full md:w-9/12">
           <SchoolForm pending={pending} onSaveSchool={onCreateSchool} />
         </Panel>
       </div>
