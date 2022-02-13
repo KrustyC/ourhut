@@ -6,7 +6,7 @@ import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
 import { ImageCard } from "@/components/admin/Cards/ImageCard";
 import { ViewImageModal } from "@/components/admin/Modals/ViewImageModal";
 import { DeleteImageModal } from "@/components/admin/Modals/DeleteImageModal";
-import { UploadFileButton } from "@/components/admin/UploadFileButton";
+import { UploadImageButton } from "@/components/admin/UploadImageButton";
 import { NextPageWithLayout } from "@/types/app";
 
 const AdminImages: NextPageWithLayout<undefined> = () => {
@@ -37,7 +37,7 @@ const AdminImages: NextPageWithLayout<undefined> = () => {
     <div className="p-4">
       <div className="flex justify-between items-center">
         <h2 className="text-gray-600 font-bold">Images</h2>
-        <UploadFileButton
+        <UploadImageButton
           accept=".jpg, .jpeg, .png"
           actionCopy="Upload Image"
           folder="images"

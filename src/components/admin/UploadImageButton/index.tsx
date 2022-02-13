@@ -4,7 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { uploadFileToS3 } from "@/utils/upload-file";
 import { ImagesUploadPreviewModal } from "./ImagesUploadPreviewModal";
 
-interface UploadFileButtonProps {
+interface UploadImageButtonProps {
   actionCopy: string;
   className?: string;
   accept: string;
@@ -16,7 +16,7 @@ export type FileEventTarget = React.ChangeEventHandler<HTMLInputElement> & {
   target: { files: FileList };
 };
 
-export const UploadFileButton: React.FC<UploadFileButtonProps> = ({
+export const UploadImageButton: React.FC<UploadImageButtonProps> = ({
   actionCopy,
   accept,
   className = "btn-admin btn-primary btn-sm",
