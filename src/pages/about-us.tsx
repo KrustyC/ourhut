@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Trustee } from "@/types/global";
 import parse from "html-react-parser";
 import Image from "next/image";
+import { Media } from "@/components/Media";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
@@ -23,7 +24,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
         <meta name="description" content="Checkout our latest AboutUs" />
       </Head>
 
-      <div className="bg-white pb-8 relative h-[707px]">
+      <div className="bg-white md:pb-8 relative md:h-[707px]">
         <Navbar
           config={{
             burgerColor: "bg-primary",
@@ -32,9 +33,11 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
           }}
         />
 
-        <div className="w-full flex absolute top-0 z-0">
-          <div className="flex flex-col w-6/12 bg-white px-32 pt-32">
-            <h1 className="text-6xl text-black font-bold">About Us</h1>
+        <div className="w-full flex flex-col md:flex-row md:absolute md:top-0 z-0">
+          <div className="flex flex-col md:w-6/12 bg-white px-8 md:px-32 md:pt-32">
+            <h1 className="text-3xl md:text-6xl text-black font-bold">
+              About Us
+            </h1>
             <p className="text-xl text-black font-medium mt-8">
               <p>
                 Our Hut is an architectural education charity based in Stockwell
@@ -47,7 +50,8 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
                 in architecture, design and education.
               </p>
             </p>
-            <div className="flex mt-16">
+
+            <div className="flex mt-8 md:mt-16">
               <NextLink href="/projects">
                 <a className="btn btn-transparent-outlined font-bold w-40 text-black">
                   Projects
@@ -55,14 +59,14 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
               </NextLink>
 
               <NextLink href="/contacts">
-                <a className="btn btn-transparent-outlined font-bold w-40 text-black ml-8">
+                <a className="btn btn-transparent-outlined font-bold w-40 text-black ml-4 md:ml-8">
                   Contact Us
                 </a>
               </NextLink>
             </div>
           </div>
 
-          <div className="flex flex-col w-6/12 h-[707px] relative">
+          <div className="flex flex-col h-[300px] mt-8 md:mt-0 md:w-6/12 md:h-[707px] relative">
             <Image
               priority
               className="w-full h-full"
@@ -75,7 +79,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-col px-32 py-16 bg-white relative h-[700px] bg-black">
+      <div className="flex flex-col px-8 md:px-32 md:py-16 bg-white relative h-[750px] md:h-[700px] bg-black">
         <div className="w-screen top-0 left-0 right-0 bg-white">
           <Image
             layout="fill"
@@ -85,13 +89,13 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
           />
         </div>
 
-        <div className="bg-primary opacity-60 w-screen h-[700px] absolute top-0 left-0" />
+        <div className="bg-primary opacity-60 w-screen h-full absolute top-0 left-0" />
 
-        <div className="absolute flex flex-col right-0 top-0 w-5/12 h-full justify-center pr-32">
-          <h1 className="text-6xl text-white font-semibold ml-[-4px]">
+        <div className="absolute flex flex-col px-8 right-0 top-0 md:w-5/12 h-full justify-center md:pr-32">
+          <h1 className="text-3xl md:text-6xl text-white font-semibold ml-[-4px]">
             What we do
           </h1>
-          <div className="text-white font-semibold text-xl mt-4">
+          <div className="text-white font-medium md:font-semibold text-xl mt-4">
             <p>
               Our Hut{"'"}s aim is to equip future generations to get involved
               in shaping positive sustainable environments. We inspire and
@@ -108,33 +112,40 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
           </div>
 
           <NextLink href="/projects">
-            <a className="btn btn-transparent-outlined-white font-bold w-60 text-black mt-8">
+            <a className="btn btn-transparent-outlined-white font-bold w-full md:w-60 text-black mt-8">
               Educational Approach
             </a>
           </NextLink>
         </div>
       </div>
 
-      <div className="flex flex-col px-32 py-16 bg-gray-100">
-        <h1 className="text-6xl text-black font-bold ml-[-4px]">Trustees</h1>
-        <div className="grid grid-cols-2 gap-x-32 gap-y-16 mt-4 px-32 mt-16">
+      <div className="flex flex-col p-8 md:px-32 md:py-16 bg-gray-100">
+        <h1 className="text-3xl md:text-6xl text-black font-bold ml-[-4px]">
+          Trustees
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-32 gap-y-8 md:gap-y-16 md:px-32 mt-8 md:mt-16">
           {trustees.map((trustee) => (
             <div key={trustee._id} className="flex flex-col items-start">
-              <h3 className="text-black font-semibold text-3xl">
+              <h3 className="text-black font-bold text-xl md:text-3xl">
                 {trustee.name}
               </h3>
-              <div className="mt-4">{parse(trustee.description)}</div>
+              <div className="mt-2 md:mt-4 text-md">
+                {parse(trustee.description)}
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="flex flex-col px-32 py-16 bg-white">
-        <h1 className="text-6xl text-black font-bold ml-[-4px]">
-          Partners + Funders
-        </h1>
-        <div className="grid grid-cols-5 gap-x-4 gap-y-4 mt-4 px-16 mt-16">
+      <div className="flex flex-col mb-8 p-4 md:px-32 md:py-16 bg-white">
+        <Media greaterThanOrEqual="md">
+          <h1 className="text-6xl text-black font-bold ml-[-4px]">
+            Partners + Funders
+          </h1>
+        </Media>
+        <div className="grid grid-cols-3 md:grid-cols-5 md:gap-4 mt-4 md:px-16 md:mt-16">
           {partnerLogos.map((logoUrl, index) => (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               key={index}
               src={logoUrl}
