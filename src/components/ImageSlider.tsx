@@ -6,6 +6,7 @@ import { TwitterIcon } from "@/components/icons/Twitter";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
 import { ChevronLeftIcon } from "@/components/icons/ChevronLeft";
 import { ChevronRightIcon } from "@/components/icons/ChevronRight";
+import { Media } from "@/components/Media";
 
 type SliderImage = {
   name: string;
@@ -45,8 +46,6 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   const name = images[currentIndex].name;
   const description = images[currentIndex].description;
 
-  // @TODO See if I can use Transition form Taiwlind
-
   return (
     <section className="relative h-screen flex justify-center items-center">
       <div className="h-screen bg-black w-screen relative bottom-0 left-0 w-screen">
@@ -75,11 +74,18 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
         })}
       </div>
 
-      <div className="h-24 px-16 absolute bottom-0 left-0 w-screen flex justify-between items-end pb-8 z-40">
-        <span className="text-sm text-white z-0">© Our Hut 2022</span>
+      <div className="h-24 md:px-16 absolute bottom-0 left-0 w-screen flex justify-between items-end pb-8 z-40">
+        <Media lessThan="md">
+          <span className="absolute bottom-2 left-2 text-[10px] text-white z-0">
+            © Our Hut 2022
+          </span>
+        </Media>
+        <Media greaterThanOrEqual="md">
+          <span className="text-sm text-white z-0">© Our Hut 2022</span>
+        </Media>
 
-        <div className="flex flex-col justify-end items-center z-50">
-          <div className="text-white w-full flex justify-center items-center mb-2 z-40">
+        <div className="flex flex-col justify-end w-full md:w-[600px] items-center z-50">
+          <div className="text-white w-full flex flex-wrap justify-center items-center mb-2 z-40">
             <span className="font-semibold">{name}</span>
             <span className="font-bold mx-2">-</span>
             <span className="font-normal mr-2">{description}</span>
@@ -105,14 +111,16 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
           </div>
         </div>
 
-        <div className="flex items-center z-50">
-          <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
-            <TwitterIcon className="hover:animate-wiggle h-6 w-6 fill-white mr-4" />
-          </a>
-          <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
-            <InstagramIcon className="hover:animate-wiggle h-6 w-6 fill-white" />
-          </a>
-        </div>
+        <Media greaterThanOrEqual="md">
+          <div className="flex items-center z-50">
+            <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
+              <TwitterIcon className="hover:animate-wiggle h-6 w-6 fill-white mr-4" />
+            </a>
+            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
+              <InstagramIcon className="hover:animate-wiggle h-6 w-6 fill-white" />
+            </a>
+          </div>
+        </Media>
       </div>
     </section>
   );

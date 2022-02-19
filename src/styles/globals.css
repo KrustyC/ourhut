@@ -101,12 +101,22 @@
   outline: none !important;
 }
 
+#slider-shadow {
+  box-shadow: inset 0px 0px 75px 18px #000000;
+}
+
+@media screen and (min-width: 768px) {
+  #slider-shadow {
+    box-shadow: inset 0px 0px 105px 38px #000000;
+  }
+}
+
 #burger-menu {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -119,7 +129,7 @@
 }
 
 #burger-menu > div {
-  width: 2rem;
+  width: 1.5rem;
   height: 0.25rem;
   border-radius: 10px;
   transition: all 0.3s linear;
@@ -151,6 +161,18 @@
 
 #burger-menu > div:nth-child(3).open {
   transform: rotate(-45deg);
+}
+
+@media screen and (min-width: 768px) {
+  #burger-menu {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  #burger-menu > div {
+    width: 2rem;
+    height: 0.25rem;
+  }
 }
 
 #educational-approach-parallax {

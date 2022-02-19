@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { RightArrowIcon } from "@/components/icons/RightArrow";
 import { Navbar } from "@/components/Navbar";
+import { Media } from "@/components/Media";
 import { ImageSlider } from "@/components/ImageSlider";
 
 const PROJECTS = [
@@ -54,6 +55,7 @@ const Home: NextPage = () => {
         }}
       >
         <Navbar
+          includeSocialLinks
           config={{
             burgerColor: "bg-primary",
             textColor: "fill-white",
@@ -64,28 +66,31 @@ const Home: NextPage = () => {
         <div className="w-screen h-screen bg-white absolute top-0 left-0">
           <ImageSlider images={PROJECTS} />
           <div
+            id="slider-shadow"
             className="w-screen h-screen bg-transparent absolute top-0 left-0 z-1"
-            style={{
-              boxShadow: "inset 0px 0px 105px 38px #000000",
-            }}
-          ></div>
+            // style={{
+            //   boxShadow: "inset 0px 0px 105px 38px #000000",
+            // }}
+          />
         </div>
 
-        <div className="absolute top-0 right-0 h-screen flex justify-center items-center w-96 z-1">
-          <div className="mr-[-320px] flex text-sm text-white transform rotate-90 top-1/2">
-            <span className="group flex items-center mr-8">
-              <RightArrowIcon className="group-hover:animate-slide fill-primary h-5 h-5 mr-2" />{" "}
-              Volunteer &nbsp; Form
-            </span>
-
-            <Link href="/resources">
-              <a className="group flex items-center text-white">
+        <Media greaterThanOrEqual="md">
+          <div className="absolute top-0 right-0 h-screen flex justify-center items-center w-96 z-1">
+            <div className="mr-[-320px] flex text-sm text-white transform rotate-90 top-1/2">
+              <span className="group flex items-center mr-8">
                 <RightArrowIcon className="group-hover:animate-slide fill-primary h-5 h-5 mr-2" />{" "}
-                Teacher &nbsp; Resources
-              </a>
-            </Link>
+                Volunteer &nbsp; Form
+              </span>
+
+              <Link href="/resources">
+                <a className="group flex items-center text-white">
+                  <RightArrowIcon className="group-hover:animate-slide fill-primary h-5 h-5 mr-2" />{" "}
+                  Teacher &nbsp; Resources
+                </a>
+              </Link>
+            </div>
           </div>
-        </div>
+        </Media>
       </div>
     </div>
   );

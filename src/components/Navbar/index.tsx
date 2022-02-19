@@ -4,6 +4,7 @@ import { Transition } from "@tailwindui/react";
 import { OurHutLogoIcon } from "@/components/icons/OurHutLogo";
 import { OurHutLogoTextIcon } from "@/components/icons/OurHutLogoText";
 import { InstagramIcon } from "@/components/icons/Instagram";
+import { Media } from "@/components/Media";
 import { TwitterIcon } from "@/components/icons/Twitter";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
 import { BurgerMenu } from "./BurgerMenu";
@@ -24,6 +25,7 @@ interface NavbarProps {
     logoColor?: string;
     textColor?: string;
   };
+  includeSocialLinks?: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -32,6 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     logoColor = "fill-primary",
     textColor = "fill-black",
   },
+  includeSocialLinks = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -50,16 +53,39 @@ export const Navbar: React.FC<NavbarProps> = ({
           <NextLink href="/">
             <a className="flex items-center z-50">
               <OurHutLogoIcon
-                className={`h-2 h-2 md:h-4 md:w-4 ${logoColor}`}
+                className={`h-3 h-3 mt-1 md:h-4 md:w-4 ${logoColor}`}
               />
               <OurHutLogoTextIcon
-                className={`h-8 w-24 ml-2 md:h-8 md:w-32 ${textColor}`}
+                className={`h-6 w-24 ml-5 md:h-8 md:w-32 ${textColor}`}
               />
             </a>
           </NextLink>
         </div>
 
-        <BurgerMenu color={burgerColor} isOpen={isOpen} onClick={onToggle} />
+        <div className="flex items-center z-50">
+          {includeSocialLinks ? (
+            <Media lessThan="md">
+              <div className="flex">
+                <a
+                  href={TWITTER_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TwitterIcon className="h-6 w-6 fill-white mr-4" />
+                </a>
+                <a
+                  href={INSTAGRAM_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <InstagramIcon className="h-6 w-6 fill-white mr-4" />
+                </a>
+              </div>
+            </Media>
+          ) : null}
+
+          <BurgerMenu color={burgerColor} isOpen={isOpen} onClick={onToggle} />
+        </div>
       </div>
 
       <Transition
