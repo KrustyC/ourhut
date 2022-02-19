@@ -72,23 +72,25 @@ export const Navbar: React.FC<NavbarProps> = ({
         leaveTo="opacity-0"
       >
         <div className="fixed top-0 left-0 w-screen h-screen bg-black z-50">
-          <div className="w-screen h-24 flex justify-between items-center px-16">
+          <div className="w-screen h-24 flex justify-between items-center px-6 md:px-16">
             <NextLink href="/">
               <a className="flex items-center z-50 inline-block">
-                <OurHutLogoIcon className="h-4 w-4 fill-white" />
-                <OurHutLogoTextIcon className={`ml-4 h-8 w-32 fill-white`} />
+                <OurHutLogoIcon className="h-2 h-2 md:h-4 md:w-4 fill-white" />
+                <OurHutLogoTextIcon
+                  className={`h-8 w-24 ml-2 md:h-8 md:w-32 fill-white`}
+                />
               </a>
             </NextLink>
             <BurgerMenu color="bg-primary" isOpen onClick={onToggle} />
           </div>
 
-          <div className="flex flex-col mx-20 mt-4">
+          <div className="flex flex-col mx-8 md:mx-20 md:mt-4">
             <div className="flex flex-col items-start">
               {LINKS.map(({ path, label }) => {
                 return (
                   <NextLink href={path} key={path}>
                     <a
-                      className="w-auto text-white font-bold text-6xl mb-8 hover:text-primary"
+                      className="w-auto text-white font-bold text-4xl md:text-6xl mb-4 md:mb-8 hover:text-primary"
                       onClick={onClose}
                     >
                       {label}
@@ -98,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               })}
             </div>
 
-            <div className="flex mt-8 z-50">
+            <div className="flex mt-4 md:mt-8 z-50">
               <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
                 <TwitterIcon className="hover:animate-wiggle h-10 w-10 fill-white mr-4" />
               </a>
