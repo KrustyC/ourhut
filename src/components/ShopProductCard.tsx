@@ -18,10 +18,10 @@ export const ShopProductCard: React.FC<ShopProductCardProps> = ({
   bgColor,
 }) => (
   <div
-    className={`flex flex-col md:flex-row p-8 md:mb-8 md:px-16 md:py-16 md:h-[740px] ${bgColor}`}
+    className={`flex flex-col md:flex-row p-8 md:mb-8 md:px-16 md:py-16 md:h-[540px] lg:h-[740px] ${bgColor}`}
     key={product._id}
   >
-    <div className="relative h-[300px] w-full md:h-full md:w-7/12">
+    <div className="relative h-[300px] w-full md:h-full md:w-5/12 xl:w-7/12">
       <Image
         priority={hasPriorityImage}
         className="w-full h-40"
@@ -32,12 +32,12 @@ export const ShopProductCard: React.FC<ShopProductCardProps> = ({
       />
     </div>
 
-    <div className="flex flex-col justify-center mt-8 md:mt-0 md:h-full w-full md:pl-16 md:pr-8 md:w-5/12">
-      <h1 className="text-xl md:text-2xl text-black font-bold mb-4 md:mb-8">
+    <div className="flex flex-col justify-center mt-8 md:mt-0 md:h-full w-full md:pl-8 lg:pl-16 lg:pr-8 md:w-7/12">
+      <h1 className="text-xl md:text-2xl text-black font-bold mb-4 lg:mb-8">
         {product.name}
       </h1>
-      <p className="text-black mb-4 md:mb-8">{parse(product.description)}</p>
-      <span className="text-black text-2xl font-bold mb-8 md:mb-8">
+      <p className="text-black mb-4 lg:mb-8">{parse(product.description)}</p>
+      <span className="text-black text-2xl font-bold mb-8 md:mb-4 lg:mb-8">
         {formatPriceBrowser(product.price)}
       </span>
       <div className="flex">

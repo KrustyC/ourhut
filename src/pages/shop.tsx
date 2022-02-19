@@ -26,7 +26,7 @@ const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
           }}
         />
 
-        <div className="md:px-32 flex flex-col">
+        <div className="md:px-16 lg:px-32 flex flex-col">
           <h1 className="px-8 md:px-0 text-3xl md:text-6xl text-black font-bold my-2 mb-8 md:my-8">
             Shop
           </h1>
