@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import NextLink from "next/link";
 import Head from "next/head";
 import { Event, News } from "@/types/global";
+import { Media } from "@/components/Media";
 import { UpArrowIcon } from "@/components/icons/UpArrow";
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
@@ -50,46 +51,58 @@ const NewsPage: NextPage<NewsPageProps> = ({
           }}
         />
 
-        <div className="pt-6 pl-48 pr-16 pb-8">
-          <p className="text-6xl text-white font-semibold ml-[-4px]">News</p>
+        <div className="px-8 md:pt-6 md:pl-48 md:pr-16 md:pb-8">
+          {/* <div className="pt-6 pl-48 pr-16 pb-8"> */}
+          <p className="text-3xl md:text-6xl text-white font-semibold md:ml-[-4px]">
+            News
+          </p>
 
           {newsHeadline ? (
-            <p className="mt-4 text-white font-medium w-1/2 h-40">
+            <p className="mt-4 text-white font-medium md:w-1/2">
               {parse(newsHeadline)}
             </p>
           ) : null}
 
-          <div className="mt-8">
+          <div className="flex flex-wrap mt-8 gap-4">
             <NextLink href="/">
               <a className="btn btn-primary">Link to Article</a>
             </NextLink>
 
             <NextLink href="/">
-              <a className="btn btn-primary ml-8">Link to Article</a>
+              <a className="btn btn-primary">Link to Article</a>
             </NextLink>
           </div>
-          <div className="mt-8 flex justify-end">
-            <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
-              <TwitterIcon className="h-6 w-6 fill-white mr-4" />
-            </a>
-            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
-              <InstagramIcon className="h-6 w-6 fill-white" />
-            </a>
-          </div>
+
+          <Media greaterThanOrEqual="md">
+            <div className="mt-8 flex justify-end">
+              <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
+                <TwitterIcon className="h-6 w-6 fill-white mr-4" />
+              </a>
+              <a
+                href={INSTAGRAM_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <InstagramIcon className="h-6 w-6 fill-white" />
+              </a>
+            </div>
+          </Media>
         </div>
       </div>
 
       <div className="flex flex-col">
-        <div className="flex flex-col py-24">
-          <h1 className="text-black font-semibold ml-48 mb-12">
+        <div className="flex flex-col py-8 md:py-24">
+          <h1 className="text-3xl text-black font-semibold ml-8 md:ml-48 mb-8 md:mb-12">
             Future Events
           </h1>
           <Carousel events={upcomingEvents} />
         </div>
 
-        <div className="flex flex-col px-48 py-24 pb-32 bg-light-gray">
-          <h1 className="text-black font-bold mb-16">Past Events</h1>
-          <div className="grid grid-cols-4 gap-8">
+        <div className="flex flex-col px-8 md:px-48 py-8 md:py-24 pb-8 md:pb-32 bg-light-gray">
+          <h1 className="text-3xl md:text-6xl text-black font-bold mb-8 md:mb-16">
+            Past Events
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {shownPastEvent.map((event) => (
               <PastEventCard key={event._id} event={event} />
             ))}
@@ -113,8 +126,10 @@ const NewsPage: NextPage<NewsPageProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-col py-24 px-48">
-        <h1 className="text-black font-bold mb-8">Recent Press</h1>
+      <div className="flex flex-col py-8 md:py-24 px-8 md:px-48">
+        <h1 className="text-3xl md:text-6xl text-black font-bold mb-8">
+          Recent Press
+        </h1>
         <GuardianNews />
       </div>
 

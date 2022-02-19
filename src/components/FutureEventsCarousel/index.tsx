@@ -19,6 +19,7 @@ export const Carousel: React.FC<FutureEventsCarouselProps> = ({ events }) => {
         <FutureEventCard
           key={slug}
           isFirst={i === 0}
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           itemId={slug!}
           event={{ slug, ...rest }}
         />

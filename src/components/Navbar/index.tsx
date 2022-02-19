@@ -45,12 +45,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <div className="w-screen h-24 flex bg-transparent justify-between items-center px-16 z-50">
+      <div className="w-screen h-24 flex bg-transparent justify-between items-center px-6 md:px-16 z-50">
         <div className="flex items-center z-50">
           <NextLink href="/">
             <a className="flex items-center z-50">
-              <OurHutLogoIcon className={`h-4 w-4 ${logoColor}`} />
-              <OurHutLogoTextIcon className={`ml-4 h-8 w-32 ${textColor}`} />
+              <OurHutLogoIcon
+                className={`h-2 h-2 md:h-4 md:w-4 ${logoColor}`}
+              />
+              <OurHutLogoTextIcon
+                className={`h-8 w-24 ml-2 md:h-8 md:w-32 ${textColor}`}
+              />
             </a>
           </NextLink>
         </div>

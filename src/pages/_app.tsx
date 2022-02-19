@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import { MediaContextProvider } from "@/components/Media";
 import type { NextPageWithLayout } from "@/types/app";
 import { DefaultLayout } from "@/layouts/DefaultLayout";
 import netlifyIdentity from "netlify-identity-widget";
@@ -71,10 +72,12 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   };
 
   return (
-    <AuthContext.Provider value={context}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </AuthContext.Provider>
+    <MediaContextProvider>
+      <AuthContext.Provider value={context}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AuthContext.Provider>
+    </MediaContextProvider>
   );
 }

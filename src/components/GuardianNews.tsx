@@ -1,18 +1,20 @@
 import Image from "next/image";
 
 export const GuardianNews: React.FC = () => (
-  <div className="flex">
-    <div className="w-1/2 h-[450px] relative">
+  <div className="flex flex-col md:flex-row">
+    <div className="md:w-1/2 h-[300px] md:h-[450px] relative">
       <Image layout="fill" alt="vent" src="/images/guardian.jpg" />
     </div>
 
-    <div className="w-1/2 pl-8">
-      <h2 className="text-black font-bold">
+    <div className="mt-4 md:mt-0 md:w-1/2 md:pl-8">
+      <h2 className="text-xl md:text-3xl text-black font-bold">
         Where there&apos;s a grille: the hidden portals to London&apos;s
         underworld
       </h2>
 
-      <p className="pt-2">Oliver Wainwright - Tue 29 Jun 2021 10.01 BST</p>
+      <p className="text-sm  md:text-xl pt-2">
+        Oliver Wainwright - Tue 29 Jun 2021 10.01 BST
+      </p>
 
       <p className="mt-6 mb-4">
         The Sublime Structures in Crystal Palace Park Project, devised and run
