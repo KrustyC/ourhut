@@ -39,12 +39,12 @@ export const ResourcesLayout: React.FC = ({ children }) => {
         />
 
         <div>
-          <h1 className="text-3xl md:text-6xl ml-8 text-black font-bold md:mt-8">
+          <h1 className="text-3xl md:text-6xl ml-12 lg:ml-20 xl:ml-32 text-black font-bold md:mt-8">
             Resources
           </h1>
 
           <Media greaterThanOrEqual="md">
-            <div className="flex py-8">
+            <div className="flex py-8 md:px-12 lg:px-20 xl:px-32">
               {LINKS.map(({ href, label }, i) => (
                 <Link key={i} href={href}>
                   <a
@@ -59,7 +59,7 @@ export const ResourcesLayout: React.FC = ({ children }) => {
             </div>
           </Media>
 
-          <div>{children}</div>
+          <div className="md:px-12 lg:px-20 xl:px-32">{children}</div>
 
           <div className="w-full flex justify-end mt-8">
             <span
