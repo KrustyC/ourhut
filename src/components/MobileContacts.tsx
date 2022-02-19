@@ -2,6 +2,7 @@ import Link from "next/link";
 import { RightArrowIcon } from "@/components/icons/RightArrow";
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
+import { NewsletterSubscriber } from "@/components/NewsletterSubscriber";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
 
 export const MobileContacts = () => (
@@ -15,6 +16,7 @@ export const MobileContacts = () => (
         1138408
       </p>
     </div>
+
     <div className="py-6 border-b-2 border-primary">
       <p className="font-medium text-2xl leading-8 mb-16">
         Lucy Lavers
@@ -40,6 +42,12 @@ export const MobileContacts = () => (
 
         <span className="mt-2">0044 (0)7745123458</span>
       </div>
+    </div>
+
+    <div className="py-6 border-b-2 border-primary">
+      {/* <span> */}
+      <NewsletterSubscriber />
+      {/* </span> */}
     </div>
 
     <div className="flex flex-col py-6">

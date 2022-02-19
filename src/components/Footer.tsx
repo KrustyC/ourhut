@@ -58,7 +58,11 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col bg-[#FCFCFC]">
           <div className="p-6 flex justify-between">
             <div>
-              <OurHutLogoIcon className="h-8 w-8 fill-primary" />
+              <Link href="/">
+                <a>
+                  <OurHutLogoIcon className="h-8 w-8 fill-primary" />
+                </a>
+              </Link>
             </div>
 
             <div className="flex flex-col align-right">

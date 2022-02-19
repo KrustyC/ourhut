@@ -39,7 +39,7 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
             Educational Approach
           </p>
 
-          <div className="flex flex-col md:flex-row py-8">
+          <div className="flex flex-col md:flex-row pt-4 pb-10 md:py-8">
             <p className="text-white font-medium w-full md:w-1/2 md:pr-40">
               Laoreet viverra venenatis interdum nunc a. Pulvinar metus sagittis
               lorem odio non lorem odio non pharetra massa nullam id. Interdum
@@ -47,7 +47,7 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
               nunc est, facilisis.
             </p>
 
-            <p className="text-white font-medium w-full mt-8 md:mt-0 md:w-1/2 md:pr-40">
+            <p className="text-white font-medium w-full mt-4 md:mt-0 md:w-1/2 md:pr-40">
               Laoreet viverra venenatis interdum nunc a. Pulvinar metus sagittis
               lorem odio non lorem odio non pharetra massa nullam id. Interdum
               vel, elementum ultrices id. Ornare tempus lorem odio non non enim
@@ -63,14 +63,14 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
       />
 
       <div className="flex flex-col bg-light-gray">
-        <div className="flex flex-col p-8 md:px-32">
+        <div className="flex flex-col py-10 px-8 md:px-32">
           <h1 className="text-2xl md:text-6xl text-black font-bold md:mb-4 md:mb-8">
             Schools we have worked with
           </h1>
 
           <div className="flex flex-col mt-8 md:mt-16 md:px-16">
             <div className="flex flex-col">
-              <h3 className="font-bold text-black mb-4  md:mb-8">
+              <h3 className="font-bold text-xl text-black mb-4  md:mb-8">
                 Primary Schools
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -86,7 +86,7 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
             </div>
 
             <div className="flex flex-col mt-12">
-              <h3 className="font-bold text-black mb-4 md:mb-8">
+              <h3 className="font-bold text-xl text-black mb-4 md:mb-8">
                 Secondary Schools
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">

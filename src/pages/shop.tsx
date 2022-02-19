@@ -28,7 +28,7 @@ const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
 
         <div className="md:px-32 flex flex-col">
           <h1 className="px-8 md:px-0 text-3xl md:text-6xl text-black font-bold my-2 mb-8 md:my-8">
-            Our Hut Shop
+            Shop
           </h1>
 
           <span className="md:hidden font-bold px-8 mb-8 w-full">

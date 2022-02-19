@@ -11,7 +11,7 @@ interface FutureEventsCarouselProps {
 export const Carousel: React.FC<FutureEventsCarouselProps> = ({ events }) => {
   return (
     <ScrollMenu
-      wrapperClassName="relative"
+      wrapperClassName="relative scroll-menu-wrapper"
       LeftArrow={LeftArrow}
       RightArrow={RightArrow}
     >

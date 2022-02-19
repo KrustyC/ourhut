@@ -12,7 +12,7 @@ const ContactsPage = () => (
     </Head>
     <div>
       <Media lessThan="md">
-        <div className="bg-[#F5F5F5] flex flex-col">
+        <div className="min-h-screen bg-[#F5F5F5] flex flex-col">
           <Navbar
             config={{
               burgerColor: "bg-primary",

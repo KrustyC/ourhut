@@ -53,7 +53,7 @@ export const NewsletterSubscriber = () => {
 
   return (
     <div className="flex flex-col">
-      <span className="text-black font-medium text-sm mb-1">
+      <span className="text-black font-bold text-sm mb-1">
         Subscribe to our newsletter
       </span>
 
@@ -79,7 +79,7 @@ export const NewsletterSubscriber = () => {
       <div>
         <button
           disabled={pending || !isEmailValid}
-          className="btn btn-transparent-outlined font-bold w-40 text-black"
+          className="btn btn-transparent-outlined font-bold w-full md:w-40 text-black"
           onClick={onSubscribe}
         >
           {pending ? <LoadingSpinner color="bg-primary" /> : "Subscribe"}
