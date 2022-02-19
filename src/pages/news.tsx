@@ -52,9 +52,9 @@ const NewsPage: NextPage<NewsPageProps> = ({
         />
 
         <div className="px-8 md:pt-6 md:pl-24 md:pr-8 md:pb-8 xl:pl-48 lg:pr-16 lg:pb-8">
-          <p className="text-3xl md:text-6xl text-white font-semibold md:ml-[-4px]">
+          <h1 className="text-3xl md:text-6xl text-white font-semibold md:ml-[-4px]">
             News
-          </p>
+          </h1>
 
           {newsHeadline ? (
             <p className="mt-4 text-white font-medium md:w-2/3 lg:w-1/2">
