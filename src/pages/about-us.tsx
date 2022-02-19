@@ -34,7 +34,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
         />
 
         <div className="w-full flex flex-col md:flex-row md:absolute md:top-0 z-0">
-          <div className="flex flex-col md:w-6/12 bg-white px-8 md:px-32 md:pt-32">
+          <div className="flex flex-col md:w-7/12 lg:w-6/12 bg-white px-8 lg:px-20 xl:px-32 md:pt-32">
             <h1 className="text-3xl md:text-6xl text-black font-bold">
               About Us
             </h1>
@@ -66,7 +66,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
             </div>
           </div>
 
-          <div className="flex flex-col h-[300px] mt-8 md:mt-0 md:w-6/12 md:h-[707px] relative">
+          <div className="flex flex-col h-[300px] md:h-[707px] mt-8 md:mt-0 md:w-5/12 lg:w-6/12 relative">
             <Image
               priority
               className="w-full h-full"
@@ -91,7 +91,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
 
         <div className="bg-primary opacity-60 w-screen h-full absolute top-0 left-0" />
 
-        <div className="absolute flex flex-col px-8 right-0 top-0 md:w-5/12 h-full justify-center md:pr-32">
+        <div className="absolute flex flex-col px-8 right-0 top-0 md:w-8/12 lg:w-6/12 h-full justify-center xl:pr-32">
           <h1 className="text-3xl md:text-6xl text-white font-semibold ml-[-4px]">
             What we do
           </h1>
@@ -119,11 +119,11 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-col p-8 md:px-32 md:py-16 bg-gray-100">
+      <div className="flex flex-col p-8 md:px-24 lg:px-32 md:py-10 bg-gray-100">
         <h1 className="text-3xl md:text-6xl text-black font-bold ml-[-4px]">
           Trustees
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-32 gap-y-8 md:gap-y-16 md:px-32 mt-8 md:mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-32 gap-y-8 md:gap-y-16 lg:px-16 xl:px-32 mt-8 md:mt-16">
           {trustees.map((trustee) => (
             <div key={trustee._id} className="flex flex-col items-start">
               <h3 className="text-black font-bold text-xl md:text-3xl">
@@ -137,13 +137,13 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-col mb-8 p-4 md:px-32 md:py-16 bg-white">
+      <div className="flex flex-col mb-8 p-4 md:px-24 lg:px-32 md:py-10 bg-white">
         <Media greaterThanOrEqual="md">
           <h1 className="text-6xl text-black font-bold ml-[-4px]">
             Partners + Funders
           </h1>
         </Media>
-        <div className="grid grid-cols-3 md:grid-cols-5 md:gap-4 mt-4 md:px-16 md:mt-16">
+        <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-4 mt-4 lg:px-8 xl:px-16 md:mt-16">
           {partnerLogos.map((logoUrl, index) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img
