@@ -51,14 +51,13 @@ const NewsPage: NextPage<NewsPageProps> = ({
           }}
         />
 
-        <div className="px-8 md:pt-6 md:pl-48 md:pr-16 md:pb-8">
-          {/* <div className="pt-6 pl-48 pr-16 pb-8"> */}
+        <div className="px-8 md:pt-6 md:pl-24 md:pr-8 md:pb-8 xl:pl-48 lg:pr-16 lg:pb-8">
           <p className="text-3xl md:text-6xl text-white font-semibold md:ml-[-4px]">
             News
           </p>
 
           {newsHeadline ? (
-            <p className="mt-4 text-white font-medium md:w-1/2">
+            <p className="mt-4 text-white font-medium md:w-2/3 lg:w-1/2">
               {parse(newsHeadline)}
             </p>
           ) : null}
@@ -92,17 +91,17 @@ const NewsPage: NextPage<NewsPageProps> = ({
 
       <div className="flex flex-col">
         <div className="flex flex-col py-8 md:py-24">
-          <h1 className="text-3xl md:text-6xl text-black font-bold ml-8 md:ml-48 mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-6xl text-black font-bold ml-8 md:ml-24 xl:ml-48 mb-8 md:mb-12">
             Future Events
           </h1>
           <Carousel events={upcomingEvents} />
         </div>
 
-        <div className="flex flex-col px-8 md:px-48 py-8 md:py-24 pb-8 md:pb-32 bg-light-gray">
+        <div className="flex flex-col px-8 md:px-24 xl:px-48 py-8 md:py-24 pb-8 md:pb-32 bg-light-gray">
           <h1 className="text-3xl md:text-6xl text-black font-bold mb-8 md:mb-16">
             Past Events
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-8">
             {shownPastEvent.map((event) => (
               <PastEventCard key={event._id} event={event} />
             ))}
@@ -126,7 +125,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-col py-8 md:py-24 px-8 md:px-48">
+      <div className="flex flex-col py-8 md:py-24 px-8 md:px-24 xl:px-48">
         <h1 className="text-3xl md:text-6xl text-black font-bold mb-8">
           Recent Press
         </h1>

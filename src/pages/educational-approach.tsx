@@ -34,7 +34,8 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
           }}
         />
 
-        <div className="px-8 md:pl-32 md:pr-16">
+        {/* <div className="px-8 md:pl-32 md:pr-16"> */}
+        <div className="px-8 md:pt-6 md:pl-24 md:pr-8 md:pb-8 xl:pl-48 lg:pr-16 lg:pb-8">
           <p className="text-2xl md:text-6xl text-white font-bold md:ml-[-4px]">
             Educational Approach
           </p>
@@ -63,7 +64,8 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
       />
 
       <div className="flex flex-col bg-light-gray">
-        <div className="flex flex-col py-10 px-8 md:px-32">
+        {/* <div className="flex flex-col py-10 px-8 md:px-32"> */}
+        <div className="px-8 md:pl-24 xl:pl-48 md:pt-6 py-10 md:pr-8 md:pb-8 lg:pr-16">
           <h1 className="text-2xl md:text-6xl text-black font-bold md:mb-4 md:mb-8">
             Schools we have worked with
           </h1>

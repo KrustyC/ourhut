@@ -16,7 +16,7 @@ export const FutureEventCard: React.FC<FutureEventCardProps> = ({
   return (
     <div
       className={`w-[300px] md:w-[800px] h-auto mr-5 text-dark ${
-        isFirst ? "ml-8 md:ml-32" : ""
+        isFirst ? "ml-8 md:ml-24 xl:ml-32" : ""
       }`}
     >
       <div className="w-full h-[300px] md:h-[400px] relative">
