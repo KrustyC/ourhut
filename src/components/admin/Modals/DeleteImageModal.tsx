@@ -11,12 +11,14 @@ import { useAuth } from "@/contexts/AuthContext";
 
 interface DeleteImageModalProps {
   imageToDelete: string;
+  path: string;
   onSuccess: VoidFunction;
   onCancel: VoidFunction;
 }
 
 export const DeleteImageModal: React.FC<DeleteImageModalProps> = ({
   imageToDelete,
+  path,
   onSuccess,
   onCancel,
 }) => {
@@ -34,7 +36,7 @@ export const DeleteImageModal: React.FC<DeleteImageModalProps> = ({
   const onDeleteImage = async () => {
     const fileName = getFileName(imageToDelete);
 
-    const res = await onDelete(`/admin-images?name=${fileName}`);
+    const res = await onDelete(`${path}?name=${fileName}`);
 
     if (res !== undefined) {
       onSuccess();

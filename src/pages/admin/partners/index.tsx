@@ -40,7 +40,7 @@ const AdminPartners: NextPageWithLayout<undefined> = () => {
         <UploadFileButton
           accept=".jpg, .jpeg, .png"
           actionCopy="Upload New Partner Logo"
-          folder="partners_logos"
+          folder="partners"
           onConfirm={onConfirmFileUpload}
         />
       </div>
@@ -70,12 +70,15 @@ const AdminPartners: NextPageWithLayout<undefined> = () => {
         <ViewImageModal
           image={partnerSelectedForDetail}
           onClose={onCancelView}
-          onWantToDeleteFile={onWantToDeleteFile}
+          onWantToDeleteFile={() =>
+            onWantToDeleteFile(partnerSelectedForDetail)
+          }
         />
       ) : null}
 
       {partnerSelectedForRemove ? (
         <DeleteImageModal
+          path="/admin-partners"
           imageToDelete={partnerSelectedForRemove}
           onSuccess={onDeleteSuccess}
           onCancel={onCancelDelete}

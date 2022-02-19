@@ -32,8 +32,6 @@ const AdminFiles: NextPageWithLayout<undefined> = () => {
     }
   }, [error]);
 
-  console.log("UPDATED", fileSelectedForRemove);
-
   return (
     <div className="p-4">
       <div className="flex justify-between items-center">

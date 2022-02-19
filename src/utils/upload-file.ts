@@ -4,9 +4,10 @@ import { fetchJson } from "./fetch-json";
 async function readFile(file: File): Promise<ArrayBuffer> {
   return new Promise((resolve, reject) => {
     // Create file reader
-    let reader = new FileReader();
+    const reader = new FileReader();
 
     // Register event listeners
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     reader.addEventListener("loadend", (e: any) => resolve(e.target.result));
     reader.addEventListener("error", reject);
 
@@ -22,7 +23,7 @@ async function getAsByteArray(file: File) {
 interface UploadFileToS3Options {
   file: File;
   token: string;
-  folder: "images" | "files" | "partners_logos";
+  folder: "images" | "files" | "partners";
 }
 
 export async function uploadFileToS3({

@@ -8,7 +8,7 @@ interface UploadFileButtonProps {
   actionCopy: string;
   className?: string;
   accept: string;
-  folder: "images" | "files" | "partners_logos";
+  folder: "images" | "files" | "partners";
   onConfirm: (newImage: string) => void;
 }
 

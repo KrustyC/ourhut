@@ -11,7 +11,7 @@ async function get() {
   try {
     const params = {
       Bucket: process.env.S3_OUR_HUT_BUCKET as string,
-      Prefix: FOLDERS.PARTNERS_LOGOS,
+      Prefix: `${FOLDERS.PARTNERS_LOGOS}/`,
     };
 
     const listObjects = await getAllS3Files(params);
@@ -43,7 +43,7 @@ async function deleteImage(handlerEvent: HandlerEvent) {
 
     const params = {
       Bucket: process.env.S3_OUR_HUT_BUCKET as string,
-      Key: `${FOLDERS.PARTNERS_LOGOS}/${name}`,
+      Key: `/${FOLDERS.PARTNERS_LOGOS}/${name}`,
     };
 
     await deleteObjectFromS3(params);

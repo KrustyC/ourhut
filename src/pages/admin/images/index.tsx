@@ -76,6 +76,7 @@ const AdminImages: NextPageWithLayout<undefined> = () => {
 
       {imageSelectedForRemove ? (
         <DeleteImageModal
+          path="/admin-images"
           imageToDelete={imageSelectedForRemove}
           onSuccess={onDeleteSuccess}
           onCancel={onCancelDelete}
