@@ -43,13 +43,13 @@ export const ShopProductCard: React.FC<ShopProductCardProps> = ({
       <div className="flex">
         <a
           href={product.etsyLink}
-          className="btn btn-transparent-outlined w-full md:w-40 font-medium text-l"
+          className="btn btn-transparent-outlined w-full w-1/2 md:w-40 font-medium text-l"
         >
           Buy on Etsy
         </a>
         {includeLinkToShop ? (
           <Link href="/shop">
-            <a className="ml-8 btn btn-transparent-outlined w-40 font-medium text-l">
+            <a className="ml-8 btn btn-transparent-outlined w-1/2 md:w-40 font-medium text-l">
               Go to Shop
             </a>
           </Link>

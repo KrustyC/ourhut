@@ -2,9 +2,11 @@ import Head from "next/head";
 import Link from "next/link";
 import parse from "html-react-parser";
 import { Navbar } from "@/components/Navbar";
+import { Media } from "@/components/Media";
 import { Project, Product } from "@/types/global";
 import { LeftArrowIcon } from "@/components/icons/LeftArrow";
 import { ShopProductCard } from "@/components/ShopProductCard";
+import { ProjectImages } from "@/components/ProjectImages";
 
 import { Footer } from "@/components/Footer";
 
@@ -19,7 +21,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
       <meta name="description" content="Get in touch" />
     </Head>
 
-    <div className="bg-white flex flex-col">
+    <div className="w-screen bg-white flex flex-col">
       <Navbar
         config={{
           burgerColor: "bg-primary",
@@ -28,17 +30,19 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
         }}
       />
 
-      <div className="px-60 mt-8">
-        <h1 className="text-6xl text-black font-semibold">{project.title}</h1>
-        <div className="text-xl text-black font-semibold mt-4">
+      <div className="lg:mt-8">
+        <h1 className="text-3xl md:text-6xl text-black font-semibold ml-8 md:ml-24 xl:ml-60">
+          {project.title}
+        </h1>
+        <div className="text-xl text-black font-semibold mt-4 px-8 md:px-24 xl:px-60 lg:w-10/12 xl:w-9/12">
           {parse(project.intro)}
         </div>
       </div>
 
-      <div className="w-full h-[600px] bg-gray-200 mt-8" />
+      <ProjectImages images={project.images} />
 
       <div className="w-full flex mt-12">
-        <div className="w-1/4 flex justify-end">
+        <div className="hidden md:flex md:w-1/5 lg:w-1/4 justify-end">
           <Link href="/projects">
             <a className="group flex text-black text-xl font-medium">
               <LeftArrowIcon className="group-hover:animate-slide fill-black h-5 h-5a mr-2 mt-1" />{" "}
@@ -48,14 +52,19 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
           </Link>
         </div>
 
-        <div className="ml-10 w-3/4 flex flex-col">
-          <div id="project-description" className="w-[820px]">
+        <div className="mx-8 w-full md:w-4/5 lg:w-3/4 flex flex-col">
+          <div
+            id="project-description"
+            className="font-medium md:w-11/12 lg:w-[820px]"
+          >
             {parse(project.description)}
           </div>
-          <div className="flex mt-8 mb-16 mr-8">
+          <div className="flex mt-8 mb-16">
             {project.links.teacherResources ? (
               <Link href={`/resources/#${project.links.teacherResources._id}`}>
-                <a className={`btn btn-transparent-outlined mr-8 text-l`}>
+                <a
+                  className={`btn btn-transparent-outlined text-l w-full md:w-60 md:mr-8`}
+                >
                   Teacher Resources
                 </a>
               </Link>
@@ -63,7 +72,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
 
             {project.links.press ? (
               <Link href={`/resources#${project.links.press._id}`}>
-                <a className={`btn btn-transparent-outlined mr-8 text-l`}>
+                <a className="btn btn-transparent-outlined text-l w-full md:w-60 md:mr-8">
                   Press & Publications
                 </a>
               </Link>
@@ -71,7 +80,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
 
             {project.links.research ? (
               <Link href={`/resources#${project.links.research._id}`}>
-                <a className={`btn btn-transparent-outlined mr-8 text-l`}>
+                <a className="btn btn-transparent-outlined text-l w-full md:w-60 md:mr-8">
                   Research
                 </a>
               </Link>
@@ -80,10 +89,12 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
         </div>
       </div>
 
-      <div className="bg-gray-100 min-h-[800px] pt-16">
-        <h1 className="mx-60 text-6xl text-black font-semibold">
-          Our Hut Shop
-        </h1>
+      <div className="bg-gray-100 min-h-[800px] pt-8 md:pt-16">
+        <Media greaterThanOrEqual="md">
+          <h1 className="md:mx-60 md:text-6xl text-black font-semibold">
+            Our Hut Shop
+          </h1>
+        </Media>
 
         {project.links.shop ? (
           <ShopProductCard
