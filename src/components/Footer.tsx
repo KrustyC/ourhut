@@ -25,13 +25,7 @@ const LINKS = [
   },
 ];
 
-interface FooterProps {
-  logoColor?: string;
-}
-
-export const Footer: React.FC<FooterProps> = ({
-  logoColor = "fill-primary",
-}) => {
+export const Footer: React.FC = () => {
   return (
     <>
       <Media greaterThanOrEqual="md">
@@ -61,10 +55,10 @@ export const Footer: React.FC<FooterProps> = ({
       </Media>
 
       <Media lessThan="md">
-        <div className="flex flex-col">
-          <div className="px-8 flex justify-between py-4">
+        <div className="flex flex-col bg-[#FCFCFC]">
+          <div className="p-6 flex justify-between">
             <div>
-              <OurHutLogoIcon className={`h-8 w-8 ${logoColor}`} />
+              <OurHutLogoIcon className="h-8 w-8 fill-primary" />
             </div>
 
             <div className="flex flex-col align-right">
@@ -75,7 +69,7 @@ export const Footer: React.FC<FooterProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <TwitterIcon className="hover:animate-wiggle h-6 w-6 fill-gray-400 mr-4" />
+                    <TwitterIcon className="hover:animate-wiggle h-6 w-6 fill-gray-400 mr-2" />
                   </a>
                   <a
                     href={INSTAGRAM_LINK}
@@ -96,7 +90,8 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
             </div>
           </div>
-          <div className="px-8 text-xs text-gray-400 border-t-2 border-gray-200 py-4">
+
+          <div className="px-8 text-xs text-gray-400 border-t-[1px] border-gray-200 py-6">
             © Our Hut 2022{" "}
           </div>
         </div>
