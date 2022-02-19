@@ -17,7 +17,7 @@ const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
         <meta name="description" content="Our Shop" />
       </Head>
 
-      <div className="bg-white pb-8">
+      <div className="bg-white md:pb-8">
         <Navbar
           config={{
             burgerColor: "bg-primary",
@@ -26,8 +26,15 @@ const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
           }}
         />
 
-        <div className="px-32">
-          <h1 className="text-6xl text-black font-bold my-8">Our Hut Shop</h1>
+        <div className="md:px-32 flex flex-col">
+          <h1 className="px-8 md:px-0 text-3xl md:text-6xl text-black font-bold my-2 mb-8 md:my-8">
+            Our Hut Shop
+          </h1>
+
+          <span className="md:hidden font-bold px-8 mb-8 w-full">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
+            consequat libero pulvinar.
+          </span>
 
           <div className="flex flex-col">
             {products.map((product, i) => (

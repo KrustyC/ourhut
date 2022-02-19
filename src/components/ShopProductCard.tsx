@@ -18,10 +18,10 @@ export const ShopProductCard: React.FC<ShopProductCardProps> = ({
   bgColor,
 }) => (
   <div
-    className={`flex mb-8 px-16 py-16 h-[740px] ${bgColor}`}
+    className={`flex flex-col md:flex-row p-8 md:mb-8 md:px-16 md:py-16 md:h-[740px] ${bgColor}`}
     key={product._id}
   >
-    <div className="relative h-full w-7/12">
+    <div className="relative h-[300px] w-full md:h-full md:w-7/12">
       <Image
         priority={hasPriorityImage}
         className="w-full h-40"
@@ -31,16 +31,19 @@ export const ShopProductCard: React.FC<ShopProductCardProps> = ({
         src={product.image}
       />
     </div>
-    <div className="flex flex-col justify-center h-full w-1/2 pl-16 pr-8 w-5/12">
-      <h1 className="text-2xl text-black font-bold mb-8">{product.name}</h1>
-      <p className="text-black mb-8">{parse(product.description)}</p>
-      <span className="text-black text-2xl font-bold mb-8">
+
+    <div className="flex flex-col justify-center mt-8 md:mt-0 md:h-full w-full md:pl-16 md:pr-8 md:w-5/12">
+      <h1 className="text-xl md:text-2xl text-black font-bold mb-4 md:mb-8">
+        {product.name}
+      </h1>
+      <p className="text-black mb-4 md:mb-8">{parse(product.description)}</p>
+      <span className="text-black text-2xl font-bold mb-8 md:mb-8">
         {formatPriceBrowser(product.price)}
       </span>
       <div className="flex">
         <a
           href={product.etsyLink}
-          className="btn btn-transparent-outlined w-40 font-medium text-l"
+          className="btn btn-transparent-outlined w-full md:w-40 font-medium text-l"
         >
           Buy on Etsy
         </a>
