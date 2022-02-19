@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { ResourcesLayout } from "@/layouts/ResourcesLayout";
+import { Media } from "@/components/Media";
 import { NextPageWithLayout } from "@/types/app";
+import { ResourceHeadLink } from "@/components/ResourceHeadLink";
 
 interface ResearchPageProps {
   publications: unknown[];
@@ -20,7 +22,15 @@ const ResearchPage: NextPageWithLayout<ResearchPageProps> = ({
         />
       </Head>
 
-      <div className="bg-white pb-8">THE RESEARCH</div>
+      <Media lessThan="md">
+        <ResourceHeadLink
+          label="Research"
+          leftHref="/resources/press"
+          rightHref="/resources"
+        />
+      </Media>
+
+      <div className="bg-white py-8">THE RESEARCH</div>
     </div>
   );
 };

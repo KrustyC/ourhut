@@ -3,9 +3,9 @@ import { RightArrowIcon } from "@/components/icons/RightArrow";
 import { NewsletterSubscriber } from "@/components/NewsletterSubscriber";
 
 export const DesktopContacts = () => (
-  <div className="flex items-center w-screen px-20 xl:px-60 grow">
-    <div className="flex bg-gray-100 px-16 py-12 h-[700px] w-full">
-      <div className="w-8/12 flex h-full flex-col justify-between">
+  <div className="flex items-center grow w-11/12 lg:w-10/12 xl:w-9/12 mx-auto">
+    <div className="flex bg-gray-100 px-8 lg:px-16 py-12 h-[700px] w-full">
+      <div className="w-7/12 lg:w-8/12 flex h-full flex-col justify-between">
         <div className="flex flex-col">
           <p className="font-bold text-xl leading-7">
             Our Hut
@@ -39,8 +39,8 @@ export const DesktopContacts = () => (
         </div>
       </div>
 
-      <div className=" flex flex-col justify-between w-4/12 border-l-4 border-black border-rounded pl-16">
-        <div className="flex flex-col">
+      <div className=" flex flex-col justify-between w-5/12 lg:w-4/12 border-l-4 border-black border-rounded pl-8 lg:pl-12 xl:pl-16">
+        <div className="flex flex-col  w-full">
           <a
             href="https://www.etsy.com/uk/shop/OurHutShop"
             target="_blank"
@@ -60,7 +60,7 @@ export const DesktopContacts = () => (
           <a
             href=""
             target="_blank"
-            className="flex items-center text-black font-semibold mt-4 text-lg"
+            className="flex items-center text-black font-semibold mt-4 text-lg w-full"
           >
             <RightArrowIcon className="fill-black h-4 h-4 mr-2" /> Cookie Policy
           </a>

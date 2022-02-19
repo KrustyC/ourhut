@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { UpArrowIcon } from "@/components/icons/UpArrow";
+import { Media } from "@/components/Media";
 
 const LINKS = [
   {
@@ -37,22 +38,26 @@ export const ResourcesLayout: React.FC = ({ children }) => {
           }}
         />
 
-        <div className="px-32">
-          <h1 className="text-6xl text-black font-bold mt-8">Resources</h1>
+        <div>
+          <h1 className="text-3xl md:text-6xl ml-8 text-black font-bold md:mt-8">
+            Resources
+          </h1>
 
-          <div className="flex py-8">
-            {LINKS.map(({ href, label }, i) => (
-              <Link key={i} href={href}>
-                <a
-                  className={`btn btn-transparent-outlined ${
-                    router.pathname === href ? "active" : ""
-                  } mr-8 font-bold text-l`}
-                >
-                  {label}
-                </a>
-              </Link>
-            ))}
-          </div>
+          <Media greaterThanOrEqual="md">
+            <div className="flex py-8">
+              {LINKS.map(({ href, label }, i) => (
+                <Link key={i} href={href}>
+                  <a
+                    className={`btn btn-transparent-outlined ${
+                      router.pathname === href ? "active" : ""
+                    } mr-8 font-bold text-l`}
+                  >
+                    {label}
+                  </a>
+                </Link>
+              ))}
+            </div>
+          </Media>
 
           <div>{children}</div>
 

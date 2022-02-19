@@ -1,7 +1,9 @@
 import Head from "next/head";
 import { TeachingResource } from "@/types/global";
 import { TeacherResourcePanel } from "@/components/TeacherResourcePanel";
+import { Media } from "@/components/Media";
 import { NextPageWithLayout } from "@/types/app";
+import { ResourceHeadLink } from "@/components/ResourceHeadLink";
 import { ResourcesLayout } from "@/layouts/ResourcesLayout";
 import { NextRouter, useRouter } from "next/router";
 
@@ -27,12 +29,20 @@ const TeacherResourcesPage: NextPageWithLayout<TeacherResourcesPageProps> = ({
   return (
     <>
       <Head>
-        <title>Resources | Our Hut</title>
+        <title>Teacher Resources | Our Hut</title>
         <meta
           name="description"
           content="A comprehensive list of all our resources"
         />
       </Head>
+
+      <Media lessThan="md">
+        <ResourceHeadLink
+          label="Teacher Resources"
+          leftHref="/resources/research"
+          rightHref="/resources/press"
+        />
+      </Media>
 
       <div id="teacher-resources-list" className="flex flex-col">
         {teachingResources.map((teachingResource) => (
