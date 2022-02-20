@@ -5,6 +5,7 @@ import { Trustee } from "@/types/global";
 import parse from "html-react-parser";
 import Image from "next/image";
 import { Media } from "@/components/Media";
+import { WhatWeDo } from "@/components/WhatWeDo";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
@@ -24,49 +25,67 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
         <meta name="description" content="Checkout our latest AboutUs" />
       </Head>
 
-      <div className="bg-white md:pb-8 relative md:h-[707px]">
-        <Navbar
-          config={{
-            burgerColor: "bg-primary",
-            textColor: "fill-black",
-            logoColor: "fill-primary",
-          }}
-        />
+      <div className="flex flex-col">
+        <div className="relative md:h-[707px]">
+          <Navbar
+            config={{
+              burgerColor: "bg-primary",
+              textColor: "fill-black",
+              logoColor: "fill-primary",
+            }}
+          />
 
-        <div className="w-full flex flex-col md:flex-row md:absolute md:top-0 z-0">
-          <div className="flex flex-col md:w-7/12 lg:w-6/12 bg-white px-8 lg:px-20 xl:px-32 md:pt-32">
-            <h1 className="text-3xl md:text-6xl text-black font-bold">
-              About Us
-            </h1>
-            <p className="text-xl text-black font-medium mt-8">
-              <p>
-                Our Hut is an architectural education charity based in Stockwell
-                working in schools and local communities to deliver courses of
-                architecture workshops.
+          <div className="w-full pb-14 flex flex-col md:flex-row md:absolute md:top-0 z-0">
+            <div className="flex flex-col md:w-7/12 lg:w-6/12 bg-white px-8 lg:px-20 xl:px-32 md:pt-32">
+              <h1 className="text-3xl md:text-6xl text-black md:ml-[-4px]">
+                About Us
+              </h1>
+              <p className="text-black font-medium mt-4">
+                <p>
+                  Our Hut is an architectural education charity based in
+                  Stockwell working in schools and local communities to deliver
+                  courses of architecture workshops.
+                </p>
+                <p className="mt-4">
+                  Our Hut was founded in 2004 by Lucy Lavers, Judy Ovens and
+                  Suzanna Prizeman, who bring together a combination of
+                  experience in architecture, design and education.
+                </p>
               </p>
-              <p className="mt-4">
-                Our Hut was founded in 2004 by Lucy Lavers, Judy Ovens and
-                Suzanna Prizeman, who bring together a combination of experience
-                in architecture, design and education.
-              </p>
-            </p>
 
-            <div className="flex mt-8 md:mt-16">
-              <NextLink href="/projects">
-                <a className="btn btn-transparent-outlined font-bold w-40 text-black">
-                  Projects
-                </a>
-              </NextLink>
+              <div className="flex mt-8 md:mt-16">
+                <NextLink href="/projects">
+                  <a className="btn btn-transparent-outlined font-bold w-40 text-black">
+                    Projects
+                  </a>
+                </NextLink>
 
-              <NextLink href="/contacts">
-                <a className="btn btn-transparent-outlined font-bold w-40 text-black ml-4 md:ml-8">
-                  Contact Us
-                </a>
-              </NextLink>
+                <NextLink href="/contacts">
+                  <a className="btn btn-transparent-outlined font-bold w-40 text-black ml-4 md:ml-8">
+                    Contact Us
+                  </a>
+                </NextLink>
+              </div>
             </div>
-          </div>
 
-          <div className="flex flex-col h-[300px] md:h-[707px] mt-8 md:mt-0 md:w-5/12 lg:w-6/12 relative">
+            <Media
+              className="flex flex-col h-[707px] mt-8 md:mt-0 md:w-5/12 lg:w-6/12 relative"
+              greaterThanOrEqual="md"
+            >
+              <Image
+                priority
+                className="w-full h-full"
+                layout="fill"
+                objectFit="cover"
+                alt="Photo of Lucy, Suzanna and Judy"
+                src="/images/about-us.jpg"
+              />
+            </Media>
+          </div>
+        </div>
+
+        <Media lessThan="md">
+          <div className="h-[300px] relative">
             <Image
               priority
               className="w-full h-full"
@@ -76,88 +95,50 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
               src="/images/about-us.jpg"
             />
           </div>
-        </div>
-      </div>
-
-      <div className="flex flex-col px-8 md:px-32 md:py-16 bg-white relative h-[750px] md:h-[700px] bg-black">
-        <div className="w-screen top-0 left-0 right-0 bg-white">
-          <Image
-            layout="fill"
-            objectFit="cover"
-            alt="Kids attending a workshop"
-            src="/images/architecture.jpg"
-          />
-        </div>
-
-        <div className="bg-primary opacity-60 w-screen h-full absolute top-0 left-0" />
-
-        <div className="absolute flex flex-col px-8 right-0 top-0 md:w-8/12 lg:w-6/12 h-full justify-center xl:pr-32">
-          <h1 className="text-3xl md:text-6xl text-white font-semibold ml-[-4px]">
-            What we do
-          </h1>
-          <div className="text-white font-medium md:font-semibold text-xl mt-4">
-            <p>
-              Our Hut{"'"}s aim is to equip future generations to get involved
-              in shaping positive sustainable environments. We inspire and
-              educate young people and local communities through programmes of
-              interactive workshops about the built environment.
-            </p>
-
-            <p className="mt-8">
-              We believe that knowledge and understanding of architecture and
-              design are vital in developing children{"'"}s sense of
-              responsibility in respecting, shaping and improving the built
-              environment.
-            </p>
-          </div>
-
-          <NextLink href="/projects">
-            <a className="btn btn-transparent-outlined-white font-bold w-full md:w-60 text-black mt-8">
-              Educational Approach
-            </a>
-          </NextLink>
-        </div>
-      </div>
-
-      <div className="flex flex-col p-8 md:px-24 lg:px-32 md:py-10 bg-gray-100">
-        <h1 className="text-3xl md:text-6xl text-black font-bold ml-[-4px]">
-          Trustees
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-32 gap-y-8 md:gap-y-16 lg:px-16 xl:px-32 mt-8 md:mt-16">
-          {trustees.map((trustee) => (
-            <div key={trustee._id} className="flex flex-col items-start">
-              <h3 className="text-black font-bold text-xl md:text-3xl">
-                {trustee.name}
-              </h3>
-              <div className="mt-2 md:mt-4 text-md">
-                {parse(trustee.description)}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex flex-col mb-8 p-4 md:px-24 lg:px-32 md:py-10 bg-white">
-        <Media greaterThanOrEqual="md">
-          <h1 className="text-6xl text-black font-bold ml-[-4px]">
-            Partners + Funders
-          </h1>
         </Media>
-        <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-4 mt-4 lg:px-8 xl:px-16 md:mt-16">
-          {partnerLogos.map((logoUrl, index) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={index}
-              src={logoUrl}
-              alt="logo"
-              width="100%"
-              height="160px"
-            />
-          ))}
-        </div>
-      </div>
 
-      <Footer />
+        <WhatWeDo />
+
+        <div className="flex flex-col px-8 py-12 md:px-24 lg:px-32 md:py-10 bg-gray-100">
+          <h1 className="text-3xl md:text-6xl text-black font-bold ml-[-4px]">
+            Trustees
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-32 gap-y-8 md:gap-y-16 lg:px-16 xl:px-32 mt-6 md:mt-16">
+            {trustees.map((trustee) => (
+              <div key={trustee._id} className="flex flex-col items-start">
+                <h3 className="text-black font-bold text-xl md:text-3xl">
+                  {trustee.name}
+                </h3>
+                <div className="mt-2 md:mt-4 text-md">
+                  {parse(trustee.description)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col mb-8 p-4 md:px-24 lg:px-32 md:py-10 bg-white">
+          <Media greaterThanOrEqual="md">
+            <h1 className="text-6xl text-black font-bold ml-[-4px]">
+              Partners + Funders
+            </h1>
+          </Media>
+          <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-4 mt-4 lg:px-8 xl:px-16 md:mt-16">
+            {partnerLogos.map((logoUrl, index) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={index}
+                src={logoUrl}
+                alt="logo"
+                width="100%"
+                height="160px"
+              />
+            ))}
+          </div>
+        </div>
+
+        <Footer />
+      </div>
     </div>
   );
 };

@@ -25,12 +25,13 @@ export const TeacherResourcePanel: React.FC<TeacherResourcePanelProps> = ({
     <div
       id={teachingResource._id}
       key={teachingResource._id}
-      className="flex flex-col w-full px-6 md:px-12 py-8 md:py-12 mt-8"
+      className="flex flex-col w-full px-6 md:px-12 py-8 md:py-12 mt-4"
     >
       <div className="flex justify-between items-center">
         <h3 className="text-4xl text-black font-bold">
           {teachingResource.title}
         </h3>
+
         <span>
           <a className="text-black" href={`#${teachingResource._id}`}>
             <UpArrowIcon

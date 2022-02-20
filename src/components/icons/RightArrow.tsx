@@ -8,11 +8,11 @@ export const RightArrowIcon: React.FC<RightArrowIconProps> = ({
   onClick,
 }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     className={className}
+    onClick={onClick}
+    xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
-    onClick={onClick}
   >
     <path
       fillRule="evenodd"

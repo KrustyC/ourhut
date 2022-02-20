@@ -16,7 +16,7 @@ const LINKS = [
   { path: "/shop", label: "Shop" },
   { path: "/about-us", label: "About Us" },
   { path: "/educational-approach", label: "Schools" },
-  { path: "/contacts", label: "Contact us" },
+  { path: "/contacts", label: "Contact Us" },
 ];
 
 interface NavbarProps {
@@ -101,12 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="w-screen h-24 flex justify-between items-center px-6 md:px-16">
             <NextLink href="/">
               <a className="flex items-center z-50 inline-block">
-                {/* <OurHutLogoIcon className="h-2 h-2 md:h-4 md:w-4 fill-white" />
-                <OurHutLogoTextIcon
-                  className={`h-8 w-24 ml-2 md:h-8 md:w-32 fill-white`}
-                /> */}
-
-                <OurHutLogoIcon className="h-3 h-3 mt-1 md:h-4 md:w-4 fill-white" />
+                <OurHutLogoIcon className="h-3 h-3 mt-1 md:h-4 md:w-4 fill-primary" />
                 <OurHutLogoTextIcon className="h-6 w-24 ml-5 md:h-8 md:w-32 fill-white" />
               </a>
             </NextLink>
@@ -119,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 return (
                   <NextLink href={path} key={path}>
                     <a
-                      className="w-auto text-white font-bold text-4xl md:text-6xl mb-4 md:mb-8 hover:text-primary"
+                      className="w-auto text-white font-bold tracking-wide text-4xl md:text-6xl mb-8 hover:text-primary"
                       onClick={onClose}
                     >
                       {label}
@@ -129,16 +124,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               })}
             </div>
 
-            <div className="flex mt-4 md:mt-8 z-50">
+            <div className="flex items-center mt-4 md:mt-8 z-50">
               <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
-                <TwitterIcon className="hover:animate-wiggle h-10 w-10 fill-white mr-4" />
+                <TwitterIcon className="hover:animate-wiggle h-11 w-11 fill-white mr-8" />
               </a>
               <a
                 href={INSTAGRAM_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <InstagramIcon className="hover:animate-wiggle h-10 w-10 fill-white" />
+                <InstagramIcon className="hover:animate-wiggle h-12 w-12 fill-white" />
               </a>
             </div>
           </div>

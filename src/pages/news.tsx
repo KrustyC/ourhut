@@ -42,7 +42,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
         <meta name="description" content="Checkout our latest News" />
       </Head>
 
-      <div className="bg-primary pb-8">
+      <div className="bg-primary pb-14">
         <Navbar
           config={{
             burgerColor: "bg-white",
@@ -62,13 +62,13 @@ const NewsPage: NextPage<NewsPageProps> = ({
             </p>
           ) : null}
 
-          <div className="flex flex-wrap mt-8 gap-4">
+          <div className="flex flex-wrap mt-8">
             <NextLink href="/">
-              <a className="btn btn-primary">Link to Article</a>
+              <a className="btn btn-primary grow">Link to Article</a>
             </NextLink>
 
             <NextLink href="/">
-              <a className="btn btn-primary">Link to Article</a>
+              <a className="btn btn-primary grow ml-4">Link to Article</a>
             </NextLink>
           </div>
 
@@ -90,8 +90,8 @@ const NewsPage: NextPage<NewsPageProps> = ({
       </div>
 
       <div className="flex flex-col">
-        <div className="flex flex-col py-8 md:py-24">
-          <h1 className="text-3xl md:text-6xl text-black font-bold ml-8 md:ml-24 xl:ml-48 mb-8 md:mb-12">
+        <div className="flex flex-col py-14 md:py-24">
+          <h1 className="text-3xl md:text-6xl text-black ml-8 md:ml-24 xl:ml-48 mb-8 md:mb-12">
             Future Events
           </h1>
           <Carousel events={upcomingEvents} />

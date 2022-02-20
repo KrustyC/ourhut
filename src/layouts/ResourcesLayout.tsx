@@ -39,9 +39,16 @@ export const ResourcesLayout: React.FC = ({ children }) => {
         />
 
         <div>
-          <h1 className="text-3xl md:text-6xl ml-12 lg:ml-20 xl:ml-32 text-black font-bold md:mt-8">
+          <h1 className="text-3xl md:text-6xl ml-8 lg:ml-20 xl:ml-32 text-black font-bold md:mt-8">
             Resources
           </h1>
+
+          <div className="px-8 py-2">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat eum
+            magni minima ullam corporis rem doloremque fuga suscipit delectus,
+            quae laudantium at, ex sit numquam molestiae, ad illum corrupti
+            facere?
+          </div>
 
           <Media greaterThanOrEqual="md">
             <div className="flex py-8 md:px-12 lg:px-20 xl:px-32">
@@ -61,10 +68,10 @@ export const ResourcesLayout: React.FC = ({ children }) => {
 
           <div className="md:px-12 lg:px-20 xl:px-32">{children}</div>
 
-          <div className="w-full flex justify-end mt-8">
+          <div className="w-full flex justify-end mt-8 ">
             <span
               role="button"
-              className="text-xl flex items-center"
+              className="text-xl font-semibold flex items-center mr-8"
               onClick={onScrollToTop}
             >
               Back to top{" "}
