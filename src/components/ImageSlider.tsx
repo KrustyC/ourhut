@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Transition } from "@tailwindui/react";
+// import { Transition } from "@tailwindui/react";
+
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
@@ -21,12 +23,15 @@ interface ImageSliderProps {
 
 export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   const [currentIndex, setCurrent] = useState(0);
+  const [touchStart, setTouchStart] = React.useState(0);
+  const [touchEnd, setTouchEnd] = React.useState(0);
+
   const length = images.length;
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent(currentIndex === length - 1 ? 0 : currentIndex + 1);
-    }, 6000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [currentIndex, length]);
@@ -39,6 +44,24 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
     setCurrent(currentIndex === 0 ? length - 1 : currentIndex - 1);
   };
 
+  const onTouchStart = (e: any) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: any) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (touchStart - touchEnd > 40) {
+      nextSlide();
+    }
+
+    if (touchStart - touchEnd < -40) {
+      prevSlide();
+    }
+  };
+
   if (!Array.isArray(images) || images.length <= 0) {
     return null;
   }
@@ -48,30 +71,58 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
 
   return (
     <section className="relative h-screen flex justify-center items-center">
-      <div className="h-screen bg-black w-screen relative bottom-0 left-0 w-screen">
+      <div className="h-screen bg-black w-screen absolute bottom-0 left-0 w-screen">
+        CIAO
+      </div>
+
+      <div className="h-screen bg-black w-screen absolute bottom-0 left-0 w-screen">
         {images.map((slide, index) => {
+          if (currentIndex !== index) {
+            return null;
+          }
+
           return (
-            <Transition
-              show={currentIndex === index}
+            <Image
               key={index}
-              enter="transition-opacity duration-75"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity duration-150"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <Image
-                src={slide.src}
-                alt={slide.description}
-                placeholder="blur"
-                blurDataURL={slide.blurSrc}
-                layout="fill"
-                objectFit="cover"
-              />
-            </Transition>
+              src={slide.src}
+              alt={slide.description}
+              placeholder="blur"
+              blurDataURL={slide.blurSrc}
+              layout="fill"
+              objectFit="cover"
+            />
           );
+
+          // return (
+          //   <Transition
+          //     key={index}
+          //     show={currentIndex === index}
+          //     enter="transition-opacity duration-75"
+          //     enterFrom="opacity-0"
+          //     enterTo="opacity-100"
+          //     leave="transition-opacity duration-150"
+          //     leaveFrom="opacity-100"
+          //     leaveTo="opacity-0"
+          //   >
+          //   <Image
+          //     key={index}
+          //     src={slide.src}
+          //     alt={slide.description}
+          //     placeholder="blur"
+          //     blurDataURL={slide.blurSrc}
+          //     layout="fill"
+          //     objectFit="cover"
+          //   />
+          //   </Transition>
+          // );
         })}
+        <div
+          id="slider-shadow"
+          className="w-screen h-screen bg-transparent absolute top-0 left-0 z-1"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        />
       </div>
 
       <div className="h-24 md:px-16 absolute bottom-0 left-0 w-screen flex justify-between items-end pb-8 z-40">

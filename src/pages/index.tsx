@@ -5,39 +5,7 @@ import { RightArrowIcon } from "@/components/icons/RightArrow";
 import { Navbar } from "@/components/Navbar";
 import { Media } from "@/components/Media";
 import { ImageSlider } from "@/components/ImageSlider";
-
-const PROJECTS = [
-  {
-    name: "Inventive Vents",
-    description: "Vent tour",
-    src: "/images/inventive-vents.jpg",
-    blurSrc: "/images/inventive-vents-blurred.jpg",
-  },
-  {
-    name: "Sublime structures",
-    description: "Crystal Palace model",
-    src: "/images/cp-sublime-structures.jpg",
-    blurSrc: "/images/cp-sublime-structures.jpg",
-  },
-  {
-    name: "Brixton THI",
-    description: "Artwork",
-    src: "/images/brixton-thi.jpg",
-    blurSrc: "/images/brixton-thi.jpg",
-  },
-  {
-    name: "Peckham THI ?",
-    description: "Workshop",
-    src: "/images/peckham-thi.jpg",
-    blurSrc: "/images/peckham-thi.jpg",
-  },
-  {
-    name: "All Aboard",
-    description: "Stockwell bus garage",
-    src: "/images/stockwell.jpg",
-    blurSrc: "/images/stockwell.jpg",
-  },
-];
+import { PROJECTS } from "@/utils/constants";
 
 const Home: NextPage = () => {
   return (
@@ -65,13 +33,6 @@ const Home: NextPage = () => {
 
         <div className="w-screen h-screen bg-white absolute top-0 left-0">
           <ImageSlider images={PROJECTS} />
-          <div
-            id="slider-shadow"
-            className="w-screen h-screen bg-transparent absolute top-0 left-0 z-1"
-            // style={{
-            //   boxShadow: "inset 0px 0px 105px 38px #000000",
-            // }}
-          />
         </div>
 
         <Media greaterThanOrEqual="md">
