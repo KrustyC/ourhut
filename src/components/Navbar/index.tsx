@@ -101,10 +101,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="w-screen h-24 flex justify-between items-center px-6 md:px-16">
             <NextLink href="/">
               <a className="flex items-center z-50 inline-block">
-                <OurHutLogoIcon className="h-2 h-2 md:h-4 md:w-4 fill-white" />
+                {/* <OurHutLogoIcon className="h-2 h-2 md:h-4 md:w-4 fill-white" />
                 <OurHutLogoTextIcon
                   className={`h-8 w-24 ml-2 md:h-8 md:w-32 fill-white`}
-                />
+                /> */}
+
+                <OurHutLogoIcon className="h-3 h-3 mt-1 md:h-4 md:w-4 fill-white" />
+                <OurHutLogoTextIcon className="h-6 w-24 ml-5 md:h-8 md:w-32 fill-white" />
               </a>
             </NextLink>
             <BurgerMenu color="bg-primary" isOpen onClick={onToggle} />
