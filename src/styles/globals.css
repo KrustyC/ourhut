@@ -31,11 +31,6 @@
     scroll-behavior: smooth;
   }
 
-  * {
-    @apply font-montserrat;
-    @apply tracking-wide;
-  }
-
   h1 {
     @apply text-6xl;
   }
@@ -49,6 +44,8 @@
 
   body {
     @apply bg-white;
+    @apply font-montserrat;
+    @apply tracking-wide;
   }
 
   .btn {

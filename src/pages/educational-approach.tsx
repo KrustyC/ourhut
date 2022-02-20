@@ -74,11 +74,13 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
               <h3 className="font-bold text-xl text-black mb-4  md:mb-8">
                 Primary Schools
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 font-cabin">
                 {primarySchools.map((school, i) => (
-                  <div key={i} className="flex font-semibold">
-                    <span className="text-black mr-2">{school.name},</span>
-                    <span className="text-gray-500 ">
+                  <div key={i} className="flex font-semibold font-cabin">
+                    <span className="text-black mr-2 font-cabin">
+                      {school.name},
+                    </span>
+                    <span className="text-gray-500 font-cabin">
                       {school.geographicalArea}, {school.postcode}
                     </span>
                   </div>
