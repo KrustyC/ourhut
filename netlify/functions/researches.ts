@@ -27,8 +27,7 @@ async function get() {
     return jsonResponse({
       status: 500,
       body: {
-        message:
-          "Error fetching press & researches, please try again later on.",
+        message: "Error fetching researches, please try again later on.",
       },
     });
   }

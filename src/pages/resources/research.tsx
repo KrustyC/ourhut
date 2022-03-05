@@ -3,22 +3,26 @@ import { ResourcesLayout } from "@/layouts/ResourcesLayout";
 import { Media } from "@/components/Media";
 import { NextPageWithLayout } from "@/types/app";
 import { ResourceHeadLink } from "@/components/ResourceHeadLink";
+import { Research } from "@/types/global";
+import { ResearchPanel } from "@/components/ResearchPanel";
+import { usePreselectedResource } from "@/hooks/usePreselectedResource";
 
 interface ResearchPageProps {
-  publications: unknown[];
+  researches: Research[];
 }
 
 const ResearchPage: NextPageWithLayout<ResearchPageProps> = ({
-  publications,
+  researches,
 }) => {
-  console.log("publications", publications);
+  const preselectedResourceId = usePreselectedResource();
+
   return (
     <div>
       <Head>
-        <title>Research & Publications | Our Hut</title>
+        <title>Research | Our Hut</title>
         <meta
           name="description"
-          content="A comprehensive list of all our publications"
+          content="A comprehensive list of all our researches"
         />
       </Head>
 
@@ -30,26 +34,29 @@ const ResearchPage: NextPageWithLayout<ResearchPageProps> = ({
         />
       </Media>
 
-      <div className="bg-white py-8">THE RESEARCH</div>
+      <div id="researches-list" className="flex flex-col">
+        {researches.map((research) => (
+          <ResearchPanel
+            key={research._id}
+            isInitialOpen={research._id === preselectedResourceId}
+            research={research}
+          />
+        ))}
+      </div>
     </div>
   );
 };
 
 export async function getStaticProps() {
   const res = await fetch(
-    `${process.env.baseUrl}/.netlify/functions/teaching-resources`
+    `${process.env.baseUrl}/.netlify/functions/researches`
   );
 
-  const { teachingResources } = await res.json();
+  const { researches } = await res.json();
 
   return {
     props: {
-      publications: [
-        ...teachingResources,
-        ...teachingResources,
-        ...teachingResources,
-        ...teachingResources,
-      ],
+      researches,
     },
   };
 }

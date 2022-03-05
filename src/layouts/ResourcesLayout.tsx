@@ -57,7 +57,7 @@ export const ResourcesLayout: React.FC = ({ children }) => {
                   <a
                     className={`btn btn-transparent-outlined ${
                       router.pathname === href ? "active" : ""
-                    } mr-8 font-bold text-l`}
+                    } mr-8 font-bold text-l w-60`}
                   >
                     {label}
                   </a>
