@@ -4,13 +4,16 @@ import { Media } from "@/components/Media";
 import { NextPageWithLayout } from "@/types/app";
 import { ResourceHeadLink } from "@/components/ResourceHeadLink";
 import { Publication } from "@/types/global";
+import { PublicationPanel } from "@/components/PublicationPanel";
+import { usePreselectedResource } from "@/hooks/usePreselectedResource";
 
 interface PressPageProps {
   publications: Publication[];
 }
 
 const PressPage: NextPageWithLayout<PressPageProps> = ({ publications }) => {
-  console.log("publications", publications);
+  const preselectedResourceId = usePreselectedResource();
+
   return (
     <div>
       <Head>
@@ -29,7 +32,7 @@ const PressPage: NextPageWithLayout<PressPageProps> = ({ publications }) => {
         />
       </Media>
 
-      {/* <div id="teacher-resources-list" className="flex flex-col">
+      <div id="publications-list" className="flex flex-col">
         {publications.map((publication) => (
           <PublicationPanel
             key={publication._id}
@@ -37,22 +40,22 @@ const PressPage: NextPageWithLayout<PressPageProps> = ({ publications }) => {
             publication={publication}
           />
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
 
 export async function getStaticProps() {
-  // const res = await fetch(
-  //   `${process.env.baseUrl}/.netlify/functions/publications`
-  // );
+  const res = await fetch(
+    `${process.env.baseUrl}/.netlify/functions/publications`
+  );
 
-  // const { publications } = await res.json();
+  const { publications } = await res.json();
 
   return {
     props: {
-      // publications,
-      publications: [],
+      publications,
+      // publications: [],
     },
   };
 }

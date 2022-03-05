@@ -237,12 +237,20 @@
   background: rgba(244, 126, 33, 0.31);
 }
 
-#teacher-resources-list > div:nth-of-type(5) {
-  background: red;
+#publications-list > div:first-of-type {
+  background: #e6e6e6;
 }
 
-#teacher-resources-list > div:nth-of-type(6) {
-  background: red;
+#publications-list > div:nth-of-type(2) {
+  background: #e1dbff;
+}
+
+#publications-list > div:nth-of-type(3) {
+  background: #bac5fc;
+}
+
+#publications-list > div:nth-of-type(4) {
+  background: #39a7724f;
 }
 
 #project-description > p {

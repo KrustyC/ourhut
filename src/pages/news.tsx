@@ -64,11 +64,15 @@ const NewsPage: NextPage<NewsPageProps> = ({
 
           <div className="flex flex-wrap mt-8">
             <NextLink href="/">
-              <a className="btn btn-primary grow">Link to Article</a>
+              <a className="btn btn-primary grow md:w-80 md:grow-0 mr-4 md:mr-8">
+                Link to Article
+              </a>
             </NextLink>
 
             <NextLink href="/">
-              <a className="btn btn-primary grow ml-4">Link to Article</a>
+              <a className="btn btn-primary grow md:w-80 md:grow-0">
+                Link to Article
+              </a>
             </NextLink>
           </div>
 

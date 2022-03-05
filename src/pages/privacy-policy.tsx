@@ -21,11 +21,11 @@ const PrivacyPolicyPage: NextPage = () => {
         />
 
         <div className="mt-4">
-          <h1 className="text-3xl md:text-6xl text-black font-bold ml-8 lg:ml-24">
-            Privacy Policy
-          </h1>
-          <div className="flex flex-col items-start lg:items-center text-black mt-8 lg:mt-16">
+          <div className="flex flex-col items-start lg:items-center text-black">
             <div className="w-full px-8 md:w-4/5 lg:w-2/3 xl:w-1/2 text-left font-medium">
+              <h1 className="text-3xl md:text-6xl text-black font-bold ml-[-3px] mb-8 lg:mb-12">
+                Privacy Policy
+              </h1>
               <p>Our Hut takes your privacy and security very seriously.</p>
 
               <p className="mt-8">
