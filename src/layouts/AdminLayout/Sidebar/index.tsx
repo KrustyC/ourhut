@@ -83,7 +83,7 @@ export const Sidebar: React.FC = () => (
 
             <li>
               <SidebarLink
-                href="/admin/research/"
+                href="/admin/researches/"
                 label="Research"
                 icon={<ResearchIcon />}
               />

@@ -44,7 +44,7 @@ export type FormProject = {
   links: {
     teacherResources?: ProjectLink<TeachingResource> | null;
     press?: ProjectLink<Publication> | null;
-    research?: ProjectLink<unknown> | null;
+    research?: ProjectLink<Research> | null;
     shop?: ProjectLink<Product> | null;
   };
 };
@@ -118,6 +118,21 @@ export type Publication = {
   materials: PublicationMaterial[];
 };
 
+export type ResearchMaterial = {
+  name: string;
+  type: string;
+  date: string;
+  authorOrInterviewees?: string;
+  link?: MaterialLink;
+};
+
+export type Research = {
+  _id?: string;
+  title: string;
+  image: string;
+  materials: ResearchMaterial[];
+};
+
 export type Project = {
   _id?: string;
   title: string;
@@ -127,7 +142,7 @@ export type Project = {
   links: {
     teacherResources?: ProjectLink<TeachingResource> | null;
     press?: ProjectLink<Publication> | null;
-    research?: ProjectLink<unknown> | null;
+    research?: ProjectLink<Research> | null;
     shop?: ProjectLink<Product> | null;
   };
 };
