@@ -71,7 +71,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
             ) : null}
 
             {project.links.press ? (
-              <Link href={`/resources#${project.links.press._id}`}>
+              <Link href={`/resources/press#${project.links.press._id}`}>
                 <a className="btn btn-transparent-outlined text-l w-full md:w-60 md:mr-8">
                   Press & Publications
                 </a>
@@ -79,7 +79,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
             ) : null}
 
             {project.links.research ? (
-              <Link href={`/resources#${project.links.research._id}`}>
+              <Link href={`/resources/research#${project.links.research._id}`}>
                 <a className="btn btn-transparent-outlined text-l w-full md:w-60 md:mr-8">
                   Research
                 </a>

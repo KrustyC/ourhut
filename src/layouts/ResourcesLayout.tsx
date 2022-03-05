@@ -43,7 +43,7 @@ export const ResourcesLayout: React.FC = ({ children }) => {
             Resources
           </h1>
 
-          <div className="px-8 py-2">
+          <div className="py-2 ml-8 lg:ml-20 xl:ml-32 lg:w-7/12 xl:w-6/12">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat eum
             magni minima ullam corporis rem doloremque fuga suscipit delectus,
             quae laudantium at, ex sit numquam molestiae, ad illum corrupti

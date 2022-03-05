@@ -3,9 +3,10 @@ import { ResourcesLayout } from "@/layouts/ResourcesLayout";
 import { Media } from "@/components/Media";
 import { NextPageWithLayout } from "@/types/app";
 import { ResourceHeadLink } from "@/components/ResourceHeadLink";
+import { Publication } from "@/types/global";
 
 interface PressPageProps {
-  publications: unknown[];
+  publications: Publication[];
 }
 
 const PressPage: NextPageWithLayout<PressPageProps> = ({ publications }) => {
@@ -28,26 +29,30 @@ const PressPage: NextPageWithLayout<PressPageProps> = ({ publications }) => {
         />
       </Media>
 
-      <div className="bg-white py-8">THE PRESS</div>
+      {/* <div id="teacher-resources-list" className="flex flex-col">
+        {publications.map((publication) => (
+          <PublicationPanel
+            key={publication._id}
+            isInitialOpen={publication._id === preselectedResourceId}
+            publication={publication}
+          />
+        ))}
+      </div> */}
     </div>
   );
 };
 
 export async function getStaticProps() {
-  const res = await fetch(
-    `${process.env.baseUrl}/.netlify/functions/teaching-resources`
-  );
+  // const res = await fetch(
+  //   `${process.env.baseUrl}/.netlify/functions/publications`
+  // );
 
-  const { teachingResources } = await res.json();
+  // const { publications } = await res.json();
 
   return {
     props: {
-      publications: [
-        ...teachingResources,
-        ...teachingResources,
-        ...teachingResources,
-        ...teachingResources,
-      ],
+      // publications,
+      publications: [],
     },
   };
 }

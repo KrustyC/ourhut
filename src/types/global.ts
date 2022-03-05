@@ -43,7 +43,7 @@ export type FormProject = {
   images: FormProjectImage[];
   links: {
     teacherResources?: ProjectLink<TeachingResource> | null;
-    press?: ProjectLink<unknown> | null;
+    press?: ProjectLink<Publication> | null;
     research?: ProjectLink<unknown> | null;
     shop?: ProjectLink<Product> | null;
   };

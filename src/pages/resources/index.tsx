@@ -5,26 +5,15 @@ import { Media } from "@/components/Media";
 import { NextPageWithLayout } from "@/types/app";
 import { ResourceHeadLink } from "@/components/ResourceHeadLink";
 import { ResourcesLayout } from "@/layouts/ResourcesLayout";
-import { NextRouter, useRouter } from "next/router";
-
+import { usePreselectedResource } from "@/hooks/usePreselectedResource";
 interface TeacherResourcesPageProps {
   teachingResources: TeachingResource[];
-}
-
-function getPreselectedResource(router: NextRouter): string | null {
-  if (!router.asPath.includes("#")) {
-    return null;
-  }
-
-  return router.asPath.split("#")[1];
 }
 
 const TeacherResourcesPage: NextPageWithLayout<TeacherResourcesPageProps> = ({
   teachingResources,
 }) => {
-  const router = useRouter();
-
-  const preselectedResourceId = getPreselectedResource(router);
+  const preselectedResourceId = usePreselectedResource();
 
   return (
     <>

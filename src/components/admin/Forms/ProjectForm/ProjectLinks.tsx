@@ -1,5 +1,10 @@
 import { Controller, Control } from "react-hook-form";
-import { TeachingResource, FormProject, Product } from "@/types/global";
+import {
+  TeachingResource,
+  FormProject,
+  Product,
+  Publication,
+} from "@/types/global";
 import { LinkToOtherItemButton } from "@/components/admin/LinkToOtherItemButton";
 
 interface ProjectLinksProps {
@@ -48,32 +53,30 @@ export const ProjectLinks: React.FC<ProjectLinksProps> = ({ control }) => {
             )}
           />
 
-          {/* <Controller
+          <Controller
             name="links.press"
             control={control}
             render={({ field: { value, onChange } }) => (
               <tr className="border-b-2 border-gray-300">
-                <td className="py-5 w-2/6 px-2 font-semibold">
-                  Press
-                </td>
+                <td className="py-5 w-2/6 px-2">Press</td>
                 <td className="w-3/6 pb-1 px-2">
                   {value?.title || "Not Selected"}
                 </td>
                 <td className="w-1/6 pb-1 px-2">
                   <LinkToOtherItemButton<
-                    Partial<TeachingResource>,
-                    { teachingResources: TeachingResource[] }
+                    Partial<Publication>,
+                    { publications: Publication[] }
                   >
                     value={value}
                     onChange={onChange}
-                    fetchPath="/admin-press"
+                    fetchPath="/admin-publications"
                     labelAttribute="title"
-                    parseResponse={(response) => response.teachingResources}
+                    parseResponse={(response) => response.publications}
                   />
                 </td>
               </tr>
             )}
-          /> */}
+          />
 
           {/* <Controller
             name="links.research"
