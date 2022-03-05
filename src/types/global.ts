@@ -13,21 +13,6 @@ export type School = {
   type: "primary" | "secondary";
 };
 
-export type TeachingResourceMaterial = {
-  name: string;
-  date: string;
-  host: string;
-  pdf: string;
-  website: string;
-};
-
-export type TeachingResource = {
-  _id?: string;
-  title: string;
-  image: string;
-  materials: TeachingResourceMaterial[];
-};
-
 export type Product = {
   _id?: string;
   name: string;
@@ -44,20 +29,6 @@ export type FormProduct = Omit<Product, "price"> & {
 
 export type ProjectLink<T> = Partial<T> & {
   _id: string;
-};
-
-export type Project = {
-  _id?: string;
-  title: string;
-  intro: string;
-  description: string;
-  images: string[];
-  links: {
-    teacherResources?: ProjectLink<TeachingResource> | null;
-    press?: ProjectLink<unknown> | null;
-    research?: ProjectLink<unknown> | null;
-    shop?: ProjectLink<Product> | null;
-  };
 };
 
 export type FormProjectImage = {
@@ -111,4 +82,52 @@ export type Event = {
     };
   };
   isPublished?: boolean;
+};
+
+export interface MaterialLink {
+  value: string;
+  type: "pdf" | "website";
+}
+
+export type TeachingResourceMaterial = {
+  name: string;
+  date: string;
+  host: string;
+  link?: MaterialLink;
+};
+
+export type TeachingResource = {
+  _id?: string;
+  title: string;
+  image: string;
+  materials: TeachingResourceMaterial[];
+};
+
+export type PublicationMaterial = {
+  name: string;
+  type: string;
+  date: string;
+  authorOrInterviewees?: string;
+  link?: MaterialLink;
+};
+
+export type Publication = {
+  _id?: string;
+  title: string;
+  image: string;
+  materials: PublicationMaterial[];
+};
+
+export type Project = {
+  _id?: string;
+  title: string;
+  intro: string;
+  description: string;
+  images: string[];
+  links: {
+    teacherResources?: ProjectLink<TeachingResource> | null;
+    press?: ProjectLink<Publication> | null;
+    research?: ProjectLink<unknown> | null;
+    shop?: ProjectLink<Product> | null;
+  };
 };

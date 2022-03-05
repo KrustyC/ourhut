@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "@/contexts/AuthContext";
 import { AdminLayout } from "@/layouts/AdminLayout";
-import { TeachingResourceForm } from "@/components/admin/Forms/TeachingResourceForm";
+import { PublicationForm } from "@/components/admin/Forms/PublicationForm";
 import { Panel } from "@/components/admin/Panel";
 import { useNetlifyPostFunction } from "@/hooks/useNetlifyPostFunction";
-import { TeachingResource } from "@/types/global";
+import { Publication } from "@/types/global";
 import { useRouter } from "next/router";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminTeachingResourceCreate: NextPageWithLayout<undefined> = () => {
+const AdminPublicationCreate: NextPageWithLayout<undefined> = () => {
   const { user } = useAuth();
   const router = useRouter();
 
@@ -17,20 +17,18 @@ const AdminTeachingResourceCreate: NextPageWithLayout<undefined> = () => {
     onCreate,
     pending,
     error: updateError,
-  } = useNetlifyPostFunction<{ teachingResource: TeachingResource }>({ user });
+  } = useNetlifyPostFunction<{ publication: Publication }>({ user });
 
-  const onCreateTeachingResource = async (
-    teachingResource: TeachingResource
-  ) => {
-    const res = await onCreate(`/admin-teaching-resources`, {
-      teachingResource,
+  const onCreatePublication = async (publication: Publication) => {
+    const res = await onCreate(`/admin-publications`, {
+      publication,
     });
 
     if (res !== undefined) {
-      toast.success("Teacher Resource successfully created!");
+      toast.success("Publication successfully created!");
 
       setTimeout(() => {
-        router.push("/admin/teaching-resources");
+        router.push("/admin/publications");
       }, 800);
     }
   };
@@ -44,14 +42,14 @@ const AdminTeachingResourceCreate: NextPageWithLayout<undefined> = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-gray-600 font-bold">Create Teacher Resource</h2>
+        <h2 className="text-gray-600 font-bold">Create Publication</h2>
       </div>
 
       <div className="flex justify-between w-100 mt-4">
         <Panel className="mr-4 sm:w-full xl:w-11/12">
-          <TeachingResourceForm
+          <PublicationForm
             pending={pending}
-            onSaveTeachingResource={onCreateTeachingResource}
+            onSavePublication={onCreatePublication}
           />
         </Panel>
       </div>
@@ -59,7 +57,7 @@ const AdminTeachingResourceCreate: NextPageWithLayout<undefined> = () => {
   );
 };
 
-AdminTeachingResourceCreate.Layout = AdminLayout;
+AdminPublicationCreate.Layout = AdminLayout;
 
 export async function getStaticProps() {
   return {
@@ -69,4 +67,4 @@ export async function getStaticProps() {
   };
 }
 
-export default AdminTeachingResourceCreate;
+export default AdminPublicationCreate;

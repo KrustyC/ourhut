@@ -1,34 +1,22 @@
+import { MaterialLink } from "@/types/global";
+
 interface ResourceLinkProps {
-  pdf?: string;
-  website?: string;
+  link?: MaterialLink;
 }
 
-export const ResourceLink: React.FC<ResourceLinkProps> = ({ pdf, website }) => {
-  if (!!pdf) {
-    return (
-      <a
-        className="text-black underline"
-        href={pdf}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        pdf
-      </a>
-    );
+export const ResourceLink: React.FC<ResourceLinkProps> = ({ link }) => {
+  if (!link) {
+    return <span>-</span>;
   }
 
-  if (!!website) {
-    return (
-      <a
-        className="text-black underline"
-        href={website}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        website
-      </a>
-    );
-  }
-
-  return <span>-</span>;
+  return (
+    <a
+      className="text-black underline"
+      href={link.value}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {link.type === "pdf" ? "pdf" : "website"}
+    </a>
+  );
 };

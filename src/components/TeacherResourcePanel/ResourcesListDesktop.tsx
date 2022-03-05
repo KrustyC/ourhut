@@ -34,7 +34,7 @@ export const ResourcesListDesktop: React.FC<ResourcesListDesktopProps> = ({
             {material.host}
           </td>
           <td className="w-1/12 py-4 px-2">
-            <ResourceLink pdf={material.pdf} website={material.website} />
+            <ResourceLink link={material.link} />
           </td>
         </tr>
       ))}

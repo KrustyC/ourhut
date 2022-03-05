@@ -1,35 +1,36 @@
 import { Controller, useForm, useFieldArray } from "react-hook-form";
-import { TeachingResource } from "@/types/global";
+import { Publication } from "@/types/global";
 import { ImageSelector } from "@/components/admin/ImageSelector";
-import { TeachingResourceMaterial } from "@/types/global";
+import { PublicationMaterial } from "@/types/global";
 import { LoadingSpinner } from "../../LoadingSpinner";
 import { Input } from "../../Input";
 import { MaterialInput } from "./MaterialInput";
 
-interface TeachingResourceFormProps {
+interface PublicationFormProps {
   className?: string;
-  teachingResource?: TeachingResource;
+  publication?: Publication;
   pending?: boolean;
-  onSaveTeachingResource: (teachingResource: TeachingResource) => void;
+  onSavePublication: (publication: Publication) => void;
 }
 
-const DEFAULT_TEACHING_RESOURCE: TeachingResource = {
+const DEFAULT_PUBLICATION: Publication = {
   title: "",
   image: "",
   materials: [],
 };
 
-const DEFAULT_MATERIAL: TeachingResourceMaterial = {
+const DEFAULT_MATERIAL: PublicationMaterial = {
   name: "",
+  type: "",
   date: "",
-  host: "",
+  authorOrInterviewees: "",
   link: undefined,
 };
 
-export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
-  teachingResource = DEFAULT_TEACHING_RESOURCE,
+export const PublicationForm: React.FC<PublicationFormProps> = ({
+  publication = DEFAULT_PUBLICATION,
   pending,
-  onSaveTeachingResource,
+  onSavePublication,
 }) => {
   const {
     register,
@@ -37,8 +38,8 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
     control,
     handleSubmit,
     formState: { isDirty, errors, isValid },
-  } = useForm<TeachingResource>({
-    defaultValues: { ...teachingResource },
+  } = useForm<Publication>({
+    defaultValues: { ...publication },
     mode: "onBlur",
   });
 
@@ -66,7 +67,7 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
   return (
     <form
       className="flex flex-col w-full"
-      onSubmit={handleSubmit(onSaveTeachingResource)}
+      onSubmit={handleSubmit(onSavePublication)}
     >
       <div className="flex mb-4">
         <div className="mb-4 w-full">
@@ -77,7 +78,7 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
             label="Title"
             name="title"
             type="text"
-            placeholder="Teaching resource Title"
+            placeholder="Publication Title"
           />
         </div>
       </div>
@@ -113,8 +114,11 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
           <li className="flex items-center rounded border-b border-slate-500 px-4 py-2 w-full">
             <div className="w-3/12 text-black font-bold">Name</div>
             <div className="w-1/12 text-black font-bold">Date</div>
-            <div className="w-3/12 text-black font-bold">Host</div>
-            <div className="w-4/12 text-black font-bold">Link</div>
+            <div className="w-1/12 text-black font-bold">Type</div>
+            <div className="w-3/12 text-black font-bold">
+              Author/Interviewees
+            </div>
+            <div className="w-3/12 text-black font-bold">Link</div>
             <div className="w-1/12 text-black font-bold">Actions</div>
           </li>
           {controlledFields.map((material, index) => (
@@ -144,7 +148,7 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
           type="submit"
           disabled={pending || !isValid || !isDirty}
         >
-          {pending ? <LoadingSpinner /> : "Save Teacher Resource"}
+          {pending ? <LoadingSpinner /> : "Save Publication"}
         </button>
       </div>
     </form>

@@ -6,9 +6,10 @@ import {
   FieldPath,
 } from "react-hook-form";
 import { DayPicker } from "@/components/admin/DayPicker";
-import { MaterialLink } from "@/types/global";
+import { BinIcon } from "@/components/icons/Bin";
 import { RHFMaterialLink } from "@/components/admin/RHFMaterialLink";
 import { isValidDate } from "@/utils/validators";
+import { MaterialLink } from "@/types/global";
 
 interface MaterialInputProps<T> {
   name: FieldPath<T>;
@@ -53,17 +54,29 @@ export const MaterialInput = <T extends object>(
         />
       </div>
 
+      <div className="w-1/12">
+        <input
+          className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-4 leading-tight focus:outline-none"
+          type="text"
+          placeholder="Type"
+          {...register(`${name}.type` as unknown as FieldPath<T>)}
+          aria-label="type of resource"
+        />
+      </div>
+
       <div className="w-3/12">
         <input
           className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-4 leading-tight focus:outline-none"
           type="text"
-          placeholder="Host"
-          {...register(`${name}.host` as unknown as FieldPath<T>)}
-          aria-label="Host"
+          placeholder="Author or Interviewees"
+          {...register(
+            `${name}.authorOrInterviewees` as unknown as FieldPath<T>
+          )}
+          aria-label="Author or Interviewees"
         />
       </div>
 
-      <div className="w-4/12 pl-2 pr-3">
+      <div className="w-3/12 pl-2 pr-3">
         <Controller
           name={`${name}.link` as unknown as FieldPath<T>}
           control={control}
@@ -79,15 +92,10 @@ export const MaterialInput = <T extends object>(
         />
       </div>
 
-      <div className="w-1/12">
-        <button
-          className="flex-shrink-0 btn-admin btn-danger btn-sm text-sm w-24"
-          type="button"
-          onClick={onRemove}
-        >
-          Delete
-        </button>
-      </div>
+      <BinIcon
+        onClick={onRemove}
+        className="fill-primary h-5 w-5 cursor-pointer"
+      />
     </div>
   );
 };

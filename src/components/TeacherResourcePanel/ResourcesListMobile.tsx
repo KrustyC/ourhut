@@ -36,7 +36,7 @@ export const ResourcesListMobile: React.FC<ResourcesListMobileProps> = ({
         <div className="flex">
           <div className="w-5/12 text-sm">Link</div>
           <div className="w-7/12 overflow-hidden truncate text-ellipsis">
-            <ResourceLink pdf={material.pdf} website={material.website} />
+            <ResourceLink link={material.link} />
           </div>
         </div>
       </div>

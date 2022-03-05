@@ -6,8 +6,8 @@ import { REST_METHOD } from "../types/global";
 interface UseAdminNewsHeadlineReturn {
   newsHeadlineLoading: boolean;
   newsHeadlineError?: Error;
-  newsHeadline: any | undefined;
-  onChangeHeadline: (value: any) => void;
+  newsHeadline: string | undefined;
+  onChangeHeadline: (value: string) => void;
   saveHeadlineHandler: {
     onSave: VoidFunction;
     pending: boolean;
@@ -18,7 +18,9 @@ interface UseAdminNewsHeadlineReturn {
 
 export function useAdminNewsHeadline(): UseAdminNewsHeadlineReturn {
   const { user } = useAuth();
-  const [newsHeadline, setNewsHeadline] = useState<any | undefined>(undefined);
+  const [newsHeadline, setNewsHeadline] = useState<string | undefined>(
+    undefined
+  );
 
   const [newsHeadlineLoading, setNewsHeadlineLoading] = useState(true);
   const [newsHeadlineError, setNewsHeadlineError] = useState<
@@ -55,11 +57,15 @@ export function useAdminNewsHeadline(): UseAdminNewsHeadlineReturn {
     }
   }, [user]);
 
-  const onChangeHeadline = (value: any) => {
+  const onChangeHeadline = (value: string) => {
     setNewsHeadline(value);
   };
 
   const onSave = async () => {
+    if (!newsHeadline) {
+      return;
+    }
+
     setSavePending(true);
 
     try {
