@@ -68,6 +68,7 @@ export const NewsletterSubscriber = () => {
           </span>
         ) : (
           <input
+            autoFocus
             type="text"
             className="appearance-none bg-transparent border-b-2 border-black w-full text-gray-700 mr-3 py-1 leading-tight focus:outline-none w-full"
             value={email}

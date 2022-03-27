@@ -11,7 +11,6 @@ import { ChevronLeftIcon } from "@/components/icons/ChevronLeft";
 import { ChevronRightIcon } from "@/components/icons/ChevronRight";
 import { Media } from "@/components/Media";
 import { useThrottle } from "rooks";
-// import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 
 type SliderImage = {
   name: string;
@@ -82,8 +81,9 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   return (
     <section className="relative h-screen flex justify-center items-center">
       <Slider
-        className="h-screen bg-red w-screen absolute bottom-0 left-0 w-screen"
+        className="h-screen w-screen absolute bottom-0 left-0"
         dots={false}
+        arrows={false}
         infinite={true}
         fade={true}
         speed={500}
@@ -92,7 +92,12 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
         ref={sliderRef}
       >
         {images.map((slide, index) => (
-          <div key={index} className="h-screen w-full relative">
+          <div key={index} className="h-screen w-screen relative">
+            {/*
+             * I am not sure why, but without this dot (which is not really visible in the screen)
+             * prevent react-slick from creating a weird gap at the bottom of the screen
+             **/}
+            <span aria-hidden="true">.</span>
             <Image
               src={slide.src}
               alt={slide.description}
