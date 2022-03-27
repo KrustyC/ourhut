@@ -7,15 +7,15 @@ interface UseNetlifyFunctionProps {
   user?: netlifyIdentity.User | null;
 }
 
-interface UseNetlifyFunctionReturn<T> {
+interface UseNetlifyFunctionReturn {
   pending: boolean;
   error?: Error | undefined;
   onDelete: (path: string) => Promise<unknown>;
 }
 
-export function useNetlifyDeleteFunction<T>({
+export function useNetlifyDeleteFunction({
   user,
-}: UseNetlifyFunctionProps): UseNetlifyFunctionReturn<T> {
+}: UseNetlifyFunctionProps): UseNetlifyFunctionReturn {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<Error>();
 

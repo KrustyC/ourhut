@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-// import { Transition } from "@tailwindui/react";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
 import { ChevronLeftIcon } from "@/components/icons/ChevronLeft";
 import { ChevronRightIcon } from "@/components/icons/ChevronRight";
 import { Media } from "@/components/Media";
+import { useThrottle } from "rooks";
+// import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 
 type SliderImage = {
   name: string;
@@ -23,25 +26,32 @@ interface ImageSliderProps {
 
 export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   const [currentIndex, setCurrent] = useState(0);
-  const [touchStart, setTouchStart] = React.useState(0);
-  const [touchEnd, setTouchEnd] = React.useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [setCurrentThrottled] = useThrottle(setCurrent, 500);
+  const sliderRef = useRef<Slider | null>(null);
 
   const length = images.length;
 
   useEffect(() => {
+    sliderRef.current?.slickGoTo(currentIndex);
+
     const interval = setInterval(() => {
-      setCurrent(currentIndex === length - 1 ? 0 : currentIndex + 1);
+      const nextIndex = currentIndex === length - 1 ? 0 : currentIndex + 1;
+      setCurrent(nextIndex);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [currentIndex, length]);
 
   const nextSlide = () => {
-    setCurrent(currentIndex === length - 1 ? 0 : currentIndex + 1);
+    const nextIndex = currentIndex === length - 1 ? 0 : currentIndex + 1;
+    setCurrentThrottled(nextIndex);
   };
 
   const prevSlide = () => {
-    setCurrent(currentIndex === 0 ? length - 1 : currentIndex - 1);
+    const nextIndex = currentIndex === 0 ? length - 1 : currentIndex - 1;
+    setCurrentThrottled(nextIndex);
   };
 
   const onTouchStart = (e: any) => {
@@ -71,19 +81,19 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
 
   return (
     <section className="relative h-screen flex justify-center items-center">
-      <div className="h-screen bg-black w-screen absolute bottom-0 left-0 w-screen">
-        CIAO
-      </div>
-
-      <div className="h-screen bg-black w-screen absolute bottom-0 left-0 w-screen">
-        {images.map((slide, index) => {
-          if (currentIndex !== index) {
-            return null;
-          }
-
-          return (
+      <Slider
+        className="h-screen bg-red w-screen absolute bottom-0 left-0 w-screen"
+        dots={false}
+        infinite={true}
+        fade={true}
+        speed={500}
+        slidesToShow={1}
+        slidesToScroll={1}
+        ref={sliderRef}
+      >
+        {images.map((slide, index) => (
+          <div key={index} className="h-screen w-full relative">
             <Image
-              key={index}
               src={slide.src}
               alt={slide.description}
               placeholder="blur"
@@ -91,39 +101,17 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
               layout="fill"
               objectFit="cover"
             />
-          );
+          </div>
+        ))}
+      </Slider>
 
-          // return (
-          //   <Transition
-          //     key={index}
-          //     show={currentIndex === index}
-          //     enter="transition-opacity duration-75"
-          //     enterFrom="opacity-0"
-          //     enterTo="opacity-100"
-          //     leave="transition-opacity duration-150"
-          //     leaveFrom="opacity-100"
-          //     leaveTo="opacity-0"
-          //   >
-          //   <Image
-          //     key={index}
-          //     src={slide.src}
-          //     alt={slide.description}
-          //     placeholder="blur"
-          //     blurDataURL={slide.blurSrc}
-          //     layout="fill"
-          //     objectFit="cover"
-          //   />
-          //   </Transition>
-          // );
-        })}
-        <div
-          id="slider-shadow"
-          className="w-screen h-screen bg-transparent absolute top-0 left-0 z-1"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        />
-      </div>
+      <div
+        id="slider-shadow"
+        className="w-screen h-screen bg-transparent absolute top-0 left-0 z-1"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      />
 
       <div className="h-24 md:px-16 absolute bottom-0 left-0 w-screen flex justify-between items-end pb-8 z-40">
         <Media lessThan="md">
