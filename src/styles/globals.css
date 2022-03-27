@@ -271,3 +271,40 @@
 #project-description > p {
   margin-bottom: 20px !important;
 }
+
+.card-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* height: 700px; */
+  /* perspective: 1400px; */
+}
+
+.card {
+  height: 700px;
+  width: 75vw;
+  transform-style: preserve-3d;
+  position: relative;
+  transition: transform 1s;
+}
+
+.card-wrapper:hover .card {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

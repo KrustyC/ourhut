@@ -21,7 +21,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
   return (
     <div>
       <Head>
-        <title>AboutUs | Our Hut</title>
+        <title>About Us | Our Hut</title>
         <meta name="description" content="Checkout our latest AboutUs" />
       </Head>
 

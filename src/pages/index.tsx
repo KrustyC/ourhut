@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Our Hut</title>
+        <title>Our Hut | Architecture Education</title>
         <meta name="description" content="Website for the Charity Our Hut" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
