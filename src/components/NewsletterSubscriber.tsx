@@ -38,8 +38,8 @@ export const NewsletterSubscriber = () => {
           width="150px"
           height="100px"
           objectFit="contain"
-          alt="dynosaur"
-          src="/images/dynosaur.jpg"
+          alt="dragon"
+          src="/images/dragon.png"
         />
 
         <span className="text-black font-semibold text-m">
@@ -80,7 +80,7 @@ export const NewsletterSubscriber = () => {
       <div>
         <button
           disabled={pending || !isEmailValid}
-          className="btn btn-transparent-outlined font-bold w-full md:w-40 text-black"
+          className="btn btn-transparent-outlined font-bold h-14 w-full md:w-40 text-black"
           onClick={onSubscribe}
         >
           {pending ? <LoadingSpinner color="bg-primary" /> : "Subscribe"}
