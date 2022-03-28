@@ -38,12 +38,13 @@ export const ResourcesLayout: React.FC = ({ children }) => {
           }}
         />
 
-        <div>
-          <h1 className="text-3xl md:text-6xl ml-8 lg:ml-20 xl:ml-32 text-black font-bold md:mt-8">
+        <div className="px-8 md:pt-6 md:px-24 md:pb-8 xl:px-48">
+          {/* <h1 className="text-3xl md:text-6xl ml-8 lg:ml-20 xl:ml-32 text-black font-bold md:mt-8"> */}
+          <h1 className="text-3xl md:text-6xl text-black font-semibold md:ml-[-4px]">
             Resources
           </h1>
 
-          <div className="py-2 ml-8 lg:ml-20 xl:ml-32 lg:w-7/12 xl:w-6/12">
+          <div className="my-4 lg:w-7/12 xl:w-6/12">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat eum
             magni minima ullam corporis rem doloremque fuga suscipit delectus,
             quae laudantium at, ex sit numquam molestiae, ad illum corrupti
@@ -51,7 +52,7 @@ export const ResourcesLayout: React.FC = ({ children }) => {
           </div>
 
           <Media greaterThanOrEqual="md">
-            <div className="flex py-8 md:px-12 lg:px-20 xl:px-32">
+            <div className="flex my-8">
               {LINKS.map(({ href, label }, i) => (
                 <Link key={i} href={href}>
                   <a
@@ -66,12 +67,12 @@ export const ResourcesLayout: React.FC = ({ children }) => {
             </div>
           </Media>
 
-          <div className="md:px-12 lg:px-20 xl:px-32">{children}</div>
+          <div>{children}</div>
 
           <div className="w-full flex justify-end mt-8 ">
             <span
               role="button"
-              className="text-xl font-semibold flex items-center mr-8"
+              className="text-xl font-semibold flex items-center"
               onClick={onScrollToTop}
             >
               Back to top{" "}
