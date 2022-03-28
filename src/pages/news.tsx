@@ -95,7 +95,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
 
       <div className="flex flex-col">
         <div className="flex flex-col py-14 md:py-24">
-          <h1 className="text-3xl md:text-6xl text-black ml-8 md:ml-24 xl:ml-48 mb-8 md:mb-12">
+          <h1 className="text-3xl font-bold md:text-6xl text-black ml-8 md:ml-24 xl:ml-48 mb-8 md:mb-12">
             Future Events
           </h1>
           <Carousel events={upcomingEvents} />
