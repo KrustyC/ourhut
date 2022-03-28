@@ -26,17 +26,17 @@ const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
           }}
         />
 
-        <div className="md:px-16 lg:px-32 flex flex-col">
-          <h1 className="px-8 md:px-0 text-3xl md:text-6xl text-black font-bold my-2 mb-8 md:my-8">
+        <div className="flex flex-col px-8 md:pt-6 md:px-24 md:pb-8 xl:px-48">
+          <h1 className="text-3xl md:text-6xl text-black font-semibold md:ml-[-4px]">
             Shop
           </h1>
 
-          <span className="md:hidden font-bold px-8 mb-8 w-full">
+          <span className="font-bold mt-4 mb-8 w-full md:hidden">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
             consequat libero pulvinar.
           </span>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col md:mt-12">
             {products.map((product, i) => (
               <ShopProductCard
                 key={i}

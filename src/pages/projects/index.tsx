@@ -28,12 +28,12 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
           }}
         />
 
-        <div className="md:px-16 lg:px-32">
-          {/* <h1 className="text-6xl text-black font-semibold my-8">Projects</h1> */}
-          <h1 className="px-6 md:px-0 text-3xl md:text-6xl text-black font-bold my-2 mb-8 md:my-8">
+        <div className="flex flex-col px-8 md:pt-6 md:px-24 md:pb-8 xl:px-48">
+          <h1 className="text-3xl md:text-6xl text-black font-semibold md:ml-[-4px]">
             Projects
           </h1>
-          <div>
+
+          <div className="mt-4">
             <Media lessThan="md">
               <ProjectsListMobile projects={projects} />
             </Media>

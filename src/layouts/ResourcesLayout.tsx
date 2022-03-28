@@ -39,7 +39,6 @@ export const ResourcesLayout: React.FC = ({ children }) => {
         />
 
         <div className="px-8 md:pt-6 md:px-24 md:pb-8 xl:px-48">
-          {/* <h1 className="text-3xl md:text-6xl ml-8 lg:ml-20 xl:ml-32 text-black font-bold md:mt-8"> */}
           <h1 className="text-3xl md:text-6xl text-black font-semibold md:ml-[-4px]">
             Resources
           </h1>
