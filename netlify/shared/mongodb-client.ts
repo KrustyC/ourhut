@@ -9,12 +9,11 @@ export async function connect() {
     throw new Error("Missing MONGO_URI environment variable");
   }
 
-  const client = new MongoClient(uri);
-
   if (cachedDb) {
     return cachedDb;
   }
 
+  const client = new MongoClient(uri);
   try {
     return client.connect().then((db) => {
       cachedDb = db;
