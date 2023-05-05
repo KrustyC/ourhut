@@ -237,6 +237,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
           $set: {
             title: projectDocument.title,
             intro: projectDocument.intro,
+            year: projectDocument.year,
             description: projectDocument.description,
             thumbnailImage: projectDocument.thumbnailImage,
             images: projectDocument.images,

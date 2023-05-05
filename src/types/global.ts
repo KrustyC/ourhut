@@ -40,6 +40,7 @@ export type FormProject = {
   title: string;
   intro: string;
   description: string;
+  year: number;
   thumbnailImage: string;
   images: FormProjectImage[];
   links: {
@@ -139,6 +140,7 @@ export type Project = {
   title: string;
   intro: string;
   description: string;
+  year: number;
   thumbnailImage?: string;
   images: string[];
   links: {

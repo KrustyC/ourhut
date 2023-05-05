@@ -21,6 +21,7 @@ const DEFAULT_PROJECT: Project = {
   title: "",
   intro: "",
   description: "",
+  year: 2020,
   thumbnailImage: undefined,
   images: [],
   links: {
@@ -104,6 +105,18 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
             name="title"
             type="text"
             placeholder="Project Name"
+          />
+        </div>
+
+        <div className="mb-4">
+          <Input
+            register={register}
+            options={{ required: "Please add a year for the project" }}
+            error={errors.year}
+            label="Year"
+            name="year"
+            type="number"
+            placeholder="Year"
           />
         </div>
 
