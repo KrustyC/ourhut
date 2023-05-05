@@ -19,6 +19,7 @@ const Button: React.FC<BubbleMenuButtonProps> = ({
     className={`text-white h-8 w-8 border-r-2 rounded-l-lg border-white px-2 hover:bg-gray-600 ${
       isActive ? "text-emerald-500" : ""
     }`}
+    type="button"
     onClick={onClick}
   >
     {children}
