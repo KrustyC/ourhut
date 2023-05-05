@@ -33,7 +33,16 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
             Projects
           </h1>
 
-          <div className="mt-4">
+          <p className="my-4">
+            Our Hut has carried out projects on a wide variety of architectural
+            themes, working mainly in schools, but also with community groups,
+            families and the general public. Courses with individual classes
+            range from one-day workshops to courses of workshops over two to
+            eight sessions. We also deliver teacher Inset, either as part of a
+            project with the children or a stand-alone day or twilight session.
+          </p>
+
+          <div>
             <Media lessThan="md">
               <ProjectsListMobile projects={projects} />
             </Media>

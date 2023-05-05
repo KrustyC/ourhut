@@ -91,11 +91,9 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
 
       {project.links.shop ? (
         <div className="bg-gray-100 min-h-[800px] pt-8 md:pt-16">
-          <Media greaterThanOrEqual="md">
-            <h1 className="md:mx-60 md:text-6xl text-black font-semibold">
-              Our Hut Shop
-            </h1>
-          </Media>
+          <h1 className="mx-8 md:mx-16 xl:mx-auto xl:w-[1070px] text-3xl md:text-6xl text-black font-semibold">
+            Our Hut Shop
+          </h1>
 
           <ShopProductCard
             product={project.links.shop as Product}
