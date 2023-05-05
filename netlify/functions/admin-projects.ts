@@ -11,6 +11,9 @@ export const projectSchema = yup.object().shape({
   description: yup
     .string()
     .required("please enter a description for the project"),
+  thumbnailImage: yup
+    .string()
+    .required("please enter a thumbnail image for the project"),
   images: yup
     .array()
     .of(yup.string().required("please enter an image for the project")),
@@ -118,25 +121,25 @@ function mapLinksToSchema(links: Links): Partial<Links> {
           _id: links.teacherResources._id,
           title: links.teacherResources.title,
         }
-      : null,
+      : undefined,
     press: links.press._id
       ? {
           _id: links.press._id,
           title: links.press.title,
         }
-      : null,
+      : undefined,
     research: links.research._id
       ? {
           _id: links.research._id,
           title: links.research.title,
         }
-      : null,
+      : undefined,
     shop: links.shop._id
       ? {
           _id: links.shop._id,
           name: links.shop.name,
         }
-      : null,
+      : undefined,
   };
 }
 
@@ -235,6 +238,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
             title: projectDocument.title,
             intro: projectDocument.intro,
             description: projectDocument.description,
+            thumbnailImage: projectDocument.thumbnailImage,
             images: projectDocument.images,
             links: mapLinksToSchema(projectDocument.links),
             updatedAt: new Date(),

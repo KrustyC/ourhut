@@ -8,6 +8,7 @@ import { Input } from "../../Input";
 import { Editor } from "../../Editor";
 import { ProjectLinks } from "./ProjectLinks";
 import { MultipleImagesInput } from "./MultipleImagesInput";
+import { ImageSelector } from "../../ImageSelector";
 
 interface ProjectFormProps {
   className?: string;
@@ -20,6 +21,7 @@ const DEFAULT_PROJECT: Project = {
   title: "",
   intro: "",
   description: "",
+  thumbnailImage: undefined,
   images: [],
   links: {
     teacherResources: undefined,
@@ -39,6 +41,7 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
     control,
     watch,
     handleSubmit,
+    getValues,
     formState: { isDirty, errors, isValid },
   } = useForm<FormProject>({
     defaultValues: {
@@ -55,6 +58,8 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
     control,
     name: "images",
   });
+
+  console.log(getValues());
 
   const watchFieldArray = watch("images");
 
@@ -144,9 +149,31 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
           </div>
         </div>
 
+        <div className="w-1/2 mb-8">
+          <span className="uppercase block text-gray-700 text-sm font-bold mb-2">
+            Thumbnail Image
+          </span>
+
+          <Controller
+            name="thumbnailImage"
+            rules={{ required: "Please make sure to add an image" }}
+            render={(props) => (
+              <ImageSelector
+                currentImage={props.field.value}
+                error={errors?.thumbnailImage}
+                onBlur={() => props.field.onBlur()}
+                onSelectImage={(image) => {
+                  props.field.onChange(image);
+                }}
+              />
+            )}
+            control={control}
+          />
+        </div>
+
         <div className="mb-4">
           <span className="uppercase block text-gray-700 text-sm font-bold mb-2">
-            Images
+            Other Images
           </span>
           <MultipleImagesInput
             images={controlledFields}

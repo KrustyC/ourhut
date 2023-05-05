@@ -21,9 +21,9 @@ export const ProjectLinks: React.FC<ProjectLinksProps> = ({ control }) => {
       <table className="w-full table-fixed">
         <thead>
           <tr className="uppercase w-1/2 text-left text-sm border-b-2 border-gray-300">
-            <th className="w-2/6 pb-1 px-2">Link to</th>
-            <th className="w-3/6 pb-1 px-2">Name</th>
-            <th className="w-1/6 pb-1 px-2">Actions</th>
+            <th className="w-1/3 pb-1 px-2">Link to</th>
+            <th className="w-1/3 pb-1 px-2">Name</th>
+            <th className="w-1/3 pb-1 px-3">Actions</th>
           </tr>
         </thead>
 
@@ -33,11 +33,11 @@ export const ProjectLinks: React.FC<ProjectLinksProps> = ({ control }) => {
             control={control}
             render={({ field: { value, onChange } }) => (
               <tr className="border-b-2 border-gray-300">
-                <td className="py-5 w-2/6 px-2">Teacher Resource</td>
-                <td className="w-3/6 pb-1 px-2">
+                <td className="py-5 w-1/3 px-2">Teacher Resource</td>
+                <td className="w-1/3 pb-1 px-2">
                   {value?.title || "Not Selected"}
                 </td>
-                <td className="w-1/6 pb-1 px-2">
+                <td className="w-1/3 pb-1 px-3">
                   <LinkToOtherItemButton<
                     Partial<TeachingResource>,
                     { teachingResources: TeachingResource[] }
@@ -58,11 +58,11 @@ export const ProjectLinks: React.FC<ProjectLinksProps> = ({ control }) => {
             control={control}
             render={({ field: { value, onChange } }) => (
               <tr className="border-b-2 border-gray-300">
-                <td className="py-5 w-2/6 px-2">Press</td>
-                <td className="w-3/6 pb-1 px-2">
+                <td className="py-5 w-1/3 px-2">Press</td>
+                <td className="w-1/3 pb-1 px-2">
                   {value?.title || "Not Selected"}
                 </td>
-                <td className="w-1/6 pb-1 px-2">
+                <td className="w-1/3 pb-1 px-3">
                   <LinkToOtherItemButton<
                     Partial<Publication>,
                     { publications: Publication[] }
@@ -114,7 +114,7 @@ export const ProjectLinks: React.FC<ProjectLinksProps> = ({ control }) => {
                 <td className="w-3/6 pb-1 px-2">
                   {value?.name || "Not Selected"}
                 </td>
-                <td className="w-1/6 pb-1 px-2">
+                <td className="w-1/6 pb-1 px-3">
                   <LinkToOtherItemButton<
                     Partial<Product>,
                     { products: Product[] }

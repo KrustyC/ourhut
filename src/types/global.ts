@@ -40,6 +40,7 @@ export type FormProject = {
   title: string;
   intro: string;
   description: string;
+  thumbnailImage: string;
   images: FormProjectImage[];
   links: {
     teacherResources?: ProjectLink<TeachingResource> | null;
@@ -138,6 +139,7 @@ export type Project = {
   title: string;
   intro: string;
   description: string;
+  thumbnailImage?: string;
   images: string[];
   links: {
     teacherResources?: ProjectLink<TeachingResource> | null;
