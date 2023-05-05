@@ -270,6 +270,7 @@
 
 #project-description > p {
   margin-bottom: 20px !important;
+  overflow-wrap: anywhere;
 }
 
 .project-grid {

@@ -2,7 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import parse from "html-react-parser";
 import { Navbar } from "@/components/Navbar";
-import { Media } from "@/components/Media";
 import { Project, Product } from "@/types/global";
 import { LeftArrowIcon } from "@/components/icons/LeftArrow";
 import { ShopProductCard } from "@/components/ShopProductCard";
@@ -21,7 +20,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
       <meta name="description" content="Get in touch" />
     </Head>
 
-    <div className="w-screen bg-white flex flex-col">
+    <div className="w-full bg-white flex flex-col">
       <Navbar
         config={{
           burgerColor: "bg-primary",
@@ -34,7 +33,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
         <h1 className="text-3xl md:text-6xl text-black font-semibold ml-8 md:ml-24 xl:ml-60">
           {project.title}
         </h1>
-        <div className="text-xl text-black font-semibold mt-4 px-8 md:px-24 xl:px-60 lg:w-10/12 xl:w-9/12">
+        <div className="text-xl text-black font-semibold mt-4 px-8 md:px-24 xl:px-60 lg:w-10/12 xl:w-9/12 break-words">
           {parse(project.intro)}
         </div>
       </div>
@@ -55,7 +54,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
         <div className="mx-8 w-full md:w-4/5 lg:w-3/4 flex flex-col">
           <div
             id="project-description"
-            className="font-medium md:w-11/12 lg:w-[820px]"
+            className="font-medium w-full md:w-11/12 lg:w-[820px]"
           >
             {parse(project.description)}
           </div>
