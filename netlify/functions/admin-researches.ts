@@ -30,7 +30,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 
     if (id) {
       const research = await client
-        .db(process.env.MONGO_DB_NAME)
+        .db()
         .collection(RESEARCHES_COLLECTION)
         .findOne({ _id: new ObjectId(id) });
 
@@ -52,7 +52,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     const researches = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(RESEARCHES_COLLECTION)
       .find()
       .toArray();
@@ -97,7 +97,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     const result = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(RESEARCHES_COLLECTION)
       .insertOne({
         ...researchDocument,
@@ -159,7 +159,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(RESEARCHES_COLLECTION)
       .findOneAndUpdate(
         {
@@ -209,7 +209,7 @@ async function deleteTeachingResource(
     }
 
     await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(RESEARCHES_COLLECTION)
       .deleteMany({
         _id: new ObjectId(id),

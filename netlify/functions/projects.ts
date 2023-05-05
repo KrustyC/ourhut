@@ -18,7 +18,7 @@ async function get(event: HandlerEvent) {
 
     if (id) {
       const project = await client
-        .db(process.env.MONGO_DB_NAME)
+        .db()
         .collection(PROJECTS_COLLECTION)
         .findOne({ _id: new ObjectId(id) });
 
@@ -33,7 +33,7 @@ async function get(event: HandlerEvent) {
 
       if (project.links.shop) {
         const product = await client
-          .db(process.env.MONGO_DB_NAME)
+          .db()
           .collection(PRODUCTS_COLLECTION)
           .findOne({ _id: new ObjectId(project.links.shop._id) });
 
@@ -49,7 +49,7 @@ async function get(event: HandlerEvent) {
     }
 
     const projects = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(PROJECTS_COLLECTION)
       .find()
       .toArray();

@@ -19,7 +19,7 @@ async function get() {
     // @TODO Only takes published events
     const fetchEvents = async () => {
       const events = await client
-        .db(process.env.MONGO_DB_NAME)
+        .db()
         .collection(EVENTS_COLLECTION)
         .find({ isPublished: true })
         .toArray();
@@ -46,14 +46,10 @@ async function get() {
       );
     };
 
-    const fetchNews = client
-      .db(process.env.MONGO_DB_NAME)
-      .collection(NEWS_COLLECTION)
-      .find()
-      .toArray();
+    const fetchNews = client.db().collection(NEWS_COLLECTION).find().toArray();
 
     const fetchNewsHeadline = client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(NEWS_HEADLINE_COLLECTION)
       .find()
       .toArray();

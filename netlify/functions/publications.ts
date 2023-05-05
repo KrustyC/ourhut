@@ -14,7 +14,7 @@ async function get() {
     }
 
     const publications = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(PUBLICATIONS_COLLECTION)
       .find()
       .toArray();

@@ -6,7 +6,7 @@ import { HTTP_METHODS } from "../shared/variables";
 
 async function get(client: MongoClient) {
   try {
-    const db = await client.db(process.env.MONGO_DB_NAME);
+    const db = await client.db();
     const promises = [db.collection("events").countDocuments()];
 
     const [eventsCount] = await Promise.all(promises);

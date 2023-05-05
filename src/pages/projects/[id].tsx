@@ -89,26 +89,26 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => (
         </div>
       </div>
 
-      <div className="bg-gray-100 min-h-[800px] pt-8 md:pt-16">
-        <Media greaterThanOrEqual="md">
-          <h1 className="md:mx-60 md:text-6xl text-black font-semibold">
-            Our Hut Shop
-          </h1>
-        </Media>
+      {project.links.shop ? (
+        <div className="bg-gray-100 min-h-[800px] pt-8 md:pt-16">
+          <Media greaterThanOrEqual="md">
+            <h1 className="md:mx-60 md:text-6xl text-black font-semibold">
+              Our Hut Shop
+            </h1>
+          </Media>
 
-        {project.links.shop ? (
           <ShopProductCard
             product={project.links.shop as Product}
             hasPriorityImage={false}
             includeLinkToShop
             bgColor="bg-gray-100"
           />
-        ) : null}
 
+          <Footer />
+        </div>
+      ) : (
         <Footer />
-      </div>
-
-      {!project.links.shop ? <Footer /> : null}
+      )}
     </div>
   </div>
 );

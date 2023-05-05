@@ -14,7 +14,7 @@ async function get() {
     }
 
     const schools = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(SCHOOLS_COLLECTION)
       .find()
       .toArray();

@@ -20,7 +20,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 
     if (id) {
       const school = await client
-        .db(process.env.MONGO_DB_NAME)
+        .db()
         .collection(SCHOOLS_COLLECTION)
         .findOne({ _id: new ObjectId(id) });
 
@@ -40,7 +40,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     const schools = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(SCHOOLS_COLLECTION)
       .find()
       .toArray();
@@ -81,17 +81,14 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    const result = await client
-      .db(process.env.MONGO_DB_NAME)
-      .collection(SCHOOLS_COLLECTION)
-      .insertOne({
-        name: schoolDocument.name,
-        postcode: schoolDocument.postcode,
-        geographicalArea: schoolDocument.geographicalArea,
-        type: schoolDocument.type,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      });
+    const result = await client.db().collection(SCHOOLS_COLLECTION).insertOne({
+      name: schoolDocument.name,
+      postcode: schoolDocument.postcode,
+      geographicalArea: schoolDocument.geographicalArea,
+      type: schoolDocument.type,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
 
     return jsonResponse({
       status: 200,
@@ -145,7 +142,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(SCHOOLS_COLLECTION)
       .findOneAndUpdate(
         {
@@ -196,7 +193,7 @@ async function deleteSchool(
     }
 
     await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(SCHOOLS_COLLECTION)
       .deleteMany({
         _id: new ObjectId(id),

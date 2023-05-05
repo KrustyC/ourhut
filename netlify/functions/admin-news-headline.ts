@@ -14,7 +14,7 @@ const NEWS_HEADLINE_COLLECTION = "news_headline";
 async function get(client: MongoClient) {
   try {
     const newsHeadline = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(NEWS_HEADLINE_COLLECTION)
       .find()
       .toArray();
@@ -57,14 +57,14 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     const newsHeadlineContent = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(NEWS_HEADLINE_COLLECTION)
       .find()
       .toArray();
 
     if (!newsHeadlineContent.length) {
       await client
-        .db(process.env.MONGO_DB_NAME)
+        .db()
         .collection(NEWS_HEADLINE_COLLECTION)
         .insertOne(newsDocument);
 
@@ -75,7 +75,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(NEWS_HEADLINE_COLLECTION)
       .findOneAndUpdate(
         {

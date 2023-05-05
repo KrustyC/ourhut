@@ -21,7 +21,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 
     if (id) {
       const news = await client
-        .db(process.env.MONGO_DB_NAME)
+        .db()
         .collection(NEWS_COLLECTION)
         .findOne({ _id: new ObjectId(id) });
 
@@ -45,11 +45,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    const news = await client
-      .db(process.env.MONGO_DB_NAME)
-      .collection(NEWS_COLLECTION)
-      .find()
-      .toArray();
+    const news = await client.db().collection(NEWS_COLLECTION).find().toArray();
 
     return jsonResponse({
       status: 200,
@@ -100,7 +96,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
     );
 
     const result = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(NEWS_COLLECTION)
       .insertOne({
         ...newsDocument,
@@ -165,7 +161,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
       new Date()
     );
     await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(NEWS_COLLECTION)
       .findOneAndUpdate(
         {
@@ -216,7 +212,7 @@ async function deleteNews(
     }
 
     await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(NEWS_COLLECTION)
       .deleteMany({
         _id: new ObjectId(id),

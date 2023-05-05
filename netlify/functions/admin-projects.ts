@@ -54,7 +54,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
 
     if (id) {
       const project = await client
-        .db(process.env.MONGO_DB_NAME)
+        .db()
         .collection(PROJECTS_COLLECTION)
         .findOne({ _id: new ObjectId(id) });
 
@@ -74,7 +74,7 @@ async function get(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     const projects = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(PROJECTS_COLLECTION)
       .find()
       .toArray();
@@ -164,7 +164,7 @@ async function post(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     const result = await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(PROJECTS_COLLECTION)
       .insertOne({
         ...projectDocument,
@@ -224,7 +224,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(PROJECTS_COLLECTION)
       .findOneAndUpdate(
         {
@@ -273,7 +273,7 @@ async function deleteProject(client: MongoClient, handlerEvent: HandlerEvent) {
     }
 
     await client
-      .db(process.env.MONGO_DB_NAME)
+      .db()
       .collection(PROJECTS_COLLECTION)
       .deleteMany({
         _id: new ObjectId(id),
