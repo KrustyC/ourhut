@@ -25,7 +25,7 @@ const ContactsPage = () => (
       </Media>
 
       <Media greaterThanOrEqual="md">
-        <div className="h-screen bg-white flex flex-col">
+        <div className="xl:h-screen bg-white flex flex-col">
           <Navbar
             config={{
               burgerColor: "bg-primary",

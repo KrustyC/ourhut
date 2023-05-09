@@ -36,35 +36,35 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
           />
 
           <div className="w-full pb-14 flex flex-col md:flex-row md:absolute md:top-0 z-0">
-            <div className="flex flex-col md:w-7/12 lg:w-6/12 bg-white px-8 lg:px-20 xl:px-32 md:pt-32">
-              <h1 className="text-3xl md:text-6xl text-black md:ml-[-4px]">
-                About Us
-              </h1>
-              <p className="text-black font-medium mt-4">
-                <p>
-                  Our Hut is an architectural education charity based in
-                  Stockwell working in schools and local communities to deliver
-                  courses of architecture workshops.
+            <div className="flex md:w-7/12 lg:w-1/2 bg-white px-8 lg:px-16 2xl:px-32 md:pt-40">
+              <div className="flex flex-col w-[620px]">
+                <h1 className="text-3xl md:text-6xl text-black">About Us</h1>
+                <p className="text-black mt-4 text-xl">
+                  <p className="font-semibold">
+                    Our Hut is an architectural education charity based in
+                    Stockwell working in schools and local communities to
+                    deliver courses of architecture workshops.
+                  </p>
+                  <p className="mt-4 font-semibold">
+                    Our Hut was founded in 2004 by Lucy Lavers, Judy Ovens and
+                    Suzanna Prizeman, who bring together a combination of
+                    experience in architecture, design and education.
+                  </p>
                 </p>
-                <p className="mt-4">
-                  Our Hut was founded in 2004 by Lucy Lavers, Judy Ovens and
-                  Suzanna Prizeman, who bring together a combination of
-                  experience in architecture, design and education.
-                </p>
-              </p>
 
-              <div className="flex mt-8 md:mt-16">
-                <NextLink href="/projects">
-                  <a className="btn btn-transparent-outlined font-bold w-40 text-black">
-                    Projects
-                  </a>
-                </NextLink>
+                <div className="flex mt-8">
+                  <NextLink href="/projects">
+                    <a className="btn btn-transparent-outlined font-bold w-40 text-black">
+                      Projects
+                    </a>
+                  </NextLink>
 
-                <NextLink href="/contacts">
-                  <a className="btn btn-transparent-outlined font-bold w-40 text-black ml-4 md:ml-8">
-                    Contact Us
-                  </a>
-                </NextLink>
+                  <NextLink href="/contacts">
+                    <a className="btn btn-transparent-outlined font-bold w-40 text-black ml-4 md:ml-8">
+                      Contact Us
+                    </a>
+                  </NextLink>
+                </div>
               </div>
             </div>
 
@@ -99,11 +99,11 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
 
         <WhatWeDo />
 
-        <div className="flex flex-col px-8 py-12 md:px-24 lg:px-32 md:py-10 bg-gray-100">
-          <h1 className="text-3xl md:text-6xl text-black font-bold ml-[-4px]">
+        <div className="flex flex-col py-12 md:py-20 bg-gray-100 px-8 lg:px-40 xl:px-64">
+          <h1 className="text-3xl md:text-6xl text-black font-bold">
             Trustees
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-32 gap-y-8 md:gap-y-16 lg:px-16 xl:px-32 mt-6 md:mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-32 gap-y-8 md:gap-y-16 mt-6 md:mt-16">
             {trustees.map((trustee) => (
               <div key={trustee._id} className="flex flex-col items-start">
                 <h3 className="text-black font-bold text-xl md:text-3xl">
@@ -117,13 +117,13 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-col mb-8 p-4 md:px-24 lg:px-32 md:py-10 bg-white">
+        <div className="flex flex-col mb-8 p-4 px-8 lg:px-40 xl:px-64 md:pb-10 md:pt-20 bg-white">
           <Media greaterThanOrEqual="md">
-            <h1 className="text-6xl text-black font-bold ml-[-4px]">
+            <h1 className="text-6xl text-black font-bold">
               Partners + Funders
             </h1>
           </Media>
-          <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-4 mt-4 lg:px-8 xl:px-16 md:mt-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-4 mt-4 md:mt-16">
             {partnerLogos.map((logoUrl, index) => (
               // eslint-disable-next-line @next/next/no-img-element
               <img

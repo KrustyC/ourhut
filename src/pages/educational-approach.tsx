@@ -64,44 +64,46 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
       />
 
       <div className="flex flex-col bg-light-gray">
-        <div className="px-8 md:pl-24 xl:pl-48 md:pt-6 py-10 md:pr-8 md:pb-8 lg:pr-16">
-          <h1 className="text-2xl md:text-6xl text-black font-bold md:mb-4 md:mb-8">
-            Schools we have worked with
-          </h1>
-
-          <div className="flex flex-col mt-8 md:mt-16 md:px-16">
-            <div className="flex flex-col">
-              <h3 className="font-bold text-xl text-black mb-4  md:mb-8">
-                Primary Schools
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 font-cabin">
-                {primarySchools.map((school, i) => (
-                  <div key={i} className="flex font-semibold font-cabin">
-                    <span className="text-black mr-2 font-cabin">
-                      {school.name},
-                    </span>
-                    <span className="text-gray-500 font-cabin">
-                      {school.geographicalArea}, {school.postcode}
-                    </span>
-                  </div>
-                ))}
-              </div>
+        <div className="flex flex-col px-8 md:px-16 pt-16 md:pt-20 lg:px-60 md:pb-8">
+          <div className="flex flex-col">
+            <h1 className="text-2xl md:text-6xl text-black font-bold md:mb-4 md:mb-8">
+              Schools we have worked with
+            </h1>
+            <h3 className="font-bold text-xl text-black mb-4 md:mb-8 mt-6">
+              Primary Schools
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-1 md:gap-y-2 gap-x-16 font-cabin">
+              {primarySchools.map((school, i) => (
+                <div
+                  key={i}
+                  className="flex flex-wrap font-semibold font-cabin"
+                >
+                  <span className="text-black mr-2 font-cabin">
+                    {school.name},
+                  </span>
+                  <span className="text-gray-500 font-cabin">
+                    {school.geographicalArea}, {school.postcode}
+                  </span>
+                </div>
+              ))}
             </div>
+          </div>
 
-            <div className="flex flex-col mt-12">
-              <h3 className="font-bold text-xl text-black mb-4 md:mb-8">
-                Secondary Schools
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {secondarySchools.map((school, i) => (
-                  <div key={i} className="flex flex-wrap font-semibold">
-                    <span className="text-black mr-2">{school.name},</span>
-                    <span className="text-gray-500 ">
-                      {school.geographicalArea}, {school.postcode}
-                    </span>
-                  </div>
-                ))}
-              </div>
+          <div className="flex flex-col mt-12">
+            <h3 className="font-bold text-xl text-black mb-4 md:mb-8">
+              Secondary Schools
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-1 md:gap-y-2 gap-x-16">
+              {secondarySchools.map((school, i) => (
+                <div key={i} className="flex flex-wrap font-semibold">
+                  <span className="text-black mr-2 font-cabin">
+                    {school.name},
+                  </span>
+                  <span className="text-gray-500 font-cabin">
+                    {school.geographicalArea}, {school.postcode}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

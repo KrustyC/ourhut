@@ -6,6 +6,7 @@ const newColors = {
   primary: "#F47E21",
   accent: "#80ED99",
   link: "#80ED99",
+  black: "#1E1E1E",
   "light-gray": "#F5F5F5",
   "admin-link": "#0FC670",
   "admin-primary": "#2D719F",
@@ -27,6 +28,7 @@ module.exports = {
       md: "768px",
       lg: "1180px",
       xl: "1320px",
+      "2xl": "1536px",
     },
     colors: {
       ...newColors,

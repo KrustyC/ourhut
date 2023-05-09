@@ -18,7 +18,7 @@ export const ShopProductCard: React.FC<ShopProductCardProps> = ({
   bgColor,
 }) => (
   <div
-    className={`flex flex-col md:flex-row p-8 md:mb-8 md:px-16 md:py-16 md:h-[540px] lg:h-[740px] ${bgColor} xl:w-[1420px] xl:mx-auto`}
+    className={`flex flex-col md:flex-row p-8 md:mb-8 md:px-16 md:py-16 md:h-[540px] lg:h-[740px] ${bgColor} 2xl:w-[1420px] xl:mx-auto`}
     key={product._id}
   >
     <div className="relative h-[300px] w-full md:h-full md:w-5/12 xl:w-7/12">
