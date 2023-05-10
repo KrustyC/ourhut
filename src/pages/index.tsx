@@ -4,7 +4,7 @@ import Link from "next/link";
 import { RightArrowIcon } from "@/components/icons/RightArrow";
 import { Navbar } from "@/components/Navbar";
 import { Media } from "@/components/Media";
-import { ImageSlider } from "@/components/ImageSlider";
+import { HomePageProjectsSlider } from "@/components/HomePageProjectsSlider";
 import { PROJECTS } from "@/utils/constants";
 
 const Home: NextPage = () => {
@@ -32,7 +32,7 @@ const Home: NextPage = () => {
         />
 
         <div className="w-screen h-screen bg-white absolute top-0 left-0">
-          <ImageSlider images={PROJECTS} />
+          <HomePageProjectsSlider projects={PROJECTS} />
         </div>
 
         <Media greaterThanOrEqual="md">

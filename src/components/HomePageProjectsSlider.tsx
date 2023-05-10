@@ -11,26 +11,30 @@ import { ChevronLeftIcon } from "@/components/icons/ChevronLeft";
 import { ChevronRightIcon } from "@/components/icons/ChevronRight";
 import { Media } from "@/components/Media";
 import { useThrottle } from "rooks";
+import Link from "next/link";
 
-type SliderImage = {
+type SliderProject = {
   name: string;
   description: string;
   src: string;
   blurSrc: string;
+  href: string;
 };
 
-interface ImageSliderProps {
-  images: SliderImage[];
+interface HomePageProjectsSliderProps {
+  projects: SliderProject[];
 }
 
-export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
+export const HomePageProjectsSlider: React.FC<HomePageProjectsSliderProps> = ({
+  projects,
+}) => {
   const [currentIndex, setCurrent] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [setCurrentThrottled] = useThrottle(setCurrent, 500);
   const sliderRef = useRef<Slider | null>(null);
 
-  const length = images.length;
+  const length = projects.length;
 
   useEffect(() => {
     sliderRef.current?.slickGoTo(currentIndex);
@@ -71,12 +75,13 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
     }
   };
 
-  if (!Array.isArray(images) || images.length <= 0) {
+  if (!Array.isArray(projects) || projects.length <= 0) {
     return null;
   }
 
-  const name = images[currentIndex].name;
-  const description = images[currentIndex].description;
+  const name = projects[currentIndex].name;
+  const description = projects[currentIndex].description;
+  const href = projects[currentIndex].href;
 
   return (
     <section className="relative h-screen flex justify-center items-center">
@@ -91,7 +96,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
         slidesToScroll={1}
         ref={sliderRef}
       >
-        {images.map((slide, index) => (
+        {projects.map((slide, index) => (
           <div key={index} className="h-screen w-screen relative">
             {/*
              * I am not sure why, but without this dot (which is not really visible in the screen)
@@ -129,18 +134,20 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
         </Media>
 
         <div className="flex flex-col justify-end w-full md:w-[600px] items-center z-50">
-          <div className="text-white w-full flex flex-wrap justify-center items-center mb-2 z-40">
-            <span className="font-semibold">{name}</span>
-            <span className="font-bold mx-2">-</span>
-            <span className="font-normal mr-2">{description}</span>
-          </div>
+          <Link href={href}>
+            <a className="text-white w-full flex flex-wrap justify-center items-center mb-2 z-40">
+              <span className="font-semibold text-white">{name}</span>
+              <span className="font-bold mx-2">-</span>
+              <span className="font-normal mr-2">{description}</span>
+            </a>
+          </Link>
 
           <div className="flex justify-center items-center">
             <ChevronLeftIcon
               className="h-5 w-5 fill-white cursor-pointer mr-2 z-40"
               onClick={prevSlide}
             />
-            {images.map((_, i) => (
+            {projects.map((_, i) => (
               <span
                 key={i}
                 className={`h-3 w-3 rounded-full z-50 mr-2 ${
