@@ -11,7 +11,7 @@ import { BurgerMenu } from "./BurgerMenu";
 
 const LINKS = [
   { path: "/projects", label: "Projects" },
-  { path: "/news", label: "News and Events" },
+  { path: "/news-and-events", label: "News and Events" },
   { path: "/resources", label: "Resources" },
   { path: "/shop", label: "Shop" },
   { path: "/about-us", label: "About Us" },
