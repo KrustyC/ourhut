@@ -39,7 +39,10 @@ const NewsPage: NextPage<NewsPageProps> = ({
     <div>
       <Head>
         <title>News | Our Hut</title>
-        <meta name="description" content="Checkout our latest News" />
+        <meta
+          name="description"
+          content="Checkout our latest News and newest and past events."
+        />
       </Head>
 
       <div className="bg-primary pb-14">

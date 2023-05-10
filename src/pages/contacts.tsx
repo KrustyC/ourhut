@@ -8,7 +8,10 @@ const ContactsPage = () => (
   <div>
     <Head>
       <title>Contacts | Our Hut</title>
-      <meta name="description" content="Get in touch" />
+      <meta
+        name="description"
+        content="Would you like to get in touch with us? Use this form and we will try to get back to you as soon as possible."
+      />
     </Head>
     <div>
       <Media lessThan="md">

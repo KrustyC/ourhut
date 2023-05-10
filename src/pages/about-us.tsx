@@ -22,7 +22,16 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
     <div>
       <Head>
         <title>AboutUs | Our Hut</title>
-        <meta name="description" content="Checkout our latest AboutUs" />
+        <meta
+          name="description"
+          content="Who we are, what we do and why we do it. Learn more about who and what is behind Our Hut."
+        />
+        <meta property="og:title" content="AboutUs | Our Hut" />
+        <meta
+          property="og:description"
+          content="Who we are, what we do and why we do it. Learn more about who and what is behind Our Hut."
+        />
+        <meta property="og:image" content="/images/about-us.jpg" />
       </Head>
 
       <div className="flex flex-col">

@@ -34,7 +34,6 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
           }}
         />
 
-        {/* <div className="px-8 md:pl-32 md:pr-16"> */}
         <div className="px-8 md:pt-6 md:pl-24 md:pr-8 md:pb-8 xl:pl-48 lg:pr-16 lg:pb-8">
           <p className="text-2xl md:text-6xl text-white font-bold md:ml-[-4px]">
             Educational Approach

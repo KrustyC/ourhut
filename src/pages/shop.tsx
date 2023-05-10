@@ -15,6 +15,10 @@ const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
       <Head>
         <title>Shop | Our Hut</title>
         <meta name="description" content="Our Shop" />
+
+        <meta property="og:title" content="Shop | Our Hut" />
+        <meta property="og:description" content="Our Shop" />
+        <meta property="og:image" content={products[0].image} />
       </Head>
 
       <div className="bg-white md:pb-8">
