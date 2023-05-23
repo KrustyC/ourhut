@@ -4,9 +4,10 @@ import type {
   UseFormRegister,
   FieldError,
   FieldPath,
+  FieldValues,
 } from "react-hook-form";
 
-interface InputProps<T> {
+interface InputProps<T extends FieldValues> {
   name: FieldPath<T>;
   label?: string;
   error?: FieldError;

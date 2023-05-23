@@ -1,11 +1,12 @@
 import type { ReactElement } from "react";
 import type {
   FieldPath,
+  FieldValues,
   RegisterOptions,
   UseFormRegister,
 } from "react-hook-form";
 
-interface TimePeriodSelectorProps<T> {
+interface TimePeriodSelectorProps<T extends FieldValues> {
   name: FieldPath<T>;
   className?: string;
   register: UseFormRegister<T>;
