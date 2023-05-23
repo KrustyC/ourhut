@@ -36,8 +36,14 @@ export const MultipleImagesModal: React.FC<MultipleImagesModalProps> = ({
     onConfirm(selectedImages);
   };
 
-  const onChooseImage = (image: string) => {
-    setSelectedImages([...selectedImages, { image }]);
+  const onClickOnImage = (isImageSelected: boolean, image: string) => {
+    if (isImageSelected) {
+      setSelectedImages(
+        selectedImages.filter((selectedImage) => selectedImage.image !== image)
+      );
+    } else {
+      setSelectedImages([...selectedImages, { image }]);
+    }
   };
 
   return (
@@ -75,7 +81,7 @@ export const MultipleImagesModal: React.FC<MultipleImagesModalProps> = ({
                     <button
                       type="button"
                       className="btn-admin btn-outlined-primary btn-sm absolute bottom-2 right-2"
-                      onClick={() => onChooseImage(image)}
+                      onClick={() => onClickOnImage(isImageSelected, image)}
                     >
                       {isImageSelected ? "Remove" : "Choose"}
                     </button>
