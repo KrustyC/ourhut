@@ -27,6 +27,7 @@ const DEFAULT_EVENT: Event = {
   eventbriteLink: "",
   date: {
     day: "",
+    endDay: undefined,
     startTime: {
       time: "",
       period: "AM",
@@ -79,7 +80,7 @@ export const EventForm: React.FC<EventFormProps> = ({
 
           <div className="flex flex-col mb-4">
             <label className="uppercase block text-gray-700 text-sm font-bold mb-3">
-              Date
+              Date (use as "Date From" fro multi-day events)
             </label>
 
             <Controller
@@ -90,6 +91,28 @@ export const EventForm: React.FC<EventFormProps> = ({
                   value={props.field.value}
                   error={errors?.date?.day}
                   onChange={(newDate) => {
+                    props.field.onChange(newDate);
+                    props.field.onBlur();
+                  }}
+                />
+              )}
+              control={control}
+            />
+          </div>
+          <div className="flex flex-col mb-4">
+            <label className="uppercase block text-gray-700 text-sm font-bold mb-3">
+              End Date (leave empty for single day events)
+            </label>
+
+            <Controller
+              name="date.endDay"
+              rules={{ required: false }}
+              render={(props) => (
+                <DayPicker
+                  value={props.field.value || undefined}
+                  error={errors?.date?.endDay}
+                  onChange={(newDate) => {
+                    console.log("DIO BESTIA", newDate);
                     props.field.onChange(newDate);
                     props.field.onBlur();
                   }}

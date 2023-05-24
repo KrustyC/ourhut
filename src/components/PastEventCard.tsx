@@ -19,7 +19,7 @@ export const PastEventCard: React.FC<PartEventCardProps> = ({ event }) => (
         />
       </div>
 
-      <div className="md:display-block opacity-0 hover:opacity-100 duration-500 bg-gray-300 p-4 absolute inset-0 z-1000 flex justify-start items-end text-white font-bold">
+      <div className="md:display-block opacity-0 hover:opacity-100 duration-500 bg-black/80 p-4 absolute inset-0 z-1000 flex justify-start items-end text-white font-bold">
         <div className="flex flex-col">
           <span className="text-14px">{event.title}</span>
           <span className="text-14px">

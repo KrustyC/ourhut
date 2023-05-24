@@ -74,6 +74,7 @@ export type Event = {
   eventbriteLink: string;
   date: {
     day: string;
+    endDay?: string | null;
     startTime: {
       time: string;
       period: "AM" | "PM";

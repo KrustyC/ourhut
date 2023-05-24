@@ -9,11 +9,11 @@ import { InputErrorMessage } from "./InputErrorMessage";
 import "react-day-picker/lib/style.css";
 
 interface DayPickerProps {
-  value: string;
+  value?: string;
   className?: string;
   placeholder?: string;
   error?: FieldError;
-  onChange: (date: string) => void;
+  onChange: (date: string | undefined) => void;
 }
 
 const FORMAT = "dd/MM/yyyy";
@@ -25,7 +25,12 @@ export const DayPicker: React.FC<DayPickerProps> = ({
   error,
   onChange,
 }) => {
-  const onDayChange = (day: Date) => {
+  const onDayChange = (day: Date | undefined) => {
+    if (!day) {
+      onChange(undefined);
+      return;
+    }
+
     try {
       onChange(dateFnsFormat(day, FORMAT));
     } catch (e) {}

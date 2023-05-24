@@ -24,7 +24,11 @@ export function isValidURL(url: string): string | true {
   return "Make sure this is a valid URL";
 }
 
-export function isValidDate(date: string): string | true {
+export function isValidDate(date: string | undefined): string | true {
+  if (!date) {
+    return "Make sure to add a date";
+  }
+
   const parsed = parse(date, "dd/MM/yyyy", new Date());
 
   if (!isValid(parsed)) {
