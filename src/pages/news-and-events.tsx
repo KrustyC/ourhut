@@ -1,6 +1,8 @@
-import type { NextPage } from "next";
+import { useState } from "react";
+import parse from "html-react-parser";
 import NextLink from "next/link";
 import Head from "next/head";
+import type { NextPage } from "next";
 import { Event, News } from "@/types/global";
 import { Media } from "@/components/Media";
 import { UpArrowIcon } from "@/components/icons/UpArrow";
@@ -12,8 +14,6 @@ import { PastEventCard } from "@/components/PastEventCard";
 import { Footer } from "@/components/Footer";
 import { GuardianNews } from "@/components/GuardianNews";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
-import parse from "html-react-parser";
-import { useState } from "react";
 
 interface NewsPageProps {
   events: {
@@ -98,10 +98,28 @@ const NewsPage: NextPage<NewsPageProps> = ({
 
       <div className="flex flex-col">
         <div className="flex flex-col py-14 md:py-24">
-          <h1 className="text-3xl font-bold md:text-6xl text-black ml-8 md:ml-24 xl:ml-48 mb-8 md:mb-12">
+          <h1 className="text-3xl font-bold md:text-6xl text-black ml-8 md:ml-24 xl:ml-48">
             Future Events
           </h1>
-          <Carousel events={upcomingEvents} />
+          {upcomingEvents.length > 0 ? (
+            <div className="mt-8 md:mt-12">
+              <Carousel events={upcomingEvents} />
+            </div>
+          ) : (
+            <div className="flex flex-col gap-6 px-8 md:px-24 xl:px-48 mt-6">
+              <p className="text-lg lg:text-xl font-bold text-black lg:w-2/3">
+                There is no event planned at the moment, but you can subscribe
+                to our newsletter through our contacts page to stay up to date
+                with all the latest events.
+              </p>
+
+              <NextLink href="/contacts">
+                <a className="btn btn-transparent-outlined w-fit font-medium text-regular">
+                  Go to Contacts
+                </a>
+              </NextLink>
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col px-8 md:px-24 xl:px-48 py-8 md:py-24 pb-8 md:pb-32 bg-light-gray">
@@ -133,9 +151,9 @@ const NewsPage: NextPage<NewsPageProps> = ({
       </div>
 
       <div className="flex flex-col py-8 md:py-24 px-8 md:px-24 xl:px-48">
-        <h1 className="text-3xl md:text-6xl text-black font-bold mb-8">
+        <h2 className="text-3xl md:text-6xl text-black font-bold mb-8">
           Recent Press
-        </h1>
+        </h2>
         <GuardianNews />
       </div>
 

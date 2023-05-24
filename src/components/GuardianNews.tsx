@@ -7,10 +7,10 @@ export const GuardianNews: React.FC = () => (
     </div>
 
     <div className="mt-4 md:mt-0 md:w-1/2 md:pl-8">
-      <h2 className="text-xl md:text-3xl text-black font-bold">
+      <h3 className="text-xl md:text-3xl text-black font-bold">
         Where there&apos;s a grille: the hidden portals to London&apos;s
         underworld
-      </h2>
+      </h3>
 
       <p className="text-sm  md:text-xl pt-2">
         Oliver Wainwright - Tue 29 Jun 2021 10.01 BST

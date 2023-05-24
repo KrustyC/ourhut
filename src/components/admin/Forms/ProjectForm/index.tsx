@@ -42,7 +42,6 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
     control,
     watch,
     handleSubmit,
-    getValues,
     formState: { isDirty, errors, isValid },
   } = useForm<FormProject>({
     defaultValues: {

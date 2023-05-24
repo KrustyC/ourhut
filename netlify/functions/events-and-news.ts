@@ -16,7 +16,6 @@ async function get() {
       throw new Error("Can not connect to DB");
     }
 
-    // @TODO Only takes published events
     const fetchEvents = async () => {
       const events = await client
         .db()
@@ -32,14 +31,12 @@ async function get() {
             return {
               ...acc,
               pastEvents: [...acc.pastEvents, currentEvent],
-              upcomingEvents: [...acc.upcomingEvents, currentEvent],
             } as any;
           }
 
           return {
             ...acc,
             upcomingEvents: [...acc.upcomingEvents, currentEvent],
-            pastEvents: [...acc.pastEvents, currentEvent],
           } as any;
         },
         { pastEvents: [], upcomingEvents: [] }

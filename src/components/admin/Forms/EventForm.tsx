@@ -80,7 +80,7 @@ export const EventForm: React.FC<EventFormProps> = ({
 
           <div className="flex flex-col mb-4">
             <label className="uppercase block text-gray-700 text-sm font-bold mb-3">
-              Date (use as "Date From" fro multi-day events)
+              Date (use as &ldquo;Date From&ldquo; fro multi-day events)
             </label>
 
             <Controller

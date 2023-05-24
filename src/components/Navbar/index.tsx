@@ -109,12 +109,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="flex flex-col mx-8 md:mx-20 md:mt-4">
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-start gap-6 2xl:gap-8">
               {LINKS.map(({ path, label }) => {
                 return (
                   <NextLink href={path} key={path}>
                     <a
-                      className="w-auto text-white font-bold tracking-wide text-4xl md:text-6xl mb-8 hover:text-primary"
+                      className="w-auto text-white font-bold tracking-wide text-4xl 2xl:text-6xl hover:text-primary"
                       onClick={onClose}
                     >
                       {label}
