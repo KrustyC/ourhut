@@ -112,7 +112,6 @@ export const EventForm: React.FC<EventFormProps> = ({
                   value={props.field.value || undefined}
                   error={errors?.date?.endDay}
                   onChange={(newDate) => {
-                    console.log("DIO BESTIA", newDate);
                     props.field.onChange(newDate);
                     props.field.onBlur();
                   }}

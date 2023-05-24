@@ -26,13 +26,16 @@ export const MultipleImagesInput: React.FC<MultipleImagesProps> = ({
 
   const onCancel = () => setShowModal(false);
 
+  const onClearImage = (imageToRemove: string) => {
+    onChangeImages(images.filter((image) => image.image !== imageToRemove));
+  };
+
   return (
     <div className="flex flex-col items-start justify-start">
       {images.length > 0 ? (
         <div className="grid grid-cols-3 gap-4">
           {images.map(({ image }) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <ImageFrame key={image} image={image} />
+            <ImageFrame key={image} image={image} onClearImage={onClearImage} />
           ))}
         </div>
       ) : (

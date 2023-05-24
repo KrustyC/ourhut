@@ -4,13 +4,14 @@ import {
   UseFormRegister,
   Control,
   FieldPath,
+  FieldValues,
 } from "react-hook-form";
 import { DayPicker } from "@/components/admin/DayPicker";
 import { MaterialLink } from "@/types/global";
 import { RHFMaterialLink } from "@/components/admin/RHFMaterialLink";
 import { isValidDate } from "@/utils/validators";
 
-interface MaterialInputProps<T> {
+interface MaterialInputProps<T extends FieldValues> {
   name: FieldPath<T>;
   control: Control<T>;
   register: UseFormRegister<T>;
@@ -68,13 +69,10 @@ export const MaterialInput = <T extends object>(
           name={`${name}.link` as unknown as FieldPath<T>}
           control={control}
           render={(props) => (
-            console.log("LINK: ", props.field.value),
-            (
-              <RHFMaterialLink
-                value={props.field.value as unknown as MaterialLink}
-                onConfirm={(link) => props.field.onChange(link)}
-              />
-            )
+            <RHFMaterialLink
+              value={props.field.value as unknown as MaterialLink}
+              onConfirm={(link) => props.field.onChange(link)}
+            />
           )}
         />
       </div>

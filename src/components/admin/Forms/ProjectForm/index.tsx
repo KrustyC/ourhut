@@ -60,8 +60,6 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
     name: "images",
   });
 
-  console.log(getValues());
-
   const watchFieldArray = watch("images");
 
   const onSubmit = (data: FormProject) => {

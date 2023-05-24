@@ -18,7 +18,7 @@ export const LinkToOtherItemButton = <
   props: LinkToOtherItemProps<T, Response>
 ): ReactElement | null => {
   const { value, onChange, fetchPath, labelAttribute, parseResponse } = props;
-  console.log(labelAttribute, value);
+
   const [showModal, setShowModal] = useState(false);
 
   const onSelectItem = (newValue: T) => {
