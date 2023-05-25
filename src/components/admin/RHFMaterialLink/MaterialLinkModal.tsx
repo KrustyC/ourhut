@@ -37,8 +37,8 @@ export const MaterialLinkModal: React.FC<MaterialLinkModalProps> = ({
     <Modal>
       <div className="p-4">
         <div className="mb-8">
-          Please select the type of link you want to add, then add the link or
-          upload the PDF.
+          Please select either Website or PDF, then add the link or upload the
+          PDF.
         </div>
         <Tabs defaultLabel={defaultLabel}>
           <Tab label="Website">

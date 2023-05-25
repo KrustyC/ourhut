@@ -14,7 +14,6 @@ const AdminAudios: NextPageWithLayout<undefined> = () => {
     files,
     loading,
     onConfirmFileUpload,
-    fileSelectedForDetail: audioSelectedForDetail,
     fileSelectedForRemove: audioSelectedForRemove,
     onWantToDeleteFile,
     onCancelDelete,

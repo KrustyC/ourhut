@@ -112,8 +112,8 @@ export const TeachingResourceForm: React.FC<TeachingResourceFormProps> = ({
         <ul className="mt-4">
           <li className="flex items-center rounded border-b border-slate-500 px-4 py-2 w-full">
             <div className="w-3/12 text-black font-bold">Name</div>
-            <div className="w-1/12 text-black font-bold">Date</div>
-            <div className="w-3/12 text-black font-bold">Host</div>
+            <div className="w-2/12 text-black font-bold">Date</div>
+            <div className="w-2/12 text-black font-bold">Host</div>
             <div className="w-4/12 text-black font-bold">Link</div>
             <div className="w-1/12 text-black font-bold">Actions</div>
           </li>

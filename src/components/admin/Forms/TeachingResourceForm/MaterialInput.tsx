@@ -35,7 +35,7 @@ export const MaterialInput = <T extends object>(
         />
       </div>
 
-      <div className="w-1/12">
+      <div className="w-2/12">
         <Controller
           name={`${name}.date` as unknown as FieldPath<T>}
           rules={{ required: true, validate: isValidDate }}
@@ -54,7 +54,7 @@ export const MaterialInput = <T extends object>(
         />
       </div>
 
-      <div className="w-3/12">
+      <div className="w-2/12">
         <input
           className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 pr-4 leading-tight focus:outline-none"
           type="text"

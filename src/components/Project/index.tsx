@@ -1,5 +1,5 @@
 import Link from "next/link";
-import parse from "html-react-parser";
+import parse, { HTMLReactParserOptions, Element } from "html-react-parser";
 import { Project as IProject } from "@/types/global";
 import { LeftArrowIcon } from "@/components/icons/LeftArrow";
 import { ProjectImages } from "./ProjectImages";
@@ -7,6 +7,23 @@ import { ProjectImages } from "./ProjectImages";
 interface ProjectPageProps {
   project: IProject;
 }
+
+const parsingOptions: HTMLReactParserOptions = {
+  replace: (domNode) => {
+    if (
+      domNode instanceof Element &&
+      domNode.name === "a" &&
+      domNode.attribs?.href?.endsWith(".mp3")
+    ) {
+      return (
+        <audio className="w-full" controls>
+          <source src={domNode.attribs?.href} type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      );
+    }
+  },
+};
 
 export const Project: React.FC<ProjectPageProps> = ({ project }) => (
   <div className="lg:mt-8">
@@ -37,7 +54,7 @@ export const Project: React.FC<ProjectPageProps> = ({ project }) => (
           id="project-description"
           className="font-medium w-full md:w-11/12 lg:w-[820px]"
         >
-          {parse(project.description)}
+          {parse(project.description, parsingOptions)}
         </div>
         <div className="flex mt-8 mb-16">
           {project.links.teacherResources ? (

@@ -17,7 +17,7 @@
     "@tiptap/starter-kit": "^2.0.3",
     "aws-sdk": "^2.1344.0",
     "date-fns": "^2.29.3",
-    "html-react-parser": "^3.0.15",
+    "html-react-parser": "^3.0.16",
     "mongodb": "^4.4.1",
     "netlify-identity-widget": "^1.9.2",
     "next": "^12.1.1",
