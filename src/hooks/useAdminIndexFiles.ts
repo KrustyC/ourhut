@@ -32,8 +32,6 @@ export function useAdminIndexFiles<FetchResult>({
     }
 
     const response = parseResponse(data);
-    // @TODO This is a temporary fix until we can get the response from the API
-
     setFiles(response);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);

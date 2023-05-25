@@ -23,7 +23,7 @@ async function getAsByteArray(file: File) {
 interface UploadFileToS3Options {
   file: File;
   token: string;
-  folder: "images" | "files" | "partners";
+  folder: "images" | "files" | "audios" | "partners";
 }
 
 export async function uploadFileToS3({
@@ -47,5 +47,5 @@ export async function uploadFileToS3({
     body: blobData,
   });
 
-  return `${process.env.s3BucketUrl}/images/${file.name}`;
+  return `${process.env.s3BucketUrl}/${folder}/${file.name}`;
 }

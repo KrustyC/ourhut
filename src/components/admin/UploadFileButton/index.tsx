@@ -8,7 +8,7 @@ interface UploadFileButtonProps {
   actionCopy: string;
   className?: string;
   accept: string;
-  folder: "images" | "files" | "partners";
+  folder: "images" | "files" | "audios" | "partners";
   onConfirm: (newImage: string) => void;
 }
 
@@ -52,7 +52,7 @@ export const UploadFileButton: React.FC<UploadFileButtonProps> = ({
       });
 
       onConfirm(newImage);
-      toast.success("Image successfully uploaded");
+      toast.success("Upload was successfull");
     } catch (e) {
       toast.error((e as Error).message);
     }

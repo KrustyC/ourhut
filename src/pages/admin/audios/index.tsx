@@ -9,21 +9,22 @@ import { getFileName } from "@/utils/files";
 import { DeleteFileModal } from "@/components/admin/Modals/DeleteFileModal";
 import { NextPageWithLayout } from "@/types/app";
 
-const AdminFiles: NextPageWithLayout<undefined> = () => {
+const AdminAudios: NextPageWithLayout<undefined> = () => {
   const {
     files,
     loading,
     onConfirmFileUpload,
-    fileSelectedForRemove,
+    fileSelectedForDetail: audioSelectedForDetail,
+    fileSelectedForRemove: audioSelectedForRemove,
     onWantToDeleteFile,
     onCancelDelete,
     onDeleteSuccess,
     error,
   } = useAdminIndexFiles<{
-    files: string[];
+    audios: string[];
   }>({
-    fetchUrlPath: "/admin-files",
-    parseResponse: (response) => response.files,
+    fetchUrlPath: "/admin-audios",
+    parseResponse: (response) => response.audios,
   });
 
   useEffect(() => {
@@ -35,17 +36,17 @@ const AdminFiles: NextPageWithLayout<undefined> = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-gray-600 font-bold">Files</h2>
+        <h2 className="text-gray-600 font-bold">Audios</h2>
         <UploadFileButton
-          accept=".pdf, .doc, .docx"
-          actionCopy="Upload New File"
-          folder="files"
+          accept=".mp3"
+          actionCopy="Upload New Audio"
+          folder="audios"
           onConfirm={onConfirmFileUpload}
         />
       </div>
 
       <p className="text-gray-600">
-        In this section you can manage your Files. Click on any file to view it
+        In this section you can manage your Audios. Click on any file to view it
         in its full size or delete it.
       </p>
 
@@ -75,7 +76,7 @@ const AdminFiles: NextPageWithLayout<undefined> = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      View
+                      Open & Listen
                     </a>
                     <button
                       className="text-red-500 hover:text-cyan-700 underline font-bold ml-4"
@@ -91,9 +92,9 @@ const AdminFiles: NextPageWithLayout<undefined> = () => {
         )}
       </Panel>
 
-      {fileSelectedForRemove ? (
+      {audioSelectedForRemove ? (
         <DeleteFileModal
-          fileToDelete={fileSelectedForRemove}
+          fileToDelete={audioSelectedForRemove}
           onSuccess={onDeleteSuccess}
           onCancel={onCancelDelete}
         />
@@ -102,7 +103,7 @@ const AdminFiles: NextPageWithLayout<undefined> = () => {
   );
 };
 
-AdminFiles.Layout = AdminLayout;
+AdminAudios.Layout = AdminLayout;
 
 export async function getStaticProps() {
   return {
@@ -112,4 +113,4 @@ export async function getStaticProps() {
   };
 }
 
-export default AdminFiles;
+export default AdminAudios;

@@ -1,16 +1,17 @@
-import { PieChartIcon } from "../../../components/icons/PieChart";
-import { ProjectsIcon } from "../../../components/icons/Projects";
-import { NewsIcon } from "../../../components/icons/News";
-import { CalendarIcon } from "../../../components/icons/Calendar";
-import { CartIcon } from "../../../components/icons/Cart";
-import { ArchiveIcon } from "../../../components/icons/Archive";
-import { LoveIcon } from "../../../components/icons/Love";
-import { PeopleIcon } from "../../../components/icons/People";
-import { ResearchIcon } from "../../../components/icons/Research";
-import { NewspaperIcon } from "../../../components/icons/Newspaper";
-import { SchoolIcon } from "../../../components/icons/School";
-import { ImageIcon } from "../../../components/icons/Image";
-import { DocumentIcon } from "../../../components/icons/Document";
+import { MusicNoteIcon } from "@/components/icons/MusicNote";
+import { PieChartIcon } from "@/components/icons/PieChart";
+import { ProjectsIcon } from "@/components/icons/Projects";
+import { NewsIcon } from "@/components/icons/News";
+import { CalendarIcon } from "@/components/icons/Calendar";
+import { CartIcon } from "@/components/icons/Cart";
+import { ArchiveIcon } from "@/components/icons/Archive";
+import { LoveIcon } from "@/components/icons/Love";
+import { PeopleIcon } from "@/components/icons/People";
+import { ResearchIcon } from "@/components/icons/Research";
+import { NewspaperIcon } from "@/components/icons/Newspaper";
+import { SchoolIcon } from "@/components/icons/School";
+import { ImageIcon } from "@/components/icons/Image";
+import { DocumentIcon } from "@/components/icons/Document";
 import { SidebarLink } from "./SidebarLink";
 
 export const Sidebar: React.FC = () => (
@@ -130,6 +131,14 @@ export const Sidebar: React.FC = () => (
                 href="/admin/images/"
                 label="Images"
                 icon={<ImageIcon />}
+              />
+            </li>
+
+            <li>
+              <SidebarLink
+                href="/admin/audios/"
+                label="Audios"
+                icon={<MusicNoteIcon />}
               />
             </li>
           </ul>
