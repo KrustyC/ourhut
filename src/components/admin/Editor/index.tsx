@@ -2,6 +2,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import { FieldError } from "react-hook-form";
 import StarterKit from "@tiptap/starter-kit";
 import BubbleMenuExtension from "@tiptap/extension-bubble-menu";
+import Link from "@tiptap/extension-link";
 import { InputErrorMessage } from "../InputErrorMessage";
 import { BubbleMenu } from "./BubbleMenu";
 
@@ -21,6 +22,9 @@ export const Editor: React.FC<EditorProps> = ({
   const editor = useEditor({
     extensions: [
       StarterKit,
+      Link.configure({
+        openOnClick: false,
+      }),
       BubbleMenuExtension.configure({
         element: document.querySelector(".bubble-menu") as
           | HTMLElement
