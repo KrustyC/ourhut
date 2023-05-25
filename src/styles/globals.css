@@ -39,7 +39,7 @@
   }
 
   a {
-    @apply text-accent;
+    @apply text-primary;
   }
 
   body {
