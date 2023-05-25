@@ -1,6 +1,8 @@
 import { Handler } from "@netlify/functions";
 import { jsonResponse } from "../shared/utils";
 import { getS3Client, FOLDERS } from "../shared/s3-client";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 
 const URL_EXPIRATION_SECONDS = 300;
 
@@ -34,16 +36,17 @@ const handler: Handler = async function (event, context) {
   } = event.queryStringParameters as QueryStringParameters;
 
   // Get signed URL from S3
-  const s3Params = {
+  const s3 = getS3Client();
+  const putObjectCommand = new PutObjectCommand({
     Bucket: process.env.S3_OUR_HUT_BUCKET,
     Key: `${folder}/${Key}`,
-    Expires: URL_EXPIRATION_SECONDS,
     ContentType,
     ACL: "public-read",
-  };
+  });
 
-  const s3 = getS3Client();
-  const uploadURL = await s3.getSignedUrlPromise("putObject", s3Params);
+  const uploadURL = await getSignedUrl(s3, putObjectCommand, {
+    expiresIn: 3600,
+  });
 
   return jsonResponse({
     status: 200,

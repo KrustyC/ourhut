@@ -1,46 +1,56 @@
-import AWS, { S3 } from "aws-sdk";
-
-AWS.config.update({
-  accessKeyId: process.env.S3_USER_AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.S3_USER_AWS_SECRET_ACCESS_KEY,
-  region: process.env.S3_USER_AWS_REGION,
-});
+import AWS_S3, {
+  DeleteObjectCommand,
+  ListObjectsV2Command,
+  S3Client,
+} from "@aws-sdk/client-s3";
 
 export function getS3Client() {
-  const s3Client = new AWS.S3();
-  return s3Client;
+  const {
+    S3_USER_AWS_REGION,
+    S3_USER_AWS_ACCESS_KEY_ID,
+    S3_USER_AWS_SECRET_ACCESS_KEY,
+  } = process.env;
+  if (!S3_USER_AWS_REGION) {
+    throw new Error("S3_USER_AWS_REGION is not defined");
+  }
+
+  if (!S3_USER_AWS_ACCESS_KEY_ID) {
+    throw new Error("S3_USER_AWS_ACCESS_KEY_ID is not defined");
+  }
+
+  if (!S3_USER_AWS_SECRET_ACCESS_KEY) {
+    throw new Error("S3_USER_AWS_SECRET_ACCESS_KEY is not defined");
+  }
+
+  const client = new S3Client({
+    region: process.env.S3_USER_AWS_REGION,
+    credentials: {
+      accessKeyId: S3_USER_AWS_ACCESS_KEY_ID,
+      secretAccessKey: S3_USER_AWS_SECRET_ACCESS_KEY,
+    },
+  });
+
+  return client;
 }
 
 export async function getAllS3Files(
-  params: S3.ListObjectsV2Request
-): Promise<S3.ListObjectsV2Output> {
-  return new Promise((resolve, reject) => {
-    const s3 = getS3Client();
+  params: AWS_S3.ListObjectsV2CommandInput
+): Promise<AWS_S3.ListObjectsV2CommandOutput> {
+  const s3 = getS3Client();
+  const command = new ListObjectsV2Command(params);
+  const res = await s3.send(command);
 
-    s3.listObjectsV2(params, function (err, data) {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(data as S3.ListObjectsV2Output);
-    });
-  });
+  return res;
 }
 
-export async function deleteObjectFromS3(params: S3.DeleteObjectRequest) {
-  return new Promise((resolve, reject) => {
-    const s3 = getS3Client();
+export async function deleteObjectFromS3(
+  params: AWS_S3.DeleteObjectCommandInput
+) {
+  const s3 = getS3Client();
+  const command = new DeleteObjectCommand(params);
+  const res = await s3.send(command);
 
-    s3.deleteObject(params, function (err, data) {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(data);
-    });
-  });
+  return res;
 }
 
 export enum FOLDERS {

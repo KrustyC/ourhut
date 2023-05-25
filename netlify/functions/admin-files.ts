@@ -18,7 +18,7 @@ async function get() {
 
     const files =
       listObjects?.Contents?.filter((file) => {
-        return file.Size > 0;
+        return (file?.Size || 0) > 0;
       }).map((file) => {
         return `https://${process.env.S3_OUR_HUT_BUCKET}.s3.amazonaws.com/${file.Key}`;
       }) || [];
