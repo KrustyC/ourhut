@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import { toast } from "react-toastify";
 import { useNetlifyDeleteFunction } from "@/hooks/useNetlifyDeleteFunction";
 import { useAuth } from "@/contexts/AuthContext";
 import { LoadingSpinner } from "@/components/admin/LoadingSpinner";
@@ -16,7 +17,14 @@ interface DeleteItemModalProps<T> {
 export const DeleteItemModal = <T extends object>(
   props: DeleteItemModalProps<T>
 ): ReactElement | null => {
-  const { itemToDelete, questionItem, deletePath, onSuccess, onCancel } = props;
+  const {
+    itemGenericName,
+    itemToDelete,
+    questionItem,
+    deletePath,
+    onSuccess,
+    onCancel,
+  } = props;
 
   const { user } = useAuth();
   const { onDelete, pending } = useNetlifyDeleteFunction({
@@ -26,7 +34,7 @@ export const DeleteItemModal = <T extends object>(
   const onDeleteItem = async () => {
     try {
       await onDelete(deletePath);
-
+      toast.success(`${itemGenericName} deleted successfully!`);
       onSuccess();
     } catch (error) {
       console.error(error);

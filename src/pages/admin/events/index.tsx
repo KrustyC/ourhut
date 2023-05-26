@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { parse } from "date-fns";
 import { IndexLayout } from "@/layouts/AdminIndexLayout";
 import { DeleteItemModal } from "@/components/admin/DeleteItemModal";
 import { AdminLayout } from "@/layouts/AdminLayout";
@@ -29,14 +30,24 @@ const AdminEvents: NextPageWithLayout<undefined> = () => {
     }
   }, [error]);
 
+  const sortedEvents = events.sort((a, b) => {
+    const aDate = parse(a.date.day, "dd/MM/yyyy", new Date());
+    const bDate = parse(b.date.day, "dd/MM/yyyy", new Date());
+
+    return bDate.getTime() - aDate.getTime();
+  });
+
   return (
     <div className="h-screen bg-admin-grey">
-      <div className="flex flex-wrap">
+      <div className="flex flex-col">
+        <span className="bg-lime-400/70 px-4 py-4 font-bold rounded-xl border text-lime-900 border-lime-700 my-3">
+          Most recent events are shown first
+        </span>
         {loading ? (
           <LoadingSpinner />
         ) : (
           <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
-            {events.map((event, index) => (
+            {sortedEvents.map((event, index) => (
               <EventCard
                 key={event._id}
                 event={event}
@@ -52,7 +63,7 @@ const AdminEvents: NextPageWithLayout<undefined> = () => {
           itemGenericName="event"
           itemToDelete={events[eventToRemoveIndex]}
           questionItem={events[eventToRemoveIndex].title}
-          deletePath={`/admin-events?id=${events[eventToRemoveIndex]._id}`}
+          deletePath={`/admin-events?slug=${events[eventToRemoveIndex].slug}`}
           onSuccess={onRemoveConfirmed}
           onCancel={onRemoveCancelled}
         />

@@ -192,7 +192,6 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
 
 async function deleteEvent(client: MongoClient, handlerEvent: HandlerEvent) {
   try {
-    // Find the query params slug
     const { slug } = handlerEvent.queryStringParameters as { slug?: string };
 
     if (!slug) {
@@ -206,7 +205,7 @@ async function deleteEvent(client: MongoClient, handlerEvent: HandlerEvent) {
       });
     }
 
-    await client.db().collection(EVENTS_COLLECTION).deleteMany({
+    await client.db().collection(EVENTS_COLLECTION).deleteOne({
       slug,
     });
 
