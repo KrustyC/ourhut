@@ -8,7 +8,7 @@ const Content: React.FC = () => (
       <h1 className="text-3xl md:text-6xl text-white font-semibold ml-[-4px]">
         What we do
       </h1>
-      <div className="text-white font-medium md:font-semibold text-xl mt-4">
+      <div className="text-white font-regular md:font-regular text-xl mt-4">
         <p>
           Our Hut{"'"}s aim is to equip future generations to get involved in
           shaping positive sustainable environments. We inspire and educate

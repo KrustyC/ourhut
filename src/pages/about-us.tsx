@@ -49,12 +49,12 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
               <div className="flex flex-col w-[620px]">
                 <h1 className="text-3xl md:text-6xl text-black">About Us</h1>
                 <p className="text-black mt-4 text-xl">
-                  <p className="font-semibold">
+                  <p className="font-regular">
                     Our Hut is an architectural education charity based in
                     Stockwell working in schools and local communities to
                     deliver courses of architecture workshops.
                   </p>
-                  <p className="mt-4 font-semibold">
+                  <p className="mt-4 font-regular">
                     Our Hut was founded in 2004 by Lucy Lavers, Judy Ovens and
                     Suzanna Prizeman, who bring together a combination of
                     experience in architecture, design and education.
