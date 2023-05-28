@@ -23,37 +23,22 @@ const LINKS = [
     href: "/resources",
     label: "Teacher Resources",
   },
+  {
+    hideOnDesktop: true,
+    href: "/privacy-policy",
+    label: "Privacy Policy",
+  },
+  {
+    hideOnDesktop: true,
+    blank: true,
+    href: "/resources",
+    label: "Etsy Shop",
+  },
 ];
 
 export const Footer: React.FC = () => {
   return (
     <>
-      <Media greaterThanOrEqual="md">
-        <div className="w-full h-24 flex bg-transparent text-gray-400 justify-between items-center px-16">
-          <div className="flex items-center">© Our Hut 2022</div>
-
-          <div className="flex text-sm">
-            {LINKS.map(({ href, label }, i) => (
-              <Link key={i} href={href}>
-                <a className="group flex items-center mr-8 text-gray-400">
-                  <RightArrowIcon className="group-hover:animate-slide fill-gray-400 h-4 h-4 mr-2" />{" "}
-                  {label}
-                </a>
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center">
-            <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
-              <TwitterIcon className="hover:animate-wiggle h-6 w-6 fill-gray-400 mr-4" />
-            </a>
-            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
-              <InstagramIcon className="hover:animate-wiggle h-6 w-6 fill-gray-400" />
-            </a>
-          </div>
-        </div>
-      </Media>
-
       <Media lessThan="md">
         <div className="flex flex-col bg-[#FCFCFC]">
           <div className="p-6 flex justify-between">
@@ -86,9 +71,15 @@ export const Footer: React.FC = () => {
               </div>
 
               <div className="flex flex-col mt-2 items-end text-sm">
-                {LINKS.map(({ href, label }, i) => (
+                {LINKS.map(({ href, label, blank }, i) => (
                   <Link key={i} href={href}>
-                    <a className="mt-2 text-gray-400">{label}</a>
+                    <a
+                      className="mt-2 text-gray-400"
+                      target={blank ? "_blank" : undefined}
+                      rel={blank ? "noopener noreferrer" : undefined}
+                    >
+                      {label}
+                    </a>
                   </Link>
                 ))}
               </div>
@@ -97,6 +88,34 @@ export const Footer: React.FC = () => {
 
           <div className="px-8 text-xs text-gray-400 border-t-[1px] border-gray-200 py-6">
             © Our Hut 2022{" "}
+          </div>
+        </div>
+      </Media>
+
+      <Media greaterThanOrEqual="md">
+        <div className="w-full h-24 flex bg-transparent text-gray-400 justify-between items-center px-16">
+          <div className="flex items-center">© Our Hut 2022</div>
+
+          <div className="flex text-sm">
+            {LINKS.filter(({ hideOnDesktop }) => !hideOnDesktop).map(
+              ({ href, label }, i) => (
+                <Link key={i} href={href}>
+                  <a className="group flex items-center mr-8 text-gray-400">
+                    <RightArrowIcon className="group-hover:animate-slide fill-gray-400 h-4 h-4 mr-2" />{" "}
+                    {label}
+                  </a>
+                </Link>
+              )
+            )}
+          </div>
+
+          <div className="flex items-center">
+            <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
+              <TwitterIcon className="hover:animate-wiggle h-6 w-6 fill-gray-400 mr-4" />
+            </a>
+            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
+              <InstagramIcon className="hover:animate-wiggle h-6 w-6 fill-gray-400" />
+            </a>
           </div>
         </div>
       </Media>

@@ -48,7 +48,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
             <div className="flex md:w-7/12 lg:w-1/2 bg-white px-8 lg:px-16 2xl:px-32 md:pt-40">
               <div className="flex flex-col w-[620px]">
                 <h1 className="text-3xl md:text-6xl text-black">About Us</h1>
-                <p className="text-black mt-4 text-xl">
+                <p className="text-black mt-2 text-xl">
                   <p className="font-regular">
                     Our Hut is an architectural education charity based in
                     Stockwell working in schools and local communities to
@@ -61,15 +61,15 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({
                   </p>
                 </p>
 
-                <div className="flex mt-8">
+                <div className="flex gap-4 md:gap-8 mt-8">
                   <NextLink href="/projects">
-                    <a className="btn btn-transparent-outlined font-bold w-40 text-black">
+                    <a className="btn btn-transparent-outlined font-bold w-full md:w-40 text-black">
                       Projects
                     </a>
                   </NextLink>
 
                   <NextLink href="/contacts">
-                    <a className="btn btn-transparent-outlined font-bold w-40 text-black ml-4 md:ml-8">
+                    <a className="btn btn-transparent-outlined font-bold w-full md:w-40 text-black">
                       Contact Us
                     </a>
                   </NextLink>

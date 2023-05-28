@@ -39,7 +39,7 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
             Educational Approach
           </p>
 
-          <div className="flex flex-col md:flex-row pt-4 pb-10 md:py-8">
+          <div className="flex flex-col md:flex-row pt-2 pb-10 md:py-8">
             <p className="text-white font-medium w-full md:w-1/2 md:pr-40">
               Laoreet viverra venenatis interdum nunc a. Pulvinar metus sagittis
               lorem odio non lorem odio non pharetra massa nullam id. Interdum
@@ -63,12 +63,12 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
       />
 
       <div className="flex flex-col bg-light-gray">
-        <div className="flex flex-col px-8 md:px-16 pt-16 md:pt-20 lg:px-60 md:pb-8">
+        <div className="flex flex-col px-8 md:px-16 pt-10 pb-12 md:pt-20 lg:px-60 md:pb-8">
           <div className="flex flex-col">
-            <h1 className="text-2xl md:text-6xl text-black font-bold md:mb-4 md:mb-8">
+            <h1 className="text-2xl md:text-6xl text-black font-bold mb-4 md:mb-8">
               Schools we have worked with
             </h1>
-            <h3 className="font-bold text-xl text-black mb-4 md:mb-8 mt-6">
+            <h3 className="font-bold text-xl text-black mb-2 md:mb-6">
               Primary Schools
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-1 md:gap-y-2 gap-x-16 font-cabin">
@@ -88,16 +88,14 @@ const EducationalApproachPage: NextPage<EducationalApproachPageProps> = ({
             </div>
           </div>
 
-          <div className="flex flex-col mt-12">
-            <h3 className="font-bold text-xl text-black mb-4 md:mb-8">
+          <div className="flex flex-col mt-8">
+            <h3 className="font-bold text-xl text-black mb-2 md:mb-6">
               Secondary Schools
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-1 md:gap-y-2 gap-x-16">
               {secondarySchools.map((school, i) => (
-                <div key={i} className="flex flex-wrap font-semibold">
-                  <span className="text-black mr-2 font-cabin">
-                    {school.name},
-                  </span>
+                <div key={i} className="flex flex-wrap font-semibold gap-2">
+                  <span className="text-black font-cabin">{school.name},</span>
                   <span className="text-gray-500 font-cabin">
                     {school.geographicalArea}, {school.postcode}
                   </span>

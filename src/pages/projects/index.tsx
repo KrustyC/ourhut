@@ -33,7 +33,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
             Projects
           </h1>
 
-          <p className="my-4">
+          <p className="mt-2 md:mt-4">
             Our Hut has carried out projects on a wide variety of architectural
             themes, working mainly in schools, but also with community groups,
             families and the general public. Courses with individual classes

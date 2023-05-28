@@ -142,7 +142,7 @@ export const HomePageProjectsSlider: React.FC<HomePageProjectsSliderProps> = ({
             </a>
           </Link>
 
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center pb-24 md:pb-0">
             <ChevronLeftIcon
               className="h-5 w-5 fill-white cursor-pointer mr-2 z-40"
               onClick={prevSlide}

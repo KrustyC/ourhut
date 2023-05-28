@@ -109,12 +109,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="flex flex-col mx-8 md:mx-20 md:mt-4">
-            <div className="flex flex-col items-start gap-6 2xl:gap-8">
+            <div className="flex flex-col items-start gap-4 lg:gap-6 2xl:gap-8">
               {LINKS.map(({ path, label }) => {
                 return (
                   <NextLink href={path} key={path}>
                     <a
-                      className="w-auto text-white font-bold tracking-wide text-4xl 2xl:text-6xl hover:text-primary"
+                      className="w-auto text-white font-bold tracking-wide text-2xl lg:text-4xl 2xl:text-6xl hover:text-primary"
                       onClick={onClose}
                     >
                       {label}
@@ -124,16 +124,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               })}
             </div>
 
-            <div className="flex items-center mt-4 md:mt-8 z-50">
+            <div className="flex items-center mt-4 md:mt-8 z-50 gap-4 lg:gap-8">
               <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
-                <TwitterIcon className="hover:animate-wiggle h-11 w-11 fill-white mr-8" />
+                <TwitterIcon className="hover:animate-wiggle h-6 w-6 lg:h-12 lg:w-12 fill-white" />
               </a>
               <a
                 href={INSTAGRAM_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <InstagramIcon className="hover:animate-wiggle h-12 w-12 fill-white" />
+                <InstagramIcon className="hover:animate-wiggle h-6 w-6 lg:h-12 lg:w-12 fill-white" />
               </a>
             </div>
           </div>

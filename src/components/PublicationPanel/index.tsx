@@ -28,7 +28,9 @@ export const PublicationPanel: React.FC<PublicationPanelProps> = ({
       className="flex flex-col w-full px-6 md:px-12 py-8 md:py-12 mt-4"
     >
       <div className="flex justify-between items-center">
-        <h3 className="text-4xl text-black font-bold">{publication.title}</h3>
+        <h3 className="text-2xl md:text-4xl text-black font-bold">
+          {publication.title}
+        </h3>
 
         <span>
           <a className="text-black" href={`#${publication._id}`}>

@@ -18,10 +18,10 @@ export const ShopProductCard: React.FC<ShopProductCardProps> = ({
   bgColor,
 }) => (
   <div
-    className={`flex flex-col md:flex-row p-8 md:mb-8 md:px-16 md:py-16 md:h-[540px] lg:h-[740px] ${bgColor} 2xl:w-[1420px] xl:mx-auto`}
+    className={`flex flex-col md:flex-row pt-6 p-8 md:mb-8 md:px-16 md:py-16 md:h-[540px] lg:h-[740px] ${bgColor} 2xl:w-[1420px] xl:mx-auto`}
     key={product._id}
   >
-    <div className="relative h-[300px] w-full md:h-full md:w-5/12 xl:w-7/12">
+    <div className="relative  w-full md:h-full aspect-square md:aspect-auto md:w-5/12 xl:w-7/12">
       <Image
         priority={hasPriorityImage}
         className="w-full h-40"
@@ -33,25 +33,25 @@ export const ShopProductCard: React.FC<ShopProductCardProps> = ({
     </div>
 
     <div className="flex flex-col justify-center mt-8 md:mt-0 md:h-full w-full md:pl-8 lg:pl-16 lg:pr-8 md:w-7/12">
-      <h1 className="text-xl md:text-2xl text-black font-bold mb-4 lg:mb-8">
+      <h1 className="text-xl md:text-2xl text-black font-bold mb-2 lg:mb-8">
         {product.name}
       </h1>
       <p className="text-black mb-4 lg:mb-8">{parse(product.description)}</p>
       <span className="text-black text-2xl font-bold mb-8 md:mb-4 lg:mb-8">
         {formatPriceBrowser(product.price)}
       </span>
-      <div className="flex">
+      <div className="flex flex-col md:flex-row gap-x-6 gap-y-4">
         <a
           href={product.etsyLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn btn-transparent-outlined w-full w-1/2 md:w-40 font-medium text-l"
+          className="btn btn-transparent-outlined w-full md:w-40 font-medium text-l"
         >
           Buy on Etsy
         </a>
         {includeLinkToShop ? (
           <Link href="/shop">
-            <a className="ml-8 btn btn-transparent-outlined w-1/2 md:w-40 font-medium text-l">
+            <a className="btn btn-transparent-outlined w-full md:w-40 font-medium text-l">
               Go to Shop
             </a>
           </Link>

@@ -10,7 +10,7 @@ export const ProjectImages: React.FC<ProjectImagesProps> = ({ images }) => {
   return (
     <>
       <Media lessThan="md">
-        <div className="w-full h-[340px] md:h-[600px] bg-gray-200 mt-8 relative">
+        <div className="w-full h-[340px] md:h-[600px] bg-gray-200 mt-10 relative">
           <Image layout="fill" alt="vent" src={images[0]} />
         </div>
       </Media>
@@ -19,7 +19,12 @@ export const ProjectImages: React.FC<ProjectImagesProps> = ({ images }) => {
         <div className="mt-8">
           <ScrollMenu wrapperClassName="relative scroll-menu-wrapper">
             {images.map((image, i) => (
-              <div key={i} className="relative w-[800px] h-[500px] mr-10">
+              <div
+                key={i}
+                className={`relative w-[800px] h-[500px] ${
+                  i < images.length - 1 ? "mr-10" : ""
+                }`}
+              >
                 <Image src={image} layout="fill" objectFit="cover" />
               </div>
             ))}

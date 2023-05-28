@@ -38,12 +38,12 @@ export const ResourcesLayout: React.FC = ({ children }) => {
           }}
         />
 
-        <div className="px-8 md:pt-6 md:px-24 md:pb-8 xl:px-48">
+        <div className="px-8 md:px-24 md:pt-6 md:pb-8 xl:px-48">
           <h1 className="text-3xl md:text-6xl text-black font-semibold md:ml-[-4px]">
             Resources
           </h1>
 
-          <div className="my-4 lg:w-7/12 xl:w-6/12">
+          <div className="mt-2 md:mt-4 mb-4 lg:w-7/12 xl:w-6/12">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat eum
             magni minima ullam corporis rem doloremque fuga suscipit delectus,
             quae laudantium at, ex sit numquam molestiae, ad illum corrupti

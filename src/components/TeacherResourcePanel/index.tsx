@@ -28,7 +28,7 @@ export const TeacherResourcePanel: React.FC<TeacherResourcePanelProps> = ({
       className="flex flex-col w-full px-6 md:px-12 py-8 md:py-12 mt-4"
     >
       <div className="flex justify-between items-center">
-        <h3 className="text-4xl text-black font-bold">
+        <h3 className="text-2xl md:text-4xl text-black font-bold">
           {teachingResource.title}
         </h3>
 

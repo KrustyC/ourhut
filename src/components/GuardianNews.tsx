@@ -6,17 +6,17 @@ export const GuardianNews: React.FC = () => (
       <Image layout="fill" alt="vent" src="/images/guardian.jpg" />
     </div>
 
-    <div className="mt-4 md:mt-0 md:w-1/2 md:pl-8">
-      <h3 className="text-xl md:text-3xl text-black font-bold">
+    <div className="mt-6 md:mt-0 md:w-1/2 md:pl-8">
+      <h3 className="text-black">
         Where there&apos;s a grille: the hidden portals to London&apos;s
         underworld
       </h3>
 
-      <p className="text-sm  md:text-xl pt-2">
+      <p className="text-sm md:text-xl pt-2">
         Oliver Wainwright - Tue 29 Jun 2021 10.01 BST
       </p>
 
-      <p className="mt-6 mb-4">
+      <p className="my-6">
         The Sublime Structures in Crystal Palace Park Project, devised and run
         by Our Hut, aimed to enable local young peopleand families to discover
         and celebrate the extraordinary legacy of design and engineering...

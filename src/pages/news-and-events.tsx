@@ -45,7 +45,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
         />
       </Head>
 
-      <div className="bg-primary pb-14">
+      <div className="bg-primary pb-14 md:pb-8">
         <Navbar
           config={{
             burgerColor: "bg-white",
@@ -54,20 +54,20 @@ const NewsPage: NextPage<NewsPageProps> = ({
           }}
         />
 
-        <div className="px-8 md:pt-6 md:pl-24 md:pr-8 md:pb-8 xl:pl-48 lg:pr-16 lg:pb-8">
+        <div className="px-8 md:pt-6 md:pl-24 md:pr-8 xl:pl-48 lg:pr-16">
           <h1 className="text-3xl md:text-6xl text-white font-semibold md:ml-[-4px]">
             News
           </h1>
 
           {newsHeadline ? (
-            <p className="mt-4 text-white font-medium md:w-2/3 lg:w-1/2">
+            <p className="mt-2 md:mt-4 text-white font-medium md:w-2/3 lg:w-1/2">
               {parse(newsHeadline)}
             </p>
           ) : null}
 
-          <div className="flex flex-wrap mt-8">
+          <div className="flex flex-col md:flex-row flex-wrap mt-8 gap-x-6 gap-y-4">
             <NextLink href="/">
-              <a className="btn btn-primary grow md:w-80 md:grow-0 mr-4 md:mr-8">
+              <a className="btn btn-primary grow md:w-80 md:grow-0">
                 Link to Article
               </a>
             </NextLink>
@@ -80,7 +80,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
           </div>
 
           <Media greaterThanOrEqual="md">
-            <div className="mt-8 flex justify-end">
+            <div className="mt-14 flex justify-end">
               <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
                 <TwitterIcon className="h-6 w-6 fill-white mr-4" />
               </a>
@@ -98,15 +98,15 @@ const NewsPage: NextPage<NewsPageProps> = ({
 
       <div className="flex flex-col">
         <div className="flex flex-col py-14 md:py-24">
-          <h1 className="text-3xl font-bold md:text-6xl text-black ml-8 md:ml-24 xl:ml-48">
+          <h1 className="text-3xl font-bold md:text-6xl text-black mb-2 md:mb-4 ml-8 md:ml-24 xl:ml-48">
             Future Events
           </h1>
           {upcomingEvents.length > 0 ? (
-            <div className="mt-8 md:mt-12">
+            <div className="md:mt-12">
               <Carousel events={upcomingEvents} />
             </div>
           ) : (
-            <div className="flex flex-col gap-6 px-8 md:px-24 xl:px-48 mt-6">
+            <div className="flex flex-col gap-4 md:gap-8 px-8 md:px-24 xl:px-48">
               <p className="text-lg lg:text-xl font-bold text-black lg:w-2/3">
                 There is no event planned at the moment, but you can subscribe
                 to our newsletter through our contacts page to stay up to date
@@ -114,7 +114,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
               </p>
 
               <NextLink href="/contacts">
-                <a className="btn btn-transparent-outlined w-fit font-medium text-regular">
+                <a className="btn btn-transparent-outlined w-full md:w-fit font-medium text-regular">
                   Go to Contacts
                 </a>
               </NextLink>
@@ -122,8 +122,8 @@ const NewsPage: NextPage<NewsPageProps> = ({
           )}
         </div>
 
-        <div className="flex flex-col px-8 md:px-24 xl:px-48 py-8 md:py-24 pb-8 md:pb-32 bg-light-gray">
-          <h1 className="text-3xl md:text-6xl text-black font-bold mb-8 md:mb-16">
+        <div className="flex flex-col px-8 md:px-24 xl:px-48 py-14 md:py-24 pb-8 md:pb-32 bg-light-gray">
+          <h1 className="text-3xl md:text-6xl text-black font-bold mb-4 md:mb-16">
             Past Events
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -150,7 +150,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-col py-8 md:py-24 px-8 md:px-24 xl:px-48">
+      <div className="flex flex-col py-14 md:py-24 px-8 md:px-24 xl:px-48">
         <h2 className="text-3xl md:text-6xl text-black font-bold mb-8">
           Recent Press
         </h2>
