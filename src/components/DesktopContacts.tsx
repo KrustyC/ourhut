@@ -35,7 +35,7 @@ export const DesktopContacts = () => (
         </div>
 
         <div>
-          <span className="text-sm">© Our Hut 2022. All rights reserved</span>
+          <span className="text-sm">© Our Hut 2023. All rights reserved</span>
         </div>
       </div>
 

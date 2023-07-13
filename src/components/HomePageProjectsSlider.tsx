@@ -126,11 +126,11 @@ export const HomePageProjectsSlider: React.FC<HomePageProjectsSliderProps> = ({
       <div className="h-24 md:px-16 absolute bottom-0 left-0 w-screen flex justify-between items-end pb-8 z-40">
         <Media lessThan="md">
           <span className="absolute bottom-2 left-2 text-[10px] text-white z-0">
-            © Our Hut 2022
+            © Our Hut 2023
           </span>
         </Media>
         <Media greaterThanOrEqual="md">
-          <span className="text-sm text-white z-0">© Our Hut 2022</span>
+          <span className="text-sm text-white z-0">© Our Hut 2023</span>
         </Media>
 
         <div className="flex flex-col justify-end w-full md:w-[600px] items-center z-50">

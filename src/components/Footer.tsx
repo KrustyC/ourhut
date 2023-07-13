@@ -87,14 +87,14 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="px-8 text-xs text-gray-400 border-t-[1px] border-gray-200 py-6">
-            © Our Hut 2022{" "}
+            © Our Hut 2023{" "}
           </div>
         </div>
       </Media>
 
       <Media greaterThanOrEqual="md">
         <div className="w-full h-24 flex bg-transparent text-gray-400 justify-between items-center px-16">
-          <div className="flex items-center">© Our Hut 2022</div>
+          <div className="flex items-center">© Our Hut 2023</div>
 
           <div className="flex text-sm">
             {LINKS.filter(({ hideOnDesktop }) => !hideOnDesktop).map(

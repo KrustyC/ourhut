@@ -5,14 +5,14 @@ export const TWITTER_LINK = "https://twitter.com/ourhutuk";
 export const PROJECTS = [
   {
     name: "Inventive Vents",
-    description: "Vent tour",
+    description: "Vent Tour",
     src: "/images/inventive-vents.jpg",
     blurSrc: "/images/inventive-vents-blurred.jpg",
     href: "/projects/642fc1d7fd980252a1fd5964",
   },
   {
-    name: "Sublime structures",
-    description: "Crystal Palace model",
+    name: "Sublime Structures",
+    description: "Crystal Palace Model",
     src: "/images/cp-sublime-structures.jpg",
     blurSrc: "/images/cp-sublime-structures.jpg",
     href: "/projects/642fc08efd980252a1fd5960",
@@ -25,7 +25,7 @@ export const PROJECTS = [
     href: "/projects/642fc2bcfd980252a1fd5966",
   },
   {
-    name: "Peckham THI ?",
+    name: "Peckham THI?",
     description: "Workshop",
     src: "/images/peckham-thi.jpg",
     blurSrc: "/images/peckham-thi.jpg",
@@ -33,7 +33,7 @@ export const PROJECTS = [
   },
   {
     name: "All Aboard",
-    description: "Stockwell bus garage",
+    description: "Stockwell Bus Garage",
     src: "/images/stockwell.jpg",
     blurSrc: "/images/stockwell.jpg",
     href: "/projects/642fc0b4fd980252a1fd5961",
