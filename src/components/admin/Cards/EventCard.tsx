@@ -34,11 +34,11 @@ export const EventCard: React.FC<EventCardProps> = ({
               {formatDate(event.date.day)} /
               {event.date.startTime ? (
                 <>
-                  <b>from</b>
+                  <b> from </b>
                   {event.date.startTime.time} {event.date.startTime.period}
                   {event.date.endTime ? (
                     <>
-                      <b>to</b>
+                      <b> to </b>
                       {event.date.endTime.time} {event.date.endTime.period}
                     </>
                   ) : null}

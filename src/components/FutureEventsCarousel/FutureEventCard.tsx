@@ -2,12 +2,14 @@ import { Event } from "@/types/global";
 import Link from "next/link";
 import Image from "next/image";
 import { parse, format } from "date-fns";
+import parseHtml from "html-react-parser";
 import "../../styles/CustomHorizonatlScroll.module.css";
 
 interface FutureEventCardProps {
   itemId?: string;
   event: Event;
   isFirst: boolean;
+  isLast: boolean;
 }
 
 function formatDate(date: string) {
@@ -17,14 +19,15 @@ function formatDate(date: string) {
 export const FutureEventCard: React.FC<FutureEventCardProps> = ({
   event,
   isFirst,
+  isLast,
 }) => {
   return (
     <div
-      className={`w-[400px] md:w-[800px] h-auto mr-5 text-dark ${
-        isFirst ? "ml-8 md:ml-24 xl:ml-32" : ""
-      }`}
+      className={`w-[85vw] md:w-[800px] lg:w-[1200px] h-auto mr-5 text-dark lg:flex ${
+        isFirst ? "ml-8 md:ml-24 xl:ml-48" : "ml-8 lg:ml-28"
+      } ${isLast && !isFirst ? "mr-14 lg:mr-20" : ""}`}
     >
-      <div className="w-full h-[400px] md:h-[400px] relative">
+      <div className="w-full h-[400px] md:h-[400px] lg:w-2/5 lg:h-auto lg:aspect-square  relative">
         <Image
           src={event.image}
           layout="fill"
@@ -32,7 +35,7 @@ export const FutureEventCard: React.FC<FutureEventCardProps> = ({
           alt={event.title}
         />
       </div>
-      <div className="mt-4 flex flex-col">
+      <div className="mt-4 lg:mt-0 flex flex-col lg:w-3/5 lg:px-12">
         <h3 className="font-bold text-black text-2xl">{event.title}</h3>
 
         <div className="flex gap-2 mt-1 text-black/60">
@@ -43,11 +46,7 @@ export const FutureEventCard: React.FC<FutureEventCardProps> = ({
         </div>
 
         <p className="my-2">
-          Lorem ipsu dolor sit amet consectetur adipisicing elit. Consequatur
-          officiis dolor quaerat suscipit odio, dolor sunt distinctio
-          reprehenderit eum iste assumenda repellat aspernatur explicabo
-          voluptate, nisi facere magni aperiam.
-          {/* {parse} */}
+          {event.description ? parseHtml(event.description) : null}
         </p>
         <Link href={event.eventbriteLink}>
           <a

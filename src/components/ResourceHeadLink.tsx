@@ -17,7 +17,7 @@ export const ResourceHeadLink: React.FC<ResourceHeadLinkProps> = ({
     <div className="w-full bg-black mt-8 h-16 flex justify-between items-center">
       <Link href={leftHref}>
         <a>
-          <LeftArrowIcon className="fill-white h-8 h-8 ml-4" />
+          <LeftArrowIcon className="fill-white h-8 ml-4" />
         </a>
       </Link>
 
@@ -25,7 +25,7 @@ export const ResourceHeadLink: React.FC<ResourceHeadLinkProps> = ({
 
       <Link href={rightHref}>
         <a>
-          <RightArrowIcon className="fill-white h-8 h-8 mr-4" />
+          <RightArrowIcon className="fill-white h-8 mr-4" />
         </a>
       </Link>
     </div>

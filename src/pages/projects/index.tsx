@@ -38,7 +38,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
             themes, working mainly in schools, but also with community groups,
             families and the general public. Courses with individual classes
             range from one-day workshops to courses of workshops over two to
-            eight sessions. We also deliver teacher Inset, either as part of a
+            eight sessions. We also deliver Teacher Inset, either as part of a
             project with the children or a stand-alone day or twilight session.
           </p>
 

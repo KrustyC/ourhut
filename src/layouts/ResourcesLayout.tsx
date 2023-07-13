@@ -14,10 +14,6 @@ const LINKS = [
     href: "/resources/press",
     label: "Press & Publications",
   },
-  {
-    href: "/resources/research",
-    label: "Research",
-  },
 ];
 
 export const ResourcesLayout: React.FC = ({ children }) => {
@@ -44,10 +40,9 @@ export const ResourcesLayout: React.FC = ({ children }) => {
           </h1>
 
           <div className="mt-2 md:mt-4 mb-4 lg:w-7/12 xl:w-6/12">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat eum
-            magni minima ullam corporis rem doloremque fuga suscipit delectus,
-            quae laudantium at, ex sit numquam molestiae, ad illum corrupti
-            facere?
+            We produce free downloadable school resources and research for many
+            of our projects - you can find them below. Please contact us if
+            you'd like any advice on using the school resources.
           </div>
 
           <Media greaterThanOrEqual="md">
