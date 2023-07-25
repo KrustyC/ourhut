@@ -12,18 +12,18 @@ export default function Custom404() {
           logoColor: "fill-primary",
         }}
       />
-      <div className="w-full h-5/6 flex flex-col items-center justify-center z-1">
+      <div className="w-full h-5/6 flex flex-col items-center justify-center z-1 px-8">
         <Image
           width="630px"
           height="180px"
           alt="dynosaur"
           src="/images/dynosaur.jpg"
         />
-        <h1 className="text-6xl text-black font-bold mt-8">
+        <h1 className="text-4xl lg:text-6xl text-black font-bold mt-8">
           Oops, we can not find the page!
         </h1>
         <Link href="/" passHref>
-          <a className="text-primary mt-8 underline">Back to the home</a>
+          <a className="text-black mt-8 underline">Back to the home</a>
         </Link>
       </div>
     </div>

@@ -30,8 +30,8 @@ export const CookieBanner = () => {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black py-8 px-16 flex items-center justify-between">
-      <div className="flex items-center gap-6">
+    <div className="fixed bottom-0 left-0 right-0 bg-black py-8 px-8 lg:px-16 flex flex-col lg:flex-row lg:items-center lg:justify-between">
+      <div className="flex flex-col lg:flex-row lg:items-center gap-6">
         <CookieIcon />
 
         <p className="text-white">
@@ -47,7 +47,7 @@ export const CookieBanner = () => {
       </div>
 
       <button
-        className="btn btn-transparent-outlined-white transparent-outlined font-bold w-48"
+        className="btn btn-transparent-outlined-white transparent-outlined font-bold w-full lg:w-48 mt-8 lg:mt-0"
         onClick={onAccept}
       >
         Accept
