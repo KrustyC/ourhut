@@ -3,6 +3,7 @@ import { Media } from "@/components/Media";
 import { Navbar } from "@/components/Navbar";
 import { DesktopContacts } from "@/components/DesktopContacts";
 import { MobileContacts } from "@/components/MobileContacts";
+import { Footer } from "@/components/Footer";
 
 const ContactsPage = () => (
   <div>
@@ -28,7 +29,7 @@ const ContactsPage = () => (
       </Media>
 
       <Media greaterThanOrEqual="md">
-        <div className="xl:h-screen bg-white flex flex-col">
+        <div className="bg-white flex flex-col">
           <Navbar
             config={{
               burgerColor: "bg-primary",
@@ -36,7 +37,11 @@ const ContactsPage = () => (
               logoColor: "fill-primary",
             }}
           />
-          <DesktopContacts />
+          <div className="py-12">
+            <DesktopContacts />
+          </div>
+
+          <Footer />
         </div>
       </Media>
     </div>

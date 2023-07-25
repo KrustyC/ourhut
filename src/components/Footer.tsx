@@ -17,7 +17,7 @@ const LINKS = [
   },
   {
     href: "/",
-    label: "Volunteer Form",
+    label: "Subscribe",
   },
   {
     href: "/resources",

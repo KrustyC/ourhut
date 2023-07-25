@@ -25,7 +25,7 @@ export const PROJECTS = [
     href: "/projects/642fc2bcfd980252a1fd5966",
   },
   {
-    name: "Peckham THI?",
+    name: "Peckham THI",
     description: "Workshop",
     src: "/images/peckham-thi.jpg",
     blurSrc: "/images/peckham-thi.jpg",
