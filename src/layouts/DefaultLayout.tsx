@@ -1,11 +1,12 @@
-import { Navbar } from "@/components/Navbar";
+import { CookieBanner } from "@/components/CookieBanner";
 
 export const DefaultLayout: React.FC = ({ children }) => {
   return (
     <>
       <div>
-        {/* <Navbar /> */}
         {children}
+
+        <CookieBanner />
       </div>
     </>
   );
