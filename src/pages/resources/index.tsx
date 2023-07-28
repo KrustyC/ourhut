@@ -6,6 +6,7 @@ import { NextPageWithLayout } from "@/types/app";
 import { ResourceHeadLink } from "@/components/ResourceHeadLink";
 import { ResourcesLayout } from "@/layouts/ResourcesLayout";
 import { usePreselectedResource } from "@/hooks/usePreselectedResource";
+import { usePageviewTracking } from "@/hooks/usePageviewTracking";
 interface TeacherResourcesPageProps {
   teachingResources: TeachingResource[];
 }
@@ -13,6 +14,7 @@ interface TeacherResourcesPageProps {
 const TeacherResourcesPage: NextPageWithLayout<TeacherResourcesPageProps> = ({
   teachingResources,
 }) => {
+  usePageviewTracking({ title: "Teacher Resources" });
   const preselectedResourceId = usePreselectedResource();
 
   return (

@@ -6,12 +6,14 @@ import { ResourceHeadLink } from "@/components/ResourceHeadLink";
 import { Publication } from "@/types/global";
 import { PublicationPanel } from "@/components/PublicationPanel";
 import { usePreselectedResource } from "@/hooks/usePreselectedResource";
+import { usePageviewTracking } from "@/hooks/usePageviewTracking";
 
 interface PressPageProps {
   publications: Publication[];
 }
 
 const PressPage: NextPageWithLayout<PressPageProps> = ({ publications }) => {
+  usePageviewTracking({ title: "Press" });
   const preselectedResourceId = usePreselectedResource();
 
   return (

@@ -14,6 +14,7 @@ import { PastEventCard } from "@/components/PastEventCard";
 import { Footer } from "@/components/Footer";
 import { GuardianNews } from "@/components/GuardianNews";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
+import { usePageviewTracking } from "@/hooks/usePageviewTracking";
 
 interface NewsPageProps {
   events: {
@@ -31,6 +32,7 @@ const NewsPage: NextPage<NewsPageProps> = ({
   events: { pastEvents, upcomingEvents },
   newsHeadline,
 }) => {
+  usePageviewTracking({ title: "News & Events" });
   const [viewAll, setViewAll] = useState(false);
   const shownPastEvent = viewAll ? pastEvents : pastEvents.slice(0, 4);
 

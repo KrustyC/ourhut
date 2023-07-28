@@ -6,8 +6,11 @@ import { Navbar } from "@/components/Navbar";
 import { Media } from "@/components/Media";
 import { HomePageProjectsSlider } from "@/components/HomePageProjectsSlider";
 import { PROJECTS } from "@/utils/constants";
+import { usePageviewTracking } from "@/hooks/usePageviewTracking";
 
 const Home: NextPage = () => {
+  usePageviewTracking({ title: "Home" });
+
   return (
     <div>
       <Head>

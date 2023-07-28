@@ -2,9 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
+    production: process.env.ENVIRONMENT,
     baseUrl: process.env.BASE_URL || "http://localhost:3000",
     s3BucketUrl: `https://${process.env.S3_OUR_HUT_BUCKET}.s3.amazonaws.com`,
-    googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID,
   },
   images: {
     domains: [

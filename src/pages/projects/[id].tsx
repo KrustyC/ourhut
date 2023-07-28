@@ -5,6 +5,7 @@ import { ShopProductCard } from "@/components/ShopProductCard";
 
 import { Footer } from "@/components/Footer";
 import { Project } from "@/components/Project";
+import { usePageviewTracking } from "@/hooks/usePageviewTracking";
 
 interface ProjectPageProps {
   project: IProject;
@@ -14,6 +15,8 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => {
   const title = `${project.title} | Our Hut`;
   const description = project.intro.replace(/(<([^>]+)>)/gi, "");
   const image = project.thumbnailImage;
+
+  usePageviewTracking({ title: `Project ${project.title}` });
 
   return (
     <div>

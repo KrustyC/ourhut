@@ -19,7 +19,8 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   const router = useRouter();
   const [user, setUser] = useState<netlifyIdentity.User | null>(null);
-  const [withGTM, setWithGTM] = useState(false);
+  // const [userAcceptedCookiePolicy, setUserAcceptedCookiePolicy] =
+  //   useState(false);
 
   useEffect(() => {
     const hasAcceptedCookiePolicy = localStorage.getItem(
@@ -27,10 +28,14 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     );
 
     if (
-      hasAcceptedCookiePolicy === null &&
+      Boolean(hasAcceptedCookiePolicy) &&
       !router.pathname.startsWith("/admin")
     ) {
-      setWithGTM(true);
+      console.log("BUULSHIT");
+      // (window as any).gtag('consent', 'update', {
+      //   'ad_storage': 'granted'
+      // });
+      // setUserAcceptedCookiePolicy(true);
     }
   }, []);
 
@@ -87,6 +92,8 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     authReady: !!user,
   };
 
+  const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+
   return (
     <>
       <MediaContextProvider>
@@ -96,12 +103,27 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           </Layout>
         </AuthContext.Provider>
       </MediaContextProvider>
-      {process.env.environment === "production" && withGTM && (
+      {process.env.NEXT_PUBLIC_ENVIRONMENT === "production" && (
         <>
+          {/* <Script>
+        // Define dataLayer and the gtag function.
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        // Default ad_storage to 'denied' as a placeholder
+        // Determine actual values based on your own requirements
+        {`
+          gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'analytics_storage': 'denied'
+          });
+        `}
+        </Script> */}
+
           <Script
             async
             strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.googleAnalyticsId}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
           />
           <Script id="ga-script" strategy="afterInteractive">
             {`
@@ -109,7 +131,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 
-                gtag('config', '${process.env.googleAnalyticsId}');
+                gtag('config', '${googleAnalyticsId}');
             `}
           </Script>
         </>

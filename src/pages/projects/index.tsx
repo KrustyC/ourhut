@@ -6,12 +6,15 @@ import { Footer } from "@/components/Footer";
 import { Media } from "@/components/Media";
 import { ProjectsListDesktop } from "@/components/Projects/ProjectsListDesktop";
 import { ProjectsListMobile } from "@/components/Projects/ProjectsListMobile";
+import { usePageviewTracking } from "@/hooks/usePageviewTracking";
 
 interface ProjectsPageProps {
   projects: Project[];
 }
 
 const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
+  usePageviewTracking({ title: "Projects" });
+
   return (
     <div>
       <Head>
