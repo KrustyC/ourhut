@@ -22,6 +22,10 @@ const DEFAULT_PROJECT: Project = {
   intro: "",
   description: "",
   year: 2020,
+  years: {
+    startYear: 2020,
+    endYear: 2020,
+  },
   thumbnailImage: undefined,
   images: [],
   links: {
@@ -105,16 +109,32 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
           />
         </div>
 
-        <div className="mb-4">
-          <Input
-            register={register}
-            options={{ required: "Please add a year for the project" }}
-            error={errors.year}
-            label="Year"
-            name="year"
-            type="number"
-            placeholder="Year"
-          />
+        <div className="flex flex-col mb-4 gap-2">
+          <span className="font-bold">
+            Years (if you want only one year disaplyed, please insert the same
+            year both for start and end)
+          </span>
+          <div className="flex gap-4">
+            <Input
+              register={register}
+              options={{ required: "Please add a start year for the project" }}
+              error={errors.years?.startYear}
+              label="Start Year"
+              name="years.startYear"
+              type="number"
+              placeholder="2020"
+            />
+
+            <Input
+              register={register}
+              options={{ required: "Please add a end year for the project" }}
+              error={errors.years?.startYear}
+              label="End Year"
+              name="years.endYear"
+              type="number"
+              placeholder="2021"
+            />
+          </div>
         </div>
 
         <div className="mb-4">

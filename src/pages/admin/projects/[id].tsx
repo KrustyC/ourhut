@@ -18,7 +18,6 @@ interface EditProps {
 
 const Edit: React.FC<EditProps> = ({ id }) => {
   const { user } = useAuth();
-  const router = useRouter();
 
   const { data, loading, error } = useNetlifyGetFunction<{ project: Project }>({
     fetchUrlPath: `/admin-projects?id=${id}`,
@@ -38,9 +37,6 @@ const Edit: React.FC<EditProps> = ({ id }) => {
 
     if (res !== undefined) {
       toast.success("Project successfully updated!");
-      setTimeout(() => {
-        router.push("/admin/projects");
-      }, 800);
     }
   };
 

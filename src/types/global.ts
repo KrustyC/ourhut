@@ -41,6 +41,10 @@ export type FormProject = {
   intro: string;
   description: string;
   year: number;
+  years: {
+    startYear: number;
+    endYear: number;
+  };
   thumbnailImage: string;
   images: FormProjectImage[];
   links: {
@@ -142,6 +146,10 @@ export type Project = {
   intro: string;
   description: string;
   year: number;
+  years: {
+    startYear: number;
+    endYear: number;
+  };
   thumbnailImage?: string;
   images: string[];
   links: {

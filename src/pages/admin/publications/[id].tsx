@@ -18,7 +18,6 @@ interface EditProps {
 
 const Edit: React.FC<EditProps> = ({ id }) => {
   const { user } = useAuth();
-  const router = useRouter();
 
   const { data, loading, error } = useNetlifyGetFunction<{
     publication: Publication;
@@ -40,10 +39,6 @@ const Edit: React.FC<EditProps> = ({ id }) => {
 
     if (res !== undefined) {
       toast.success("Publication successfully updated");
-
-      setTimeout(() => {
-        router.push("/admin/publications");
-      }, 800);
     }
   };
 

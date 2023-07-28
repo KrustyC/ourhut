@@ -15,10 +15,10 @@ export const MobileContacts = () => {
               Subscribe to <br /> our Newsletter
             </h2>
             <p>
-              Keep informed about Our Hut's important updates. By subscribing to
-              our newsletter, you'll receive information on upcoming workshops,
-              tours, and events. Join us and stay connected with the
-              architectural community
+              Keep informed about Our Hut{"'"}s important updates. By
+              subscribing to our newsletter, you{"'"}ll receive information on
+              upcoming workshops, tours, and events. Join us and stay connected
+              with the architectural community
             </p>
 
             <NewsletterSubscriber pending={pending} onSubscribe={onSubscribe} />

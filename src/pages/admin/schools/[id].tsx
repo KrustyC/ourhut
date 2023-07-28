@@ -18,7 +18,6 @@ interface EditProps {
 
 const Edit: React.FC<EditProps> = ({ id }) => {
   const { user } = useAuth();
-  const router = useRouter();
 
   const { data, loading, error } = useNetlifyGetFunction<{ school: School }>({
     fetchUrlPath: `/admin-schools?id=${id}`,
@@ -38,10 +37,6 @@ const Edit: React.FC<EditProps> = ({ id }) => {
 
     if (res !== undefined) {
       toast.success("School successfully updated");
-
-      setTimeout(() => {
-        router.push("/admin/schools");
-      }, 800);
     }
   };
 

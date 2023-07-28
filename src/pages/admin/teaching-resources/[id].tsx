@@ -18,7 +18,6 @@ interface EditProps {
 
 const Edit: React.FC<EditProps> = ({ id }) => {
   const { user } = useAuth();
-  const router = useRouter();
 
   const { data, loading, error } = useNetlifyGetFunction<{
     teachingResource: TeachingResource;
@@ -42,10 +41,6 @@ const Edit: React.FC<EditProps> = ({ id }) => {
 
     if (res !== undefined) {
       toast.success("TeachingResource successfully updated");
-
-      setTimeout(() => {
-        router.push("/admin/teaching-resources");
-      }, 800);
     }
   };
 

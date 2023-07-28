@@ -30,7 +30,7 @@ export const CookieBanner = () => {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black py-8 px-8 lg:px-16 flex flex-col lg:flex-row lg:items-center lg:justify-between">
+    <div className="fixed bottom-0 left-0 right-0 bg-black py-8 px-8 lg:px-16 flex flex-col lg:flex-row lg:items-center lg:justify-between z-50">
       <div className="flex flex-col lg:flex-row lg:items-center gap-6">
         <CookieIcon />
 

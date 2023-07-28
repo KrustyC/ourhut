@@ -18,7 +18,6 @@ interface EditProps {
 
 const Edit: React.FC<EditProps> = ({ slug }) => {
   const { user } = useAuth();
-  const router = useRouter();
 
   const { data, loading, error } = useNetlifyGetFunction<{ event: Event }>({
     fetchUrlPath: `/admin-events?slug=${slug}`,
@@ -44,9 +43,6 @@ const Edit: React.FC<EditProps> = ({ slug }) => {
 
     if (res !== undefined) {
       toast.success("Event successfully updated!");
-      setTimeout(() => {
-        router.push("/admin/events");
-      }, 800);
     }
   };
 

@@ -17,6 +17,12 @@ export const projectSchema = yup.object().shape({
   images: yup
     .array()
     .of(yup.string().required("please enter an image for the project")),
+  years: yup.object().shape({
+    startYear: yup
+      .number()
+      .required("please enter a start year for the project"),
+    endYear: yup.number().required("please enter a end year for the project"),
+  }),
   links: yup.object().shape({
     teacherResources: yup
       .object()
@@ -238,6 +244,7 @@ async function put(client: MongoClient, handlerEvent: HandlerEvent) {
             title: projectDocument.title,
             intro: projectDocument.intro,
             year: projectDocument.year,
+            years: projectDocument.years,
             description: projectDocument.description,
             thumbnailImage: projectDocument.thumbnailImage,
             images: projectDocument.images,
