@@ -1,12 +1,14 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import Script from "next/script";
 import { MediaContextProvider } from "@/components/Media";
 import type { NextPageWithLayout } from "@/types/app";
 import { DefaultLayout } from "@/layouts/DefaultLayout";
 import netlifyIdentity from "netlify-identity-widget";
 import { useState, useEffect } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
+import { COOKIE_POLICY_ACCEPTED } from "@/utils/constants";
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout<Readonly<unknown>>;
@@ -17,6 +19,20 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   const router = useRouter();
   const [user, setUser] = useState<netlifyIdentity.User | null>(null);
+  const [withGTM, setWithGTM] = useState(false);
+
+  useEffect(() => {
+    const hasAcceptedCookiePolicy = localStorage.getItem(
+      COOKIE_POLICY_ACCEPTED
+    );
+
+    if (
+      hasAcceptedCookiePolicy === null &&
+      !router.pathname.startsWith("/admin")
+    ) {
+      setWithGTM(true);
+    }
+  }, []);
 
   useEffect(() => {
     netlifyIdentity.on("init", (user) => {
@@ -72,12 +88,32 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   };
 
   return (
-    <MediaContextProvider>
-      <AuthContext.Provider value={context}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </AuthContext.Provider>
-    </MediaContextProvider>
+    <>
+      <MediaContextProvider>
+        <AuthContext.Provider value={context}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AuthContext.Provider>
+      </MediaContextProvider>
+      {process.env.environment === "production" && withGTM && (
+        <>
+          <Script
+            async
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.googleAnalyticsId}`}
+          />
+          <Script id="ga-script" strategy="afterInteractive">
+            {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                
+                gtag('config', '${process.env.googleAnalyticsId}');
+            `}
+          </Script>
+        </>
+      )}
+    </>
   );
 }

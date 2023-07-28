@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { COOKIE_POLICY_ACCEPTED } from "@/utils/constants";
 import { CookieIcon } from "./icons/Cookie";
 
 export const CookieBanner = () => {
   const router = useRouter();
   const [showBanner, setShowBanner] = useState(false);
-  console.log(router.pathname);
 
   useEffect(() => {
     const hasAcceptedCookiePolicy = localStorage.getItem(
-      "cookie-policy-accepted"
+      COOKIE_POLICY_ACCEPTED
     );
 
     if (hasAcceptedCookiePolicy === null) {
