@@ -10,11 +10,20 @@ interface ProjectPageProps {
 
 const parsingOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
+    if (domNode instanceof Element && domNode.name === "h2") {
+      console.log("TE OTTO", domNode);
+      if (domNode.children[0]?.type === "text")
+        return (
+          <h2 className="mt-10 mb-1 text-2xl">{domNode.children[0]?.data}</h2>
+        );
+    }
+
     if (
       domNode instanceof Element &&
       domNode.name === "a" &&
       domNode.attribs?.href?.endsWith(".mp3")
     ) {
+      console.log(domNode);
       return (
         <audio className="w-full" controls>
           <source src={domNode.attribs?.href} type="audio/mpeg" />
@@ -25,13 +34,23 @@ const parsingOptions: HTMLReactParserOptions = {
   },
 };
 
+const A_SPACE_FOR_FLOWERS_ID = "642fc25cfd980252a1fd5965";
+
 export const Project: React.FC<ProjectPageProps> = ({ project }) => (
   <div className="lg:mt-8">
     <div>
-      <h1 className="text-3xl md:text-6xl text-black font-semibold ml-8 md:ml-24 xl:ml-60">
-        {project.title}
+      <h1 className="text-3xl md:text-5xl text-black font-semibold ml-8 md:ml-24 xl:ml-60 max-w-[840px]">
+        {project._id !== A_SPACE_FOR_FLOWERS_ID ? (
+          project.title
+        ) : (
+          <>
+            A Space for flowers
+            <br />
+            The New Covent Garden Flower Market
+          </>
+        )}
       </h1>
-      <div className="text-xl text-black md:font-semibold mt-2 px-8 md:px-24 xl:px-60 lg:w-10/12 xl:w-9/12 break-words">
+      <div className="text-xl text-black md:font-regular mt-2 px-8 md:px-24 xl:px-60 lg:w-10/12 xl:w-9/12 break-words">
         {parse(project.intro)}
       </div>
     </div>
@@ -52,7 +71,7 @@ export const Project: React.FC<ProjectPageProps> = ({ project }) => (
       <div className="mx-8 w-full md:w-4/5 lg:w-3/4 flex flex-col mb-8">
         <div
           id="project-description"
-          className="font-medium w-full md:w-11/12 lg:w-[820px]"
+          className="font-medium w-full md:w-11/12 lg:w-[720px]"
         >
           {parse(project.description, parsingOptions)}
         </div>

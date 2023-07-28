@@ -21,8 +21,8 @@ const Button: React.FC<BubbleMenuButtonProps> = ({
   children,
 }) => (
   <button
-    className={`text-white h-8 w-8 border-r-2 rounded-l-lg border-white px-2 hover:bg-gray-600 ${
-      isActive ? "text-emerald-500" : ""
+    className={`text-white h-8 border-r-2 first:rounded-l-lg last:rounded-r-lg border-white px-3 hover:bg-gray-600 ${
+      isActive ? "!text-zinc-700 !bg-yellow-400" : ""
     } disabled:text-gray-600 disabled:cursor-not-allowed disabled:hover:bg-gray-800`}
     type="button"
     disabled={disabled}
@@ -71,6 +71,13 @@ export const BubbleMenu: React.FC<BubbleMenuProps> = ({ editor }) => {
         disabled={!editor.isActive("link")}
       >
         <ScissorsIcon height="h-4" width="h-4" />
+      </Button>
+
+      <Button
+        isActive={editor.isActive("heading", { level: 2 })}
+        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+      >
+        H2 {editor.isActive("heading", { level: 2 })}
       </Button>
 
       <Button

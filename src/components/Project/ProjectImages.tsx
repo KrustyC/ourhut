@@ -10,8 +10,13 @@ export const ProjectImages: React.FC<ProjectImagesProps> = ({ images }) => {
   return (
     <>
       <Media lessThan="md">
-        <div className="w-full h-[340px] md:h-[600px] bg-gray-200 mt-10 relative">
-          <Image layout="fill" alt="vent" src={images[0]} />
+        <div className="w-full h-[340px] md:h-[600px] bg-gray-500 mt-10 relative">
+          <Image
+            className="bg-gray-500"
+            layout="fill"
+            alt="some image"
+            src={images[0]}
+          />
         </div>
       </Media>
 
@@ -21,7 +26,7 @@ export const ProjectImages: React.FC<ProjectImagesProps> = ({ images }) => {
             {images.map((image, i) => (
               <div
                 key={i}
-                className={`relative w-[800px] h-[500px] ${
+                className={`bg-gray-300 relative w-[800px] h-[500px] ${
                   i < images.length - 1 ? "mr-10" : ""
                 }`}
               >

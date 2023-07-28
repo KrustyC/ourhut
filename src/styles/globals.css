@@ -235,7 +235,7 @@
 }
 
 #teacher-resources-list > div:nth-of-type(3) {
-  background: rgba(201, 228, 237, 1);
+  background: rgba(244, 126, 33, 0.31);
 }
 
 #teacher-resources-list > div:nth-of-type(4) {
@@ -251,7 +251,7 @@
 }
 
 #teacher-resources-list > div:nth-of-type(7) {
-  background: rgba(244, 126, 33, 0.31);
+  background: rgba(201, 228, 237, 1);
 }
 
 /* PUBLICATIONS LIST */
@@ -268,19 +268,6 @@
 }
 
 #publications-list > div:nth-of-type(4) {
-  background: #39a7724f;
-}
-
-/* RESEARCHES LIST */
-#researches-list > div:first-of-type {
-  background: #bac4fc;
-}
-
-#researches-list > div:nth-of-type(2) {
-  background: #f47e214f;
-}
-
-#researches-list > div:nth-of-type(3) {
   background: #39a7724f;
 }
 
