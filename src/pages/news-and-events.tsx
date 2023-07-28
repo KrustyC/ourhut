@@ -24,6 +24,9 @@ interface NewsPageProps {
   newsHeadline: string | null;
 }
 
+const ARTICLE_LINK =
+  "https://www.theguardian.com/artanddesign/2021/jun/29/inventive-vents-london-flues-grilles-our-hut";
+
 const NewsPage: NextPage<NewsPageProps> = ({
   events: { pastEvents, upcomingEvents },
   newsHeadline,
@@ -66,14 +69,11 @@ const NewsPage: NextPage<NewsPageProps> = ({
           ) : null}
 
           <div className="flex flex-col md:flex-row flex-wrap mt-8 gap-x-6 gap-y-4">
-            <NextLink href="/">
-              <a className="btn btn-primary grow md:w-80 md:grow-0">
-                Link to Article
-              </a>
-            </NextLink>
-
-            <NextLink href="/">
-              <a className="btn btn-primary grow md:w-80 md:grow-0">
+            <NextLink href={ARTICLE_LINK}>
+              <a
+                className="btn btn-primary grow md:w-80 md:grow-0"
+                target="_blank"
+              >
                 Link to Article
               </a>
             </NextLink>

@@ -6,33 +6,33 @@ import { InstagramIcon } from "@/components/icons/Instagram";
 import { TwitterIcon } from "@/components/icons/Twitter";
 import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
 
-const LINKS = [
+interface Ilink {
+  href: string;
+  label: string;
+  blank?: boolean;
+  hideOnDesktop?: boolean;
+}
+
+const LINKS: Ilink[] = [
   {
-    href: "/privacy-policy",
-    label: "Privacy Policy",
-  },
-  {
-    href: "/contacts",
-    label: "Contact Us",
-  },
-  {
-    href: "/",
-    label: "Subscribe",
+    href: "/projects",
+    label: "All Projects",
   },
   {
     href: "/resources",
     label: "Teacher Resources",
   },
   {
-    hideOnDesktop: true,
-    href: "/privacy-policy",
-    label: "Privacy Policy",
+    href: "/shop",
+    label: "Shop",
   },
   {
-    hideOnDesktop: true,
-    blank: true,
-    href: "/resources",
-    label: "Etsy Shop",
+    href: "/contacts",
+    label: "Subscribe",
+  },
+  {
+    href: "/privacy-policy",
+    label: "Privacy Policy",
   },
 ];
 
