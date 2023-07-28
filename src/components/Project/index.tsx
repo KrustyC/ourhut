@@ -32,20 +32,42 @@ const parsingOptions: HTMLReactParserOptions = {
 };
 
 const A_SPACE_FOR_FLOWERS_ID = "642fc25cfd980252a1fd5965";
+const SUBLIME_STRUCTURE_ID = "642fc08efd980252a1fd5960";
+
+interface TitleCopyProps {
+  projectId?: string;
+  title: string;
+}
+// This is a bit of an ugly customization, but hoepfully i's easier than handling the title as HTML for the moment
+const TitleCopy: React.FC<TitleCopyProps> = ({ projectId, title }) => {
+  if (projectId === A_SPACE_FOR_FLOWERS_ID) {
+    return (
+      <>
+        A Space for flowers
+        <br />
+        The New Covent Garden Flower Market
+      </>
+    );
+  }
+
+  if (projectId === SUBLIME_STRUCTURE_ID) {
+    return (
+      <>
+        Sublime Structures at
+        <br />
+        Crystal Palace
+      </>
+    );
+  }
+
+  return <>{title}</>;
+};
 
 export const Project: React.FC<ProjectPageProps> = ({ project }) => (
   <div className="lg:mt-8">
     <div>
       <h1 className="text-3xl md:text-5xl text-black font-semibold ml-8 md:ml-24 xl:ml-60 max-w-[840px]">
-        {project._id !== A_SPACE_FOR_FLOWERS_ID ? (
-          project.title
-        ) : (
-          <>
-            A Space for flowers
-            <br />
-            The New Covent Garden Flower Market
-          </>
-        )}
+        <TitleCopy projectId={project._id} title={project.title} />
       </h1>
       <div className="text-xl text-black md:font-regular mt-2 px-8 md:px-24 xl:px-60 lg:w-10/12 xl:w-9/12 break-words">
         {parse(project.intro)}
