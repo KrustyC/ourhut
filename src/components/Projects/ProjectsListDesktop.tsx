@@ -3,10 +3,6 @@ import Image from "next/image";
 import parse from "html-react-parser";
 import { Project } from "@/types/global";
 
-interface ProjectsListDesktopProps {
-  projects: Project[];
-}
-
 interface YearsProps {
   years?: {
     startYear: number;
@@ -29,6 +25,10 @@ const Years: React.FC<YearsProps> = ({ years }) => {
     </div>
   );
 };
+
+interface ProjectsListDesktopProps {
+  projects: Project[];
+}
 
 export const ProjectsListDesktop: React.FC<ProjectsListDesktopProps> = ({
   projects,

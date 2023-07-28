@@ -3,6 +3,29 @@ import Link from "next/link";
 import { Project } from "@/types/global";
 import parse from "html-react-parser";
 
+interface YearsProps {
+  years?: {
+    startYear: number;
+    endYear: number;
+  };
+}
+
+const Years: React.FC<YearsProps> = ({ years }) => {
+  if (!years) {
+    return null;
+  }
+
+  const { startYear, endYear } = years;
+
+  return (
+    <div className="flex italic text-regular mb-2">
+      {startYear}
+
+      {endYear !== startYear && <span>&nbsp;- {endYear}</span>}
+    </div>
+  );
+};
+
 interface ProjectsListMobileProps {
   projects: Project[];
 }
@@ -31,6 +54,7 @@ export const ProjectsListMobile: React.FC<ProjectsListMobileProps> = ({
                 <h3 className="mb-2 font-bold text-xl leading-6">
                   {project.title}
                 </h3>
+                <Years years={project.years} />
                 <div className="text-sm line-clamp-3">
                   {parse(project.intro)}
                 </div>

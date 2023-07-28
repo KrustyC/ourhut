@@ -28,7 +28,7 @@ const PressPage: NextPageWithLayout<PressPageProps> = ({ publications }) => {
         <ResourceHeadLink
           label="Press & Publications"
           leftHref="/resources"
-          rightHref="/resources/research"
+          rightHref="/resources"
         />
       </Media>
 

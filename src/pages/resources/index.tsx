@@ -28,7 +28,7 @@ const TeacherResourcesPage: NextPageWithLayout<TeacherResourcesPageProps> = ({
       <Media lessThan="md">
         <ResourceHeadLink
           label="Teacher Resources"
-          leftHref="/resources/research"
+          leftHref="/resources/press"
           rightHref="/resources/press"
         />
       </Media>
