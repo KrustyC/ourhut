@@ -22,8 +22,8 @@ export const PROJECTS = [
   {
     name: "Brixton THI",
     description: "Artwork",
-    src: "/images/brixton-thi.jpg",
-    blurSrc: "/images/brixton-thi.jpg",
+    src: "/images/brixton-thi-boxes.jpg",
+    blurSrc: "/images/brixton-thi-boxes.jpg",
     href: "/projects/642fc2bcfd980252a1fd5966",
   },
   {

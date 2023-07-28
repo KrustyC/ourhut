@@ -29,6 +29,7 @@ export const FutureEventCard: React.FC<FutureEventCardProps> = ({
     >
       <div className="w-full h-[400px] md:h-[400px] lg:w-2/5 lg:h-auto lg:aspect-square  relative">
         <Image
+          className="bg-gray-300"
           src={event.image}
           layout="fill"
           objectFit="cover"
