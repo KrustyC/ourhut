@@ -1,50 +1,65 @@
-import { InstagramIcon } from "@/components/icons/Instagram";
-import { TwitterIcon } from "@/components/icons/Twitter";
-import { NewsletterSubscriber } from "@/components/NewsletterSubscriber";
-import { INSTAGRAM_LINK, TWITTER_LINK } from "@/utils/constants";
-import { Footer } from "./Footer";
+import {
+  useSubscribeToNewsletter,
+  NewsletterSubscriber,
+} from "@/components/NewsletterSubscriber";
 
-export const MobileContacts = () => (
-  <div>
-    <div className="h-auto flex flex-col px-8">
-      <div className="pb-8">
-        <p className="font-semibold text-2xl leading-8">
-          Our Hut
-          <br />
-          Registered Charity
-          <br />
-          1138408
-        </p>
-        <p className="font-medium text-xl leading-7 mt-4">
-          Lucy Lavers
-          <br />
-          Suzanna Prizeman
-          <br />
-          Judy Ovens
-        </p>
+export const MobileContacts = () => {
+  const { success, pending, onSubscribe } = useSubscribeToNewsletter();
 
-        <div className="flex flex-col font-medium text-sm text-black mt-14">
-          <div className="flex mb-2">
-            <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
-              <TwitterIcon className="h-6 w-6 fill-black mr-2" />
-            </a>
-            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
-              <InstagramIcon className="h-6 w-6 fill-black" />
-            </a>
+  return (
+    <div className="flex flex-col">
+      <div className="w-full bg-primary p-6">
+        {!success ? (
+          <div className="flex flex-col justify-between gap-8 text-white">
+            <h2 className="text-4xl">
+              Subscribe to <br /> our Newsletter
+            </h2>
+            <p>
+              Keep informed about Our Hut's important updates. By subscribing to
+              our newsletter, you'll receive information on upcoming workshops,
+              tours, and events. Join us and stay connected with the
+              architectural community
+            </p>
+
+            <NewsletterSubscriber pending={pending} onSubscribe={onSubscribe} />
           </div>
+        ) : (
+          <div className="h-full w-full flex items-center">
+            <h2 className="text-4xl text-white w-4/5">
+              Thank you for subscribing! We will keep you updated.
+            </h2>
+          </div>
+        )}
+      </div>
 
-          <a className="text-black" href="mailto:ourhutteam@ourhut.co.uk">
-            ourhutteam@ourhut.co.uk
-          </a>
+      <div className="w-full bg-gray-100 px-6 py-12">
+        <div className="w-full pl-8 flex flex-col gap-8 text-black border-l-2 border-primary">
+          <p className="font-bold text-xl leading-7">
+            Our Hut
+            <br />
+            Registered Charity
+            <br />
+            1138408
+            <br />
+          </p>
 
-          <span className="mt-2">0044 (0)7745123458</span>
+          <p className="font-medium text-2xl leading-8">
+            Lucy Lavers
+            <br />
+            Suzanna Prizeman
+            <br />
+            Judy Ovens
+            <br />
+          </p>
+
+          <div className="flex flex-col font-medium text-sm">
+            <a className="text-black" href="mailto:ourhutteam@ourhut.co.uk">
+              ourhutteam@ourhut.co.uk
+            </a>
+            <span className="mt-2">0044 (0)7745123458</span>
+          </div>
         </div>
       </div>
-
-      <div className="py-6 border-t-2 border-primary">
-        <NewsletterSubscriber />
-      </div>
     </div>
-    <Footer />
-  </div>
-);
+  );
+};
