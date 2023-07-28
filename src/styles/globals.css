@@ -52,6 +52,10 @@
     @apply tracking-wide;
   }
 
+  #project-description blockquote {
+    @apply text-primary text-lg italic;
+  }
+
   .btn {
     @apply font-cabin w-auto px-5 py-3 text-lg shadow-sm font-semibold tracking-wider transition-all duration-200 ease-in-out text-center cursor-pointer disabled:cursor-not-allowed;
   }
@@ -223,6 +227,11 @@
 
 .editor-container > div {
   height: 100%;
+}
+
+.editor-container blockquote p {
+  color: #f47e21 !important;
+  font-style: italic;
 }
 
 /* TEACHER RESOURCES LIST */

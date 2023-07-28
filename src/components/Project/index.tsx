@@ -10,20 +10,17 @@ interface ProjectPageProps {
 
 const parsingOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
-    if (domNode instanceof Element && domNode.name === "h2") {
-      console.log("TE OTTO", domNode);
-      if (domNode.children[0]?.type === "text")
-        return (
-          <h2 className="mt-10 mb-1 text-2xl">{domNode.children[0]?.data}</h2>
-        );
+    if (!(domNode instanceof Element)) {
+      return;
     }
 
-    if (
-      domNode instanceof Element &&
-      domNode.name === "a" &&
-      domNode.attribs?.href?.endsWith(".mp3")
-    ) {
-      console.log(domNode);
+    if (domNode.name === "h2" && domNode.children[0]?.type === "text") {
+      return (
+        <h2 className="mt-10 mb-1 text-2xl">{domNode.children[0]?.data}</h2>
+      );
+    }
+
+    if (domNode.name === "a" && domNode.attribs?.href?.endsWith(".mp3")) {
       return (
         <audio className="w-full" controls>
           <source src={domNode.attribs?.href} type="audio/mpeg" />
@@ -71,7 +68,7 @@ export const Project: React.FC<ProjectPageProps> = ({ project }) => (
       <div className="mx-8 w-full md:w-4/5 lg:w-3/4 flex flex-col mb-8">
         <div
           id="project-description"
-          className="font-medium w-full md:w-11/12 lg:w-[720px]"
+          className="w-full md:w-11/12 lg:w-[720px]"
         >
           {parse(project.description, parsingOptions)}
         </div>

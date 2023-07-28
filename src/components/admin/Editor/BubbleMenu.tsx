@@ -3,6 +3,7 @@ import { LinkIcon } from "@/components/icons/Link";
 import { ScissorsIcon } from "@/components/icons/Scissors";
 import type { Editor } from "@tiptap/react";
 import { BubbleMenu as TipTapBubbleMenu } from "@tiptap/react";
+import { BlockquoteIcon } from "@/components/icons/Blockquote";
 
 interface BubbleMenuProps {
   editor: Editor;
@@ -99,6 +100,13 @@ export const BubbleMenu: React.FC<BubbleMenuProps> = ({ editor }) => {
         onClick={() => editor.chain().focus().toggleStrike().run()}
       >
         S
+      </Button>
+
+      <Button
+        isActive={editor.isActive("blockquote")}
+        onClick={() => editor.chain().focus().toggleBlockquote().run()}
+      >
+        <BlockquoteIcon />
       </Button>
     </TipTapBubbleMenu>
   );
