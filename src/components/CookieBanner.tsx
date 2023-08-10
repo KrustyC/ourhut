@@ -3,7 +3,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { COOKIE_POLICY_ACCEPTED } from "@/utils/constants";
 import { CookieIcon } from "./icons/Cookie";
-import { Transition } from "@tailwindui/react";
+import { Transition } from "@headlessui/react";
 
 export const CookieBanner = () => {
   const router = useRouter();

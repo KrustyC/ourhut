@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NextLink from "next/link";
-import { Transition } from "@tailwindui/react";
+import { Transition } from "@headlessui/react";
 import { OurHutLogoIcon } from "@/components/icons/OurHutLogo";
 import { OurHutLogoTextIcon } from "@/components/icons/OurHutLogoText";
 import { InstagramIcon } from "@/components/icons/Instagram";
@@ -24,6 +24,7 @@ interface NavbarProps {
     burgerColor?: string;
     logoColor?: string;
     textColor?: string;
+    absolute?: boolean;
   };
   includeSocialLinks?: boolean;
 }
@@ -33,6 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     burgerColor = "bg-primary",
     logoColor = "fill-primary",
     textColor = "fill-black",
+    absolute = false,
   },
   includeSocialLinks = false,
 }) => {
@@ -48,12 +50,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <div className="w-screen h-24 flex bg-transparent justify-between items-center px-6 md:px-16 z-50">
+      <div
+        className={`${
+          absolute ? "absolute" : ""
+        } w-screen h-24 flex bg-transparent justify-between items-center px-6 md:px-16 z-50`}
+      >
         <div className="flex items-center z-50">
           <NextLink href="/">
             <a className="flex items-center z-50">
               <OurHutLogoIcon
-                className={`h-3 h-3 mt-1 md:h-4 md:w-4 ${logoColor}`}
+                className={`h-3 mt-1 md:h-4 md:w-4 ${logoColor}`}
               />
               <OurHutLogoTextIcon
                 className={`h-6 w-24 ml-5 md:h-8 md:w-32 ${textColor}`}
