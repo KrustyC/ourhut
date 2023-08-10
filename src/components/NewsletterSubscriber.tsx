@@ -1,65 +1,90 @@
-import { useState } from "react";
 import { LoadingSpinner } from "./admin/LoadingSpinner";
+import { useForm } from "react-hook-form";
 
-export const useSubscribeToNewsletter = () => {
-  const [pending, setPending] = useState(false);
-  const [success, setSuccess] = useState(false);
-
-  const onSubscribe = (email: string) => {
-    console.log(email);
-    setPending(true);
-
-    setTimeout(() => {
-      setPending(false);
-      setSuccess(true);
-    }, 1500);
-  };
-
-  return {
-    pending,
-    success,
-    onSubscribe,
-  };
-};
+interface NewsletterData {
+  email: string;
+  firstName: string;
+  lastName: string;
+}
 
 interface NewsletterSubscriberProps {
   pending: boolean;
-  onSubscribe: (email: string) => void;
+  onSubscribe: (newsletterData: NewsletterData) => void;
 }
 
 export const NewsletterSubscriber: React.FC<NewsletterSubscriberProps> = ({
   pending,
   onSubscribe,
 }) => {
-  const [email, setEmail] = useState("");
+  const {
+    register,
+    formState: { errors, isValid, isDirty },
+    handleSubmit,
+  } = useForm<NewsletterData>({
+    defaultValues: { email: "", firstName: "", lastName: "" },
+    mode: "onBlur",
+  });
 
-  const isEmailValid =
-    email.length > 4 && email.includes("@") && email.includes(".");
-
-  const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setEmail(e.target.value);
-  };
+  console.log(errors);
 
   return (
-    <div className="flex flex-col">
-      <input
-        autoFocus
-        placeholder="Enter your email address"
-        type="text"
-        className="h-14 mb-6 w-full appearance-none bg-white text-gray-700 px-6 leading-tight focus:outline-none"
-        value={email}
-        onChange={onChangeEmail}
-      />
+    <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubscribe)}>
+      <div className="flex lg:flex-row gap-4">
+        <div className="flex flex-col gap-1 w-full">
+          <input
+            autoFocus
+            className="newsletter-input"
+            type="text"
+            {...register("firstName", {
+              required: "Please enter a first name",
+            })}
+            placeholder="First name"
+          />
+
+          {errors.firstName && (
+            <span className="newsletter-input-error">
+              {errors.firstName.message}
+            </span>
+          )}
+        </div>
+
+        <div className="flex flex-col gap-1 w-full">
+          <input
+            className="newsletter-input"
+            type="text"
+            {...register("lastName", { required: "Please enter a last name" })}
+            placeholder="Last name"
+          />
+
+          {errors.lastName && (
+            <span className="newsletter-input-error">
+              {errors.lastName.message}
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-1">
+        <input
+          className="newsletter-input"
+          type="email"
+          {...register("email", { required: "Please enter a valid email" })}
+          placeholder="Email address"
+        />
+        {errors.email && (
+          <span className="newsletter-input-error">{errors.email.message}</span>
+        )}
+      </div>
 
       <div>
         <button
-          disabled={pending || !isEmailValid}
+          type="submit"
+          disabled={pending || !isDirty}
           className="btn btn-transparent-outlined-white transparent-outlined font-bold h-14 w-full text-black"
-          onClick={() => onSubscribe(email)}
         >
-          {pending ? <LoadingSpinner color="bg-primary" /> : "Subscribe"}
+          {pending ? <LoadingSpinner color="bg-white" /> : "Subscribe"}
         </button>
       </div>
-    </div>
+    </form>
   );
 };

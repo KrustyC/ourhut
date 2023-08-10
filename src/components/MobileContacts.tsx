@@ -1,7 +1,5 @@
-import {
-  useSubscribeToNewsletter,
-  NewsletterSubscriber,
-} from "@/components/NewsletterSubscriber";
+import { NewsletterSubscriber } from "@/components/NewsletterSubscriber";
+import { useSubscribeToNewsletter } from "@/hooks/useNewsletterSubscriber";
 
 export const MobileContacts = () => {
   const { success, pending, onSubscribe } = useSubscribeToNewsletter();

@@ -103,6 +103,14 @@
   .btn-admin.btn-danger {
     @apply bg-admin-danger border text-white hover:bg-admin-danger-dark disabled:bg-admin-danger-light disabled:hover:bg-admin-danger-light disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none;
   }
+
+  .newsletter-input {
+    @apply h-12 w-full appearance-none bg-white text-gray-700 px-3 leading-tight focus:outline-none;
+  }
+
+  .newsletter-input-error {
+    @apply text-red-800 text-sm;
+  }
 }
 
 .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {

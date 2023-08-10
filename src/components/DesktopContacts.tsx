@@ -1,17 +1,15 @@
-import {
-  useSubscribeToNewsletter,
-  NewsletterSubscriber,
-} from "@/components/NewsletterSubscriber";
+import { NewsletterSubscriber } from "@/components/NewsletterSubscriber";
+import { useSubscribeToNewsletter } from "@/hooks/useNewsletterSubscriber";
 
 export const DesktopContacts = () => {
   const { success, pending, onSubscribe } = useSubscribeToNewsletter();
 
   return (
     <div className="flex grow w-fit mx-auto">
-      <div className="w-[580px] aspect-square bg-primary p-12">
+      <div className="w-[620px] aspect-square bg-primary p-12">
         {!success ? (
           <div className="flex flex-col justify-between h-full w-full">
-            <div className="flex flex-col gap-6 text-white">
+            <div className="flex flex-col gap-5 text-white">
               <h2 className="text-5xl">
                 Subscribe to <br /> our Newsletter
               </h2>
