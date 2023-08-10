@@ -3,6 +3,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { COOKIE_POLICY_ACCEPTED } from "@/utils/constants";
 import { CookieIcon } from "./icons/Cookie";
+import { Transition } from "@tailwindui/react";
 
 export const CookieBanner = () => {
   const router = useRouter();
@@ -30,7 +31,17 @@ export const CookieBanner = () => {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black py-8 px-8 lg:px-16 flex flex-col lg:flex-row lg:items-center lg:justify-between z-50">
+    <Transition
+      className="fixed bottom-0 left-0 right-0 bg-black py-8 px-8 lg:px-16 flex flex-col lg:flex-row lg:items-center lg:justify-between z-50"
+      show={showBanner}
+      enter="transition-all ease-in-out duration-500 delay-[200ms]"
+      enterFrom="opacity-0 translate-y-6"
+      enterTo="fixed bottom-0 left-0 right-0 opacity-100 translate-y-0"
+      leave="transition-all ease-in-out duration-300"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+    >
+      {/* <div className="fixed bottom-0 left-0 right-0 bg-black py-8 px-8 lg:px-16 flex flex-col lg:flex-row lg:items-center lg:justify-between z-50"> */}
       <div className="flex flex-col lg:flex-row lg:items-center gap-6">
         <CookieIcon />
 
@@ -52,6 +63,7 @@ export const CookieBanner = () => {
       >
         Accept
       </button>
-    </div>
+      {/* </div> */}
+    </Transition>
   );
 };

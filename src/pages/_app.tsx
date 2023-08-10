@@ -14,6 +14,10 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout<Readonly<unknown>>;
 };
 
+interface WindowWithGtag extends Window {
+  gtag: Gtag.Gtag;
+}
+
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout || DefaultLayout;
 
@@ -29,7 +33,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       Boolean(hasAcceptedCookiePolicy) &&
       !router.pathname.startsWith("/admin")
     ) {
-      (window as any).gtag("consent", "update", {
+      (window as WindowWithGtag).gtag("consent", "update", {
         ad_storage: "granted",
       });
     }

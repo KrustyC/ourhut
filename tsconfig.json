@@ -24,6 +24,7 @@
       "@/utils/*": ["src/utils/*"]
     }
   },
+  "types": ["@types/gtag.js"],
   "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
 }

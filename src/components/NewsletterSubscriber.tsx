@@ -18,7 +18,7 @@ export const NewsletterSubscriber: React.FC<NewsletterSubscriberProps> = ({
 }) => {
   const {
     register,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isDirty },
     handleSubmit,
   } = useForm<NewsletterData>({
     defaultValues: { email: "", firstName: "", lastName: "" },
