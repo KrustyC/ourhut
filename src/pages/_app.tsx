@@ -19,8 +19,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   const router = useRouter();
   const [user, setUser] = useState<netlifyIdentity.User | null>(null);
-  // const [userAcceptedCookiePolicy, setUserAcceptedCookiePolicy] =
-  //   useState(false);
 
   useEffect(() => {
     const hasAcceptedCookiePolicy = localStorage.getItem(
@@ -31,11 +29,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       Boolean(hasAcceptedCookiePolicy) &&
       !router.pathname.startsWith("/admin")
     ) {
-      console.log("BUULSHIT");
-      // (window as any).gtag('consent', 'update', {
-      //   'ad_storage': 'granted'
-      // });
-      // setUserAcceptedCookiePolicy(true);
+      (window as any).gtag("consent", "update", {
+        ad_storage: "granted",
+      });
     }
   }, []);
 
@@ -105,21 +101,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       </MediaContextProvider>
       {process.env.NEXT_PUBLIC_ENVIRONMENT === "production" && (
         <>
-          {/* <Script>
-        // Define dataLayer and the gtag function.
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-
-        // Default ad_storage to 'denied' as a placeholder
-        // Determine actual values based on your own requirements
-        {`
-          gtag('consent', 'default', {
-            'ad_storage': 'denied',
-            'analytics_storage': 'denied'
-          });
-        `}
-        </Script> */}
-
           <Script
             async
             strategy="afterInteractive"
@@ -129,6 +110,10 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
+                gtag('consent', 'default', {
+                  'ad_storage': 'denied',
+                  'analytics_storage': 'denied'
+                });
                 gtag('js', new Date());
                 
                 gtag('config', '${googleAnalyticsId}');

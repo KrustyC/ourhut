@@ -63,14 +63,11 @@ async function post(handlerEvent: HandlerEvent) {
       },
     });
 
-    // console.log("response", response);
-
     return jsonResponse({
       status: 200,
       body: { message: "User succesfully subscribed" },
     });
   } catch (error) {
-    console.log("error", error);
     return jsonResponse({
       status: 500,
       body: {

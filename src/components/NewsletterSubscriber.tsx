@@ -25,8 +25,6 @@ export const NewsletterSubscriber: React.FC<NewsletterSubscriberProps> = ({
     mode: "onBlur",
   });
 
-  console.log(errors);
-
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubscribe)}>
       <div className="flex lg:flex-row gap-4">
