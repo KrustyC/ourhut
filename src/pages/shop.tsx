@@ -35,11 +35,6 @@ const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
             Shop
           </h1>
 
-          <span className="font-bold mt-2 mb-8 w-full md:hidden">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
-            consequat libero pulvinar.
-          </span>
-
           <div className="flex flex-col pb-8 md:mt-12">
             {products.map((product, i) => (
               <ShopProductCard

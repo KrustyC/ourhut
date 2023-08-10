@@ -2,7 +2,8 @@ import { NewsletterSubscriber } from "@/components/NewsletterSubscriber";
 import { useSubscribeToNewsletter } from "@/hooks/useNewsletterSubscriber";
 
 export const MobileContacts = () => {
-  const { success, pending, onSubscribe } = useSubscribeToNewsletter();
+  const { success, pending, hasError, onSubscribe } =
+    useSubscribeToNewsletter();
 
   return (
     <div className="flex flex-col">
@@ -20,7 +21,11 @@ export const MobileContacts = () => {
                 connected with the architectural community
               </p>
             </div>
-            <NewsletterSubscriber pending={pending} onSubscribe={onSubscribe} />
+            <NewsletterSubscriber
+              pending={pending}
+              hasSubmitError={hasError}
+              onSubscribe={onSubscribe}
+            />
           </div>
         ) : (
           <div className="h-full w-full flex items-center">

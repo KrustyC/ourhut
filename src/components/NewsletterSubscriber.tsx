@@ -9,11 +9,13 @@ interface NewsletterData {
 
 interface NewsletterSubscriberProps {
   pending: boolean;
+  hasSubmitError: boolean;
   onSubscribe: (newsletterData: NewsletterData) => void;
 }
 
 export const NewsletterSubscriber: React.FC<NewsletterSubscriberProps> = ({
   pending,
+  hasSubmitError,
   onSubscribe,
 }) => {
   const {
@@ -74,7 +76,7 @@ export const NewsletterSubscriber: React.FC<NewsletterSubscriberProps> = ({
         )}
       </div>
 
-      <div>
+      <div className="relative">
         <button
           type="submit"
           disabled={pending || !isDirty}
@@ -82,6 +84,11 @@ export const NewsletterSubscriber: React.FC<NewsletterSubscriberProps> = ({
         >
           {pending ? <LoadingSpinner color="bg-white" /> : "Subscribe"}
         </button>
+        {hasSubmitError && (
+          <span className="absolute left-0 right-0 top-[60px] newsletter-input-error">
+            An error happened, please try again later
+          </span>
+        )}
       </div>
     </form>
   );

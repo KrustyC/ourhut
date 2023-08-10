@@ -2,7 +2,8 @@ import { NewsletterSubscriber } from "@/components/NewsletterSubscriber";
 import { useSubscribeToNewsletter } from "@/hooks/useNewsletterSubscriber";
 
 export const DesktopContacts = () => {
-  const { success, pending, onSubscribe } = useSubscribeToNewsletter();
+  const { success, pending, hasError, onSubscribe } =
+    useSubscribeToNewsletter();
 
   return (
     <div className="flex grow w-fit mx-auto">
@@ -21,7 +22,11 @@ export const DesktopContacts = () => {
               </p>
             </div>
 
-            <NewsletterSubscriber pending={pending} onSubscribe={onSubscribe} />
+            <NewsletterSubscriber
+              pending={pending}
+              hasSubmitError={hasError}
+              onSubscribe={onSubscribe}
+            />
           </div>
         ) : (
           <div className="h-full w-full flex items-center">
