@@ -24,7 +24,7 @@ export const NewsletterSubscriber: React.FC<NewsletterSubscriberProps> = ({
     handleSubmit,
   } = useForm<NewsletterData>({
     defaultValues: { email: "", firstName: "", lastName: "" },
-    mode: "onBlur",
+    mode: "onSubmit",
   });
 
   return (

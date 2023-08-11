@@ -35,7 +35,7 @@ const ShopPage: NextPage<ShopPageProps> = ({ products }) => {
             Shop
           </h1>
 
-          <div className="flex flex-col pb-8 md:mt-12">
+          <div className="flex flex-col pb-8 mt-6 md:mt-12">
             {products.map((product, i) => (
               <ShopProductCard
                 key={i}

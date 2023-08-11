@@ -15,7 +15,10 @@ export const ResourcesListMobile: React.FC<ResourcesListMobileProps> = ({
 }) => (
   <div className="border-t-2 border-black">
     {materials.map((material, i) => (
-      <div key={i} className="flex flex-col py-4 border-b-2 border-black">
+      <div
+        key={i}
+        className="flex flex-col gap-y-4 py-4 border-b-2 border-black"
+      >
         <div className="resource-item">
           <div className="w-5/12 text-sm">Name of material</div>
           <div className="w-7/12 font-semibold">{material.name}</div>
@@ -34,7 +37,7 @@ export const ResourcesListMobile: React.FC<ResourcesListMobileProps> = ({
         </div>
 
         <div className="resource-item">
-          <div className="w-5/12 text-sm">Author/Interviewees</div>
+          <div className="w-5/12 text-sm">Author / Interviewees</div>
           <div className="w-7/12 overflow-hidden truncate text-ellipsis">
             {material.authorOrInterviewees}
           </div>
