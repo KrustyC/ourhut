@@ -17,7 +17,7 @@ const Content: React.FC = () => (
         </p>
       </div>
 
-      <Link href="/projects">
+      <Link href="/educational-approach">
         <a className="btn btn-transparent-outlined-white font-bold w-full md:w-60 text-black mt-8">
           Educational Approach
         </a>
