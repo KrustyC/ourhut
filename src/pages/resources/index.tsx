@@ -48,6 +48,24 @@ const TeacherResourcesPage: NextPageWithLayout<TeacherResourcesPageProps> = ({
   );
 };
 
+const RESOURCES_ORDER = [
+  "64b0fafafa5dd9eee4154871", // Inventive Vents
+  "6204347c6ff6ec49f63d2af1", // Peckham THI
+  "647056ff569eedfd9109e408", // Sublime Structures - Crystal Palace Park | Session 01
+  "6470585f569eedfd9109e409", // Sublime Structures - Crystal Palace Park | Session 02
+  "64705972569eedfd9109e40a", // Sublime Structures - Crystal Palace Park | Session 03
+  "64705d9f27d673fc0d843ae0", // Sublime Structures - Crystal Palace Park | Session 04
+  "6454a859535faad5d175cec3", // Our Street
+];
+
+function sortTeachingResources(resources: TeachingResource[]) {
+  return resources.sort((a, b) => {
+    if (!a._id || !b._id) return 0;
+
+    return RESOURCES_ORDER.indexOf(a._id) - RESOURCES_ORDER.indexOf(b._id);
+  });
+}
+
 export async function getStaticProps() {
   const res = await fetch(
     `${process.env.baseUrl}/.netlify/functions/teaching-resources`
@@ -57,7 +75,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      teachingResources,
+      teachingResources: sortTeachingResources(teachingResources),
     },
   };
 }

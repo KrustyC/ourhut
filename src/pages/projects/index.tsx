@@ -62,10 +62,10 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
   );
 };
 
-const TOP_PROJECTS_ID = [
-  "642fc1d7fd980252a1fd5964",
-  "642fc141fd980252a1fd5963",
-];
+// const TOP_PROJECTS_ID = [
+//   "642fc1d7fd980252a1fd5964",
+//   "642fc141fd980252a1fd5963",
+// ];
 
 function sortProjects(projects: Project[]) {
   return projects.sort((a, b) => {
