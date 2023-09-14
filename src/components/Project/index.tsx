@@ -93,6 +93,16 @@ export const Project: React.FC<ProjectPageProps> = ({ project }) => (
           className="w-full md:w-11/12 lg:w-[720px]"
         >
           {parse(project.description, parsingOptions)}
+
+          {/* <section className="w-full aspect-video mt-8 mb-8">
+            <iframe
+              className="w-full h-full"
+              title={`https://youtube.com/embed/PRkhtRTUDdo`}
+              src={`https://youtube.com/embed/PRkhtRTUDdo`}
+              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen={false}
+            />
+          </section> */}
         </div>
 
         {(!!project.links.teacherResources ||
