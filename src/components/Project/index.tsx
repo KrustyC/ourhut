@@ -1,5 +1,11 @@
 import Link from "next/link";
-import parse, { HTMLReactParserOptions, Element } from "html-react-parser";
+import parse, {
+  HTMLReactParserOptions,
+  Element,
+  Comment,
+  ProcessingInstruction,
+  Text,
+} from "html-react-parser";
 import { Project as IProject } from "@/types/global";
 import { LeftArrowIcon } from "@/components/icons/LeftArrow";
 import { ProjectImages } from "./ProjectImages";
@@ -7,6 +13,13 @@ import { ProjectImages } from "./ProjectImages";
 interface ProjectPageProps {
   project: IProject;
 }
+
+function nodeIsText(node: any | undefined): node is Text {
+  return node?.type === "text";
+}
+
+const YOUTUBE_VIDEO_ID_REGEX =
+  /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
 
 const parsingOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
@@ -17,6 +30,26 @@ const parsingOptions: HTMLReactParserOptions = {
     if (domNode.name === "h2" && domNode.children[0]?.type === "text") {
       return (
         <h2 className="mt-10 mb-1 text-2xl">{domNode.children[0]?.data}</h2>
+      );
+    }
+
+    if (
+      domNode.name === "a" &&
+      nodeIsText(domNode.children[0]) &&
+      domNode.children[0].data?.includes("youtube.com")
+    ) {
+      const match = YOUTUBE_VIDEO_ID_REGEX.exec(domNode.children[0].data);
+      const videoId = match && match[7].length === 11 ? match[7] : null;
+      return (
+        <section className="w-full aspect-video mt-8 mb-8">
+          <iframe
+            className="w-full h-full"
+            title={`https://youtube.com/embed/${videoId}`}
+            src={`https://youtube.com/embed/${videoId}`}
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen={false}
+          />
+        </section>
       );
     }
 
@@ -87,22 +120,12 @@ export const Project: React.FC<ProjectPageProps> = ({ project }) => (
         </Link>
       </div>
 
-      <div className="mx-8 w-full md:w-4/5 lg:w-3/4 flex flex-col mb-8">
+      <div className="mx-4 lg:mx-8 w-full md:w-4/5 lg:w-3/4 flex flex-col mb-8">
         <div
           id="project-description"
           className="w-full md:w-11/12 lg:w-[720px]"
         >
           {parse(project.description, parsingOptions)}
-
-          {/* <section className="w-full aspect-video mt-8 mb-8">
-            <iframe
-              className="w-full h-full"
-              title={`https://youtube.com/embed/PRkhtRTUDdo`}
-              src={`https://youtube.com/embed/PRkhtRTUDdo`}
-              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen={false}
-            />
-          </section> */}
         </div>
 
         {(!!project.links.teacherResources ||
