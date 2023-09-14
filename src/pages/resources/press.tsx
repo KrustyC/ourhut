@@ -16,6 +16,8 @@ const PressPage: NextPageWithLayout<PressPageProps> = ({ publications }) => {
   usePageviewTracking({ title: "Press" });
   const preselectedResourceId = usePreselectedResource();
 
+  console.log(preselectedResourceId, publications[0]);
+
   return (
     <div>
       <Head>

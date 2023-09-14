@@ -2,8 +2,6 @@ import Link from "next/link";
 import parse, {
   HTMLReactParserOptions,
   Element,
-  Comment,
-  ProcessingInstruction,
   Text,
 } from "html-react-parser";
 import { Project as IProject } from "@/types/global";
@@ -14,6 +12,7 @@ interface ProjectPageProps {
   project: IProject;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function nodeIsText(node: any | undefined): node is Text {
   return node?.type === "text";
 }
