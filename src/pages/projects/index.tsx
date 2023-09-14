@@ -62,13 +62,30 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
   );
 };
 
+const TOP_PROJECTS_ID = [
+  "642fc1d7fd980252a1fd5964",
+  "642fc141fd980252a1fd5963",
+];
+
+function sortProjects(projects: Project[]) {
+  return projects.sort((a, b) => {
+    if (!a._id || !b._id) return 0;
+
+    return (a.years.endYear || a.years.startYear) >
+      (b.years.endYear || b.years.startYear)
+      ? -1
+      : 1;
+    // return -(TOP_PROJECTS_ID.indexOf(a._id) - TOP_PROJECTS_ID.indexOf(b._id));
+  });
+}
+
 export async function getStaticProps() {
   const res = await fetch(`${process.env.baseUrl}/.netlify/functions/projects`);
 
   const { projects } = await res.json();
 
   return {
-    props: { projects },
+    props: { projects: sortProjects(projects) },
   };
 }
 
