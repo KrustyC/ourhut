@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { RebuildWebsitesButton } from "@/components/admin/RebuildWebsitesButton";
 
 interface NavBarProps {
   onLogout: VoidFunction;
@@ -23,9 +23,13 @@ export const NavBar: React.FC<NavBarProps> = ({ onLogout }) => (
           </div>
         </div>
 
-        <button className="btn-admin btn-dark btn-sm" onClick={onLogout}>
-          Logout
-        </button>
+        <div className="flex gap-4 items-center">
+          <RebuildWebsitesButton />
+
+          <button className="btn-admin btn-dark" onClick={onLogout}>
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   </nav>
