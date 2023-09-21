@@ -60,7 +60,6 @@ export const DesktopContacts = () => {
           <a className="text-black" href="mailto:ourhutteam@ourhut.co.uk">
             ourhutteam@ourhut.co.uk
           </a>
-          <span className="mt-2">0044 (0)7745123458</span>
         </div>
       </div>
     </div>
