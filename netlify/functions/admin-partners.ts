@@ -43,7 +43,7 @@ async function deleteImage(handlerEvent: HandlerEvent) {
 
     const params = {
       Bucket: process.env.S3_OUR_HUT_BUCKET as string,
-      Key: `/${FOLDERS.PARTNERS_LOGOS}/${name}`,
+      Key: `${FOLDERS.PARTNERS_LOGOS}/${name}`,
     };
 
     await deleteObjectFromS3(params);
