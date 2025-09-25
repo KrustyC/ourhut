@@ -7,6 +7,7 @@ const nextConfig = {
     s3BucketUrl: `https://${process.env.S3_OUR_HUT_BUCKET}.s3.amazonaws.com`,
   },
   images: {
+    unoptimized: true, // Disable Next.js image optimization
     domains: [
       "ourhut.s3.amazonaws.com",
       "upload.wikimedia.org",

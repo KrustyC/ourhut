@@ -167,6 +167,8 @@ const NewsPage: NextPage<NewsPageProps> = ({
 };
 
 export async function getStaticProps() {
+  console.log(`${process.env.baseUrl}/.netlify/functions/events-and-news`);
+
   const res = await fetch(
     `${process.env.baseUrl}/.netlify/functions/events-and-news`
   );
