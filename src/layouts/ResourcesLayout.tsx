@@ -41,8 +41,8 @@ export const ResourcesLayout: React.FC = ({ children }) => {
 
           <div className="mt-2 md:mt-4 mb-4 lg:w-7/12 xl:w-6/12">
             We produce free downloadable school resources and research for many
-            of our projects - you can find them below. Please contact us if
-            you'd like any advice on using the school resources.
+            of our projects - you can find them below. Please contact us if you
+            {"'"}d like any advice on using the school resources.
           </div>
 
           <Media greaterThanOrEqual="md">

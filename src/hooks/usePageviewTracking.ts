@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { COOKIE_POLICY_ACCEPTED } from "@/utils/constants";
 import { useRouter } from "next/router";
 import { useEffect } from "react";

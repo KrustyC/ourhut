@@ -3,15 +3,19 @@ import netlifyIdentity from "netlify-identity-widget";
 
 type AuthContextType = {
   user: netlifyIdentity.User | null;
-  login: VoidFunction;
-  logout: VoidFunction;
+  login: () => void;
+  logout: () => void;
   authReady: boolean;
 };
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
-  login: () => {},
-  logout: () => {},
+  login: () => {
+    return;
+  },
+  logout: () => {
+    return;
+  },
   authReady: false,
 });
 

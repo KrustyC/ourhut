@@ -105,21 +105,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         </AuthContext.Provider>
       </MediaContextProvider>
 
-      <Script
-        src="https://davide-bot.s3.eu-west-2.amazonaws.com/shopify-ai-bot.js"
-        type="text/javascript"
-        strategy="beforeInteractive"
-      />
-      <Script type="text/javascript" strategy="afterInteractive" defer>
-        {`
-                  console.log("HELLO")
-                  ShopifyAIBot.init({
-                      color: 'ref', // @TODO remove this
-                      rootId: "widget-root",
-                      appId: "random-app-id",
-                  })
-              `}
-      </Script>
       {process.env.NEXT_PUBLIC_ENVIRONMENT === "production" && (
         <>
           <Script
