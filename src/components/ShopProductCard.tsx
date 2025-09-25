@@ -47,7 +47,7 @@ export const ShopProductCard: React.FC<ShopProductCardProps> = ({
           rel="noopener noreferrer"
           className="btn btn-transparent-outlined w-full md:w-40 font-medium text-l"
         >
-          Buy on Etsy
+          Buy
         </a>
         {includeLinkToShop ? (
           <Link href="/shop">
