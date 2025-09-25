@@ -8,9 +8,9 @@ const nextConfig = {
   },
   images: {
     domains: [
+      "ourhut.s3.amazonaws.com",
       "upload.wikimedia.org",
       "our-hut-dev.s3.amazonaws.com",
-      "ourhut.s3.amazonaws.com",
     ],
   },
 };
