@@ -1,5 +1,5 @@
 [build]
-  command = "npm install && npm install sharp@0.32 --platform=linux --arch=x64 && npm run build"
+  command = "npm run build"
   publish = ".next"
 
 [build.environment]
