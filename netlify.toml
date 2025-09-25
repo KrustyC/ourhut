@@ -1,10 +1,19 @@
 [build]
   command = "npm run build"
   publish = ".next"
-  environment = { NODE_VERSION = "20.11.0" }
+
+[build.environment]
+  NODE_VERSION = "20.11.0"
+  NPM_FLAGS = "--legacy-peer-deps"
+  SHARP_IGNORE_GLOBAL_LIBVIPS = "1"
+  npm_config_platform = "linux"
+  npm_config_arch = "x64"
+  npm_config_target_platform = "linux"
+  npm_config_target_arch = "x64"
+  npm_config_cache = "/opt/buildhome/.npm"
  
 [dev]
- command = "npm run dev"
+  command = "npm run dev"
  
 [functions]
   directory = "netlify/functions"
@@ -13,4 +22,4 @@
   included_files = ["node_modules/sharp/**/*"]
 
 [[plugins]]
-package = "@netlify/plugin-nextjs"
+  package = "@netlify/plugin-nextjs"
