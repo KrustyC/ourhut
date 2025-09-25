@@ -10,7 +10,7 @@ interface TimePeriodSelectorProps<T extends FieldValues> {
   name: FieldPath<T>;
   className?: string;
   register: UseFormRegister<T>;
-  options?: RegisterOptions;
+  options?: RegisterOptions<T, FieldPath<T>>;
 }
 
 const PERIODS = ["AM", "PM"];

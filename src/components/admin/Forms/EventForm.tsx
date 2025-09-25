@@ -131,7 +131,8 @@ export const EventForm: React.FC<EventFormProps> = ({
                   register={register}
                   options={{
                     required: "Please add start time",
-                    validate: isValidTime,
+                    validate: (time) =>
+                      typeof time === "string" && isValidTime(time),
                   }}
                   error={errors?.date?.startTime?.time}
                   hideErrorMessage
@@ -162,7 +163,8 @@ export const EventForm: React.FC<EventFormProps> = ({
                   register={register}
                   options={{
                     required: "Please add end time",
-                    validate: isValidTime,
+                    validate: (time) =>
+                      typeof time === "string" && isValidTime(time),
                   }}
                   error={errors?.date?.endTime?.time}
                   hideErrorMessage

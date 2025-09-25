@@ -15,7 +15,7 @@ interface InputProps<T extends FieldValues> {
   type: string;
   placeholder: string;
   width?: string;
-  options?: RegisterOptions;
+  options?: RegisterOptions<T, FieldPath<T>>;
   register: UseFormRegister<T>;
 }
 

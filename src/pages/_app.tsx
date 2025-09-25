@@ -12,6 +12,7 @@ import { COOKIE_POLICY_ACCEPTED } from "@/utils/constants";
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout<Readonly<unknown>>;
+  pageProps: { protected?: boolean } & Readonly<unknown>;
 };
 
 interface WindowWithGtag extends Window {

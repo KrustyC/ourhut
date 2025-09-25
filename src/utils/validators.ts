@@ -4,8 +4,8 @@ const TIME_REGEX = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 const URL_REGEX =
   /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
 
-export function isValidTime(time: string): string | true {
-  if (TIME_REGEX.test(time)) {
+export function isValidTime(time: string | undefined | null): string | true {
+  if (time && TIME_REGEX.test(time)) {
     return true;
   }
 
