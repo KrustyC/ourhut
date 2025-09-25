@@ -87,7 +87,7 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="px-8 text-xs text-gray-400 border-t-[1px] border-gray-200 py-6">
-            © Our Hut 2023{" "}
+            © Our Hut 2023 - {new Date().getFullYear()}{" "}
           </div>
         </div>
       </Media>
